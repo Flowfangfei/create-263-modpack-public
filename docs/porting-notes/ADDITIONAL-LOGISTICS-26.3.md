@@ -1,6 +1,7 @@
 # Additional Logistics 26.3 端侧与 Mixin 复核
 
-当前18模组整体运行与交付范围见[最终验证记录](../VALIDATION.md)。下文保留各次独立编译和静态审计的具体边界。
+> 本页保留源码融合、接口迁移和端侧排障阶段的技术记录。“当前”“等待”“待测”按相应段落当时的输入理解；后续运行结果见[联合验证](../VALIDATION.md)和[深入玩法](../GAMEPLAY-VALIDATION-26.3.md)，各项未覆盖范围仍分别保留。
+
 日期：2026-10-26（Asia/Shanghai）。目标 Java25 / Minecraft26.3 / NeoForge26.3.0.22-beta；使用本包实际 `com.simibubi.create` JAR。固定上游版本、源码快照、许可和已有资源迁移证据见 [Storage / Additional 原始迁移记录](STORAGE-LOGISTICS-26.3.md)。活动源码为 `modules/create-additional-logistics-adapted-263/src/main/java/`。
 
 ## 专服失败及修复

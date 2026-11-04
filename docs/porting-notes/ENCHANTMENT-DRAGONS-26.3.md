@@ -1,6 +1,7 @@
 # Enchantment Industry / Dragon’s Plus 26.3 迁移记录
 
-当前18模组整体运行与交付范围见[最终验证记录](../VALIDATION.md)。下文保留各次独立编译和静态审计的具体边界。
+> 本页保留源码融合、接口迁移和端侧排障阶段的技术记录。“当前”“等待”“待测”按相应段落当时的输入理解；后续运行结果见[联合验证](../VALIDATION.md)和[深入玩法](../GAMEPLAY-VALIDATION-26.3.md)，各项未覆盖范围仍分别保留。
+
 更新时间：2026-10-26T17:34:11+08:00。目标平台：Java 25、Minecraft 26.3、NeoForge 26.3.0.22-beta；使用整合包已经实际构建的 Create、Catnip、Ponder、Flywheel、Sable 与 Simulated API。
 
 ## 源码基线及融合方法

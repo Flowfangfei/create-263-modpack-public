@@ -8,7 +8,7 @@
 
 当前版本为 **0.3.0-alpha.3**，平台固定为 **NeoForge 26.3.0.22-beta / Java 25**，包含 **15 个源码模块目录、18 个直接运行 JAR**。本工程是社区移植与整合，组件名称、作者和许可分别保留。
 
-[安装](#安装到-hmcl) · [功能与架构](#功能与架构) · [源码构建](#从源码构建) · [验证范围](#已验证的范围) · [来源与许可](#来源与许可)
+[安装](#安装到-hmcl) · [功能与架构](#功能与架构) · [开发路线](#开发路线与技术文档) · [源码构建](#从源码构建) · [验证范围](#已验证的范围) · [来源与许可](#来源与许可)
 
 下载：[v0.3.0-alpha.3](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3) · [发布记录](docs/RELEASE.md) · 最后审核：**2026-11-04**。
 
@@ -92,6 +92,18 @@ Ponder、Catnip、Flywheel 和 Registrate 随 Create 构建/打包体系提供�
 | [`create-storage-adapted-263/`](modules/create-storage-adapted-263/) | `storage-adapted.jar` | ausmez/create-storage-neo-forge；固定官方源码与模组私有库存适配 |
 | [`create-fluid-logistics-adapted-263/`](modules/create-fluid-logistics-adapted-263/) | `fluid-logistics-adapted.jar` | yision1/CreateFluidLogistics；固定官方源码与原生流体事务适配 |
 
+## 开发路线与技术文档
+
+开发从 Create 源码底座和运行接口开始，依次接入铁路、物理链及附属模组，再验证存储、加工、电路和客户端行为。完整实现与代码入口见[开发技术总览](docs/DEVELOPMENT-OVERVIEW.md)；跨版本迁移的方法、冲突定位和验收步骤见[通用升级与测试指南](docs/MOD-UPGRADE-AND-TESTING.md)。
+
+| 技术阶段 | 主要工作与效果 | 阅读入口 |
+| --- | --- | --- |
+| Create 源码恢复 | 在公开 26.2 底座上比较发布包的方法与接口差异，恢复必要行为，进入整工程构建和运行验证 | [恢复方法与实现](docs/DEVELOPMENT-OVERVIEW.md#1-从可维护的-create-源码建立底座)、[来源与许可](docs/SOURCE-AND-LICENSES.md) |
+| 加载器与基础依赖 | 统一 NeoForge 平台、真实 Create API、Registrate ABI 与 Flywheel 隔离；迁移铁路及 Sable → Simulated → 航空/地面载具 | [基础链与组合冲突](docs/DEVELOPMENT-OVERVIEW.md#2-对齐-neoforge依赖-abi-与资源入口)、[运行与 datagen 边界](modules/create-aeronautics-adapted-263/docs/porting/RUNTIME-AND-DATAGEN.md) |
+| 分批扩展功能 | 基础九 JAR → 三附属十二 JAR → 六模块十八 JAR，共用依赖与串行构建；融合较高 MC 迁移参考及完整 NeoForge 功能树 | [三附属](docs/THREE-ADDONS-26.3.md)、[六模块](docs/FIVE-ADDONS-26.3.md) |
+| 数据、事务与同步 | 保留组件与数量、统一物理后端事务、延迟配方实例化；模组大库存与原版槽隔离，实际验证菜单和保存重开 | [库存/物流](docs/porting-notes/STORAGE-LOGISTICS-26.3.md)、[流体事务](docs/porting-notes/FLUID-26.3.md)、[独立物流端侧检查](docs/porting-notes/ADDITIONAL-LOGISTICS-26.3.md) |
+| 功能验收与分发 | 真实供液、钻井、物理约束、电力负载及失败对照；客户端渲染与思索作为对应专项，源码/安装器由 hash 关联 | [验证总表](docs/VALIDATION.md)、[深入玩法](docs/GAMEPLAY-VALIDATION-26.3.md)、[技术知识索引](knowledge/INDEX.md) |
+
 ## 从源码构建
 
 准备 **Python 3.11+、Java 25 JDK** 和网络；Gradle Wrapper 基线为 **9.5.0**。获取同版本 `-sources.zip` 并完整解压，在仓库根目录执行：
@@ -152,11 +164,12 @@ Windows 使用 Git 获取源码时启用长路径：`git clone -c core.longpaths
 
 | 验证记录 | 实际结果与边界 |
 | --- | --- |
-| [2026-11-04 思索修复](docs/PONDER-AUDIT-20261104.md) | 750 个组件、1718 条注册完成扫描；按场景、模板与回调去重后的 389 场景全部完成真实 GUI 绘制，3458 次时间轴采样、38592 帧；四批正常保存、回标题并退出 |
-| 同轮资源重载专项 | 实际调用资源重载入口后，绳轮 sprite 断言与末尾 12 场景绘制通过；受测组合包含 18 个生产 JAR，测试探针不随游玩包分发 |
-| [已有十八模组回归](docs/VALIDATION.md) | 新世界与独立 JVM 重启的四组服务端探针；六个附属模块每阶段 37 项；客户端 489 个注册物品的模型检查、十页 GUI 绘制、Storage 真实点击及压缩配方网络往返等已有通过记录 |
-| [深入玩法](docs/GAMEPLAY-VALIDATION-26.3.md) | 29 项新世界检查、14 项独立重启检查及两次正常停服检查；涵盖仓储事务与保存、加工产物与资源守恒、电路负载和包裹加速时序 |
-| 本版安装器验证 | 原生 Windows PowerShell 5.1 实际生成 HMCL 包；18 JAR 全部非目录条目与受测组合一致，1593 个航空学锁定素材目标在附件中排除并正确恢复；摘要见[发布记录](docs/RELEASE.md) |
+| [基础九 JAR](docs/VALIDATION-v0.1.0-alpha.1.md) | 完整构建、命名空间和联合加载检查；实际航空装配、螺旋桨推进、浮力输出、资源事务及身份保存重开。完整列车与全部载具玩法未覆盖 |
+| [三附属十二 JAR](docs/VALIDATION-v0.2.0-alpha.1.md) | 原生事务与余物、真实马达/泵供液、钻井产物、Sable 约束移动后重建及独立重载；临时燃料规则通过实际数据包重载核验 |
+| [六模块十八 JAR](docs/VALIDATION.md) | 创建/独立 JVM 重启每阶段 37 项新增检查，客户端 489 物品模型及真实菜单/压缩配方往返；原版 81 格箱子磁盘回读和私有库存取放守恒 |
+| [真实加工与动力](docs/GAMEPLAY-VALIDATION-26.3.md) | 29 项创建、14 项重开和两次正常停服检查；覆盖配方产物与消耗、电路带载/断电恢复、物流时序及失败对照 |
+| [客户端与思索专项](docs/PONDER-AUDIT-20261104.md) | 389 个渲染任务完成数据、真实 GUI、有限收尾和保存退出，资源重载后另验 12 项；快进采样的具体计数和局限见专题 |
+| [安装器与对应源码](docs/RELEASE.md) | Windows PowerShell 5.1 实际还原 18 JAR，全部非目录条目与受测组合一致；1593 锁定素材目标排除/恢复，15 模块 53,363 源码文件逐项 hash 核验 |
 
 这些记录对应各自标注的版本和输入。最新思索回归采用快进和时间点采样，未逐帧自然播放人工观察。复杂生产线、移动子空间、多人、长期负载和未安装的可选联动仍有待测范围。JEI、REI、EMI、KubeJS、ComputerCraft、JourneyMap 等联动的源码或参考存在，不代表它们已随本包安装或完成验收。
 
@@ -185,6 +198,7 @@ python -X utf8 -B scripts/test_three_addons.py client
 | `docs/`、`knowledge/` | 移植、修复与验证记录、可复用技术说明 |
 | `artifacts/`、`runtime/`、`.local/`、`tooling/` | 本地构建、测试数据、配置与缓存，由 Git 忽略 |
 
+- 开发入口：[完整技术总览](docs/DEVELOPMENT-OVERVIEW.md)、[通用升级与测试](docs/MOD-UPGRADE-AND-TESTING.md)、[技术知识索引](knowledge/INDEX.md)。
 - 起点：[来源与许可详解](docs/SOURCE-AND-LICENSES.md)、[模组升级与测试方法](docs/MOD-UPGRADE-AND-TESTING.md)、[第三方声明](THIRD_PARTY_NOTICES.md)。
 - 模块技术记录：[Liquid Fuel](modules/create-liquid-fuel-adapted-263/docs/PORTING-26.3.md)、[Ore Excavation](modules/create-ore-excavation-adapted-263/docs/PORTING-26.3.md)、[Transmission & Linkage](modules/transmission-linkage-adapted-263/docs/PORTING-26.3.md)、[Electro](docs/porting-notes/ELECTRO-26.3.md)、[Storage 与 Additional Logistics](docs/porting-notes/STORAGE-LOGISTICS-26.3.md)、[FluidLogistics](docs/porting-notes/FLUID-26.3.md)、[Enchantment Industry 与 Dragons Plus](docs/porting-notes/ENCHANTMENT-DRAGONS-26.3.md)。
 - 修复与验证：[主验证](docs/VALIDATION.md)、[深入玩法](docs/GAMEPLAY-VALIDATION-26.3.md)、[思索专项](docs/PONDER-AUDIT-20261104.md)、[通风口渲染](docs/VENT-RENDER-HOTFIX-20261029.md)、[热气球火焰](docs/PONDER-FLAME-HOTFIX-20261103.md)。
