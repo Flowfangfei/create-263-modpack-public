@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": "minecraft:redstone_torch",
+    "V": "electroenergetics:variac"
+  },
+  "pattern": [
+    "V",
+    "R"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:redstone_variac"
+  }
+}

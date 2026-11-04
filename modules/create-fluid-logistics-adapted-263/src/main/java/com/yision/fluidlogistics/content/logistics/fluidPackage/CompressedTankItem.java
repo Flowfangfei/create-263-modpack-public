@@ -1,0 +1,112 @@
+package com.yision.fluidlogistics.content.logistics.fluidPackage;
+
+import java.util.List;
+import java.util.function.Consumer;
+
+import com.yision.fluidlogistics.FluidLogistics;
+import com.yision.fluidlogistics.datacomponent.FluidTankContent;
+import com.yision.fluidlogistics.infrastructure.config.Config;
+import com.yision.fluidlogistics.migration.item.LegacyCompressedTankMigration;
+import com.yision.fluidlogistics.registry.AllDataComponents;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fluids.FluidStack;
+
+public class CompressedTankItem extends Item {
+	public CompressedTankItem(Properties properties) {
+		super(properties);
+	}
+
+	public static FluidStack getFluid(ItemStack stack) {
+		FluidTankContent content = stack.get(AllDataComponents.FLUID_TANK_CONTENT);
+		return content != null ? content.fluid() : FluidStack.EMPTY;
+	}
+
+	public static void setFluid(ItemStack stack, FluidStack fluid) {
+		int capacity = matchesFluid(stack, fluid) ? Math.max(getCapacity(), getFluid(stack).getAmount())
+			: getCapacity();
+		if (!fluid.isEmpty() && fluid.getAmount() > capacity) {
+			throw new IllegalArgumentException("compressed tank capacity is " + getCapacity() + " mB");
+		}
+		stack.set(AllDataComponents.FLUID_TANK_CONTENT, new FluidTankContent(fluid.copy()));
+	}
+
+	public static boolean isFluidStack(ItemStack stack) {
+		if (!(stack.getItem() instanceof CompressedTankItem)) {
+			return false;
+		}
+		FluidTankContent content = stack.get(AllDataComponents.FLUID_TANK_CONTENT);
+		return content != null && !content.isEmpty();
+	}
+
+	static int getFluidAmount(ItemStack stack) {
+		FluidTankContent content = stack.get(AllDataComponents.FLUID_TANK_CONTENT);
+		return content == null ? 0 : content.getAmount();
+	}
+
+	public static boolean matchesFluid(ItemStack stack, FluidStack fluid) {
+		return !fluid.isEmpty() && isFluidStack(stack)
+			&& FluidStack.isSameFluidSameComponents(getFluid(stack), fluid);
+	}
+
+	public static int getCapacity() {
+		return Config.getFluidPerPackage();
+	}
+
+	@Override
+	public Component getName(ItemStack stack) {
+		FluidStack fluid = getFluid(stack);
+		if (!fluid.isEmpty()) {
+			return fluid.getHoverName();
+		}
+		return super.getName(stack);
+	}
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, net.minecraft.world.item.component.TooltipDisplay display, java.util.function.Consumer<Component> consumer, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack,context,display,consumer,tooltipFlag);
+        java.util.List<Component> tooltipComponents=new java.util.ArrayList<>();
+        appendRetainedTooltip(stack,context,tooltipComponents,tooltipFlag);
+        tooltipComponents.forEach(consumer);
+    }
+    private void appendRetainedTooltip(ItemStack stack,TooltipContext context,List<Component> tooltipComponents,TooltipFlag tooltipFlag) {
+		
+		FluidStack fluid = getFluid(stack);
+		if (fluid.isEmpty()) {
+			return;
+		}
+
+		int capacity = getCapacity();
+		tooltipComponents.add(Component.literal(fluid.getAmount() + " / " + capacity + " mB")
+			.withStyle(ChatFormatting.GRAY));
+	}
+
+	public String getCreatorModId(ItemStack stack) {
+		FluidStack fluid = getFluid(stack);
+		if (!fluid.isEmpty()) {
+			Identifier fluidId = BuiltInRegistries.FLUID.getKey(fluid.getFluid());
+			if (fluidId != null) {
+				return fluidId.getNamespace();
+			}
+		}
+		return FluidLogistics.MODID;
+	}
+
+
+	@Override
+	public net.minecraft.world.InteractionResult use(Level level, Player player, InteractionHand usedHand) {
+		return LegacyCompressedTankMigration.use(level, player, usedHand);
+	}
+}

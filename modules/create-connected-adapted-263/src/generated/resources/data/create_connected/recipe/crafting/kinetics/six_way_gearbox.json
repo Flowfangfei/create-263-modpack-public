@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "create_connected:feature_enabled",
+      "tag": "create_connected:six_way_gearbox"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "c": "create:cogwheel",
+    "l": "create:large_cogwheel",
+    "s": "create:andesite_casing"
+  },
+  "pattern": [
+    "lc ",
+    "csc",
+    " cl"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_connected:six_way_gearbox"
+  }
+}

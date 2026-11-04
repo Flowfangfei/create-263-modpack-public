@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fxntstorage:backpack_upgrade_enabled",
+      "upgrade": "fxntstorage:backpack_flight_upgrade"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": true,
+  "category": "misc",
+  "key": {
+    "#": "create:brass_ingot",
+    "B": "fxntstorage:backpack_blank_upgrade",
+    "C": "create:cogwheel",
+    "F": "create:encased_fan",
+    "N": "create:nozzle",
+    "P": "create:propeller",
+    "S": "create:shaft",
+    "V": "create:copper_valve_handle"
+  },
+  "pattern": [
+    " P P ",
+    "F#V#F",
+    " SBS ",
+    " #C# ",
+    "  N  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:backpack_flight_upgrade"
+  }
+}

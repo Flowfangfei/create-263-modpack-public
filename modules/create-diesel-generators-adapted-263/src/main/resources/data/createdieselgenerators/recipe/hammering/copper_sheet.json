@@ -1,0 +1,11 @@
+{
+    "type":  "createdieselgenerators:hammering",
+    "ingredients":  [
+                        "#c:ingots/copper"
+                    ],
+    "results":  [
+                    {
+                        "id":  "create:copper_sheet"
+                    }
+                ]
+}

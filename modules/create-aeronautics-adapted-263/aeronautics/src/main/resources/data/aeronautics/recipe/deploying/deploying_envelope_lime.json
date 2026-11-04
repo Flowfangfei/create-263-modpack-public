@@ -1,0 +1,13 @@
+{
+  "type": "create:deploying",
+  "results": [
+    {
+      "count": 3,
+      "id": "aeronautics:lime_envelope"
+    }
+  ],
+  "ingredients": [
+    "minecraft:lime_wool",
+    "minecraft:stick"
+  ]
+}

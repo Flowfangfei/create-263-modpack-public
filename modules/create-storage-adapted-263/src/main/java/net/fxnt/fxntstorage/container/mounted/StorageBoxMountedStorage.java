@@ -1,0 +1,306 @@
+package net.fxnt.fxntstorage.container.mounted;
+
+import com.mojang.serialization.MapCodec;
+import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
+import com.simibubi.create.api.contraption.storage.item.WrapperMountedItemStorage;
+import com.simibubi.create.api.contraption.storage.item.menu.StorageInteractionWrapper;
+import com.simibubi.create.content.contraptions.Contraption;
+import com.simibubi.create.content.contraptions.behaviour.MovementContext;
+import com.simibubi.create.content.logistics.filter.FilterItemStack;
+import com.simibubi.create.foundation.codec.CreateCodecs;
+import com.simibubi.create.foundation.utility.CreateLang;
+import net.fxnt.fxntstorage.container.EnumProperties;
+import net.fxnt.fxntstorage.container.StorageBox;
+import net.fxnt.fxntstorage.container.StorageBoxEntity;
+import net.fxnt.fxntstorage.init.ModMountedStorageTypes;
+import net.fxnt.fxntstorage.network.packet.SyncMountedStoragePacket;
+import net.fxnt.fxntstorage.registry.ContraptionStorageFilters;
+import net.fxnt.fxntstorage.util.ContraptionInteractionContext;
+import net.fxnt.fxntstorage.util.SortOrder;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.Tags;
+import com.simibubi.create.compat.neoforge263.items.IItemHandlerModifiable;
+import com.simibubi.create.compat.neoforge263.items.ItemHandlerHelper;
+import com.simibubi.create.compat.neoforge263.items.ItemStackHandler;
+import net.neoforged.neoforge.network.PacketDistributor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.OptionalInt;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.IntStream;
+
+public class StorageBoxMountedStorage extends WrapperMountedItemStorage<ItemStackHandler> implements ContraptionStorageFilters.FilteredMountedStorage {
+    public static final MapCodec<StorageBoxMountedStorage> CODEC = net.fxnt.fxntstorage.inventory.StorageContents.HANDLER_CODEC.xmap(
+            StorageBoxMountedStorage::new, storage -> storage.wrapped
+    ).fieldOf("value");
+
+    private boolean initialized = false;
+    private boolean dirty = false;
+
+    private FilterItemStack filterItem = FilterItemStack.empty();
+    private @Nullable Contraption currentContraption = null;
+    private boolean voidUpgrade;
+    private SortOrder sortOrder;
+
+    protected StorageBoxMountedStorage(MountedItemStorageType<?> type, ItemStackHandler wrapped) {
+        super(type, wrapped);
+    }
+
+    protected StorageBoxMountedStorage(ItemStackHandler wrapped) {
+        this(ModMountedStorageTypes.STORAGE_BOX_MOUNTED.get(), wrapped);
+    }
+
+    @Override
+    public boolean handleInteraction(ServerPlayer player, Contraption contraption, StructureTemplate.StructureBlockInfo info) {
+        if (player.isSpectator()) return false;
+
+        ItemStack itemInHand = player.getMainHandItem();
+        Direction side = ContraptionInteractionContext.INTERACTION_DIRECTION.get();
+        if (side == null) return false;
+        if (!side.equals(info.state().getValue(StorageBox.FACING))) return false;
+
+        // Right-Click with Create Wrench in hand will toggle void mode
+        if (itemInHand.is(Tags.Items.TOOLS_WRENCH) && info.nbt() != null) {
+            boolean nbtValue = info.nbt().getBoolean("VoidUpgrade").orElse(false);
+            voidUpgrade = !nbtValue;
+
+            CompoundTag newNbt = info.nbt().copy();
+            newNbt.putBoolean("VoidUpgrade", !nbtValue);
+
+            BlockState updatedState = info.state().setValue(StorageBox.VOID_UPGRADE, !nbtValue);
+
+            StructureTemplate.StructureBlockInfo updatedInfo = new StructureTemplate.StructureBlockInfo(info.pos(), updatedState, newNbt);
+            contraption.getBlocks().put(info.pos(), updatedInfo);
+
+            markDirty();
+            return true;
+        }
+
+        if (!itemInHand.isEmpty()) {
+            // Current item in player hand will be inserted into container
+            if (filterItem.isEmpty() || filterTest(itemInHand)) {
+                ItemStack remainder = ItemHandlerHelper.insertItem(this.wrapped, itemInHand, false);
+
+                if (remainder.getCount() > 0 && voidUpgrade) {
+                    remainder = ItemStack.EMPTY;
+                }
+
+                if (remainder.getCount() <= itemInHand.getCount()) {
+                    player.setItemInHand(InteractionHand.MAIN_HAND, remainder);
+                } else {
+                    player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                }
+                markDirty();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if (!player.isShiftKeyDown()) return false;
+
+        ServerLevel level = ((net.minecraft.server.level.ServerLevel) player.level());
+        BlockPos localPos = info.pos();
+        Vec3 localPosVec = Vec3.atCenterOf(localPos);
+        Predicate<Player> stillValid = p -> {
+            Vec3 currentPos = contraption.entity.toGlobalVector(localPosVec, 0);
+            return this.isMenuValid(player, contraption, currentPos);
+        };
+        CompoundTag nbt = info.nbt();
+        Component customName = (nbt != null && nbt.contains("CustomName"))
+                ? net.fxnt.fxntstorage.util.StorageSerialization.readComponentJson(nbt.getString("CustomName").orElse(""), player.registryAccess())
+                : null;
+        Component blockName = customName != null ? customName : info.state().getBlock().getName();
+        Component menuName = CreateLang.translateDirect("contraptions.moving_container", blockName);
+        Consumer<Player> onClose = p -> {
+            Vec3 newPos = contraption.entity.toGlobalVector(localPosVec, 0);
+            this.playClosingSound(level, newPos);
+        };
+
+        OptionalInt id = player.openMenu(
+                this.createMenu(
+                        menuName, this.wrapped, stillValid, onClose, contraption.entity.getId(), localPos, info.nbt()
+                ), buf -> buf.writeInt(this.wrapped.getSlots()).writeInt(contraption.entity.getId()).writeBlockPos(localPos).writeNbt(info.nbt())
+        );
+        return id.isPresent();
+    }
+
+    protected @Nullable MenuProvider createMenu(Component name, IItemHandlerModifiable handler, Predicate<Player> stillValid, Consumer<Player> onClose, int contraptionId, BlockPos localPos, CompoundTag nbt) {
+        Container wrapper = new StorageInteractionWrapper(handler, stillValid, onClose);
+        return new SimpleMenuProvider(
+                (id, inv, player) -> new StorageBoxMountedMenu(id, inv, wrapper, contraptionId, localPos, nbt),
+                name
+        );
+    }
+
+    public static StorageBoxMountedStorage fromStorage(StorageBoxEntity storageBox) {
+        return new StorageBoxMountedStorage(copyToItemStackHandler(storageBox.getItemHandler()));
+    }
+
+    @Override
+    public void unmount(Level level, BlockState state, BlockPos pos, @Nullable BlockEntity be) {
+        if (be instanceof StorageBoxEntity storageBoxEntity) {
+            storageBoxEntity.applyInventoryToBlock(this.wrapped);
+        }
+
+        EnumProperties.StorageUsed fillLevel = calculateFillLevel();
+        BlockState currentState = level.getBlockState(pos);
+        if (currentState.hasProperty(StorageBox.STORAGE_USED)
+                && currentState.getValue(StorageBox.STORAGE_USED) != fillLevel) {
+            level.setBlock(pos, currentState.setValue(StorageBox.STORAGE_USED, fillLevel), Block.UPDATE_CLIENTS);
+        }
+
+        currentContraption = null;
+    }
+
+    @Override
+    public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+        if (!this.isItemValid(slot, stack))
+            return stack;
+
+        ItemStack remainder = super.insertItem(slot, stack, simulate);
+        if (!simulate) {
+            if (!remainder.isEmpty() && voidUpgrade && calculatePercentageUsed() >= 100f) {
+                remainder = ItemStack.EMPTY;
+            }
+            markDirty();
+        }
+        return remainder;
+    }
+
+    @Override
+    public boolean prefersItem(ItemStack stack) {
+        if (filterItem.isEmpty() || stack.isEmpty() || !filterTest(stack)) return false;
+        if (voidUpgrade) return true;
+
+        ItemStack single = stack.copyWithCount(1);
+        for (int i = 0; i < wrapped.getSlots(); i++) {
+            if (super.insertItem(i, single, true).isEmpty()) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+        ItemStack stack = super.extractItem(slot, amount, simulate);
+        if (!stack.isEmpty() && !simulate)
+            markDirty();
+        return stack;
+    }
+
+    @Override
+    public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+        if (currentContraption != null) {
+            ContraptionStorageFilters registry = ContraptionStorageFilters.getOrCreate(currentContraption);
+            if (registry.matches(currentContraption.entity.level(), stack) && filterItem.isEmpty()) {
+                return false;
+            }
+        }
+
+        return filterTest(stack);
+    }
+
+    private boolean filterTest(ItemStack stack) {
+        return filterItem.test(null, stack);
+    }
+
+    private float calculatePercentageUsed() {
+        int totalSpace = 0;
+        int usedSpace = 0;
+
+        for (int i = 0; i < wrapped.getSlots(); i++) {
+            var stack = wrapped.getStackInSlot(i);
+            int maxStackSize = stack.isEmpty() ? 64 : stack.getMaxStackSize();
+
+            totalSpace += maxStackSize;
+            usedSpace += stack.getCount();
+        }
+
+        if (totalSpace == 0) return 0;
+
+        return ((float) usedSpace / totalSpace) * 100;
+    }
+
+    private EnumProperties.StorageUsed calculateFillLevel() {
+        return EnumProperties.calculateFillLevel(wrapped, wrapped.getSlots());
+    }
+
+    public void updateClientStorageData(MovementContext context) {
+        int amount = IntStream.range(0, wrapped.getSlots()).map(i -> wrapped.getStackInSlot(i).getCount()).sum();
+        float percentUsed = calculatePercentageUsed();
+        EnumProperties.StorageUsed fillLevel = calculateFillLevel();
+
+        context.blockEntityData.putInt("StoredAmount", amount);
+        context.blockEntityData.putFloat("PercentageUsed", percentUsed);
+        context.blockEntityData.putString("SortOrder", sortOrder.name());
+        context.blockEntityData.putBoolean("VoidUpgrade", voidUpgrade);
+        context.state = context.state.setValue(StorageBox.STORAGE_USED, fillLevel);
+        context.state = context.state.setValue(StorageBox.VOID_UPGRADE, voidUpgrade);
+
+        PacketDistributor.sendToPlayersTrackingEntity(context.contraption.entity, new SyncMountedStoragePacket(context.contraption.entity.getId(), context.localPos, fillLevel, context.blockEntityData));
+        markClean();
+    }
+
+    public void initBlockEntityData(MovementContext context) {
+        if (initialized) return;
+
+        filterItem = FilterItemStack.of(context.world.registryAccess(), context.blockEntityData.getCompound("Filter").orElse(new CompoundTag()));
+        voidUpgrade = context.blockEntityData.getBoolean("VoidUpgrade").orElse(false);
+        sortOrder = SortOrder.valueOf(context.blockEntityData.getString("SortOrder").orElse(""));
+
+        this.currentContraption = context.contraption.entity.getContraption();
+
+        if (this.currentContraption != null && !filterItem.isEmpty()) {
+            ContraptionStorageFilters registry = ContraptionStorageFilters.getOrCreate(currentContraption);
+            registry.register(this, filterItem);
+        }
+
+        PacketDistributor.sendToPlayersTrackingEntity(context.contraption.entity, new SyncMountedStoragePacket(
+                context.contraption.entity.getId(),
+                context.localPos,
+                calculateFillLevel(),
+                context.blockEntityData
+        ));
+        initialized = true;
+    }
+
+    public void setSortOrder(SortOrder order) {
+        sortOrder = order;
+    }
+
+    public boolean isDirty() {
+        return this.dirty;
+    }
+
+    public boolean isInitialized() {
+        return this.initialized;
+    }
+
+    public void markClean() {
+        this.dirty = false;
+    }
+
+    public void markDirty() {
+        this.dirty = true;
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "backpack",
+  "key": {
+    "-": "create:iron_sheet",
+    "A": "create:andesite_alloy",
+    "S": "create:empty_schematic"
+  },
+  "pattern": [
+    "A-A",
+    "-S-",
+    "A-A"
+  ],
+  "result": {
+    "count": 4,
+    "id": "fxntstorage:backpack_blank_upgrade"
+  }
+}

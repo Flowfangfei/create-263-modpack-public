@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "create:andesite_alloy",
+    "S": "electroenergetics:cut_off_switch"
+  },
+  "pattern": [
+    "SAS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:double_switch"
+  }
+}

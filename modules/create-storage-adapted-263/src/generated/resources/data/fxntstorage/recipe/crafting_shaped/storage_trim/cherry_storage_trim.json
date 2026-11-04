@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "storage_box",
+  "key": {
+    "A": "create:andesite_alloy",
+    "W": "minecraft:cherry_planks"
+  },
+  "pattern": [
+    "AWA",
+    "W W",
+    "AWA"
+  ],
+  "result": {
+    "count": 4,
+    "id": "fxntstorage:cherry_storage_trim"
+  }
+}

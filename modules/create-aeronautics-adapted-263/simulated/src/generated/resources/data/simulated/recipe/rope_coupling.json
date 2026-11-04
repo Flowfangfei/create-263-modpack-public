@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "N": "minecraft:iron_nugget",
+    "S": "minecraft:string"
+  },
+  "pattern": [
+    " S ",
+    "NSN",
+    " S "
+  ],
+  "result": {
+    "id": "simulated:rope_coupling"
+  }
+}

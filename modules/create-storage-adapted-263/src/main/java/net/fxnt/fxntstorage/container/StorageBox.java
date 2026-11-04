@@ -1,0 +1,297 @@
+package net.fxnt.fxntstorage.container;
+
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.simibubi.create.foundation.block.IBE;
+import net.fxnt.fxntstorage.init.ModBlockEntities;
+import net.fxnt.fxntstorage.init.ModDataComponents;
+import net.fxnt.fxntstorage.util.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.fxnt.fxntstorage.inventory.StorageContents;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
+import java.util.WeakHashMap;
+import java.util.function.BiConsumer;
+
+@SuppressWarnings("deprecation")
+public class StorageBox extends BaseEntityBlock implements IBE<StorageBoxEntity> {
+    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<EnumProperties.StorageUsed> STORAGE_USED = EnumProperty.create("storage_used", EnumProperties.StorageUsed.class);
+    public static final BooleanProperty VOID_UPGRADE = BooleanProperty.create("void_upgrade");
+
+    private static class ClickData {
+        long lastClickTime;
+        long lastAttackTime;
+        BlockPos lastBlockPos;
+    }
+
+    private final Map<Player, ClickData> CLICK_DATA = new WeakHashMap<>();
+
+    private final int slotCount;
+
+    public StorageBox(Properties pProperties, int slotCount) {
+        super(pProperties);
+        registerDefaultState(defaultBlockState()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(STORAGE_USED, EnumProperties.StorageUsed.EMPTY)
+                .setValue(VOID_UPGRADE, false)
+        );
+        this.slotCount = slotCount;
+    }
+
+    public int getSlotCount() {
+        return slotCount;
+    }
+
+    @Override
+    protected void onExplosionHit(BlockState state, ServerLevel level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> dropConsumer) {
+        if (!state.isAir()) {
+            ServerLevel serverLevel = level;
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            LootParams.Builder lootParams = new LootParams.Builder(serverLevel)
+                    .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+                    .withParameter(LootContextParams.TOOL, ItemStack.EMPTY)
+                    .withOptionalParameter(LootContextParams.BLOCK_ENTITY, blockEntity)
+                    .withOptionalParameter(LootContextParams.THIS_ENTITY, explosion.getDirectSourceEntity());
+            state.getDrops(lootParams).forEach(drop -> dropConsumer.accept(drop, pos));
+        }
+        state.onBlockExploded(level, pos, explosion);
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
+
+    @Override
+    public Class<StorageBoxEntity> getBlockEntityClass() {
+        return StorageBoxEntity.class;
+    }
+
+    @Override
+    public BlockEntityType<? extends StorageBoxEntity> getBlockEntityType() {
+        return ModBlockEntities.STORAGE_BOX_ENTITY.get();
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        StorageBoxEntity storageBoxEntity = new StorageBoxEntity(ModBlockEntities.STORAGE_BOX_ENTITY.get(), blockPos, blockState);
+        storageBoxEntity.initializeEntity(slotCount);
+        return storageBoxEntity;
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        return createTickerHelper(blockEntityType, ModBlockEntities.STORAGE_BOX_ENTITY.get(),
+                (world, blockPos, blockState, entity) -> entity.tick(world, blockPos, blockState));
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof StorageBoxEntity be) {
+            be.initBlockState(level);
+        }
+    }
+
+    @Override
+    protected void affectNeighborsAfterRemoval(BlockState state, net.minecraft.server.level.ServerLevel level, BlockPos pos, boolean movedByPiston) {
+        BlockState newState = level.getBlockState(pos);
+        if (!state.is(newState.getBlock())) {
+            if (!movedByPiston)
+                IBE.onRemove(state, level, pos, newState);
+            level.invalidateCapabilities(pos);
+        }
+        super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData, Player player) {
+        ItemStack item = new ItemStack(this);
+
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof StorageBoxEntity sbe) {
+            item.set(net.fxnt.fxntstorage.init.ModDataComponents.STORAGE_CONTENTS, StorageContents.fromItems(sbe.getStacks()));
+        }
+        return item;
+    }
+
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState pState) {
+        return true;
+    }
+
+    private boolean hitFront(BlockState blockState, BlockHitResult hit) {
+        Direction side = hit.getDirection();
+        return blockState.getValue(FACING) == side;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (player.isSpectator() || !hitFront(state, hitResult))
+            return InteractionResult.PASS;
+        if (level.isClientSide()) {
+            if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !player.isShiftKeyDown()) {
+                return InteractionResult.PASS;
+            }
+            return InteractionResult.SUCCESS;
+        }
+
+            /*
+                Single-click: insert 1 stack from main hand
+                Single-click (sneaking): open GUI screen
+                Single-click (wrench): toggle void mode?
+
+                Double-click: insert every item in player inventory matching filter if hand is EMPTY
+                Double-click (sneaking): <nothing>
+             */
+        BlockEntity entity = level.getBlockEntity(pos);
+
+        if (entity instanceof StorageBoxEntity blockEntity) {
+            ItemStack mainHandItem = player.getItemInHand(InteractionHand.MAIN_HAND);
+
+            long currentTime = player.level().getGameTime();
+            ClickData data = CLICK_DATA.computeIfAbsent(player, p -> new ClickData());
+            boolean isDoubleClick = currentTime - data.lastClickTime < 10
+                    && data.lastBlockPos == blockEntity.getBlockPos();
+
+            if (isDoubleClick) {
+                // Double Right-click
+                if (mainHandItem.isEmpty() && !blockEntity.getFilter().getFilter().isEmpty()) {
+                    blockEntity.transferToStorage(state, player, true);
+                }
+            } else {
+                // Single Right-Click
+                if (mainHandItem.is(Tags.Items.TOOLS_WRENCH)) {
+                    // Right-Click with Create Wrench in hand will toggle void mode
+                    blockEntity.toggleVoidUpgrade();
+                    return InteractionResult.SUCCESS;
+                }
+
+                if (player.isShiftKeyDown()) {
+                    // Single Right-click while sneaking will open container GUI screen
+                    player.openMenu(blockEntity, pos);
+                    return InteractionResult.CONSUME;
+                }
+
+                if (!mainHandItem.isEmpty()) {
+                    // Current item in player hand will be inserted into container
+                    blockEntity.transferToStorage(state, player, false);
+                }
+            }
+            data.lastClickTime = currentTime;
+            data.lastBlockPos = blockEntity.getBlockPos();
+
+            if (!isDoubleClick && mainHandItem.isEmpty()) {
+                return InteractionResult.PASS;
+            }
+        }
+
+        return InteractionResult.CONSUME;
+    }
+
+    @Override
+    protected void attack(BlockState state, Level level, BlockPos pos, Player player) {
+        if (player.isSpectator() || level.isClientSide()) return;
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        Direction face = Util.getAttackedBlockFace(state, level, pos, player, blockEntity);
+        if (face != state.getValue(FACING)) return;
+
+        /*
+            Single-click: extract 1 item from container (matching filter) or from the first non-empty slot available
+            Single-click (sneaking): extract 1 stack from container (matching filter) or from the first non-empty slot available
+
+            Double-click: <nothing>
+            Double-click (sneaking): <nothing>
+        */
+        if (!(blockEntity instanceof StorageBoxEntity sbe)) return;
+
+        Item item = player.getItemInHand(InteractionHand.MAIN_HAND).getItem();
+        if (!(new ItemStack(item).is(net.minecraft.tags.ItemTags.PICKAXES) || new ItemStack(item).is(net.minecraft.tags.ItemTags.AXES))) {
+            ClickData data = CLICK_DATA.computeIfAbsent(player, p -> new ClickData());
+            long currentTime = level.getGameTime();
+
+            if (currentTime - data.lastAttackTime > 1) {
+                sbe.transferFromStorage(player);
+                data.lastAttackTime = currentTime;
+            }
+        }
+    }
+
+    @Nullable
+    public static Direction getDirectionFacing(BlockState state) {
+        if (!(state.getBlock() instanceof StorageBox)) return null;
+        return state.getValue(FACING);
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        boolean voidUpgrade = pContext.getItemInHand().getComponents().getOrDefault(ModDataComponents.VOID_UPGRADE, false);
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()).setValue(VOID_UPGRADE, voidUpgrade);
+    }
+
+    @Override
+    protected BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    protected BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> pBuilder) {
+        super.createBlockStateDefinition(pBuilder);
+        pBuilder.add(FACING, STORAGE_USED, VOID_UPGRADE);
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos, Direction direction) {
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        if (blockEntity instanceof StorageBoxEntity entity) {
+            float percentFull = entity.calculatePercentageUsed() / 100;
+            return (int) Math.min(percentFull * 15, 15);
+        }
+        return 0;
+    }
+
+    @Override
+    protected @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+        return null; // Return null for Spectator players trying to open menu
+    }
+}

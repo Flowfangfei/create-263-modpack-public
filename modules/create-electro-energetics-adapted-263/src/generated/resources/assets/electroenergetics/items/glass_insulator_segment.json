@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "electroenergetics:item/glass_insulator_segment"
+  }
+}

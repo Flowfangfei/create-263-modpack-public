@@ -1,0 +1,7 @@
+{
+  "model": {
+    "type": "fluidlogistics:fluid_container",
+    "model": "fluidlogistics:item/water_containing_copper_casing",
+    "kind": "casing"
+  }
+}

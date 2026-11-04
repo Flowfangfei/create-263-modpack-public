@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "storage_box",
+  "key": {
+    "A": "create:andesite_alloy",
+    "W": "minecraft:jungle_planks"
+  },
+  "pattern": [
+    "AWA",
+    "W W",
+    "AWA"
+  ],
+  "result": {
+    "count": 4,
+    "id": "fxntstorage:jungle_storage_trim"
+  }
+}

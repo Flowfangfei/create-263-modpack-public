@@ -1,0 +1,18 @@
+{
+  "type": "fxntstorage:backpack_crafting",
+  "category": "misc",
+  "group": "backpack",
+  "key": {
+    "B": "fxntstorage:brass_backpack",
+    "C": "create:railway_casing"
+  },
+  "pattern": [
+    "CCC",
+    "CBC",
+    "CCC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:hardened_backpack"
+  }
+}

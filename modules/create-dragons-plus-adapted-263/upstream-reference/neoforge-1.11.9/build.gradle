@@ -1,0 +1,396 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.141'
+    id "me.modmuss50.mod-publish-plugin" version "2.0.0-beta.2"
+    id "com.diffplug.spotless" version "7.0.2"
+    id 'idea'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = mod_version
+group = mod_group_id
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+def allIntegrationSourceSets = [
+        "ars_nouveau",
+        "sable",
+        "dye_depot",
+        "dyenamics",
+        "arts_and_crafts",
+        "create_garnished",
+        "create_dnd",
+        "aether",
+]
+
+def isIntegrationEnabled = { name ->
+    providers.gradleProperty("enable_${name}_integration")
+            .map { it.toBoolean() }
+            .orElse(true)
+            .get()
+}
+
+def enabledIntegrationSourceSets = allIntegrationSourceSets.findAll { name ->
+    isIntegrationEnabled(name)
+}
+
+def hasIntegration = { name ->
+    enabledIntegrationSourceSets.contains(name)
+}
+
+sourceSets {
+    enabledIntegrationSourceSets.each { name ->
+        create(name) {
+            java {
+                srcDir "src/integration/${name}/java"
+            }
+            resources {
+                srcDir "src/integration/${name}/resources"
+            }
+            compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        }
+    }
+    main {
+        enabledIntegrationSourceSets.each { name ->
+            runtimeClasspath += sourceSets[name].output
+        }
+    }
+}
+
+tasks.named("jar", Jar) {
+    from "LICENSING.txt"
+    from "LICENSE.txt"
+    from "LICENSE-CREATE.txt"
+    from "LICENSE-PONDER.txt"
+    enabledIntegrationSourceSets.each { name ->
+        from sourceSets[name].output
+    }
+    exclude ".cache"
+}
+
+tasks.named("sourcesJar", Jar) {
+    enabledIntegrationSourceSets.each { name ->
+        from sourceSets[name].allJava
+    }
+}
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        data {
+            data()
+            def dataArgs = [
+                    '--mod', project.mod_id,
+                    '--all',
+                    '--output', file('src/generated/resources/').getAbsolutePath(),
+                    '--existing', file('src/main/resources/').getAbsolutePath(),
+                    '--existing', file('src/main/translations/').getAbsolutePath(),
+                    '--existing-mod', 'create'
+            ]
+            enabledIntegrationSourceSets.each { name ->
+                dataArgs.addAll('--existing', file("src/integration/${name}/resources/").getAbsolutePath())
+            }
+            programArguments.addAll dataArgs
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+            enabledIntegrationSourceSets.each { name ->
+                sourceSet(sourceSets[name])
+            }
+        }
+    }
+}
+
+configurations {
+    localImplementation
+    compileClasspath.extendsFrom localImplementation
+    runtimeClasspath.extendsFrom localImplementation
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+enabledIntegrationSourceSets.each { name ->
+    def localConfig = configurations.create("${name}LocalImplementation") {
+        canBeConsumed = false
+        canBeResolved = false
+    }
+
+    configurations.named("${name}CompileClasspath") {
+        extendsFrom localConfig
+    }
+
+    configurations.named("${name}RuntimeClasspath") {
+        extendsFrom localConfig
+    }
+
+    configurations.named("runtimeClasspath") {
+        extendsFrom localConfig
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.minecraftforge.net" } // TerraBlender
+    maven { url "https://maven.createmod.net" } // Ponder, Flywheel
+    maven { url "https://mvn.devos.one/snapshots" } // Registrate
+    maven { url "https://maven.blamejared.com"       } // JEI
+    maven { url "https://maven.theillusivec4.top/" } // Curios API
+    maven { url 'https://maven.fallenbreath.me/releases' } // Conditional Mixin
+    maven { url "https://www.cursemaven.com" }
+    maven { url "https://api.modrinth.com/maven" }
+    maven { url "https://raw.githubusercontent.com/Fuzss/modresources/main/maven" } // NeoForge config api port, needed by ponder
+    maven { url "https://maven.dragons.plus/releases" } // Dragons Plus Maven
+    maven { url "https://maven.ryanhcode.dev/releases" } // RyanHCode Maven - Sable
+    maven {
+        name = "GeckoLib"
+        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+        }
+    }
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junit_version}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junit_version}")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junit_platform_version}")
+    jarJar(implementation("me.fallenbreath:conditional-mixin-neoforge")) {
+        version {
+            strictly "[${conditional_mixin_version},)"
+            prefer conditional_mixin_version
+        }
+    }
+
+    compileOnlyApi("dev.engine-room.flywheel:flywheel-neoforge-api-${flywheel_minecraft_version}:${flywheel_version}")
+    runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${flywheel_minecraft_version}:${flywheel_version}")
+    runtimeOnly("dev.engine-room.vanillin:vanillin-neoforge-${flywheel_minecraft_version}:${vanillin_version}")
+    api("com.tterrag.registrate:Registrate:${registrate_version}")
+    api("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+    api("com.simibubi.create:create-${minecraft_version}:${create_version}") { transitive false }
+
+    compileOnly("mezz.jei:jei-${jei_minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${jei_minecraft_version}-neoforge-api:${jei_version}")
+    localRuntime("mezz.jei:jei-${jei_minecraft_version}-neoforge:${jei_version}")
+
+    compileOnly("top.theillusivec4.curios:curios-neoforge:${curios_version}+${curios_minecraft_version}:api")
+    localRuntime("top.theillusivec4.curios:curios-neoforge:${curios_version}+${curios_minecraft_version}")
+
+    compileOnly("top.theillusivec4.curios:curios-neoforge:${curios_version}+${curios_minecraft_version}:api")
+    localRuntime("top.theillusivec4.curios:curios-neoforge:${curios_version}+${curios_minecraft_version}")
+
+    if (hasIntegration("sable")) {
+        sableLocalImplementation("dev.ryanhcode.sable:sable-neoforge-${minecraft_version}:${sable_version}")
+        sableLocalImplementation("dev.simulated_team.simulated:simulated-neoforge-${minecraft_version}:${create_aeronautics_version}")  { transitive false }
+        sableLocalImplementation("dev.eriksonn.aeronautics:aeronautics-neoforge-${minecraft_version}:${create_aeronautics_version}")  { transitive false }
+        sableLocalImplementation("dev.ryanhcode.offroad:offroad-neoforge-${minecraft_version}:${create_aeronautics_version}")  { transitive false }
+    }
+
+    if (hasIntegration("ars_nouveau")) {
+        ars_nouveauLocalImplementation("com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${ars_nouveau_version}")
+    }
+
+    localImplementation("plus.dragons.quicksand:quicksand-neoforge-${minecraft_version}:${quicksand_version}")
+
+    if (hasIntegration("dye_depot")) {
+        dye_depotLocalImplementation("maven.modrinth:dye-depot:${dye_depot_version}")
+    }
+
+    if (hasIntegration("dyenamics")) {
+        dyenamicsLocalImplementation("curse.maven:dyenamics-509276:${dyenamics_version}") // 3.4.2
+    }
+
+    if (hasIntegration("arts_and_crafts")) {
+        arts_and_craftsLocalImplementation("curse.maven:jinxedlib-1203401:6727693") // Arts And Crafts dependency
+        arts_and_craftsLocalImplementation("curse.maven:artsandcrafts-1034791:${artsandcrafts_version}") // 1.5.4
+    }
+
+    if (hasIntegration("create_garnished")) {
+        create_garnishedLocalImplementation("maven.modrinth:create-garnished:${create_garnished_version}")
+    }
+
+    if (hasIntegration("create_dnd")) {
+        create_dndLocalImplementation("maven.modrinth:create-dreams-and-desires:${create_d2d_version}")
+    }
+
+    if (hasIntegration("aether")) {
+        aetherLocalImplementation("maven.modrinth:owo-lib:0.12.15.5-beta.1+1.21")
+        aetherLocalImplementation("maven.modrinth:accessories:1.1.0-beta.53+1.21.1") // Embedded version causes mixin failure
+        aetherLocalImplementation("maven.modrinth:aether:${aether_version}")
+    }
+
+    // Compat fix
+    //localRuntime("maven.modrinth:immersiveengineering:${immersive_engineering_version}")
+}
+
+def integrationMixinConfigs = [
+        sable           : "${mod_id}.sable.mixins.json",
+        create_garnished: "${mod_id}.create_garnished.mixins.json",
+        create_dnd      : "${mod_id}.create_dnd.mixins.json",
+        aether          : "${mod_id}.aether.mixins.json",
+]
+
+def integrationMixinBlocks = enabledIntegrationSourceSets
+        .collect { name -> integrationMixinConfigs[name] }
+        .findAll { it != null }
+        .collect { config ->
+            "[[mixins]]\nconfig=\"${config}\""
+        }
+        .join("\n\n")
+
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description,
+            mod_github             : mod_github,
+            mod_logo               : mod_logo,
+            create_version_range   : create_version_range,
+            integration_mixin_blocks: integrationMixinBlocks
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    srcDir generateModMetadata
+}
+
+neoForge.ideSyncTask generateModMetadata
+
+spotless {
+    java {
+        endWithNewline()
+        leadingTabsToSpaces()
+        removeUnusedImports()
+        toggleOffOn()
+        importOrder()
+        eclipse().configFile "codeformat/formatter-config.xml"
+        licenseHeaderFile "codeformat/HEADER.txt"
+    }
+}
+
+build.dependsOn(spotlessApply)
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+}
+
+tasks.named('sourcesJar', Jar) {
+    from "LICENSE-PONDER.txt"
+}
+
+neoForge {
+    unitTest {
+        enable()
+        testedMod = mods.getByName(mod_id)
+    }
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifactId = mod_artifact_id + "-" + minecraft_version
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name "DragonsPlus"
+            url "https://maven.dragons.plus/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}
+
+publishMods {
+    file = jar.archiveFile
+    additionalFiles.from sourcesJar.archiveFile
+    changelog = project.file("CHANGELOG.md").text
+    version = mod_version
+    type = STABLE
+    displayName = "Create: Dragons Plus ${mod_version} for Create ${minecraft_version}-${create_version_production}"
+    modLoaders.add("neoforge")
+
+    curseforge {
+        projectId = "1216624"
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        minecraftVersions.add(minecraft_version)
+        requires("create")
+        client = true
+        server = true
+    }
+
+    modrinth {
+        projectId = "dzb1a5WV"
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        minecraftVersions.add(minecraft_version)
+
+        requires("create")
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

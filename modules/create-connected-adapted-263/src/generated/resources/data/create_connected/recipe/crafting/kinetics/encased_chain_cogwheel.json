@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "create_connected:feature_enabled",
+      "tag": "create_connected:encased_chain_cogwheel"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "create:encased_chain_drive",
+    "create:cogwheel"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_connected:encased_chain_cogwheel"
+  }
+}

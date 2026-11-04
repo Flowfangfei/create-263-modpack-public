@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "electroenergetics:electrical_panel",
+    "minecraft:purple_dye"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:purple_electrical_panel"
+  }
+}

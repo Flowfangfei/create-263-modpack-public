@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-11-02T17:30:15+08:00",
+  "instance_name": "Create263 Pack",
+  "latest_published_release": {
+    "repository": "Flowfangfei/create-263-modpack",
+    "tag": "v0.3.0-alpha.2",
+    "draft": false,
+    "prerelease": true,
+    "published_at": "2026-10-28T06:03:05Z",
+    "url": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.2",
+    "installer_sha256_verified_against_live_github_digest": "135e92e6decd2f1e0cca2eedce03f9fa3ddad5404b05c4d31f1da8685b06e967"
+  },
+  "reference_hmcl_zip_sha256": "7f9e64b0ef921145ea1bc760c7fbb5af1cfbb6c96f7c8487ce6f6366edc43273",
+  "reference_chain": "Independent audit verified installer payload manifest, pinned added resources, official Create resource pack, and reconstructed runtime entries. Parent independently rechecked installer digest and all 18 complete installed JAR hashes.",
+  "installed_matches_latest_published": true,
+  "matched_direct_jars": 18,
+  "missing": [],
+  "extra": [],
+  "jars": [
+    {
+      "name": "additional-logistics-adapted.jar",
+      "expected_sha256": "a3497e6e4ca72587b4a0d5f6f49c560fcc23cda1df5b79113e53f3a8b62b0cec",
+      "installed_sha256": "a3497e6e4ca72587b4a0d5f6f49c560fcc23cda1df5b79113e53f3a8b62b0cec",
+      "matches": true
+    },
+    {
+      "name": "aeronautics-adapted.jar",
+      "expected_sha256": "1dc707039d91a8f6360f60b9b84d326745c2dfaab8efc4851dc00c2a7d9a4f01",
+      "installed_sha256": "1dc707039d91a8f6360f60b9b84d326745c2dfaab8efc4851dc00c2a7d9a4f01",
+      "matches": true
+    },
+    {
+      "name": "connected-adapted.jar",
+      "expected_sha256": "2a0f8e24e2cff6721f26177cebd8f191b8eaccecc2ade992ab004d27205c952c",
+      "installed_sha256": "2a0f8e24e2cff6721f26177cebd8f191b8eaccecc2ade992ab004d27205c952c",
+      "matches": true
+    },
+    {
+      "name": "connected-simulated-bridge.jar",
+      "expected_sha256": "cf9e1f0a3aef9a9f8aad9939613fce0ac52500b5e8d5eee8e43c9ced5f74baf9",
+      "installed_sha256": "cf9e1f0a3aef9a9f8aad9939613fce0ac52500b5e8d5eee8e43c9ced5f74baf9",
+      "matches": true
+    },
+    {
+      "name": "create-adapted-recovered.jar",
+      "expected_sha256": "163e9555cb8ba133362cd55590976401a1004a3be2cc7a600d10f273c18ac721",
+      "installed_sha256": "163e9555cb8ba133362cd55590976401a1004a3be2cc7a600d10f273c18ac721",
+      "matches": true
+    },
+    {
+      "name": "diesel-adapted.jar",
+      "expected_sha256": "fc3f531a10119d8ec9d0a53615332944a49c1659f76a70e56d029d0e17c1a277",
+      "installed_sha256": "fc3f531a10119d8ec9d0a53615332944a49c1659f76a70e56d029d0e17c1a277",
+      "matches": true
+    },
+    {
+      "name": "dragons-plus-adapted.jar",
+      "expected_sha256": "ad01a72dc6a796facdf1a7a00cccf60a97c3e52f6cea614e63f5f4a0f8eb1f86",
+      "installed_sha256": "ad01a72dc6a796facdf1a7a00cccf60a97c3e52f6cea614e63f5f4a0f8eb1f86",
+      "matches": true
+    },
+    {
+      "name": "electroenergetics-adapted.jar",
+      "expected_sha256": "d6e37bd470d359344e3bae1fb198d214f3841f1623cf2f7b69f1e35f093ffe12",
+      "installed_sha256": "d6e37bd470d359344e3bae1fb198d214f3841f1623cf2f7b69f1e35f093ffe12",
+      "matches": true
+    },
+    {
+      "name": "enchantment-industry-adapted.jar",
+      "expected_sha256": "4b56b252452f484c40f190dca1063d13f9d0115984d7b15ed7902c5b501121db",
+      "installed_sha256": "4b56b252452f484c40f190dca1063d13f9d0115984d7b15ed7902c5b501121db",
+      "matches": true
+    },
+    {
+      "name": "fluid-logistics-adapted.jar",
+      "expected_sha256": "99f2988b1275b7e9af2a745fe6c0e4603e5d17a15f42a1c64bf68d164349ee36",
+      "installed_sha256": "99f2988b1275b7e9af2a745fe6c0e4603e5d17a15f42a1c64bf68d164349ee36",
+      "matches": true
+    },
+    {
+      "name": "liquid-fuel-adapted.jar",
+      "expected_sha256": "541eab4d1c023931a9813db9908109da23bbf1ba7e0be26c4156bda39f564a1b",
+      "installed_sha256": "541eab4d1c023931a9813db9908109da23bbf1ba7e0be26c4156bda39f564a1b",
+      "matches": true
+    },
+    {
+      "name": "offroad-adapted.jar",
+      "expected_sha256": "613c5391a8e007ce9027ac991ce784a3e168ddbf9fe6dc480936e0dd4e8be185",
+      "installed_sha256": "613c5391a8e007ce9027ac991ce784a3e168ddbf9fe6dc480936e0dd4e8be185",
+      "matches": true
+    },
+    {
+      "name": "ore-excavation-adapted.jar",
+      "expected_sha256": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+      "installed_sha256": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+      "matches": true
+    },
+    {
+      "name": "railways-adapted.jar",
+      "expected_sha256": "8a38a6898447ad7349137bce8ff7c4391881f11a02c65873f31876c2a7b367df",
+      "installed_sha256": "8a38a6898447ad7349137bce8ff7c4391881f11a02c65873f31876c2a7b367df",
+      "matches": true
+    },
+    {
+      "name": "sable-adapted.jar",
+      "expected_sha256": "7424089a8bbb79b51f8f5de2f7cf3835d253446ec5eaddece145ce72d195c215",
+      "installed_sha256": "7424089a8bbb79b51f8f5de2f7cf3835d253446ec5eaddece145ce72d195c215",
+      "matches": true
+    },
+    {
+      "name": "simulated-adapted.jar",
+      "expected_sha256": "cffb316352d10388a574f60f8caed2281c59f8f0b2cd58e3d4e50d28b5b07bd0",
+      "installed_sha256": "cffb316352d10388a574f60f8caed2281c59f8f0b2cd58e3d4e50d28b5b07bd0",
+      "matches": true
+    },
+    {
+      "name": "storage-adapted.jar",
+      "expected_sha256": "86bee204ede0a8fe960306c4a633eaabd6e10ca2f591d0765ceaff1ce0ec4f3b",
+      "installed_sha256": "86bee204ede0a8fe960306c4a633eaabd6e10ca2f591d0765ceaff1ce0ec4f3b",
+      "matches": true
+    },
+    {
+      "name": "transmission-linkage-adapted.jar",
+      "expected_sha256": "69b2dba16719af0dd33eb8762689ec403ff95813e57a268e07bfec1962e36cff",
+      "installed_sha256": "69b2dba16719af0dd33eb8762689ec403ff95813e57a268e07bfec1962e36cff",
+      "matches": true
+    }
+  ],
+  "electro_alpha2": {
+    "jar_sha256": "d6e37bd470d359344e3bae1fb198d214f3841f1623cf2f7b69f1e35f093ffe12",
+    "lifecycle_class_sha256": "4209cb9af4acab8135be55e770d87a1185f5497bd7bf9cc04cbdc556942af9a5",
+    "server_start_stop_present": true,
+    "version_text_alone_distinguishes_alpha1_alpha2": false
+  },
+  "new_hotfix_installed": false,
+  "original_worlds_read_or_launched": false,
+  "instance_modified": false
+}

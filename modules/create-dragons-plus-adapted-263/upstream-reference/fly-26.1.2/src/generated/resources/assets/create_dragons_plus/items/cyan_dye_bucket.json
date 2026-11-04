@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "create_dragons_plus:item/cyan_dye_bucket",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -15295332
+      }
+    ]
+  }
+}

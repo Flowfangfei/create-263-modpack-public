@@ -1,0 +1,403 @@
+package net.fxnt.fxntstorage.reserve_storage;
+
+import com.simibubi.create.content.redstone.thresholdSwitch.ThresholdSwitchObservable;
+import com.simibubi.create.foundation.utility.CreateLang;
+import net.fxnt.fxntstorage.config.ConfigManager;
+import net.fxnt.fxntstorage.container.EnumProperties;
+import net.fxnt.fxntstorage.init.ModDataComponents;
+import net.fxnt.fxntstorage.network.packet.SetSortOrderPacket;
+import net.fxnt.fxntstorage.util.SortOrder;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Container;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.Nameable;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.fxnt.fxntstorage.inventory.StorageContents;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import com.simibubi.create.compat.neoforge263.items.IItemHandlerModifiable;
+import com.simibubi.create.compat.neoforge263.items.ItemStackHandler;
+import net.neoforged.neoforge.network.PacketDistributor;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static net.fxnt.fxntstorage.reserve_storage.ReserveStorageBox.VOID_UPGRADE;
+
+public class ReserveStorageBoxEntity extends com.simibubi.create.foundation.blockEntity.SyncedBlockEntity implements Container, MenuProvider, Nameable, ThresholdSwitchObservable {
+    static final int SLOT_COUNT = 36;
+    static final int STORAGE_SLOTS = 27;
+    static final int GHOST_SLOT_OFFSET = 27;
+    static final int GHOST_SLOTS = 9;
+
+    private Component customName = null;
+    private SortOrder sortOrder = SortOrder.COUNT;
+    private int tickCount = 0;
+    private int storedAmount = 0;
+    private float percentageUsed = 0;
+    boolean voidUpgrade;
+
+    private final ItemStackHandler itemHandler = createItemHandler();
+    private final ReserveStorageBoxAutomationHandler automationHandler = new ReserveStorageBoxAutomationHandler(itemHandler);
+
+    private record StorageStats(int stored, int capacity, EnumProperties.StorageUsed fillLevel) {
+        float percentage() {
+            return capacity == 0 ? 0f : (stored * 100f) / capacity;
+        }
+    }
+
+    public ReserveStorageBoxEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+        super(type, pos, blockState);
+        this.voidUpgrade = blockState.getValue(VOID_UPGRADE);
+    }
+
+    private ItemStackHandler createItemHandler() {
+        return new net.fxnt.fxntstorage.inventory.StorageInventoryHandler(SLOT_COUNT) {
+            @Override
+            public int getSlotLimit(int slot) {
+                return slot >= 27 ? ReserveStorageBoxGhostSlot.MAX_COUNT : super.getSlotLimit(slot);
+            }
+
+            @Override
+            public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                ItemStack result = super.insertItem(slot, stack, simulate);
+                if (voidUpgrade && slot < STORAGE_SLOTS && !result.isEmpty() && !canStoreItem(result)) {
+                    return ItemStack.EMPTY;
+                }
+                return result;
+            }
+
+            private boolean canStoreItem(ItemStack stack) {
+                for (int i = 0; i < STORAGE_SLOTS; i++) {
+                    ItemStack existing = getStackInSlot(i);
+                    if (existing.isEmpty()) return true;
+                    if (ItemStack.isSameItemSameComponents(existing, stack)
+                            && existing.getCount() < Math.min(getSlotLimit(i), existing.getMaxStackSize())) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        };
+    }
+
+    protected void initBlockState(Level level) {
+        BlockState newState = getBlockState().setValue(ReserveStorageBox.STORAGE_USED, calculateStats().fillLevel());
+        level.setBlock(worldPosition, newState, Block.UPDATE_ALL);
+        level.sendBlockUpdated(worldPosition, newState, newState, Block.UPDATE_ALL);
+    }
+
+    public IItemHandlerModifiable getItemHandler() {
+        return itemHandler;
+    }
+
+    public ReserveStorageBoxAutomationHandler getAutomationHandler() {
+        return automationHandler;
+    }
+
+    public static int getSlotCount() {
+        return SLOT_COUNT;
+    }
+
+    public SortOrder getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(SortOrder order) {
+        this.sortOrder = order;
+        if (this.level != null && this.level.isClientSide())
+            net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new SetSortOrderPacket(sortOrder));
+        setChanged();
+    }
+
+    public static int getGhostSlotOffset() {
+        return GHOST_SLOT_OFFSET;
+    }
+
+    @Override
+    public Component getName() {
+        return getDisplayName();
+    }
+
+    @Override
+    public @Nullable Component getCustomName() {
+        return customName;
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return customName != null ? customName : getBlockState().getBlock().getName();
+    }
+
+    protected void tick(Level level, BlockPos pos, BlockState state) {
+        if (level.isClientSide()) return;
+
+        if (tickCount++ < ConfigManager.ServerConfig.STORAGE_BOX_UPDATE_TIME.get()) return;
+        tickCount = 0;
+
+        int oldStoredAmount = this.storedAmount;
+        float oldPercentageUsed = this.percentageUsed;
+
+        StorageStats stats = calculateStats();
+        this.storedAmount = stats.stored();
+        this.percentageUsed = stats.percentage();
+
+        boolean statsChanged = this.storedAmount != oldStoredAmount || this.percentageUsed != oldPercentageUsed;
+        boolean fillLevelChanged = state.getValue(ReserveStorageBox.STORAGE_USED) != stats.fillLevel();
+
+        if (statsChanged) this.setChanged();
+
+        if (fillLevelChanged) {
+            level.setBlock(pos, state.setValue(ReserveStorageBox.STORAGE_USED, stats.fillLevel()), Block.UPDATE_CLIENTS);
+        } else if (statsChanged) {
+            level.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
+        }
+    }
+
+    @Override
+    protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter componentInput) {
+        super.applyImplicitComponents(componentInput);
+        customName = componentInput.get(DataComponents.CUSTOM_NAME);
+        setVoidUpgrade(componentInput.getOrDefault(ModDataComponents.VOID_UPGRADE, false));
+        readInventory(componentInput.getOrDefault(net.fxnt.fxntstorage.init.ModDataComponents.STORAGE_CONTENTS, StorageContents.EMPTY));
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components) {
+        super.collectImplicitComponents(components);
+        components.set(ModDataComponents.VOID_UPGRADE, this.voidUpgrade);
+        components.set(DataComponents.CUSTOM_NAME, customName);
+        components.set(net.fxnt.fxntstorage.init.ModDataComponents.STORAGE_CONTENTS, StorageContents.fromItems(getStacks()));
+    }
+
+    public void readInventory(StorageContents contents) {
+        int slots=itemHandler.getSlots();
+        if(contents.getSlots()>slots)throw new IllegalArgumentException("Inventory component exceeds physical Storage slots");
+        // Validate the shape before changing anything; missing tail slots are explicitly empty.
+        for(int i=0;i<slots;i++)itemHandler.setStackInSlot(i,contents.getStackInSlot(i));
+    }
+
+    public List<ItemStack> getStacks() {
+        List<ItemStack> stacks = new ArrayList<>();
+        for (int i = 0; i < itemHandler.getSlots(); ++i) {
+            stacks.add(itemHandler.getStackInSlot(i));
+        }
+        return stacks;
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        StorageStats stats = calculateStats();
+        tag.put("Items", net.fxnt.fxntstorage.util.StorageSerialization.write(itemHandler, registries));
+        tag.putInt("StoredAmount", stats.stored());
+        tag.putFloat("PercentageUsed", stats.percentage());
+        tag.putString("ReserveSlotStatus", calculateSlotStatus());
+        tag.putBoolean("VoidUpgrade", voidUpgrade);
+        tag.putString("SortOrder", sortOrder.name());
+        if (customName != null)
+            tag.putString("CustomName", net.fxnt.fxntstorage.util.StorageSerialization.writeComponentJson(customName, registries));
+        super.saveAdditional(tag, registries);
+    }
+
+    /**
+     * Computes the 9-character per-slot reserve status string embedded in the
+     * block entity NBT so Create includes it in the contraption's structure template
+     * and sends it to the client at entity-spawn time — same as StoredAmount /
+     * PercentageUsed.  Characters: F = fully met, P = partial, U = unmet, E = empty.
+     */
+    private String calculateSlotStatus() {
+        char[] status = new char[GHOST_SLOTS]; // GHOST_SLOTS
+        for (int i = 0; i < GHOST_SLOTS; i++) {
+            ItemStack ghost = itemHandler.getStackInSlot(GHOST_SLOT_OFFSET + i); // GHOST_SLOT_OFFSET
+            if (ghost.isEmpty()) {
+                status[i] = 'E';
+                continue;
+            }
+            int required = ghost.getCount();
+            int stored = 0;
+            for (int j = 0; j < STORAGE_SLOTS; j++) { // STORAGE_SLOTS
+                ItemStack slot = itemHandler.getStackInSlot(j);
+                if (!slot.isEmpty() && ItemStack.isSameItemSameComponents(slot, ghost)) {
+                    stored += slot.getCount();
+                }
+            }
+            status[i] = stored >= required ? 'F' : stored > 0 ? 'P' : 'U';
+        }
+        return new String(status);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        net.fxnt.fxntstorage.util.StorageSerialization.read(itemHandler, registries, tag.getCompound("Items").orElse(new CompoundTag()));
+        storedAmount = tag.getInt("StoredAmount").orElse(0);
+        percentageUsed = tag.getFloat("PercentageUsed").orElse(0f);
+        if (tag.contains("VoidUpgrade"))
+            voidUpgrade = tag.getBoolean("VoidUpgrade").orElse(false);
+        if (tag.contains("SortOrder"))
+            sortOrder = SortOrder.valueOf(tag.getString("SortOrder").orElse(""));
+        if (tag.contains("CustomName"))
+            customName = net.fxnt.fxntstorage.util.StorageSerialization.readComponentJson(tag.getString("CustomName").orElse(""), registries);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag tag = super.getUpdateTag(registries);
+        saveAdditional(tag, registries);
+        return tag;
+    }
+
+    @Override
+    public @Nullable ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
+        if (player.isSpectator()) return null;
+        return new ReserveStorageBoxMenu(containerId, playerInventory, this);
+    }
+
+    @Override
+    public int getMaxValue() {
+        return calculateStats().capacity();
+    }
+
+    @Override
+    public int getMinValue() {
+        return 0;
+    }
+
+    @Override
+    public int getCurrentValue() {
+        return calculateStats().stored();
+    }
+
+    @Override
+    public MutableComponent format(int value) {
+        return CreateLang.translateDirect("create.gui.threshold_switch.currently", value);
+    }
+
+    private StorageStats calculateStats() {
+        int stored = 0;
+        int capacity = 0;
+        boolean allSlotsFull = true;
+        int filledSlots = 0;
+
+        for (int i = 0; i < 27; i++) {
+            ItemStack stack = itemHandler.getStackInSlot(i);
+            stored += stack.getCount();
+            capacity += stack.isEmpty() ? 64 : stack.getMaxStackSize();
+            if (!stack.isEmpty()) {
+                filledSlots++;
+                if (stack.getCount() < stack.getMaxStackSize()) allSlotsFull = false;
+            } else {
+                allSlotsFull = false;
+            }
+        }
+
+        int emptySlots = SLOT_COUNT - 9 - filledSlots;
+        EnumProperties.StorageUsed fillLevel;
+        if (allSlotsFull) fillLevel = EnumProperties.StorageUsed.FULL;
+        else if (emptySlots == 0) fillLevel = EnumProperties.StorageUsed.SLOTS_FILLED;
+        else if (filledSlots > 0) fillLevel = EnumProperties.StorageUsed.HAS_ITEMS;
+        else fillLevel = EnumProperties.StorageUsed.EMPTY;
+
+        return new StorageStats(stored, capacity, fillLevel);
+    }
+
+    public float getPercentageUsed() {
+        return calculateStats().percentage();
+    }
+
+    public void toggleVoidUpgrade() {
+        BlockState blockState = this.getBlockState();
+        Level level = this.getLevel();
+        if (level != null) {
+            this.voidUpgrade = !blockState.getValue(VOID_UPGRADE);
+            level.setBlockAndUpdate(this.getBlockPos(), blockState.setValue(VOID_UPGRADE, this.voidUpgrade));
+            this.setChanged();
+        }
+    }
+
+    public void setVoidUpgrade(boolean bool) {
+        if (this.voidUpgrade != bool) this.toggleVoidUpgrade();
+    }
+
+    @Override
+    public int getContainerSize() {
+        return itemHandler.getSlots();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return calculateStats().stored() < 1;
+    }
+
+    @Override
+    public ItemStack getItem(int slot) {
+        return itemHandler.getStackInSlot(slot);
+    }
+
+    @Override
+    public ItemStack removeItem(int slot, int amount) {
+        return itemHandler.extractItem(slot, amount, false);
+    }
+
+    @Override
+    public ItemStack removeItemNoUpdate(int slot) {
+        ItemStack existing = itemHandler.getStackInSlot(slot);
+        itemHandler.setStackInSlot(slot, ItemStack.EMPTY);
+        return existing;
+    }
+
+    @Override
+    public void setItem(int slot, ItemStack stack) {
+        itemHandler.setStackInSlot(slot, stack);
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return !this.isRemoved() && Container.stillValidBlockEntity(this, player, 0);
+    }
+
+    @Override
+    public boolean canPlaceItem(int slot, ItemStack stack) {
+        return slot < STORAGE_SLOTS;
+    }
+
+    @Override
+    public boolean canTakeItem(Container target, int slot, ItemStack stack) {
+        return slot < STORAGE_SLOTS;
+    }
+
+    @Override
+    public void clearContent() {
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
+    }
+
+    public void applyInventoryToBlock(ItemStackHandler wrapped) {
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, i < wrapped.getSlots() ? wrapped.getStackInSlot(i) : ItemStack.EMPTY);
+        }
+    }
+}

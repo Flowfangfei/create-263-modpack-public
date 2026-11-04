@@ -1,0 +1,133 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "railways:locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:brown_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:maroon_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:red_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:vermilion_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:orange_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:granite_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:dripstone_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:ochrum_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:yellow_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:chartreuse_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:olive_green_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:lime_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:green_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:pine_green_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:cyan_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:sea_green_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:turquoise_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:light_blue_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:blue_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:royal_blue_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:purple_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:magenta_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:pink_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:white_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:diorite_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:limestone_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:light_gray_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:tuff_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:gray_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:scorchia_locometal_flywheel",
+      "required": false
+    },
+    {
+      "id": "railways:black_locometal_flywheel",
+      "required": false
+    }
+  ]
+}

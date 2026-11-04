@@ -1,0 +1,7 @@
+{
+  "model": {
+    "type": "fluidlogistics:fluid_container",
+    "model": "fluidlogistics:item/compressed_storage_tank",
+    "kind": "compressed"
+  }
+}

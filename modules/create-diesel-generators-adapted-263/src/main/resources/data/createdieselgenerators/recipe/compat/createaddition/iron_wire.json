@@ -1,0 +1,17 @@
+{
+    "type":  "createdieselgenerators:wire_cutting",
+    "ingredients":  [
+                        "#c:plates/iron"
+                    ],
+    "results":  [
+                    {
+                        "id":  "createaddition:iron_wire"
+                    }
+                ],
+    "neoforge:conditions":  [
+                                {
+                                    "type":  "neoforge:mod_loaded",
+                                    "modid":  "createaddition"
+                                }
+                            ]
+}

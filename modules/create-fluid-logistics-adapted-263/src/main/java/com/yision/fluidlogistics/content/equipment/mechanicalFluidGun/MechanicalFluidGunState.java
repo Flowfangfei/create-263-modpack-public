@@ -1,0 +1,627 @@
+package com.yision.fluidlogistics.content.equipment.mechanicalFluidGun;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.simibubi.create.AllDataComponents;
+import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.AllSoundEvents;
+import com.simibubi.create.content.contraptions.StructureTransform;
+import com.simibubi.create.content.fluids.transfer.FillingRecipe;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.INamedIconOptions;
+import com.simibubi.create.foundation.gui.AllIcons;
+import com.yision.fluidlogistics.content.fluids.faucet.FaucetFilling;
+
+import net.createmod.catnip.api.lang.Lang;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+
+import net.neoforged.neoforge.fluids.FluidStack;
+import com.simibubi.create.compat.neoforge263.fluids.capability.IFluidHandler;
+
+interface MechanicalFluidGunContext {
+	Level level();
+
+	BlockPos gunPos();
+
+	float speed();
+
+	boolean testFilter(FluidStack stack);
+
+	@Nullable
+	IFluidHandler sourceHandler();
+
+	void notifyGunUpdate();
+
+	boolean canFillFluidContainer(BlockPos targetPos, IFluidHandler targetHandler, FluidStack candidate);
+
+	void markFluidContainerFilled(BlockPos targetPos);
+
+	void finishFluidContainerFill(BlockPos targetPos);
+}
+
+class MechanicalFluidGunCycle {
+
+	private static final int ARM_REFERENCE_MAX_SPEED = 256;
+	private static final int MIN_SPEED_ADJUSTED_INTERVAL = 4;
+	private static final int CONTAINER_REFILL_COOLDOWN = 600;
+
+	private final Map<BlockPos, Integer> containerFillCooldowns = new HashMap<>();
+	private final Set<BlockPos> containerFillSessions = new HashSet<>();
+
+	private boolean workCycleActive;
+	private float targetProgress = 1;
+	private int transferCooldown;
+	private int lastScheduledTargetIndex = -1;
+
+	boolean isActive() {
+		return workCycleActive;
+	}
+
+	void setActive(boolean active) {
+		this.workCycleActive = active;
+	}
+
+	void setTargetProgress(float progress) {
+		this.targetProgress = progress;
+	}
+
+	void setTransferCooldown(int cooldown) {
+		this.transferCooldown = cooldown;
+	}
+
+	boolean tickCooldown() {
+		if (transferCooldown > 0) {
+			transferCooldown--;
+			return true;
+		}
+		return false;
+	}
+
+	void reset() {
+		workCycleActive = false;
+		targetProgress = 1;
+		transferCooldown = 0;
+	}
+
+	int getLastScheduledTargetIndex() {
+		return lastScheduledTargetIndex;
+	}
+
+	void markScheduledTarget(int index) {
+		lastScheduledTargetIndex = index;
+	}
+
+	void resetScheduledTarget() {
+		lastScheduledTargetIndex = -1;
+	}
+
+	void tickContainerFillCooldowns() {
+		containerFillCooldowns.entrySet().removeIf(entry -> {
+			int next = entry.getValue() - 1;
+			if (next <= 0)
+				return true;
+			entry.setValue(next);
+			return false;
+		});
+	}
+
+	boolean isContainerFillCooldownReady(BlockPos targetPos) {
+		return containerFillCooldowns.getOrDefault(targetPos, 0) <= 0;
+	}
+
+	boolean canStartOrContinueContainerFill(BlockPos targetPos, boolean belowHalf) {
+		BlockPos key = targetPos.immutable();
+		if (containerFillSessions.contains(key)) {
+			return true;
+		}
+		if (!belowHalf && !isContainerFillCooldownReady(key)) {
+			return false;
+		}
+		containerFillSessions.add(key);
+		return true;
+	}
+
+	void markContainerFilled(BlockPos targetPos) {
+		containerFillSessions.add(targetPos.immutable());
+	}
+
+	void finishContainerFill(BlockPos targetPos) {
+		BlockPos key = targetPos.immutable();
+		if (containerFillSessions.remove(key)) {
+			containerFillCooldowns.put(key, CONTAINER_REFILL_COOLDOWN);
+		}
+	}
+
+	void clearContainerFillCooldowns() {
+		containerFillCooldowns.clear();
+		containerFillSessions.clear();
+	}
+
+	static int getSpeedAdjustedInterval(int baseInterval, float speed) {
+		if (speed <= 0) {
+			return baseInterval;
+		}
+		float cappedSpeed = Math.min(speed, ARM_REFERENCE_MAX_SPEED);
+		return Mth.clamp(Math.round(baseInterval * 64f / cappedSpeed), MIN_SPEED_ADJUSTED_INTERVAL, baseInterval * 4);
+	}
+
+	static float getArmMovementProgressStep(float speed) {
+		return Math.min(ARM_REFERENCE_MAX_SPEED, Math.abs(speed)) / 1024f;
+	}
+
+	boolean aim(float speed) {
+		if (targetProgress >= 1) {
+			return true;
+		}
+		targetProgress = Math.min(1, targetProgress + getArmMovementProgressStep(speed));
+		return targetProgress >= 1;
+	}
+
+	void write(CompoundTag tag) {
+		tag.putBoolean("WorkCycleActive", workCycleActive);
+		tag.putFloat("TargetProgress", targetProgress);
+	}
+
+	void read(CompoundTag tag) {
+		workCycleActive = tag.getBooleanOr("WorkCycleActive", false);
+		targetProgress = tag.contains("TargetProgress")
+			? tag.getFloatOr("TargetProgress", 0F)
+			: (workCycleActive ? 0 : 1);
+	}
+}
+
+class MechanicalFluidGunAimState {
+
+	private int dynamicTargetIndex = -1;
+	private Vec3 dynamicAimPoint;
+
+	void setDynamicTarget(int targetIndex, Vec3 aimPoint) {
+		dynamicTargetIndex = targetIndex;
+		dynamicAimPoint = aimPoint;
+	}
+
+	boolean matches(int targetIndex) {
+		return dynamicAimPoint != null && dynamicTargetIndex == targetIndex;
+	}
+
+	@Nullable
+	Vec3 getAimPoint(int targetIndex) {
+		return matches(targetIndex) ? dynamicAimPoint : null;
+	}
+
+	void clear() {
+		dynamicTargetIndex = -1;
+		dynamicAimPoint = null;
+	}
+
+	void write(CompoundTag tag) {
+		if (dynamicAimPoint == null)
+			return;
+		tag.putInt("DynamicAimTarget", dynamicTargetIndex);
+		tag.putDouble("DynamicAimX", dynamicAimPoint.x);
+		tag.putDouble("DynamicAimY", dynamicAimPoint.y);
+		tag.putDouble("DynamicAimZ", dynamicAimPoint.z);
+	}
+
+	void read(CompoundTag tag, int activeTargetIndex) {
+		if (tag.contains("DynamicAimX")) {
+			dynamicTargetIndex = tag.getIntOr("DynamicAimTarget", 0);
+			dynamicAimPoint = new Vec3(tag.getDoubleOr("DynamicAimX", 0D), tag.getDoubleOr("DynamicAimY", 0D),
+				tag.getDoubleOr("DynamicAimZ", 0D));
+			return;
+		}
+		if (tag.contains("ProcessingBeltAimX") && activeTargetIndex >= 0) {
+			dynamicTargetIndex = activeTargetIndex;
+			dynamicAimPoint = new Vec3(tag.getDoubleOr("ProcessingBeltAimX", 0D), tag.getDoubleOr("ProcessingBeltAimY", 0D),
+				tag.getDoubleOr("ProcessingBeltAimZ", 0D));
+			return;
+		}
+		clear();
+	}
+}
+
+class MechanicalFluidGunItemFilling {
+
+	private final MechanicalFluidGunItemCycle itemCycle = new MechanicalFluidGunItemCycle();
+
+	enum ProcessingTarget {
+		NONE, DEPOT, BELT
+	}
+
+	private boolean isFillingItem;
+	private ItemStack processingItem = ItemStack.EMPTY;
+	private FluidStack pendingFluid = FluidStack.EMPTY;
+	private ItemStack preparedResult = ItemStack.EMPTY;
+	private ProcessingTarget processingTarget = ProcessingTarget.NONE;
+	private BlockPos processingBeltPos;
+
+	boolean isFilling() {
+		return isFillingItem;
+	}
+
+	boolean isFillingDepot() {
+		return isFillingItem && processingTarget == ProcessingTarget.DEPOT;
+	}
+
+	boolean isFillingBelt() {
+		return isFillingItem && processingTarget == ProcessingTarget.BELT;
+	}
+
+	ItemStack getProcessingItem() {
+		return processingItem;
+	}
+
+	@Nullable
+	BlockPos getProcessingBeltPos() {
+		return processingBeltPos;
+	}
+
+	FluidStack getPendingFluid() {
+		return pendingFluid;
+	}
+
+	ItemStack getPreparedResult() {
+		return preparedResult;
+	}
+
+	boolean tick(MechanicalFluidGunBlockEntity be) {
+		boolean ready = itemCycle.tick(be.getLevel().getGameTime(), be.getSpeed());
+		if (itemCycle.canSpray() && !be.getVisualsHelper().isSpraying()) {
+			be.getVisualsHelper().startSpraying(pendingFluid, be.getSpeed(), false);
+			AllSoundEvents.SPOUTING.playOnServer(be.getLevel(), be.gunPos(), .75f, 1);
+			be.notifyGunUpdate();
+		}
+		return ready;
+	}
+
+	void setClientFilling(boolean filling) {
+		if (filling) {
+			isFillingItem = true;
+			return;
+		}
+		clear();
+	}
+
+	void startDepot(ItemStack item, FluidStack fluid, ItemStack result) {
+		isFillingItem = true;
+		processingTarget = ProcessingTarget.DEPOT;
+		processingItem = item.copyWithCount(1);
+		pendingFluid = fluid.copy();
+		preparedResult = result.copy();
+		itemCycle.reset();
+	}
+
+	void startBelt(ItemStack item, FluidStack fluid, ItemStack result, BlockPos beltPos) {
+		isFillingItem = true;
+		processingTarget = ProcessingTarget.BELT;
+		processingItem = item.copyWithCount(1);
+		pendingFluid = fluid.copy();
+		preparedResult = result.copy();
+		itemCycle.reset();
+		processingBeltPos = beltPos.immutable();
+	}
+
+	static boolean startFilling(MechanicalFluidGunBlockEntity be,
+		IFluidHandler sourceHandler,
+		ItemStack item,
+		FluidStack availableFluid,
+		ProcessingTarget targetType,
+		@Nullable BlockPos beltPos) {
+		int requiredAmount = FaucetFilling
+			.getRequiredAmountForItem(be.getLevel(), item, availableFluid.copy());
+		if (requiredAmount <= 0 || requiredAmount > availableFluid.getAmount())
+			return false;
+
+		FluidStack simulatedDrain = sourceHandler.drain(
+			availableFluid.copyWithAmount(requiredAmount), IFluidHandler.FluidAction.SIMULATE);
+		if (simulatedDrain.isEmpty() || simulatedDrain.getAmount() < requiredAmount)
+			return false;
+		ItemStack preparedInput = item.copyWithCount(1);
+		ItemStack preparedResult = FaucetFilling.fillItem(be.getLevel(), requiredAmount,
+			preparedInput, simulatedDrain.copy());
+		if (preparedResult.isEmpty() || !preparedInput.isEmpty())
+			return false;
+
+		MechanicalFluidGunItemFilling itemFilling = be.getItemFillingHelper();
+		MechanicalFluidGunVisuals visuals = be.getVisualsHelper();
+
+		if (targetType == ProcessingTarget.BELT && beltPos != null) {
+			itemFilling.startBelt(item, simulatedDrain, preparedResult, beltPos);
+		} else {
+			itemFilling.startDepot(item, simulatedDrain, preparedResult);
+		}
+		if (visuals.isSpraying())
+			visuals.startSpraying(simulatedDrain, be.getSpeed(), false);
+		be.notifyGunUpdate();
+		return true;
+	}
+
+	boolean isProcessingBeltPos(BlockPos beltPos) {
+		return processingTarget == ProcessingTarget.BELT
+			&& processingBeltPos != null
+			&& processingBeltPos.equals(beltPos);
+	}
+
+	boolean canCommit(ItemStack item) {
+		return isFillingItem
+			&& !processingItem.isEmpty()
+			&& !pendingFluid.isEmpty()
+			&& !preparedResult.isEmpty()
+			&& item.getCount() >= 1
+			&& ItemStack.isSameItemSameComponents(item.copyWithCount(1), processingItem);
+	}
+
+	boolean refreshAssembly(MechanicalFluidGunBlockEntity be, ItemStack item) {
+		if (canCommit(item))
+			return true;
+		if (!isFillingItem || item.isEmpty() || pendingFluid.isEmpty())
+			return false;
+		var assembly = item.get(AllDataComponents.SEQUENCED_ASSEMBLY);
+		if (assembly == null)
+			return false;
+		var previous = SequencedAssemblyRecipe.getRecipe(be.getLevel(), processingItem,
+			AllRecipeTypes.FILLING.getType(), FillingRecipe.class);
+		if (previous.isEmpty() || !previous.get().id().equals(assembly.id()))
+			return false;
+		var next = SequencedAssemblyRecipe.getRecipe(be.getLevel(), item,
+			AllRecipeTypes.FILLING.getType(), FillingRecipe.class);
+		if (next.isEmpty() || !next.get().id().equals(assembly.id()))
+			return false;
+		var required = next.get().value().getRequiredFluid();
+		if (!required.ingredient().test(pendingFluid) || required.amount() <= 0)
+			return false;
+		var source = be.sourceHandler();
+		FluidStack fluid = pendingFluid.copyWithAmount(required.amount());
+		if (source == null || !required.test(source.drain(fluid, IFluidHandler.FluidAction.SIMULATE)))
+			return false;
+		var results = next.get().value().rollResults(be.getLevel().getRandom());
+		if (results.isEmpty() || results.getFirst().isEmpty())
+			return false;
+		processingItem = item.copyWithCount(1);
+		pendingFluid = fluid;
+		preparedResult = results.getFirst().copy();
+		return true;
+	}
+
+	boolean hasPendingFluid(@Nullable IFluidHandler sourceHandler) {
+		return sourceHandler != null && !pendingFluid.isEmpty()
+			&& isExactPendingFluid(sourceHandler.drain(pendingFluid.copy(), IFluidHandler.FluidAction.SIMULATE));
+	}
+
+	FluidStack drainPendingFluid(IFluidHandler sourceHandler) {
+		if (pendingFluid.isEmpty())
+			return FluidStack.EMPTY;
+		FluidStack simulated = sourceHandler.drain(pendingFluid.copy(), IFluidHandler.FluidAction.SIMULATE);
+		if (!isExactPendingFluid(simulated))
+			return FluidStack.EMPTY;
+		FluidStack drained = sourceHandler.drain(pendingFluid.copy(), IFluidHandler.FluidAction.EXECUTE);
+		if (isExactPendingFluid(drained))
+			return drained;
+		if (!drained.isEmpty()) {
+			MechanicalFluidGunFillOperations.restoreToSource(sourceHandler, drained);
+		}
+		return FluidStack.EMPTY;
+	}
+
+	private boolean isExactPendingFluid(FluidStack stack) {
+		return FluidStack.isSameFluidSameComponents(stack, pendingFluid)
+			&& stack.getAmount() == pendingFluid.getAmount();
+	}
+
+	void clear() {
+		isFillingItem = false;
+		processingTarget = ProcessingTarget.NONE;
+		itemCycle.reset();
+		processingItem = ItemStack.EMPTY;
+		pendingFluid = FluidStack.EMPTY;
+		preparedResult = ItemStack.EMPTY;
+		processingBeltPos = null;
+	}
+
+	void write(CompoundTag tag, HolderLookup.Provider registries) {
+		tag.putBoolean("IsFillingItem", isFillingItem);
+		tag.putInt("ProcessingTarget", processingTarget.ordinal());
+
+		if (!processingItem.isEmpty()) {
+			tag.put("ProcessingItem", ItemStack.CODEC.encodeStart(registries.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE),processingItem).getOrThrow());
+		}
+		if (!pendingFluid.isEmpty()) {
+			tag.put("PendingFluid", FluidStack.CODEC.encodeStart(registries.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE),pendingFluid).getOrThrow());
+		}
+		if (!preparedResult.isEmpty()) {
+			tag.put("PreparedResult", ItemStack.CODEC.encodeStart(registries.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE),preparedResult).getOrThrow());
+		}
+		if (processingBeltPos != null) {
+			tag.putLong("ProcessingBeltPos", processingBeltPos.asLong());
+		}
+	}
+
+	void read(CompoundTag tag, HolderLookup.Provider registries) {
+		isFillingItem = tag.getBooleanOr("IsFillingItem", false);
+		processingTarget = tag.contains("ProcessingTarget")
+			? ProcessingTarget.values()[Math.min(tag.getIntOr("ProcessingTarget", 0), ProcessingTarget.values().length - 1)]
+			: (isFillingItem ? ProcessingTarget.DEPOT : ProcessingTarget.NONE);
+		itemCycle.reset();
+		processingItem = tag.contains("ProcessingItem")
+			? ItemStack.CODEC.parse(registries.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE),tag.getCompoundOrEmpty("ProcessingItem")).result().orElse(ItemStack.EMPTY)
+			: ItemStack.EMPTY;
+		pendingFluid = tag.contains("PendingFluid")
+			? FluidStack.CODEC.parse(registries.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE),tag.getCompoundOrEmpty("PendingFluid")).result().orElse(FluidStack.EMPTY)
+			: FluidStack.EMPTY;
+		preparedResult = tag.contains("PreparedResult")
+			? ItemStack.CODEC.parse(registries.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE),tag.getCompoundOrEmpty("PreparedResult")).result().orElse(ItemStack.EMPTY)
+			: ItemStack.EMPTY;
+		processingBeltPos = tag.contains("ProcessingBeltPos")
+			? BlockPos.of(tag.getLongOr("ProcessingBeltPos", 0L))
+			: null;
+	}
+}
+
+class MechanicalFluidGunTargets {
+
+	private static final int RANGE = MechanicalFluidGunBlockEntity.RANGE;
+
+	private final List<MechanicalFluidGunTargetConfig> targets = new ArrayList<>();
+	private int activeTargetIndex = -1;
+
+	List<MechanicalFluidGunTargetConfig> getTargets() {
+		return Collections.unmodifiableList(targets);
+	}
+
+	boolean isEmpty() {
+		return targets.isEmpty();
+	}
+
+	boolean hasTarget() {
+		return !targets.isEmpty();
+	}
+
+	int getActiveTargetIndex() {
+		return activeTargetIndex;
+	}
+
+	@Nullable
+	MechanicalFluidGunTargetConfig getActiveTarget() {
+		if (targets.isEmpty() || activeTargetIndex < 0 || activeTargetIndex >= targets.size()) {
+			return null;
+		}
+		return targets.get(activeTargetIndex);
+	}
+
+	@Nullable
+	BlockPos getAbsoluteTarget(BlockPos gunPos) {
+		MechanicalFluidGunTargetConfig target = getActiveTarget();
+		return target == null ? null : target.absoluteFrom(gunPos);
+	}
+
+	void setActiveTargetIndex(int index) {
+		this.activeTargetIndex = index;
+	}
+
+	void resetActive() {
+		this.activeTargetIndex = -1;
+	}
+
+	int size() {
+		return targets.size();
+	}
+
+	MechanicalFluidGunTargetConfig get(int index) {
+		return targets.get(index);
+	}
+
+	int getTargetIndexFor(BlockPos gunPos, BlockPos targetPos) {
+		for (int i = 0; i < targets.size(); i++) {
+			if (targets.get(i).absoluteFrom(gunPos).equals(targetPos)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	boolean isTargetValid(Level level, BlockPos gunPos, BlockPos absTarget) {
+		if (!level.isLoaded(absTarget))
+			return false;
+		return gunPos.distSqr(absTarget) <= RANGE * RANGE;
+	}
+
+	boolean hasValidTarget(Level level, BlockPos gunPos) {
+		if (targets.isEmpty())
+			return false;
+		for (MechanicalFluidGunTargetConfig target : targets) {
+			if (isTargetValid(level, gunPos, target.absoluteFrom(gunPos))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	void setTargets(List<MechanicalFluidGunTargetConfig> newTargets) {
+		this.targets.clear();
+		this.targets.addAll(newTargets);
+		this.activeTargetIndex = -1;
+	}
+
+	void clear() {
+		this.targets.clear();
+		this.activeTargetIndex = -1;
+	}
+
+	void write(CompoundTag tag) {
+		ListTag targetList = new ListTag();
+		for (MechanicalFluidGunTargetConfig target : targets) {
+			targetList.add(target.serialize());
+		}
+		tag.put("Targets", targetList);
+		tag.putInt("ActiveTargetIndex", activeTargetIndex);
+	}
+
+	void read(CompoundTag tag) {
+		targets.clear();
+		if (tag.contains("Targets")) {
+			ListTag targetList = tag.getListOrEmpty("Targets");
+			for (Tag targetTag : targetList) {
+				targets.add(MechanicalFluidGunTargetConfig.deserialize((CompoundTag) targetTag));
+			}
+		}
+		activeTargetIndex = tag.contains("ActiveTargetIndex")
+			? tag.getIntOr("ActiveTargetIndex", 0)
+			: (targets.isEmpty() ? -1 : 0);
+		if (activeTargetIndex >= targets.size()) {
+			activeTargetIndex = targets.isEmpty() ? -1 : 0;
+		}
+	}
+
+	void transform(StructureTransform transform) {
+		if (targets.isEmpty())
+			return;
+		for (int i = 0; i < targets.size(); i++) {
+			targets.set(i, targets.get(i).transform(transform));
+		}
+		if (activeTargetIndex >= targets.size()) {
+			activeTargetIndex = targets.isEmpty() ? -1 : 0;
+		}
+	}
+}
+
+enum MechanicalFluidGunScheduleMode implements INamedIconOptions {
+	ROUND_ROBIN(AllIcons.I_ARM_ROUND_ROBIN),
+	FORCED_ROUND_ROBIN(AllIcons.I_ARM_FORCED_ROUND_ROBIN),
+	PREFER_FIRST(AllIcons.I_ARM_PREFER_FIRST),
+
+	;
+
+	private final String translationKey;
+	private final AllIcons icon;
+
+	MechanicalFluidGunScheduleMode(AllIcons icon) {
+		this.icon = icon;
+		this.translationKey = "fluidlogistics.mechanical_fluid_gun.schedule_mode." + Lang.asId(name());
+	}
+
+	@Override
+	public AllIcons getIcon() {
+		return icon;
+	}
+
+	@Override
+	public String getTranslationKey() {
+		return translationKey;
+	}
+}

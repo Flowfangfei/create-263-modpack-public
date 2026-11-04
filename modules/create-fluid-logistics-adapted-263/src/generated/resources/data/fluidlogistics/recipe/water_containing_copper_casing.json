@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fluidlogistics:feature_enabled",
+      "feature": "fluidlogistics:water_containing_copper_casing"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:water_bucket",
+    "C": "create:copper_casing",
+    "G": "#c:glass_blocks",
+    "L": "#minecraft:leaves"
+  },
+  "pattern": [
+    " C ",
+    "BLB",
+    " G "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fluidlogistics:water_containing_copper_casing"
+  }
+}

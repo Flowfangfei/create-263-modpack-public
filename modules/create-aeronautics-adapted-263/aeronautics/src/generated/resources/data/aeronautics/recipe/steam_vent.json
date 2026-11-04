@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:copper_block",
+    "G": "#c:plates/gold"
+  },
+  "pattern": [
+    "G",
+    "C"
+  ],
+  "result": {
+    "id": "aeronautics:steam_vent"
+  }
+}

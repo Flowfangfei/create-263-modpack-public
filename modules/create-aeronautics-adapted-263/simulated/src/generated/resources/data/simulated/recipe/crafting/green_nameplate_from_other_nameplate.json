@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "#c:dyes/green",
+    "#simulated:nameplate_items"
+  ],
+  "result": {
+    "id": "simulated:green_nameplate"
+  }
+}

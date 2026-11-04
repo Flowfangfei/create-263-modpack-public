@@ -1,0 +1,258 @@
+package dev.simulated_team.simulated.content.blocks.redstone.linked_typewriter;
+
+import com.simibubi.create.AllDataComponents;
+import com.simibubi.create.content.redstone.link.RedstoneLinkNetworkHandler;
+import com.simibubi.create.foundation.utility.ControlsUtil;
+import dev.simulated_team.simulated.index.SimSoundEvents;
+import dev.simulated_team.simulated.mixin.accessor.KeyMappingsAccessor;
+import dev.simulated_team.simulated.network.packets.linked_typewriter.TypewriterDisconnectUser;
+import dev.simulated_team.simulated.network.packets.linked_typewriter.TypewriterKeyInteractionPacket;
+import dev.simulated_team.simulated.network.packets.linked_typewriter.TypewriterKeySavePacket;
+import foundry.veil.api.network.VeilPacketManager;
+import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.input.KeyEvent;
+import dev.simulated_team.simulated.mixin.hold_interaction.KeyMappingInvoker;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import com.mojang.blaze3d.platform.InputConstants;
+
+import java.lang.ref.WeakReference;
+import java.util.List;
+import java.util.Vector;
+
+public class LinkedTypewriterInteractionHandler {
+
+    private static final Vector<Integer> renderPressed = new Vector<>();
+    private static final Int2IntMap presetKeys = new Int2IntOpenHashMap();
+    private static WeakReference<LinkedTypewriterBlockEntity> TYPEWRITER = new WeakReference<>(null);
+    private static Mode MODE = Mode.IDLE;
+
+    static {
+        // Hardcoded key locations for renderer
+        presetKeys.put(InputConstants.KEY_Q, 0);
+        presetKeys.put(InputConstants.KEY_W, 1);
+        presetKeys.put(InputConstants.KEY_E, 2);
+        presetKeys.put(InputConstants.KEY_A, 6);
+        presetKeys.put(InputConstants.KEY_S, 7);
+        presetKeys.put(InputConstants.KEY_D, 8);
+        presetKeys.put(InputConstants.KEY_UP, 4);
+        presetKeys.put(InputConstants.KEY_LEFT, 10);
+        presetKeys.put(InputConstants.KEY_DOWN, 11);
+        presetKeys.put(InputConstants.KEY_RIGHT, 12);
+        presetKeys.put(InputConstants.KEY_SPACE, 13);
+        presetKeys.put(InputConstants.KEY_0, 12);
+        presetKeys.put(InputConstants.KEY_NUMPAD0, 12);
+
+        for (int i = 0; i < 9; i++) {
+            presetKeys.put(InputConstants.KEY_1 + i, i);
+            presetKeys.put(InputConstants.KEY_NUMPAD1 + i, i);
+        }
+    }
+
+    public static void associateTypewriter(final LinkedTypewriterBlockEntity be) {
+        if (be == null) {
+            MODE = Mode.IDLE;
+            stopInteraction();
+        } else {
+            MODE = Mode.ACTIVE;
+            KeyMapping.releaseAll();
+        }
+
+        TYPEWRITER = new WeakReference<>(be);
+    }
+
+    public static void tick() {
+        LinkedTypewriterRenderer.tick();
+
+        if (getMode() == Mode.BINDING_FROM_ITEM) {
+            LinkedTypewriterItemBindHandler.tick();
+        }
+
+        final LinkedTypewriterBlockEntity be = TYPEWRITER.get();
+        if (be == null) {
+            return;
+        }
+
+        if (getMode() == Mode.ACTIVE &&
+                !LinkedTypewriterBlockEntity.playerInRange(Minecraft.getInstance().player, be.getLevel(), be.getBlockPos())) {
+            VeilPacketManager.server().sendPacket(new TypewriterDisconnectUser(be.getBlockPos()));
+            associateTypewriter(null);
+        }
+
+        if (getMode() != Mode.SCREEN_BINDING && Minecraft.getInstance().gui.screen() != null && !be.isRemoved()) {
+            VeilPacketManager.server().sendPacket(new TypewriterDisconnectUser(be.getBlockPos()));
+            associateTypewriter(null);
+        }
+    }
+
+    private static void stopInteraction() {
+        LinkedTypewriterRenderer.resetKeys();
+        renderPressed.clear();
+    }
+
+    public static void onKeyPress(final int key, final int scanCode, final int action, final int modifiers) {
+        final Minecraft minecraft = Minecraft.getInstance();
+
+        if (minecraft.player == null) {
+            return;
+        }
+
+        final LinkedTypewriterBlockEntity be = TYPEWRITER.get();
+
+        if (getMode() == Mode.BINDING_FROM_ITEM) {
+            LinkedTypewriterItemBindHandler.keyPress(key, scanCode, action, modifiers);
+            return;
+        }
+
+        if (getMode() != Mode.SCREEN_BINDING) {
+            if (be != null && !be.isRemoved()) {
+                if (key == InputConstants.KEY_ESCAPE) {
+                    be.disconnectUser();
+                    VeilPacketManager.server().sendPacket(new TypewriterDisconnectUser(be.getBlockPos()));
+
+                    minecraft.gui.setScreen(null);
+                    return;
+                }
+
+                // Every key has to be swallowed while a typewriter owns the input, not just the
+                // ones carrying a linked-controller frequency: preventPress() used to be gated
+                // on frequency != null, so unbound keys (and WASD in general) still drove the
+                // vanilla movement bindings, and keys like inventory or chat popped open a screen
+                // that immediately disconnects us.
+                // TODO: cache these that way we don't iterate every keypress and repeat
+                preventPress(key, scanCode);
+
+                final LinkedTypewriterEntries.KeyboardEntry frequency = be.getTypewriterEntries().getEntry(key);
+
+                if (frequency != null) {
+                    if (action != InputConstants.REPEAT) {
+                        VeilPacketManager.server().sendPacket(new TypewriterKeyInteractionPacket(be.getBlockPos(), key, scanCode, action));
+                    }
+
+                    final LocalPlayer player = minecraft.player;
+                    if (action == InputConstants.PRESS) {
+                        SimSoundEvents.LINKED_TYPEWRITER_TAP.playAt(player.level(), player.blockPosition(), 1.0F, 1.0F, true);
+                        checkKeyCodeAndSetPressed(key, true);
+                    } else if (action == InputConstants.RELEASE) {
+                        SimSoundEvents.LINKED_TYPEWRITER_UNTAP.playAt(player.level(), player.blockPosition(), 1.0F, 1.0F, true);
+                        checkKeyCodeAndSetPressed(key, false);
+                    }
+                }
+
+            } else {
+                MODE = Mode.IDLE;
+                stopInteraction();
+            }
+        }
+    }
+
+    public static void preventPress(final int key, final int scanCode) {
+        final KeyEvent event = new KeyEvent(key, scanCode, 0);
+        for (final KeyMapping mapping : Minecraft.getInstance().options.keyMappings) {
+            if (mapping.matches(event)) {
+                // Release resets toggle bindings as well as ordinary held keys.
+                ((KeyMappingInvoker) mapping).invokeRelease();
+                // ToggleKeyMapping.release() does not clear the vanilla click
+                // queue, which KeyboardHandler has updated before our tail hook.
+                while (mapping.consumeClick()) {
+                }
+            }
+        }
+    }
+
+    private static void checkKeyCodeAndSetPressed(final int keycode, final boolean pressed) {
+        final int indexPressed;
+        if (presetKeys.containsKey(keycode)) {
+            indexPressed = presetKeys.get(keycode);
+        } else {
+            final RandomSource random = RandomSource.create(keycode);
+            indexPressed = random.nextInt(13);
+        }
+
+        if (pressed) {
+            renderPressed.addElement(indexPressed);
+        } else {
+            renderPressed.removeElement(indexPressed);
+        }
+    }
+
+    public static Mode getMode() {
+        return MODE;
+    }
+
+    public static void setMode(final Mode newMode) {
+        MODE = newMode;
+    }
+
+    public static Vector<Integer> getPressedKeys() {
+        return renderPressed;
+    }
+
+    /**
+     * Saves the keys in a linked controller item to a typewriter
+     *
+     * @param level    the level the typewriter is in
+     * @param blockPos the block position of the typewriter
+     * @param item     the linked controller item
+     */
+    //TODO: refactor this to be significantly more player friendly
+    public static void sendLinkedControllerData(final Level level, final BlockPos blockPos, final ItemStack item) {
+        final BlockEntity blockEntity = level.getBlockEntity(blockPos);
+
+        if (!(blockEntity instanceof LinkedTypewriterBlockEntity)) {
+            return;
+        }
+
+        final ItemContainerContents linkedControllerData = item.get(AllDataComponents.LINKED_CONTROLLER_ITEMS);
+
+        final List<ItemStack> linkedControllerItems;
+
+        if (linkedControllerData == null) {
+            final int size = 12;
+            final ObjectArrayList<ItemStack> emptyData = new ObjectArrayList<>(size);
+
+            for (int i = 0; i < size; i++) {
+                emptyData.add(ItemStack.EMPTY);
+            }
+
+            linkedControllerItems = emptyData;
+        } else {
+            linkedControllerItems = new ObjectArrayList<>(linkedControllerData.itemCopies().toList());
+
+            while (linkedControllerItems.size() < 12) {
+                linkedControllerItems.add(ItemStack.EMPTY);
+            }
+        }
+
+        final Int2ObjectMap<LinkedTypewriterEntries.KeyboardEntry> newKeyBindings = new Int2ObjectOpenHashMap<>();
+
+        int controlIndex = 0;
+        for (final KeyMapping mapping : ControlsUtil.getControls()) {
+            final int control = ((KeyMappingsAccessor) mapping).getKey().getValue();
+            final ItemStack first = linkedControllerItems.get(2 * controlIndex);
+            final ItemStack second = linkedControllerItems.get(2 * controlIndex + 1);
+            newKeyBindings.put(control, new LinkedTypewriterEntries.KeyboardEntry(RedstoneLinkNetworkHandler.Frequency.of(first),
+                    RedstoneLinkNetworkHandler.Frequency.of(second),
+                    control,
+                    blockPos));
+            controlIndex++;
+        }
+
+        VeilPacketManager.server().sendPacket(new TypewriterKeySavePacket(newKeyBindings, blockPos, false));
+    }
+
+    public enum Mode {
+        IDLE, ACTIVE, BIND, SCREEN_BINDING, BINDING_FROM_ITEM
+    }
+}

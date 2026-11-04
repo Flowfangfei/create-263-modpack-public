@@ -1,0 +1,7 @@
+{
+  "parent": "fluidlogistics:item/fluid_package",
+  "textures": {
+    "0": "fluidlogistics:block/world_package/fluid_package",
+    "particle": "fluidlogistics:block/world_package/fluid_package"
+  }
+}

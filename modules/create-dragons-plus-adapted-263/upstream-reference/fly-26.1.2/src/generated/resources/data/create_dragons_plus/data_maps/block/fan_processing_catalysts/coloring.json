@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": {
+    "minecraft:black_concrete": "minecraft:black",
+    "minecraft:blue_concrete": "minecraft:blue",
+    "minecraft:brown_concrete": "minecraft:brown",
+    "minecraft:cyan_concrete": "minecraft:cyan",
+    "minecraft:gray_concrete": "minecraft:gray",
+    "minecraft:green_concrete": "minecraft:green",
+    "minecraft:light_blue_concrete": "minecraft:light_blue",
+    "minecraft:light_gray_concrete": "minecraft:light_gray",
+    "minecraft:lime_concrete": "minecraft:lime",
+    "minecraft:magenta_concrete": "minecraft:magenta",
+    "minecraft:orange_concrete": "minecraft:orange",
+    "minecraft:pink_concrete": "minecraft:pink",
+    "minecraft:purple_concrete": "minecraft:purple",
+    "minecraft:red_concrete": "minecraft:red",
+    "minecraft:white_concrete": "minecraft:white",
+    "minecraft:yellow_concrete": "minecraft:yellow"
+  }
+}

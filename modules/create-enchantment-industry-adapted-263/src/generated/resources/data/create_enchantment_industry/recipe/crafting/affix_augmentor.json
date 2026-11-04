@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "apotheosis"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "-": "minecraft:nether_star",
+    "=": "create:nixie_tube",
+    "S": "apotheosis:godforged_pearl",
+    "o": "create:brass_sheet",
+    "x": "minecraft:amethyst_shard"
+  },
+  "pattern": [
+    "oxo",
+    " - ",
+    "S=S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_enchantment_industry:affix_augmentor"
+  }
+}

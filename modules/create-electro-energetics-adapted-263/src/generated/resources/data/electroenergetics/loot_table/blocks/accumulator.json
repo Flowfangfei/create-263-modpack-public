@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "electroenergetics:accumulator"
+        }
+      ],
+      "modifier": [
+        {
+          "add": false,
+          "condition": {
+            "blocks": "electroenergetics:accumulator",
+            "type": "minecraft:match_block",
+            "state": {
+              "stack": "double_opposite"
+            }
+          },
+          "count": 2.0,
+          "type": "minecraft:set_count"
+        },
+        {
+          "add": false,
+          "condition": {
+            "blocks": "electroenergetics:accumulator",
+            "type": "minecraft:match_block",
+            "state": {
+              "stack": "double_parallel"
+            }
+          },
+          "count": 2.0,
+          "type": "minecraft:set_count"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "electroenergetics:blocks/accumulator"
+}

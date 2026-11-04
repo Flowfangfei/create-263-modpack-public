@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "electroenergetics:item/cut_off_switch"
+  }
+}

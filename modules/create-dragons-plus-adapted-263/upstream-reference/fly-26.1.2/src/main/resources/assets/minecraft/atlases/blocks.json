@@ -1,0 +1,20 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "create_dragons_plus:fluid/dye_still"
+    },
+    {
+      "type": "single",
+      "resource": "create_dragons_plus:fluid/dye_flow"
+    },
+    {
+      "type": "single",
+      "resource": "create_dragons_plus:fluid/dragon_breath_still"
+    },
+    {
+      "type": "single",
+      "resource": "create_dragons_plus:fluid/dragon_breath_flow"
+    }
+  ]
+}

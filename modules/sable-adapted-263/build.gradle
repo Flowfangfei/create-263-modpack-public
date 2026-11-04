@@ -1,0 +1,88 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+group = 'dev.ryanhcode.sable'
+version = '3.0.0-adapted.1'
+base { archivesName = 'sable-neoforge-26.3' }
+java { toolchain.languageVersion = JavaLanguageVersion.of(25); withSourcesJar() }
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.ryanhcode.dev/releases' }
+    maven { url = 'https://maven.ryanhcode.dev/snapshots' }
+    maven { url = 'https://api.modrinth.com/maven'; content { includeGroup 'maven.modrinth' } }
+}
+neoForge {
+    version = '26.3.0.22-beta'
+    if (rootProject.ext.has('adaptedAccessTransformers')) accessTransformers.from(rootProject.ext.adaptedAccessTransformers)
+    else accessTransformers.from(file('src/neoforge/resources/META-INF/accesstransformer.cfg'))
+    mods { sable { sourceSet sourceSets.main } }
+}
+sourceSets {
+    main {
+        java.srcDir 'src/neoforge/java'
+        java {
+        exclude 'dev/ryanhcode/sable/fabric/mixin/compatibility/sodiumextras/**'
+        exclude 'dev/ryanhcode/sable/fabric/mixin/dynamic_directional_shading/**'
+        exclude 'dev/ryanhcode/sable/mixin/debug_render/DebugRendererMixin.java'
+        exclude 'dev/ryanhcode/sable/mixin/debug_render/DebugScreenOverlayMixin.java'
+        exclude 'dev/ryanhcode/sable/mixin/water_occlusion/**'
+        exclude 'dev/ryanhcode/sable/mixinhelpers/compatibility/shouldersurfing/**'
+        exclude 'dev/ryanhcode/sable/render/region/SimpleCulledRenderRegion.java'
+        exclude 'dev/ryanhcode/sable/sublevel/render/staging/DSAStagingBuffer.java'
+        exclude 'dev/ryanhcode/sable/sublevel/render/vanilla/SingleBlockSubLevelWrapper.java'
+        exclude 'dev/ryanhcode/sable/mixin/plot/lighting/BlockAndLightGetterMixin.java'
+        exclude 'dev/ryanhcode/sable/mixinhelpers/loaded_chunk_debug/SableChunkDebugRenderer.java'
+        exclude 'dev/ryanhcode/sable/mixinhelpers/block_outline_render/**'
+        exclude '**/mixinhelpers/block_outline_render/**'
+        exclude 'dev/ryanhcode/sable/mixin/loaded_chunk_debug/**'
+        exclude 'dev/ryanhcode/sable/mixin/udp/**'
+        exclude 'dev/ryanhcode/sable/mixin/particle/TerrainParticleMixin.java'
+        exclude 'dev/ryanhcode/sable/mixin/plot/container/**'
+        exclude 'dev/ryanhcode/sable/mixin/stop_lightning/**'
+        exclude 'dev/ryanhcode/sable/mixin/player_freezing/LocalPlayerMixin.java'
+        exclude '**/mixin/loaded_chunk_debug/**'
+        exclude '**/mixin/udp/**'
+        exclude 'dev/ryanhcode/sable/mixin/sublevel_render/impl/sodium/SodiumWorldRendererMixin.java'
+        exclude 'dev/ryanhcode/sable/mixin/debug_render/SubLevelBoundsRendererMixin.java'
+        exclude 'dev/ryanhcode/sable/api/client/SubLevelBlockEntityRenderRegistry.java'
+        exclude 'dev/ryanhcode/sable/sublevel/render/SubLevelLightVertexConsumerProvider.java'
+        exclude 'dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/BlockMixin.java'
+        exclude 'dev/ryanhcode/sable/mixin/plot/lighting/BlockAndTintGetterMixin.java'
+        exclude 'dev/ryanhcode/sable/fabric/mixin/block_outline_render/LevelRendererMixin.java'
+        exclude '**/*.bak'
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/*.mods.toml'
+        exclude 'META-INF/services/dev.ryanhcode.sable.companion.SableCompanion'
+        exclude 'dev/ryanhcode/sable/fabric/SableFabric.java'
+        exclude 'dev/ryanhcode/sable/fabric/ResourceReloadDelegate.java'
+        exclude 'dev/ryanhcode/sable/fabric/client/SableFabricClient.java'
+        exclude 'dev/ryanhcode/sable/fabric/event/**'
+        exclude 'dev/ryanhcode/sable/fabric/platform/**'
+        }
+        resources.srcDir 'src/neoforge/resources'
+        resources.exclude 'fabric.mod.json', 'sable.classtweaker', '**/*.bak'
+    }
+}
+configurations { sableCompanionRuntimeCompat }
+
+dependencies {
+    compileOnly fileTree('../steam-n-rails-263/tooling/create-adapted/libs') { include '*.jar'; exclude '*compile-compat.jar' }
+    implementation 'org.apache.maven:maven-artifact:3.8.5'
+    implementation 'at.yawk.lz4:lz4-java:1.10.1'
+    api 'dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:1.6.0'
+    sableCompanionRuntimeCompat('dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:1.6.0') { transitive = false }
+    compileOnly('maven.modrinth:scalablelux:0.3.0-alpha.0.6+26.3') { transitive = false }
+    compileOnly('maven.modrinth:sodium:mc26.3-0.9.3-alpha.1-fabric') { transitive = false }
+    compileOnly 'org.jspecify:jspecify:1.0.0'
+}
+tasks.withType(JavaCompile).configureEach { options.release = 25; options.compilerArgs += ['-Xmaxerrs', '2000'] }
+jar { from('LICENSE.md'); exclude 'net/minecraft/**', 'net/neoforged/**', 'com/simibubi/create/**', 'com/zurrtum/create/**' }
+
+jar {
+    from({ configurations.sableCompanionRuntimeCompat.collect { zipTree(it) } }) {
+        exclude 'META-INF/MANIFEST.MF', 'META-INF/*.mods.toml', 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
+        exclude 'META-INF/services/dev.ryanhcode.sable.companion.SableCompanion'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

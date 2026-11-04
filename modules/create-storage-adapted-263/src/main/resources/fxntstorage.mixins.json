@@ -1,0 +1,27 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "net.fxnt.fxntstorage.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "AbstractContraptionEntityMixin",
+    "DeployerMovementBehaviourMixin",
+    "EndermanMixin",
+    "InventoryMenuMixin",
+    "ItemEntityMixin",
+    "MountedItemStorageWrapperMixin",
+    "PlayerMixin",
+    "PotatoCannonItemMixin",
+    "StickUtilMixin",
+    "SymmetryHandlerMixin",
+    "ThresholdSwitchBlockEntity",
+    "ToolboxDisposeAllPacketMixin",
+    "ToolboxDisposeAllPacketMixin$ToolboxBlockEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "StorageContraptionRendererMixin"
+  ]
+}

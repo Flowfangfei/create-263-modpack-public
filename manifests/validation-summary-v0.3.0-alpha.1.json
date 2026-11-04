@@ -1,0 +1,2742 @@
+{
+  "verified_at": "2026-10-27T00:21:03+08:00",
+  "candidate_version": "0.3.0-alpha.1",
+  "direct_runtime_mods": 18,
+  "source_module_directories": 15,
+  "status": "validated-alpha-local-delivery",
+  "original_hmcl_saves_accessed": false,
+  "fresh_server": {
+    "phase": "create",
+    "startup_ready": true,
+    "exit_code": 0,
+    "vanilla_time_success": true,
+    "completed": true,
+    "datapack_reload_requested": true,
+    "reports": {
+      "ore-excavation": {
+        "mode": "initial",
+        "fixture_drill": "72 -58 8",
+        "fixture_extractor": "88 -58 8",
+        "rotation_source": "controlled Kinetic interface; live motor network requires separate playtest",
+        "vein_recipes": 15,
+        "drilling_recipes": 14,
+        "extracting_recipes": 1,
+        "native_transactions_and_nbt": true,
+        "drill_production_ticks": 162,
+        "extractor_production_ticks": 17,
+        "multiblock_item_placement_and_production": true,
+        "native_multiblock_capabilities": true,
+        "block_entity_value_io_roundtrip": true,
+        "atlas_component_and_menu": true,
+        "sample_drill_backtank_cycle": true,
+        "status": "passed"
+      },
+      "five-addons": {
+        "fixture_id": "ceff7519-75a3-4bcf-9da6-25639ab74d9d",
+        "world_reloaded": false,
+        "client_fixtures": [
+          {
+            "x": 176,
+            "y": -60,
+            "z": 8,
+            "block_id": "fxntstorage:hardened_backpack",
+            "block_entity_class": "net.fxnt.fxntstorage.backpack.BackpackEntity",
+            "role": "Storage persisted backpack / large inventory / GUI"
+          },
+          {
+            "x": 176,
+            "y": -60,
+            "z": 11,
+            "block_id": "fxntstorage:storage_box",
+            "block_entity_class": "net.fxnt.fxntstorage.container.StorageBoxEntity",
+            "role": "Storage box / GUI"
+          },
+          {
+            "x": 180,
+            "y": -60,
+            "z": 8,
+            "block_id": "fluidlogistics:multi_fluid_tank",
+            "block_entity_class": "com.yision.fluidlogistics.content.fluids.multiFluidTank.MultiFluidTankBlockEntity",
+            "role": "Fluid persisted named-water multi tank"
+          },
+          {
+            "x": 184,
+            "y": -60,
+            "z": 8,
+            "block_id": "electroenergetics:converter",
+            "block_entity_class": "com.george_vi.electroenergetics.content.converter.ConverterBlockEntity",
+            "role": "Electro FE converter"
+          },
+          {
+            "x": 188,
+            "y": -60,
+            "z": 8,
+            "block_id": "electroenergetics:creative_battery",
+            "block_entity_class": "com.george_vi.electroenergetics.content.creative_battery.CreativeBatteryBlockEntity",
+            "role": "Electro creative battery / real wire start"
+          },
+          {
+            "x": 192,
+            "y": -60,
+            "z": 8,
+            "block_id": "electroenergetics:converter",
+            "block_entity_class": "com.george_vi.electroenergetics.content.converter.ConverterBlockEntity",
+            "role": "Electro wire end converter"
+          },
+          {
+            "x": 196,
+            "y": -60,
+            "z": 8,
+            "block_id": "createadditionallogistics:package_editor",
+            "block_entity_class": "dev.khloeleclair.create.additionallogistics.common.content.logistics.packageEditor.PackageEditorBlockEntity",
+            "role": "Additional package editor / address mutation"
+          },
+          {
+            "x": 200,
+            "y": -60,
+            "z": 8,
+            "block_id": "create_enchantment_industry:printer",
+            "block_entity_class": "plus.dragons.createenchantmentindustry.common.fluids.printer.PrinterBlockEntity",
+            "role": "CEI printer / template behaviour"
+          },
+          {
+            "x": 204,
+            "y": -60,
+            "z": 8,
+            "block_id": "create_dragons_plus:fluid_hatch",
+            "block_entity_class": "plus.dragons.createdragonsplus.common.fluids.hatch.FluidHatchBlockEntity",
+            "role": "CDP fluid hatch / fluid filtering GUI"
+          },
+          {
+            "x": 211,
+            "y": -60,
+            "z": 8,
+            "block_id": "fluidlogistics:multi_fluid_tank",
+            "block_entity_class": "com.yision.fluidlogistics.content.fluids.multiFluidTank.MultiFluidTankBlockEntity",
+            "role": "Fluid native Create pump pipeline output"
+          }
+        ],
+        "phase": "create-complete",
+        "checks": [
+          {
+            "name": "native-cooking-fuel/create-and-aeronautics-original-values",
+            "measured": {
+              "envelope_burn_ticks": 100,
+              "envelope_items": 32,
+              "create_items": 10
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/electroenergetics",
+            "measured": {
+              "recipes": 133,
+              "loaded": true
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/fxntstorage",
+            "measured": {
+              "recipes": 64,
+              "loaded": true
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/fluidlogistics",
+            "measured": {
+              "recipes": 48,
+              "loaded": true
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/create_enchantment_industry",
+            "measured": {
+              "recipes": 22,
+              "loaded": true
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/create_dragons_plus",
+            "measured": {
+              "recipes": 278,
+              "loaded": true
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/createadditionallogistics",
+            "measured": {
+              "recipes": 93,
+              "loaded": true
+            },
+            "passed": true
+          },
+          {
+            "name": "fixture/prepare-world",
+            "measured": {
+              "reload": false,
+              "id": "ceff7519-75a3-4bcf-9da6-25639ab74d9d"
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/setup-real-Create-pipe-interoperability",
+            "measured": {
+              "target": "211, -60, 8",
+              "initial_source_mB": 6000
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/real-loot-native-item-codec-and-blockitem-placement",
+            "measured": {
+              "schema": 1,
+              "fixtures": [
+                {
+                  "block": "fxntstorage:hardened_backpack",
+                  "source": "256, 8, 20",
+                  "destination": "260, 8, 20",
+                  "entity_type": "fxntstorage:backpack_entity",
+                  "native_capacity": 221184,
+                  "quantity": 257,
+                  "maximum_private_slot_quantity": 257,
+                  "native_capability_insert": true,
+                  "actual_loot_table": true,
+                  "native_itemstack_codec": true,
+                  "actual_blockitem_place": true,
+                  "second_actual_loot_table": true,
+                  "inventory_types_counts_names_full_components_and_removals": true,
+                  "shell_custom_name": true,
+                  "backpack_shell_custom_components_and_explicit_removal": true,
+                  "passed": true
+                },
+                {
+                  "block": "fxntstorage:hardened_storage_box",
+                  "source": "268, 8, 20",
+                  "destination": "272, 8, 20",
+                  "entity_type": "fxntstorage:storage_box_entity",
+                  "native_capacity": 15444,
+                  "quantity": 257,
+                  "maximum_private_slot_quantity": 64,
+                  "native_capability_insert": true,
+                  "actual_loot_table": true,
+                  "native_itemstack_codec": true,
+                  "actual_blockitem_place": true,
+                  "second_actual_loot_table": true,
+                  "inventory_types_counts_names_full_components_and_removals": true,
+                  "shell_custom_name": true,
+                  "passed": true
+                },
+                {
+                  "block": "fxntstorage:oak_simple_storage_box",
+                  "source": "280, 8, 20",
+                  "destination": "284, 8, 20",
+                  "entity_type": "fxntstorage:simple_storage_box_entity",
+                  "native_capacity": 2048,
+                  "quantity": 257,
+                  "maximum_private_slot_quantity": 257,
+                  "native_capability_insert": true,
+                  "actual_loot_table": true,
+                  "native_itemstack_codec": true,
+                  "actual_blockitem_place": true,
+                  "second_actual_loot_table": true,
+                  "inventory_types_counts_names_full_components_and_removals": true,
+                  "shell_custom_name": true,
+                  "passed": true
+                },
+                {
+                  "block": "fxntstorage:reserve_storage_box",
+                  "source": "292, 8, 20",
+                  "destination": "296, 8, 20",
+                  "entity_type": "fxntstorage:reserve_storage_box_entity",
+                  "native_capacity": 2673,
+                  "quantity": 257,
+                  "maximum_private_slot_quantity": 64,
+                  "native_capability_insert": true,
+                  "actual_loot_table": true,
+                  "native_itemstack_codec": true,
+                  "actual_blockitem_place": true,
+                  "second_actual_loot_table": true,
+                  "inventory_types_counts_names_full_components_and_removals": true,
+                  "shell_custom_name": true,
+                  "passed": true
+                }
+              ],
+              "passed": true,
+              "remaining": [
+                "Player mining/drop-spawn events and save/restart are outside this loot-and-placement check."
+              ]
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/isolated-codecs-transactions-and-vanilla-chest-data",
+            "measured": {
+              "schema": 1,
+              "recorded_at": "2026-10-26T15:44:51.838045800Z",
+              "world": "runtime/three-addons-20261026-234421-914916/server/world",
+              "reloaded": false,
+              "checks": [
+                {
+                  "name": "vanilla-codec-and-template-limits",
+                  "measured": {
+                    "count_100_decode_error": "Value must be within range [1;99]: 100",
+                    "count_100_encode_error": "Value must be within range [1;99]: 100",
+                    "diamond_max_stack": 64,
+                    "template_64_accepted": true,
+                    "template_65_empty": true,
+                    "native_codec_count_99_accepted": true
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "private-codec-network-components-and-nested-inventories",
+                  "measured": {
+                    "components_and_removals": true,
+                    "registry_nbt": true,
+                    "nested_mod_container_untouched": true,
+                    "empty_slots": [
+                      0,
+                      7,
+                      9
+                    ],
+                    "slots": 10,
+                    "registry_json": true,
+                    "private_network": true,
+                    "native_outer_codec_and_network": true,
+                    "maximum_quantity": 84934656,
+                    "nested_native_container": true
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "private-malformed-input-rejection-preserves-live-handler",
+                  "measured": {
+                    "rejections": {
+                      "amount=-1": "Value -1 outside of range [0:84934656]; Storage slot count does not match entries",
+                      "amount=0": "Empty prototype/count mismatch; Storage slot count does not match entries",
+                      "amount=84934657": "Value 84934657 outside of range [0:84934656]; Storage slot count does not match entries",
+                      "amount=2147483647": "Value 2147483647 outside of range [0:84934656]; Storage slot count does not match entries",
+                      "prototype-count=2": "Storage prototype must have count one; Storage slot count does not match entries",
+                      "prototype-count=100": "Value must be within range [1;99]: 100",
+                      "size-entry-mismatch": "Storage slot count does not match entries",
+                      "invalid-component-max-stack-zero": "Value must be within range [1;99]: 0 missed input: {\"minecraft:max_stack_size\":0}",
+                      "strict-invalid-stackable-damageable-prototype": "Item cannot be both damageable and stackable; Storage slot count does not match entries"
+                    },
+                    "all_existing_handler_slots_unchanged": true,
+                    "fromItems_overflow_rejected": true
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "hardened-backpack-itemaccess-capacity-and-transactions",
+                  "measured": {
+                    "committed_quantity": 2000,
+                    "nested_commit": true,
+                    "forged_multiplier": 2147483647,
+                    "strict_filtered_slot_exchange_failure_preserved": true,
+                    "root_and_nested_rollback": true,
+                    "item_slots": 108,
+                    "capacity": 2048,
+                    "backpack_item_rejected": true
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "old-gui-save-preserves-native-committed-insert",
+                  "measured": {
+                    "total_conserved": true,
+                    "saved_named_paper": 17,
+                    "native_inserted": 333,
+                    "saved_diamonds": 333,
+                    "same_physical_stack": true,
+                    "gui_constructed_before_native_transaction": true,
+                    "initial_diamonds": 0,
+                    "saved_total": 350
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "old-gui-save-does-not-revive-native-extracted-items",
+                  "measured": {
+                    "total_conserved": true,
+                    "saved_named_paper": 23,
+                    "saved_diamonds": 300,
+                    "native_extracted": 200,
+                    "same_physical_stack": true,
+                    "gui_constructed_before_native_transaction": true,
+                    "initial_diamonds": 500,
+                    "saved_total": 323
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "cached-backpack-tier-and-invalid-slot-load-isolation",
+                  "measured": {
+                    "low_tier_multiplier": 2,
+                    "high_tier_multiplier": 32,
+                    "tool_slot_overflow_rejected_atomically": true,
+                    "basic_capacity": 128,
+                    "settings_reloaded": true,
+                    "nested_backpack_rejected": true
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "ordinary-chests-native-save-and-reload",
+                  "measured": {
+                    "checked_full_slots": 81,
+                    "ordinary_stack_max": 64,
+                    "fixture_id": "bba0418e-d150-4014-bd9c-69bdc5303dcc",
+                    "chests": 3,
+                    "positions_x": [
+                      224,
+                      232,
+                      240
+                    ],
+                    "y": -60,
+                    "z": 8,
+                    "phase": "saved-awaiting-restart"
+                  },
+                  "passed": true
+                }
+              ],
+              "passed": true,
+              "remaining": [
+                "Restart this exact disposable world and rerun with reloaded=true to verify all 81 ordinary-chest slots from disk.",
+                "Storage GUI interactions, backpack equipment/upgrades, mounted contraptions, filters, controller networks, multiplayer and long-duration gameplay remain outside this isolation probe."
+              ],
+              "all_requested_features_verified": false
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/actual-world-save-and-reload",
+            "measured": {
+              "amount": 1024,
+              "phase": "fixture-created"
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/physical-backpack-multiple-views-shared-journal",
+            "measured": {
+              "before": 1024,
+              "after_abort": 1024,
+              "committed_delta": -1
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/backpack-item-access-large-components-and-abort",
+            "measured": {
+              "components": true,
+              "amount": 1024,
+              "codec_roundtrip": true
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/actual-box-capability-and-abort",
+            "measured": {
+              "amount": 64,
+              "slots": 60
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/registered-global-modifier-and-real-resource-gauge-loot",
+            "measured": {
+              "ordinary_gauge_drops": 0,
+              "registered_modifier": "fluidlogistics:factory_gauge_drops",
+              "priority": 1000,
+              "resource_gauge_drops": 1
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/shared-capacity-multislot-nested-components",
+            "measured": {
+              "slot0": 1200,
+              "slot1": 800,
+              "total": 2000,
+              "callbacks": 2
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/real-copper-bucket-ItemAccess",
+            "measured": {
+              "amount": 2300,
+              "capacity": 5000
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/ItemAccess-exchange-failure-filtered-strict-slot-preserves-items",
+            "measured": {
+              "accepted_insert": 0,
+              "accepted_extract": 0,
+              "replacement_rejected_by_resource_filter": true,
+              "fluid_mB_per_item": 777,
+              "item_count": 1,
+              "full_item_resource_equal": true
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/filter-owner-journal-and-transfer",
+            "measured": {
+              "source": 500,
+              "rejected_lava": true,
+              "bucket": 500
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/package-same-fluid-two-slots-index1-abort-and-commit",
+            "measured": {
+              "slot0": 2000,
+              "slot1": 2000,
+              "components": true
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/actual-world-multitank-save-reload",
+            "measured": {
+              "amount": 1234,
+              "phase": "fixture-created"
+            },
+            "passed": true
+          },
+          {
+            "name": "electro/actual-converter-native-energy-transaction",
+            "measured": {
+              "amount": 100,
+              "capacity": 2941,
+              "device": "com.george_vi.electroenergetics.content.converter.ConverterDevice"
+            },
+            "passed": true
+          },
+          {
+            "name": "electro/real-wire-network-and-Sable-projection",
+            "measured": {
+              "Sable_static_world_projection": "BlockPos{x=188, y=-60, z=8}",
+              "connection": true,
+              "wire_id": 2
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/player-and-registered-arm-fuel-and-input-interactions",
+            "measured": {
+              "machines": [
+                {
+                  "machine": "blaze_enchanter",
+                  "registered_arm_type": "plus.dragons.createenchantmentindustry.common.processing.enchanter.BlazeEnchanterArmInteractionPoint$Type",
+                  "player_experience_bucket": {
+                    "normal_xp": 1000,
+                    "returned_buckets": 1,
+                    "entry": "BlockState.useItemOn",
+                    "input_consumed": 1
+                  },
+                  "arm_experience_bucket": {
+                    "normal_xp": 1000,
+                    "returned_buckets": 1,
+                    "original_input_and_components_preserved": true,
+                    "simulation_unchanged": true
+                  },
+                  "player_non_fuel_inventory": {
+                    "components_preserved": true,
+                    "item": "minecraft:diamond_sword",
+                    "pass_fallthrough": true,
+                    "stored_count": 1
+                  },
+                  "arm_non_fuel_inventory": {
+                    "original_input_and_components_preserved": true,
+                    "stored_count": 1,
+                    "simulation_unchanged": true
+                  },
+                  "arm_creative_fuel": {
+                    "special_xp": 0,
+                    "source_components_preserved": true,
+                    "normal_xp": 4000,
+                    "simulation_preserved_creative_tanks_and_heat": true,
+                    "actual_creative": true
+                  }
+                },
+                {
+                  "machine": "blaze_forger",
+                  "registered_arm_type": "plus.dragons.createenchantmentindustry.common.processing.forger.BlazeForgerArmInteractionPoint$Type",
+                  "player_experience_bucket": {
+                    "normal_xp": 1000,
+                    "returned_buckets": 1,
+                    "entry": "BlockState.useItemOn",
+                    "input_consumed": 1
+                  },
+                  "arm_experience_bucket": {
+                    "normal_xp": 1000,
+                    "returned_buckets": 1,
+                    "original_input_and_components_preserved": true,
+                    "simulation_unchanged": true
+                  },
+                  "player_non_fuel_inventory": {
+                    "components_preserved": true,
+                    "item": "minecraft:diamond_sword",
+                    "pass_fallthrough": true,
+                    "stored_count": 1
+                  },
+                  "arm_non_fuel_inventory": {
+                    "original_input_and_components_preserved": true,
+                    "stored_count": 1,
+                    "simulation_unchanged": true
+                  },
+                  "arm_creative_fuel": {
+                    "special_xp": 0,
+                    "source_components_preserved": true,
+                    "normal_xp": 4000,
+                    "simulation_preserved_creative_tanks_and_heat": true,
+                    "actual_creative": true
+                  }
+                },
+                {
+                  "machine": "classic_blaze_enchanter",
+                  "registered_arm_type": "plus.dragons.createenchantmentindustry.common.processing.classic_enchanter.ClassicBlazeEnchanterArmInteractionPoint$Type",
+                  "player_experience_bucket": {
+                    "normal_xp": 1000,
+                    "returned_buckets": 1,
+                    "entry": "BlockState.useItemOn",
+                    "input_consumed": 1
+                  },
+                  "arm_experience_bucket": {
+                    "normal_xp": 1000,
+                    "returned_buckets": 1,
+                    "original_input_and_components_preserved": true,
+                    "simulation_unchanged": true
+                  },
+                  "player_non_fuel_inventory": {
+                    "components_preserved": true,
+                    "item": "minecraft:diamond_sword",
+                    "pass_fallthrough": true,
+                    "stored_count": 1
+                  },
+                  "arm_non_fuel_inventory": {
+                    "original_input_and_components_preserved": true,
+                    "stored_count": 1,
+                    "simulation_unchanged": true
+                  },
+                  "arm_creative_fuel": {
+                    "special_xp": 0,
+                    "source_components_preserved": true,
+                    "normal_xp": 4000,
+                    "simulation_preserved_creative_tanks_and_heat": true,
+                    "actual_creative": true
+                  }
+                }
+              ],
+              "machine_count": 3,
+              "operation_count": 15,
+              "uncovered": [
+                "Full enchanting/forging output and XP debit",
+                "Belt transport and long-running mechanical-arm motion",
+                "Overflow, full tanks, stacked fuel and special-fuel variants",
+                "Player/client GUI and visual synchronization"
+              ],
+              "classic_raw_feature_restored": true,
+              "created_cells_cleaned": 18
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/six-real-block-state-replacement-and-removal-callbacks",
+            "measured": {
+              "verified_blocks": [
+                {
+                  "changed_property": "facing",
+                  "same_block_state_preserved_entity": true,
+                  "air_removal": true,
+                  "block": "create_enchantment_industry:printer",
+                  "solid_replacement": true
+                },
+                {
+                  "changed_property": "facing",
+                  "same_block_state_preserved_entity": true,
+                  "air_removal": true,
+                  "block": "create_enchantment_industry:experience_lantern",
+                  "solid_replacement": true
+                },
+                {
+                  "changed_property": "facing",
+                  "same_block_state_preserved_entity": true,
+                  "air_removal": true,
+                  "block": "create_enchantment_industry:experience_hatch",
+                  "solid_replacement": true
+                },
+                {
+                  "changed_property": "blaze",
+                  "same_block_state_preserved_entity": true,
+                  "air_removal": true,
+                  "block": "create_enchantment_industry:blaze_enchanter",
+                  "solid_replacement": true
+                },
+                {
+                  "changed_property": "blaze",
+                  "same_block_state_preserved_entity": true,
+                  "air_removal": true,
+                  "block": "create_enchantment_industry:blaze_forger",
+                  "solid_replacement": true
+                },
+                {
+                  "changed_property": "blaze",
+                  "same_block_state_preserved_entity": true,
+                  "air_removal": true,
+                  "block": "create_enchantment_industry:classic_blaze_enchanter",
+                  "solid_replacement": true
+                }
+              ],
+              "count": 6
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/loaded-experience-fuel-map-and-empty-bucket-template",
+            "measured": {
+              "returned_count": 1,
+              "experience": 1000,
+              "returned_item": "minecraft:bucket",
+              "special_cake": true
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/experience-fluid-runtime-conversion",
+            "measured": {
+              "XP": 321,
+              "mB": 321
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/real-enchanting-behaviour-runtime-registry",
+            "measured": {
+              "enchantments": 1,
+              "experience_cost": 321
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/actual-printer-template-naming",
+            "measured": {
+              "output_name": "create263-five-addons-component-fixture",
+              "required_fluid": 0,
+              "required_items": 1
+            },
+            "passed": true
+          },
+          {
+            "name": "CDP/actual-fluid-hatch-world-fixture",
+            "measured": {
+              "block_entity": "plus.dragons.createdragonsplus.common.fluids.hatch.FluidHatchBlockEntity"
+            },
+            "passed": true
+          },
+          {
+            "name": "CDP/runtime-fan-recipe-actual-processing",
+            "measured": {
+              "FREEZING": "minecraft:ice -> [1 minecraft:packed_ice]",
+              "SANDING": "minecraft:granite -> [1 minecraft:polished_granite]",
+              "ENDING": "minecraft:cobblestone -> [1 minecraft:end_stone]"
+            },
+            "passed": true
+          },
+          {
+            "name": "CDP/real-FluidTankBehaviour-native-transactions",
+            "measured": {
+              "amount": 777,
+              "capacity": 2000
+            },
+            "passed": true
+          },
+          {
+            "name": "additional/optional-currency-map-guard",
+            "measured": {
+              "resolved_currency_entries": 0,
+              "numismatics_loaded": false
+            },
+            "passed": true
+          },
+          {
+            "name": "additional/actual-package-editor-inventory-and-machine-rules",
+            "measured": {
+              "inventory_abort": true,
+              "native_inventory_slots": 1,
+              "address": "dock-east"
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/real-motor-cogwheel-pump-pipe-into-multitank",
+            "measured": {
+              "source_mB": 0,
+              "target_mB": 6000
+            },
+            "passed": true
+          },
+          {
+            "name": "electro/wire-still-connected-after-server-ticks",
+            "measured": {
+              "wire_id": 2,
+              "server_ticks": 300
+            },
+            "passed": true
+          }
+        ],
+        "remaining": [
+          "Restart this exact disposable world and rerun with reloaded=true to verify all 81 ordinary-chest slots from disk.",
+          "Storage GUI interactions, backpack equipment/upgrades, mounted contraptions, filters, controller networks, multiplayer and long-duration gameplay remain outside this isolation probe.",
+          "Restart this exact disposable world to verify Storage and Fluid persisted fixtures",
+          "Electro motor under real electrical load, moving Sable sublevel wire relocation, trains, and 20 custom renderer visual checks",
+          "CEI belt-driven printer fluid consumption, enchanter XP debit, and client GUI/visual interactions",
+          "CDP fan world airflow, fluid hatch player interactions and recoloring visuals",
+          "Additional accelerator cycle timing, vertical belts, train network GUI and computer peripherals"
+        ],
+        "recorded_at": "2026-10-26T15:45:10.589209100Z",
+        "minimum_check_count": 35,
+        "actual_check_count": 37,
+        "required_fixtures_ready": true,
+        "status": "passed",
+        "all_requested_features_verified": false,
+        "server_ticks": 300,
+        "passed": true
+      },
+      "liquid-fuel": {
+        "world_reloaded": false,
+        "pipe_source_remaining_mb": 4831,
+        "pipe_burner_remaining_mb": 1000,
+        "pump_speed": 64.0,
+        "pipe_burner_heat": "KINDLED",
+        "phase": "create-complete",
+        "passed_checks": [
+          "liquid/data-map-positive-values-and-legacy-priority",
+          "liquid/native-transactions-commit-abort-and-nested-abort",
+          "liquid/all-sided-native-block-capability",
+          "liquid/bucket-simulation-consumption-remainder-and-overflow",
+          "liquid/diesel-canister-container-components-and-remainder",
+          "liquid/ordinary-burner-heating-and-consumption",
+          "liquid/superheating-and-no-ordinary-downgrade",
+          "liquid/creative-capacity-and-insufficient-residue",
+          "liquid/solid-fuel-fallback",
+          "liquid/NBT-fluid-components-heat-and-empty-read",
+          "liquid/creative-motor-cogwheel-pump-pipe-burner",
+          "liquid/data-map-and-legacy-removal-after-reload"
+        ],
+        "passed": true
+      },
+      "transmission-linkage": {
+        "startedAt": "2026-10-26T23:44:52.185695500+08:00",
+        "fixtureOrigin": "128, -60, 8",
+        "hydraulicNbtRoundTrip": true,
+        "hydraulicControlSign": true,
+        "universalJointLinkNbt": true,
+        "kineticConverterAndRegulatorPlaced": true,
+        "visibleFixedHydraulicHead": "128,-60,8",
+        "visibleMobileHydraulicWorldAnchor": "132,-60,8",
+        "visibleFixedBrassHinge": "160,-60,8",
+        "visibleMobileRegularHingeWorldAnchor": "164,-60,8",
+        "visibleUniversalJoints": "144,-60,8;148,-60,8",
+        "constraintCreated": true,
+        "mobilePlotPosition": "20481032, 128, 20481032",
+        "mobileSubLevelId": "d5c95fc5-ab99-4a0d-9d37-9837fb7b0e97",
+        "hingeRotaryAndLimitedConstraints": true,
+        "assemblyMoveReferences": true,
+        "constraintRemoved": true,
+        "passed": true,
+        "completedTicks": 340,
+        "completedAt": "2026-10-26T23:45:12.587367300+08:00",
+        "reloadRequired": true
+      }
+    },
+    "log": "runtime/three-addons-20261026-234421-914916/create-server.log",
+    "passed": true
+  },
+  "server_reload": {
+    "phase": "reload",
+    "startup_ready": true,
+    "exit_code": 0,
+    "vanilla_time_success": true,
+    "completed": true,
+    "datapack_reload_requested": false,
+    "reports": {
+      "five-addons": {
+        "fixture_id": "ceff7519-75a3-4bcf-9da6-25639ab74d9d",
+        "world_reloaded": true,
+        "client_fixtures": [
+          {
+            "y": -60,
+            "x": 176,
+            "role": "Storage persisted backpack / large inventory / GUI",
+            "block_entity_class": "net.fxnt.fxntstorage.backpack.BackpackEntity",
+            "block_id": "fxntstorage:hardened_backpack",
+            "z": 8
+          },
+          {
+            "y": -60,
+            "x": 176,
+            "role": "Storage box / GUI",
+            "block_entity_class": "net.fxnt.fxntstorage.container.StorageBoxEntity",
+            "block_id": "fxntstorage:storage_box",
+            "z": 11
+          },
+          {
+            "y": -60,
+            "x": 180,
+            "role": "Fluid persisted named-water multi tank",
+            "block_entity_class": "com.yision.fluidlogistics.content.fluids.multiFluidTank.MultiFluidTankBlockEntity",
+            "block_id": "fluidlogistics:multi_fluid_tank",
+            "z": 8
+          },
+          {
+            "y": -60,
+            "x": 184,
+            "role": "Electro FE converter",
+            "block_entity_class": "com.george_vi.electroenergetics.content.converter.ConverterBlockEntity",
+            "block_id": "electroenergetics:converter",
+            "z": 8
+          },
+          {
+            "y": -60,
+            "x": 188,
+            "role": "Electro creative battery / real wire start",
+            "block_entity_class": "com.george_vi.electroenergetics.content.creative_battery.CreativeBatteryBlockEntity",
+            "block_id": "electroenergetics:creative_battery",
+            "z": 8
+          },
+          {
+            "y": -60,
+            "x": 192,
+            "role": "Electro wire end converter",
+            "block_entity_class": "com.george_vi.electroenergetics.content.converter.ConverterBlockEntity",
+            "block_id": "electroenergetics:converter",
+            "z": 8
+          },
+          {
+            "y": -60,
+            "x": 196,
+            "role": "Additional package editor / address mutation",
+            "block_entity_class": "dev.khloeleclair.create.additionallogistics.common.content.logistics.packageEditor.PackageEditorBlockEntity",
+            "block_id": "createadditionallogistics:package_editor",
+            "z": 8
+          },
+          {
+            "y": -60,
+            "x": 200,
+            "role": "CEI printer / template behaviour",
+            "block_entity_class": "plus.dragons.createenchantmentindustry.common.fluids.printer.PrinterBlockEntity",
+            "block_id": "create_enchantment_industry:printer",
+            "z": 8
+          },
+          {
+            "y": -60,
+            "x": 204,
+            "role": "CDP fluid hatch / fluid filtering GUI",
+            "block_entity_class": "plus.dragons.createdragonsplus.common.fluids.hatch.FluidHatchBlockEntity",
+            "block_id": "create_dragons_plus:fluid_hatch",
+            "z": 8
+          },
+          {
+            "y": -60,
+            "x": 211,
+            "role": "Fluid native Create pump pipeline output",
+            "block_entity_class": "com.yision.fluidlogistics.content.fluids.multiFluidTank.MultiFluidTankBlockEntity",
+            "block_id": "fluidlogistics:multi_fluid_tank",
+            "z": 8
+          }
+        ],
+        "phase": "reload-complete",
+        "checks": [
+          {
+            "name": "native-cooking-fuel/create-and-aeronautics-original-values",
+            "measured": {
+              "envelope_burn_ticks": 100,
+              "create_items": 10,
+              "envelope_items": 32
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/electroenergetics",
+            "measured": {
+              "loaded": true,
+              "recipes": 133
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/fxntstorage",
+            "measured": {
+              "loaded": true,
+              "recipes": 64
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/fluidlogistics",
+            "measured": {
+              "loaded": true,
+              "recipes": 48
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/create_enchantment_industry",
+            "measured": {
+              "loaded": true,
+              "recipes": 22
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/create_dragons_plus",
+            "measured": {
+              "loaded": true,
+              "recipes": 278
+            },
+            "passed": true
+          },
+          {
+            "name": "load-and-server-recipes/createadditionallogistics",
+            "measured": {
+              "loaded": true,
+              "recipes": 93
+            },
+            "passed": true
+          },
+          {
+            "name": "fixture/prepare-world",
+            "measured": {
+              "id": "ceff7519-75a3-4bcf-9da6-25639ab74d9d",
+              "reload": true
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/setup-real-Create-pipe-interoperability",
+            "measured": {
+              "initial_source_mB": 6000,
+              "target": "211, -60, 8"
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/real-loot-native-item-codec-and-blockitem-placement",
+            "measured": {
+              "schema": 1,
+              "fixtures": [
+                {
+                  "block": "fxntstorage:hardened_backpack",
+                  "source": "256, 8, 20",
+                  "destination": "260, 8, 20",
+                  "entity_type": "fxntstorage:backpack_entity",
+                  "native_capacity": 221184,
+                  "quantity": 257,
+                  "maximum_private_slot_quantity": 257,
+                  "native_capability_insert": true,
+                  "actual_loot_table": true,
+                  "native_itemstack_codec": true,
+                  "actual_blockitem_place": true,
+                  "second_actual_loot_table": true,
+                  "inventory_types_counts_names_full_components_and_removals": true,
+                  "shell_custom_name": true,
+                  "backpack_shell_custom_components_and_explicit_removal": true,
+                  "passed": true
+                },
+                {
+                  "block": "fxntstorage:hardened_storage_box",
+                  "source": "268, 8, 20",
+                  "destination": "272, 8, 20",
+                  "entity_type": "fxntstorage:storage_box_entity",
+                  "native_capacity": 15444,
+                  "quantity": 257,
+                  "maximum_private_slot_quantity": 64,
+                  "native_capability_insert": true,
+                  "actual_loot_table": true,
+                  "native_itemstack_codec": true,
+                  "actual_blockitem_place": true,
+                  "second_actual_loot_table": true,
+                  "inventory_types_counts_names_full_components_and_removals": true,
+                  "shell_custom_name": true,
+                  "passed": true
+                },
+                {
+                  "block": "fxntstorage:oak_simple_storage_box",
+                  "source": "280, 8, 20",
+                  "destination": "284, 8, 20",
+                  "entity_type": "fxntstorage:simple_storage_box_entity",
+                  "native_capacity": 2048,
+                  "quantity": 257,
+                  "maximum_private_slot_quantity": 257,
+                  "native_capability_insert": true,
+                  "actual_loot_table": true,
+                  "native_itemstack_codec": true,
+                  "actual_blockitem_place": true,
+                  "second_actual_loot_table": true,
+                  "inventory_types_counts_names_full_components_and_removals": true,
+                  "shell_custom_name": true,
+                  "passed": true
+                },
+                {
+                  "block": "fxntstorage:reserve_storage_box",
+                  "source": "292, 8, 20",
+                  "destination": "296, 8, 20",
+                  "entity_type": "fxntstorage:reserve_storage_box_entity",
+                  "native_capacity": 2673,
+                  "quantity": 257,
+                  "maximum_private_slot_quantity": 64,
+                  "native_capability_insert": true,
+                  "actual_loot_table": true,
+                  "native_itemstack_codec": true,
+                  "actual_blockitem_place": true,
+                  "second_actual_loot_table": true,
+                  "inventory_types_counts_names_full_components_and_removals": true,
+                  "shell_custom_name": true,
+                  "passed": true
+                }
+              ],
+              "passed": true,
+              "remaining": [
+                "Player mining/drop-spawn events and save/restart are outside this loot-and-placement check."
+              ]
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/isolated-codecs-transactions-and-vanilla-chest-data",
+            "measured": {
+              "schema": 1,
+              "recorded_at": "2026-10-26T15:45:42.531960800Z",
+              "world": "runtime/three-addons-20261026-234421-914916/server/world",
+              "reloaded": true,
+              "checks": [
+                {
+                  "name": "vanilla-codec-and-template-limits",
+                  "measured": {
+                    "count_100_encode_error": "Value must be within range [1;99]: 100",
+                    "count_100_decode_error": "Value must be within range [1;99]: 100",
+                    "native_codec_count_99_accepted": true,
+                    "template_65_empty": true,
+                    "template_64_accepted": true,
+                    "diamond_max_stack": 64
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "private-codec-network-components-and-nested-inventories",
+                  "measured": {
+                    "empty_slots": [
+                      0,
+                      7,
+                      9
+                    ],
+                    "nested_mod_container_untouched": true,
+                    "registry_nbt": true,
+                    "components_and_removals": true,
+                    "nested_native_container": true,
+                    "maximum_quantity": 84934656,
+                    "native_outer_codec_and_network": true,
+                    "private_network": true,
+                    "registry_json": true,
+                    "slots": 10
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "private-malformed-input-rejection-preserves-live-handler",
+                  "measured": {
+                    "rejections": {
+                      "amount=-1": "Value -1 outside of range [0:84934656]; Storage slot count does not match entries",
+                      "amount=0": "Empty prototype/count mismatch; Storage slot count does not match entries",
+                      "amount=84934657": "Value 84934657 outside of range [0:84934656]; Storage slot count does not match entries",
+                      "amount=2147483647": "Value 2147483647 outside of range [0:84934656]; Storage slot count does not match entries",
+                      "prototype-count=2": "Storage prototype must have count one; Storage slot count does not match entries",
+                      "prototype-count=100": "Value must be within range [1;99]: 100",
+                      "size-entry-mismatch": "Storage slot count does not match entries",
+                      "invalid-component-max-stack-zero": "Value must be within range [1;99]: 0 missed input: {\"minecraft:max_stack_size\":0}",
+                      "strict-invalid-stackable-damageable-prototype": "Item cannot be both damageable and stackable; Storage slot count does not match entries"
+                    },
+                    "fromItems_overflow_rejected": true,
+                    "all_existing_handler_slots_unchanged": true
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "hardened-backpack-itemaccess-capacity-and-transactions",
+                  "measured": {
+                    "nested_commit": true,
+                    "committed_quantity": 2000,
+                    "backpack_item_rejected": true,
+                    "capacity": 2048,
+                    "item_slots": 108,
+                    "root_and_nested_rollback": true,
+                    "strict_filtered_slot_exchange_failure_preserved": true,
+                    "forged_multiplier": 2147483647
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "old-gui-save-preserves-native-committed-insert",
+                  "measured": {
+                    "native_inserted": 333,
+                    "saved_named_paper": 17,
+                    "total_conserved": true,
+                    "saved_total": 350,
+                    "initial_diamonds": 0,
+                    "gui_constructed_before_native_transaction": true,
+                    "same_physical_stack": true,
+                    "saved_diamonds": 333
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "old-gui-save-does-not-revive-native-extracted-items",
+                  "measured": {
+                    "saved_named_paper": 23,
+                    "total_conserved": true,
+                    "saved_total": 323,
+                    "initial_diamonds": 500,
+                    "gui_constructed_before_native_transaction": true,
+                    "same_physical_stack": true,
+                    "native_extracted": 200,
+                    "saved_diamonds": 300
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "cached-backpack-tier-and-invalid-slot-load-isolation",
+                  "measured": {
+                    "low_tier_multiplier": 2,
+                    "nested_backpack_rejected": true,
+                    "settings_reloaded": true,
+                    "basic_capacity": 128,
+                    "tool_slot_overflow_rejected_atomically": true,
+                    "high_tier_multiplier": 32
+                  },
+                  "passed": true
+                },
+                {
+                  "name": "ordinary-chests-native-save-and-reload",
+                  "measured": {
+                    "chests": 3,
+                    "fixture_id": "bba0418e-d150-4014-bd9c-69bdc5303dcc",
+                    "ordinary_stack_max": 64,
+                    "checked_full_slots": 81,
+                    "phase": "disk-reload-verified",
+                    "z": 8,
+                    "y": -60,
+                    "positions_x": [
+                      224,
+                      232,
+                      240
+                    ]
+                  },
+                  "passed": true
+                }
+              ],
+              "passed": true,
+              "remaining": [
+                "Storage GUI interactions, backpack equipment/upgrades, mounted contraptions, filters, controller networks, multiplayer and long-duration gameplay remain outside this isolation probe."
+              ],
+              "all_requested_features_verified": false
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/actual-world-save-and-reload",
+            "measured": {
+              "components": true,
+              "amount": 1024,
+              "phase": "world-reloaded"
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/physical-backpack-multiple-views-shared-journal",
+            "measured": {
+              "before": 1024,
+              "committed_delta": -1,
+              "after_abort": 1024
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/backpack-item-access-large-components-and-abort",
+            "measured": {
+              "components": true,
+              "codec_roundtrip": true,
+              "amount": 1024
+            },
+            "passed": true
+          },
+          {
+            "name": "storage/actual-box-capability-and-abort",
+            "measured": {
+              "slots": 60,
+              "amount": 64
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/registered-global-modifier-and-real-resource-gauge-loot",
+            "measured": {
+              "resource_gauge_drops": 1,
+              "priority": 1000,
+              "registered_modifier": "fluidlogistics:factory_gauge_drops",
+              "ordinary_gauge_drops": 0
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/shared-capacity-multislot-nested-components",
+            "measured": {
+              "callbacks": 2,
+              "total": 2000,
+              "slot1": 800,
+              "slot0": 1200
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/real-copper-bucket-ItemAccess",
+            "measured": {
+              "capacity": 5000,
+              "amount": 2300
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/ItemAccess-exchange-failure-filtered-strict-slot-preserves-items",
+            "measured": {
+              "accepted_insert": 0,
+              "full_item_resource_equal": true,
+              "item_count": 1,
+              "fluid_mB_per_item": 777,
+              "replacement_rejected_by_resource_filter": true,
+              "accepted_extract": 0
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/filter-owner-journal-and-transfer",
+            "measured": {
+              "rejected_lava": true,
+              "source": 500,
+              "bucket": 500
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/package-same-fluid-two-slots-index1-abort-and-commit",
+            "measured": {
+              "slot0": 2000,
+              "components": true,
+              "slot1": 2000
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/actual-world-multitank-save-reload",
+            "measured": {
+              "phase": "world-reloaded",
+              "amount": 1234
+            },
+            "passed": true
+          },
+          {
+            "name": "electro/actual-converter-native-energy-transaction",
+            "measured": {
+              "device": "com.george_vi.electroenergetics.content.converter.ConverterDevice",
+              "capacity": 2941,
+              "amount": 100
+            },
+            "passed": true
+          },
+          {
+            "name": "electro/real-wire-network-and-Sable-projection",
+            "measured": {
+              "Sable_static_world_projection": "BlockPos{x=188, y=-60, z=8}",
+              "wire_id": 4294967299,
+              "connection": true
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/player-and-registered-arm-fuel-and-input-interactions",
+            "measured": {
+              "machines": [
+                {
+                  "machine": "blaze_enchanter",
+                  "registered_arm_type": "plus.dragons.createenchantmentindustry.common.processing.enchanter.BlazeEnchanterArmInteractionPoint$Type",
+                  "player_experience_bucket": {
+                    "normal_xp": 1000,
+                    "input_consumed": 1,
+                    "entry": "BlockState.useItemOn",
+                    "returned_buckets": 1
+                  },
+                  "arm_experience_bucket": {
+                    "normal_xp": 1000,
+                    "simulation_unchanged": true,
+                    "original_input_and_components_preserved": true,
+                    "returned_buckets": 1
+                  },
+                  "player_non_fuel_inventory": {
+                    "components_preserved": true,
+                    "stored_count": 1,
+                    "pass_fallthrough": true,
+                    "item": "minecraft:diamond_sword"
+                  },
+                  "arm_non_fuel_inventory": {
+                    "original_input_and_components_preserved": true,
+                    "simulation_unchanged": true,
+                    "stored_count": 1
+                  },
+                  "arm_creative_fuel": {
+                    "source_components_preserved": true,
+                    "special_xp": 0,
+                    "actual_creative": true,
+                    "simulation_preserved_creative_tanks_and_heat": true,
+                    "normal_xp": 4000
+                  }
+                },
+                {
+                  "machine": "blaze_forger",
+                  "registered_arm_type": "plus.dragons.createenchantmentindustry.common.processing.forger.BlazeForgerArmInteractionPoint$Type",
+                  "player_experience_bucket": {
+                    "normal_xp": 1000,
+                    "input_consumed": 1,
+                    "entry": "BlockState.useItemOn",
+                    "returned_buckets": 1
+                  },
+                  "arm_experience_bucket": {
+                    "normal_xp": 1000,
+                    "simulation_unchanged": true,
+                    "original_input_and_components_preserved": true,
+                    "returned_buckets": 1
+                  },
+                  "player_non_fuel_inventory": {
+                    "components_preserved": true,
+                    "stored_count": 1,
+                    "pass_fallthrough": true,
+                    "item": "minecraft:diamond_sword"
+                  },
+                  "arm_non_fuel_inventory": {
+                    "original_input_and_components_preserved": true,
+                    "simulation_unchanged": true,
+                    "stored_count": 1
+                  },
+                  "arm_creative_fuel": {
+                    "source_components_preserved": true,
+                    "special_xp": 0,
+                    "actual_creative": true,
+                    "simulation_preserved_creative_tanks_and_heat": true,
+                    "normal_xp": 4000
+                  }
+                },
+                {
+                  "machine": "classic_blaze_enchanter",
+                  "registered_arm_type": "plus.dragons.createenchantmentindustry.common.processing.classic_enchanter.ClassicBlazeEnchanterArmInteractionPoint$Type",
+                  "player_experience_bucket": {
+                    "normal_xp": 1000,
+                    "input_consumed": 1,
+                    "entry": "BlockState.useItemOn",
+                    "returned_buckets": 1
+                  },
+                  "arm_experience_bucket": {
+                    "normal_xp": 1000,
+                    "simulation_unchanged": true,
+                    "original_input_and_components_preserved": true,
+                    "returned_buckets": 1
+                  },
+                  "player_non_fuel_inventory": {
+                    "components_preserved": true,
+                    "stored_count": 1,
+                    "pass_fallthrough": true,
+                    "item": "minecraft:diamond_sword"
+                  },
+                  "arm_non_fuel_inventory": {
+                    "original_input_and_components_preserved": true,
+                    "simulation_unchanged": true,
+                    "stored_count": 1
+                  },
+                  "arm_creative_fuel": {
+                    "source_components_preserved": true,
+                    "special_xp": 0,
+                    "actual_creative": true,
+                    "simulation_preserved_creative_tanks_and_heat": true,
+                    "normal_xp": 4000
+                  }
+                }
+              ],
+              "machine_count": 3,
+              "operation_count": 15,
+              "uncovered": [
+                "Full enchanting/forging output and XP debit",
+                "Belt transport and long-running mechanical-arm motion",
+                "Overflow, full tanks, stacked fuel and special-fuel variants",
+                "Player/client GUI and visual synchronization"
+              ],
+              "classic_raw_feature_restored": true,
+              "created_cells_cleaned": 18
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/six-real-block-state-replacement-and-removal-callbacks",
+            "measured": {
+              "count": 6,
+              "verified_blocks": [
+                {
+                  "air_removal": true,
+                  "same_block_state_preserved_entity": true,
+                  "changed_property": "facing",
+                  "solid_replacement": true,
+                  "block": "create_enchantment_industry:printer"
+                },
+                {
+                  "air_removal": true,
+                  "same_block_state_preserved_entity": true,
+                  "changed_property": "facing",
+                  "solid_replacement": true,
+                  "block": "create_enchantment_industry:experience_lantern"
+                },
+                {
+                  "air_removal": true,
+                  "same_block_state_preserved_entity": true,
+                  "changed_property": "facing",
+                  "solid_replacement": true,
+                  "block": "create_enchantment_industry:experience_hatch"
+                },
+                {
+                  "air_removal": true,
+                  "same_block_state_preserved_entity": true,
+                  "changed_property": "blaze",
+                  "solid_replacement": true,
+                  "block": "create_enchantment_industry:blaze_enchanter"
+                },
+                {
+                  "air_removal": true,
+                  "same_block_state_preserved_entity": true,
+                  "changed_property": "blaze",
+                  "solid_replacement": true,
+                  "block": "create_enchantment_industry:blaze_forger"
+                },
+                {
+                  "air_removal": true,
+                  "same_block_state_preserved_entity": true,
+                  "changed_property": "blaze",
+                  "solid_replacement": true,
+                  "block": "create_enchantment_industry:classic_blaze_enchanter"
+                }
+              ]
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/loaded-experience-fuel-map-and-empty-bucket-template",
+            "measured": {
+              "returned_count": 1,
+              "special_cake": true,
+              "returned_item": "minecraft:bucket",
+              "experience": 1000
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/experience-fluid-runtime-conversion",
+            "measured": {
+              "mB": 321,
+              "XP": 321
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/real-enchanting-behaviour-runtime-registry",
+            "measured": {
+              "experience_cost": 321,
+              "enchantments": 1
+            },
+            "passed": true
+          },
+          {
+            "name": "CEI/actual-printer-template-naming",
+            "measured": {
+              "required_fluid": 0,
+              "output_name": "create263-five-addons-component-fixture",
+              "required_items": 1
+            },
+            "passed": true
+          },
+          {
+            "name": "CDP/actual-fluid-hatch-world-fixture",
+            "measured": {
+              "block_entity": "plus.dragons.createdragonsplus.common.fluids.hatch.FluidHatchBlockEntity"
+            },
+            "passed": true
+          },
+          {
+            "name": "CDP/runtime-fan-recipe-actual-processing",
+            "measured": {
+              "FREEZING": "minecraft:ice -> [1 minecraft:packed_ice]",
+              "SANDING": "minecraft:granite -> [1 minecraft:polished_granite]",
+              "ENDING": "minecraft:cobblestone -> [1 minecraft:end_stone]"
+            },
+            "passed": true
+          },
+          {
+            "name": "CDP/real-FluidTankBehaviour-native-transactions",
+            "measured": {
+              "capacity": 2000,
+              "amount": 777
+            },
+            "passed": true
+          },
+          {
+            "name": "additional/optional-currency-map-guard",
+            "measured": {
+              "numismatics_loaded": false,
+              "resolved_currency_entries": 0
+            },
+            "passed": true
+          },
+          {
+            "name": "additional/actual-package-editor-inventory-and-machine-rules",
+            "measured": {
+              "address": "dock-east",
+              "native_inventory_slots": 1,
+              "inventory_abort": true
+            },
+            "passed": true
+          },
+          {
+            "name": "fluid/real-motor-cogwheel-pump-pipe-into-multitank",
+            "measured": {
+              "target_mB": 6000,
+              "source_mB": 0
+            },
+            "passed": true
+          },
+          {
+            "name": "electro/wire-still-connected-after-server-ticks",
+            "measured": {
+              "server_ticks": 300,
+              "wire_id": 4294967299
+            },
+            "passed": true
+          }
+        ],
+        "remaining": [
+          "Storage GUI interactions, backpack equipment/upgrades, mounted contraptions, filters, controller networks, multiplayer and long-duration gameplay remain outside this isolation probe.",
+          "Electro motor under real electrical load, moving Sable sublevel wire relocation, trains, and 20 custom renderer visual checks",
+          "CEI belt-driven printer fluid consumption, enchanter XP debit, and client GUI/visual interactions",
+          "CDP fan world airflow, fluid hatch player interactions and recoloring visuals",
+          "Additional accelerator cycle timing, vertical belts, train network GUI and computer peripherals"
+        ],
+        "recorded_at": "2026-10-26T15:45:53.365620Z",
+        "minimum_check_count": 35,
+        "actual_check_count": 37,
+        "required_fixtures_ready": true,
+        "status": "passed",
+        "all_requested_features_verified": false,
+        "server_ticks": 300,
+        "passed": true
+      },
+      "transmission-linkage": {
+        "startedAt": "2026-10-26T23:45:42.843875800+08:00",
+        "fixtureOrigin": "128, -60, 8",
+        "diskReload": true,
+        "constraintCreated": true,
+        "mobilePlotPosition": "20481032, 128, 20489224",
+        "mobileSubLevelId": "7c4c767c-640f-4b55-8a1a-6c0b90958a7d",
+        "passed": true,
+        "completedTicks": 180,
+        "completedAt": "2026-10-26T23:45:47.367364600+08:00",
+        "reloadRequired": false
+      },
+      "liquid-fuel": {
+        "world_reloaded": true,
+        "pipe_source_remaining_mb": 4830,
+        "pipe_burner_remaining_mb": 1000,
+        "pump_speed": 64.0,
+        "pipe_burner_heat": "KINDLED",
+        "passed": true,
+        "phase": "reload-complete",
+        "passed_checks": [
+          "liquid/actual-world-save-and-reload",
+          "liquid/data-map-positive-values-and-legacy-priority",
+          "liquid/native-transactions-commit-abort-and-nested-abort",
+          "liquid/all-sided-native-block-capability",
+          "liquid/bucket-simulation-consumption-remainder-and-overflow",
+          "liquid/diesel-canister-container-components-and-remainder",
+          "liquid/ordinary-burner-heating-and-consumption",
+          "liquid/superheating-and-no-ordinary-downgrade",
+          "liquid/creative-capacity-and-insufficient-residue",
+          "liquid/solid-fuel-fallback",
+          "liquid/NBT-fluid-components-heat-and-empty-read",
+          "liquid/creative-motor-cogwheel-pump-pipe-burner"
+        ]
+      },
+      "ore-excavation": {
+        "mode": "reload",
+        "fixture_drill": "72 -58 8",
+        "fixture_extractor": "88 -58 8",
+        "rotation_source": "two native Create creative motors and ordinary server world ticks",
+        "inventory_fluid_machine_and_chunk_attachment_restart": true,
+        "real_create_network_ticks": 220,
+        "real_create_input_rpm": 128,
+        "real_create_recipe_stress": 256,
+        "iron_items_after_real_network": 2,
+        "water_mb_after_real_network": 16000,
+        "real_create_network_and_additional_production": true,
+        "status": "passed"
+      }
+    },
+    "log": "runtime/three-addons-20261026-234421-914916/reload-server.log",
+    "passed": true
+  },
+  "client_world_save_ponder_and_settings": {
+    "exit_code": 0,
+    "probe": {
+      "all_twelve_mods_loaded": true,
+      "renderers": {
+        "UniversalJointBlockEntity@0, -60, 0": "com.enxv.aerouniversaljoint.content.UniversalJointRenderer",
+        "UniversalJointBlockEntity@2, -60, 0": "com.enxv.aerouniversaljoint.content.UniversalJointRenderer",
+        "HydraulicRegulatorBlockEntity@4, -60, 0": "com.enxv.aerouniversaljoint.content.HydraulicRegulatorRenderer",
+        "DampingStressBearingBlockEntity@6, -60, 0": "com.enxv.aerouniversaljoint.content.DampingStressBearingRenderer",
+        "BlazeBurnerBlockEntity@8, -60, 8": "com.simibubi.create.content.processing.burner.BlazeBurnerRenderer",
+        "DrillBlockEntity@72, -58, 8": "com.tom.createores.client.DrillRenderer",
+        "ExtractorBlockEntity@88, -58, 8": "com.tom.createores.client.DrillRenderer"
+      },
+      "world_loaded": true,
+      "hydraulic_rod_ponder_scene_ids": [
+        "aeronautics_utility_objects:hydraulic_rod_properties",
+        "aeronautics_utility_objects:hydraulic_rod_settings"
+      ],
+      "hydraulic_rod_properties_render_frames": 115,
+      "hydraulic_rod_properties_visible_elements": [
+        "WorldSectionElementImpl",
+        "HydraulicRodElement",
+        "TextWindowElement"
+      ],
+      "hydraulic_rod_properties_rendered": true,
+      "hydraulic_rod_settings_render_frames": 119,
+      "hydraulic_rod_settings_visible_elements": [
+        "WorldSectionElementImpl",
+        "HydraulicRodElement",
+        "HydraulicSettingsOverlayElement",
+        "TextWindowElement"
+      ],
+      "hydraulic_rod_settings_rendered": true,
+      "ponder_ui_rendered": true,
+      "hydraulic_settings_screen_render_frames": 89,
+      "hydraulic_settings_screen_rendered": true,
+      "five_addons_client_checks": {
+        "storage_actual_menu_protocol": {
+          "private_quantity_after_take": 960,
+          "actual_compaction_request_reply": {
+            "negative_filter": "minecraft:diamond_sword",
+            "chains": [
+              {
+                "tiers": 3,
+                "t0": "minecraft:iron_nugget",
+                "t1": "minecraft:iron_ingot",
+                "t2": "minecraft:iron_block",
+                "t0_to_t1": 9,
+                "t1_to_t2": 9,
+                "lower_variants": [],
+                "upper_variants": [],
+                "filter": "minecraft:iron_ingot",
+                "server_fields_equal": true,
+                "wire_reconstructed_distinct_object": true
+              },
+              {
+                "tiers": 2,
+                "t0": "minecraft:coal",
+                "t1": "minecraft:coal_block",
+                "t2": "none",
+                "t0_to_t1": 9,
+                "t1_to_t2": 1,
+                "lower_variants": [],
+                "upper_variants": [],
+                "filter": "minecraft:coal",
+                "server_fields_equal": true,
+                "wire_reconstructed_distinct_object": true
+              }
+            ],
+            "elapsed_client_ticks": 5,
+            "fresh_natural_requests": [
+              "minecraft:iron_ingot",
+              "minecraft:coal",
+              "minecraft:diamond_sword"
+            ],
+            "client_inventory_components_and_fixture_identity_unchanged": true,
+            "negative_reply_cached_without_retry": true,
+            "passed": true,
+            "server_player_and_backpack_quantity_components_identity_unchanged": true,
+            "server_build_and_client_receive": true,
+            "uncovered": [
+              "Compaction box insertion/extraction and tier-scroll packets",
+              "Optional-mod variant recipes and recipe/datapack reload invalidation",
+              "Remote dedicated-server transport"
+            ]
+          },
+          "server_confirmed_after_native_clicks": {
+            "components": true,
+            "private_quantity": 1024,
+            "cursor_empty": true
+          },
+          "initial_private_quantity": 1024,
+          "actual_block_interaction": true,
+          "quantity_and_components_conserved": true,
+          "passed": true,
+          "actual_client_screen": true,
+          "native_cursor_quantity": 64,
+          "native_container_click_protocol": true
+        },
+        "rendered_pages": [
+          "page-1-frames-51",
+          "page-2-frames-52",
+          "page-3-frames-51",
+          "page-4-frames-51",
+          "page-5-frames-52",
+          "page-6-frames-51",
+          "page-7-frames-52",
+          "page-8-frames-51",
+          "page-9-frames-51",
+          "page-10-frames-51"
+        ],
+        "resolved_display_contexts": [
+          "GUI",
+          "GROUND",
+          "THIRD_PERSON_RIGHT_HAND"
+        ],
+        "fixture_world_frames_before_screenshot": 60,
+        "client_fixture_renderers": {
+          "176, -60, 8": "net.fxnt.fxntstorage.backpack.client.renderer.BackpackBlockEntityRenderer",
+          "176, -60, 11": "net.fxnt.fxntstorage.container.StorageBoxEntityRenderer",
+          "180, -60, 8": "com.yision.fluidlogistics.content.fluids.multiFluidTank.MultiFluidTankRenderer",
+          "184, -60, 8": "static block model and shared world wire renderer",
+          "188, -60, 8": "static block model and shared world wire renderer",
+          "192, -60, 8": "static block model and shared world wire renderer",
+          "196, -60, 8": "com.simibubi.create.content.logistics.packager.PackagerRenderer",
+          "200, -60, 8": "plus.dragons.createenchantmentindustry.common.fluids.printer.PrinterRenderer",
+          "204, -60, 8": "com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer",
+          "211, -60, 8": "com.yision.fluidlogistics.content.fluids.multiFluidTank.MultiFluidTankRenderer"
+        },
+        "baked_models": {
+          "electroenergetics:wire_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:heavily_insulated_wire_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:copper_wire_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:electrum_wire_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:iron_wire_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:iron_bus_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:iron_rail_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:glass_insulator_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:hanging_glass_insulator": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:creative_wire_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:duplex_wire_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:empty_spool": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:insulated_wire": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:heavily_insulated_wire": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:copper_wire": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:electrum_wire": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:iron_wire": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:transformer_core_lamination": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:commutator": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:iron_wire_strand": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:glass_insulator_segment": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:wire_damper": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:miniature_circuit_breaker": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:clamp_meter": "com.george_vi.electroenergetics.client.render.HandToolModel",
+          "electroenergetics:linemans_stick": "com.george_vi.electroenergetics.client.render.HandToolModel",
+          "electroenergetics:incomplete_transformer_core": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:incomplete_miniature_circuit_breaker": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:connector": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:insulator": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:concrete_pole": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:sulfur_hexafluoride_breaker": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:pole_mount": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:double_connector": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:triple_connector": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:high_voltage_capacitor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:quad_connector": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:ground_rod": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:creative_battery": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:fuse": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:broken_fuse": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:bulb": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:broken_bulb": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:cut_off_switch": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:double_switch": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:redstone_relay": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:energy_meter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:tri_polar_energy_meter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:high_voltage_switch": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:accumulator": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:ammeter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:voltmeter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:electric_pump": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:electric_fan": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:transformer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:transformer_core": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:radiator_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:stator": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:voltage_regulator": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:current_transformer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:alternator_rotor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:alternator_brushes": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:three_phase_alternator_brushes": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:magnet": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:converter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:catenary_holder": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:pantograph": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:rail_contact_shoe": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:diode": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:resistor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:creative_resistor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:fuse_holder": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:buzzer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:relay": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:capacitor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:inductor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:momentary_switch": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:emergency_stop_button": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:indicator_bulb": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:high_voltage_sign": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:electric_shock_sign": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:grounding_sign": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:potentiometer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:redstone_potentiometer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:variac": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:redstone_variac": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:duplex_wire_termination": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:resistive_heater": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:synchroscope": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:frequency_meter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:white_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:white_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:orange_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:orange_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:magenta_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:magenta_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:light_blue_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:light_blue_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:yellow_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:yellow_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:lime_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:lime_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:pink_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:pink_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:gray_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:gray_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:light_gray_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:light_gray_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:cyan_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:cyan_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:purple_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:purple_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:blue_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:blue_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:brown_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:brown_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:green_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:green_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:red_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:red_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:black_electric_motor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:black_electrical_panel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:transformer_oil_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "electroenergetics:plant_oil_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:lazy_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_lazy_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_lazy_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_lazy_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_lazy_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_lazy_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:lazy_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:lazy_large_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_lazy_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_lazy_large_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_lazy_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_lazy_large_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_lazy_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_lazy_large_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_lazy_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_lazy_large_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_lazy_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_lazy_large_cogwheel": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:white_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:orange_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:magenta_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:light_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:yellow_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:lime_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:pink_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:light_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:cyan_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:purple_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brown_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:green_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:red_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:black_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_white_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_orange_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_magenta_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_light_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_yellow_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_lime_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_pink_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_light_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_cyan_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_purple_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_brown_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_green_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_red_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:andesite_encased_black_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_white_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_orange_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_magenta_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_light_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_yellow_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_lime_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_pink_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_light_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_cyan_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_purple_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_brown_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_green_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_red_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brass_encased_black_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_white_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_orange_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_magenta_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_light_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_yellow_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_lime_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_pink_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_light_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_cyan_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_purple_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_brown_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_green_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_red_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:copper_encased_black_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_white_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_orange_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_magenta_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_light_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_yellow_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_lime_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_pink_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_light_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_cyan_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_purple_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_brown_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_green_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_red_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:industrial_iron_encased_black_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_white_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_orange_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_magenta_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_light_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_yellow_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_lime_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_pink_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_light_gray_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_cyan_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_purple_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_blue_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_brown_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_green_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_red_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:weathered_iron_encased_black_flexible_shaft": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:network_monitor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:cash_register": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:package_accelerator": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:package_editor": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:white_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:orange_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:magenta_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:light_blue_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:yellow_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:lime_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:pink_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:gray_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:light_gray_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:cyan_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:purple_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:blue_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brown_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:green_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:red_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:black_short_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:white_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:orange_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:magenta_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:light_blue_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:yellow_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:lime_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:pink_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:gray_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:light_gray_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:cyan_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:purple_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:blue_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:brown_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:green_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:red_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:black_tall_seat": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "createadditionallogistics:sales_ledger": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:reserve_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:cardboard_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:weathered_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:andesite_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:copper_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:brass_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:hardened_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack": "net.fxnt.fxntstorage.backpack.client.renderer.BackpackItemModel",
+          "fxntstorage:andesite_backpack": "net.fxnt.fxntstorage.backpack.client.renderer.BackpackItemModel",
+          "fxntstorage:copper_backpack": "net.fxnt.fxntstorage.backpack.client.renderer.BackpackItemModel",
+          "fxntstorage:brass_backpack": "net.fxnt.fxntstorage.backpack.client.renderer.BackpackItemModel",
+          "fxntstorage:hardened_backpack": "net.fxnt.fxntstorage.backpack.client.renderer.BackpackItemModel",
+          "fxntstorage:storage_controller": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:storage_interface": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:storage_interface_filtered": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:passer_block": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:smart_passer_block": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:oak_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:spruce_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:birch_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:jungle_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:acacia_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:dark_oak_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:mangrove_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:cherry_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:bamboo_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:crimson_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:warped_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:pale_oak_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:poplar_simple_storage_box": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:oak_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:spruce_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:birch_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:jungle_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:acacia_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:dark_oak_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:mangrove_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:cherry_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:bamboo_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:crimson_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:warped_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:pale_oak_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:poplar_storage_trim": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:storage_box_compacting_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:storage_box_capacity_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:storage_box_void_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_blank_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_magnet_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_magnet_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_pickblock_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_pickblock_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_itempickup_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_itempickup_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_flight_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_flight_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_refill_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_refill_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_feeder_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_feeder_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_toolswap_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_toolswap_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_falldamage_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_falldamage_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_oremining_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_oremining_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_torchdeployer_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_torchdeployer_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_jukebox_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_jukebox_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_health_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_health_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_crafting_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_crafting_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_workshop_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_workshop_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_thirst_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_thirst_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_void_upgrade": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fxntstorage:backpack_void_upgrade_deactivated": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:fragile_fluid_tank": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:levitite_fragile_fluid_tank": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:rare_blaze_package": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:rare_marble_gate_package": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:blaze_upgrade_smithing_template": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:white_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:light_gray_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:gray_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:black_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:brown_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:red_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:orange_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:yellow_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:lime_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:green_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:cyan_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:light_blue_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:blue_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:purple_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:magenta_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:pink_dye_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:dragon_breath_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_dragons_plus:fluid_hatch": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:experience_bucket": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:mechanical_grindstone": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:grindstone_drain": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:experience_hatch": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:printer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:blaze_enchanter": "plus.dragons.createenchantmentindustry.client.model.BlazeDeviceItemModel",
+          "create_enchantment_industry:blaze_forger": "plus.dragons.createenchantmentindustry.client.model.BlazeDeviceItemModel",
+          "create_enchantment_industry:classic_blaze_enchanter": "plus.dragons.createenchantmentindustry.client.model.BlazeDeviceItemModel",
+          "create_enchantment_industry:super_experience_block": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:experience_lantern": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:super_experience_nugget": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:enchanting_template": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:super_enchanting_template": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:blazes_enchanting_handbook": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:experience_cake_base": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:experience_cake": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "create_enchantment_industry:experience_cake_slice": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:potato_server": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:snow_golem_freezer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:copper_frogport": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_transporter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_packager": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_repackager": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:smart_faucet": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:faucet": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:multi_fluid_tank": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:horizontal_multi_fluid_tank": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:multi_fluid_access_port": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:smart_hopper": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:flow_meter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:redstone_fluid_valve": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_pump": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:infinite_fluid_tank": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:water_containing_copper_casing": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:copper_basin": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:mechanical_fluid_gun": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_inventory_access_port": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:copper_schematicannon": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_hatch": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_factory_gauge": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:empty_fluid_schematic": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_schematic": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:copper_bucket": "com.yision.fluidlogistics.content.fluids.copperBucket.client.CopperBucketModel",
+          "fluidlogistics:compressed_storage_tank": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:fluid_package": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:fluid_package_exposed": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:fluid_package_oxidized": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:fluid_package_weathered": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:rare_pig_package": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:rare_fox_package": "com.yision.fluidlogistics.client.model.FluidContainerItemModel",
+          "fluidlogistics:package_list_filter": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:hand_pointer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:phantom_chain": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:empty_snow_golem_freezer": "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+          "fluidlogistics:fluid_proxy/aeronautics/levitite_blend": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create/chocolate": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create/honey": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create/potion": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create/tea": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/black_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/blue_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/brown_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/cyan_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/dragon_breath": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/gray_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/green_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/light_blue_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/light_gray_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/lime_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/magenta_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/orange_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/pink_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/purple_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/red_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/white_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_dragons_plus/yellow_dye": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/create_enchantment_industry/experience": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/biodiesel": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/black_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/blue_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/brown_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/crude_oil": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/cyan_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/diesel": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/ethanol": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/gasoline": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/gray_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/green_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/light_blue_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/light_gray_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/lime_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/magenta_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/orange_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/pink_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/plant_oil": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/purple_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/red_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/white_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/createdieselgenerators/yellow_cement": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/electroenergetics/plant_oil": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/electroenergetics/transformer_oil": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/fluidlogistics/powder_snow": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/minecraft/lava": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/minecraft/milk": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer",
+          "fluidlogistics:fluid_proxy/minecraft/water": "com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidProxyItemRenderer"
+        },
+        "registered_item_counts": {
+          "createadditionallogistics": 157,
+          "electroenergetics": 124,
+          "create_enchantment_industry": 17,
+          "fluidlogistics": 88,
+          "fxntstorage": 80,
+          "create_dragons_plus": 23
+        },
+        "actual_gui_item_draws": 489,
+        "passed": true,
+        "model_resolution_passed": true,
+        "status": "model-gallery-complete-testing-storage-menu"
+      },
+      "saved_and_returned_to_title": true,
+      "passed": true
+    },
+    "client_directory": "runtime/three-addons-20261026-234421-914916/client-001548-491223",
+    "log": "runtime/three-addons-20261026-234421-914916/client-001548-491223.log",
+    "passed": true
+  },
+  "final_runtime_difference_from_server": {
+    "common_gameplay_persistence_and_world_data_unchanged": true,
+    "client_and_non_runtime_authoring_entries": {
+      "additional-logistics-adapted.jar": [
+        "dev/khloeleclair/create/additionallogistics/client/content/logistics/cashRegister/CashRegisterScreen.class"
+      ],
+      "electroenergetics-adapted.jar": [
+        "com/george_vi/electroenergetics/content/electrical_panel/link/BiDirectionalLinkScreen.class",
+        "com/george_vi/electroenergetics/content/electrical_panel/link/ElectricalPanelLinkScreen.class"
+      ],
+      "fluid-logistics-adapted.jar": [
+        "com/yision/fluidlogistics/FluidLogisticsClient$ClientEvents.class",
+        "com/yision/fluidlogistics/FluidLogisticsClient.class",
+        "com/yision/fluidlogistics/content/equipment/handPointer/client/HandPointerThresholdSwitchScreen.class",
+        "com/yision/fluidlogistics/content/equipment/handPointer/filter/HandPointerFilterScreen.class",
+        "com/yision/fluidlogistics/content/logistics/copperFrogport/CopperFrogportScreen.class",
+        "com/yision/fluidlogistics/content/logistics/factoryGauge/client/ResourceFactoryGaugeScreen.class",
+        "com/yision/fluidlogistics/content/logistics/factoryGauge/client/ResourceFactoryGaugeSetFilterScreen.class",
+        "com/yision/fluidlogistics/content/schematics/cannon/CopperSchematicannonScreen.class",
+        "com/yision/fluidlogistics/content/schematics/client/FluidSchematicEditScreen.class"
+      ],
+      "offroad-adapted.jar": [
+        "assets/offroad/models/block/wheel_mount/wheelsuspension.bbmodel"
+      ],
+      "storage-adapted.jar": [
+        "net/fxnt/fxntstorage/backpack/client/menu/BackpackScreen.class",
+        "net/fxnt/fxntstorage/backpack/client/tooltip/BackpackClientTooltip.class",
+        "net/fxnt/fxntstorage/container/AbstractStorageBoxScreen.class",
+        "net/fxnt/fxntstorage/ponder/CsInputWindowElement.class",
+        "net/fxnt/fxntstorage/reserve_storage/ReserveStorageBoxScreen.class",
+        "net/fxnt/fxntstorage/simple_storage/AbstractSimpleStorageBoxScreen.class"
+      ]
+    },
+    "scope": "GUI text alpha, client powder-snow model registration and one Git-ignored Blockbench authoring file aligned with the pre-existing upstream resource lock. Final client rerun and installer all-entry comparison passed."
+  },
+  "visual_review": {
+    "backpack_title_inventory_label_and_quantities_visible": true,
+    "observed_quantity_sequence": [
+      1024,
+      960,
+      1024
+    ],
+    "native_cursor_after_take": 64,
+    "screenshots": [
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.20.png",
+        "bytes": 801507,
+        "sha256": "597be54db35be92230c65dc29cf2230af106e32257967a090328c58ee0994b0c"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.26.png",
+        "bytes": 734104,
+        "sha256": "601e60e5934380c6684cbcf44f24ef9641a072881e43086d0f39a727ca8c7a46"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.32.png",
+        "bytes": 684005,
+        "sha256": "f8410c5250717aa5154a06e9945f04cf1780d2ec21694e836f0afd97eaa69a98"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.38.png",
+        "bytes": 215575,
+        "sha256": "c4270cea6a7a8d64b406c40191bf1cda5037d543510c9dc6286d5f5697e88ad7"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.43.png",
+        "bytes": 245300,
+        "sha256": "1a177903dd4f8fd97513893b9cf2de85c099f24d6a099fb183ff7c89226288f2"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.49.png",
+        "bytes": 134340,
+        "sha256": "9d74d6aea102557fe04045fc4d8ea355f2598f124170d82cf9e1eedada6d6dcc"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.56.png",
+        "bytes": 689737,
+        "sha256": "5e337816282531e4bc322d2c0e6c36542e78692cc567bcd25bca6a413810c0f6"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.58.png",
+        "bytes": 57287,
+        "sha256": "5db3604e2964dd3c04e3844926c1227293e8afed8b7d0d44d6558c1ab5aea309"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.00.59.png",
+        "bytes": 67180,
+        "sha256": "a0b20ecf69a37a724f48e24d64dd4892b45b3e90955411155a50c4818ba8cc44"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.01.png",
+        "bytes": 57674,
+        "sha256": "fb51f95fc744a5b4db3d5b0a60fb226b8b6b9885076a2217f7b62d5fa0721042"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.03.png",
+        "bytes": 37164,
+        "sha256": "b0470525bc65c5fb534f746187b68363f7f8192287db40bc395f249d6aa2013d"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.05.png",
+        "bytes": 54369,
+        "sha256": "6ea277c008f1899b1fcc800bef007fc4884639ae0c4d4a6c14c4b813d3430512"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.06.png",
+        "bytes": 93156,
+        "sha256": "092998d39af0588ccd709232d92d4f25354537d75e971af2b703b8a29e400f63"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.08.png",
+        "bytes": 46481,
+        "sha256": "128fe5e5633339475c6fd7cf256929dc97679b3036c6d7b3984b2396ec0ba867"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.10.png",
+        "bytes": 85707,
+        "sha256": "535d3f7e2b99a6923bbd3d852da5c9efc708293be5788af2cf9a6b4bdc5a6690"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.12.png",
+        "bytes": 39721,
+        "sha256": "04f486aac0b82be04c80a09c92ac25c04675d99e5af95266dd8fb3dac41c63e8"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.13.png",
+        "bytes": 28538,
+        "sha256": "cb6964ffdff76c1680c002c9290cf2e1335e05fc33c9b5cfba3b89ac930b17c5"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.17.png",
+        "bytes": 157370,
+        "sha256": "c80449b60ccedec4a3bb3147187c10b1cb109bd7a8252e16817c31caa2d4c711"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.18.png",
+        "bytes": 156847,
+        "sha256": "b79799be2179044299e8fc98336ba1c104114a14f9c13d548e7d636d1f053cc5"
+      },
+      {
+        "path": "runtime/three-addons-20261026-234421-914916/client-235855-238501/screenshots/2026-10-27_00.01.19.png",
+        "bytes": 158703,
+        "sha256": "0a2b9f2359967f8b3b7bc100f7e564e49999e938500c6cc9282f0294707d8954"
+      }
+    ],
+    "resolution": [
+      1066,
+      600
+    ],
+    "gui_scale": 2
+  },
+  "all_requested_features_verified": false,
+  "runtime_binary_snapshot": {
+    "create-adapted-recovered.jar": {
+      "source": "modules/create-adapted-263/build/recovered-release/create-adapted-26.3-1.31-recovered.1-public-external-assets.jar",
+      "input_sha256": "eae23af8f4598335e8c592c14805362e258e18145e736b0af7733fa9453de6ae",
+      "runtime_sha256": "eae23af8f4598335e8c592c14805362e258e18145e736b0af7733fa9453de6ae",
+      "payload_sha256": "163e9555cb8ba133362cd55590976401a1004a3be2cc7a600d10f273c18ac721",
+      "excluded_resource_entries": 0,
+      "classes": 3027
+    },
+    "sable-adapted.jar": {
+      "source": "modules/sable-adapted-263/build/libs/sable-neoforge-26.3-3.0.0-adapted.1.jar",
+      "input_sha256": "9c47a3f735f9cd45e6646668e504d209dff031a4d5d0ef0694da4a313917868e",
+      "runtime_sha256": "c45d68e393efe119ce88a5948ae8987949b6c427b446537bda6385e44f0d72f2",
+      "payload_sha256": "7424089a8bbb79b51f8f5de2f7cf3835d253446ec5eaddece145ce72d195c215",
+      "excluded_resource_entries": 0,
+      "classes": 628
+    },
+    "railways-adapted.jar": {
+      "source": "modules/steam-n-rails-263/build/libs/railways-neoforge-26.3-1.4.0-adapted.1.jar",
+      "input_sha256": "a45d31913fe2b29bc0fbaffdb402c8aa6436c7da47e23c4a58a701c1260d71c2",
+      "runtime_sha256": "fa0109ef8c54a03a78a95c99fecc7a67c4024629e3eb7ef6d4437671e8bb3fa8",
+      "payload_sha256": "8a38a6898447ad7349137bce8ff7c4391881f11a02c65873f31876c2a7b367df",
+      "excluded_resource_entries": 0,
+      "classes": 998
+    },
+    "connected-adapted.jar": {
+      "source": "modules/create-connected-adapted-263/build/libs/create_connected-1.3.3-adapted-26.3-0.7-pack.1.jar",
+      "input_sha256": "0b1169463388ac943e5127067b5092e9de73a4c2b7dd2fe617324b51c4fc3599",
+      "runtime_sha256": "949c4a65346132946443d6237f6bd21fd31079dcd2e644b98518d71c0c7af728",
+      "payload_sha256": "2a0f8e24e2cff6721f26177cebd8f191b8eaccecc2ade992ab004d27205c952c",
+      "excluded_resource_entries": 0,
+      "classes": 447
+    },
+    "connected-simulated-bridge.jar": {
+      "source": "modules/create-connected-adapted-263/build/libs/create_connected-1.3.3-adapted-26.3-0.7-pack.1-simulated.jar",
+      "input_sha256": "b9e717ebf993e31fbb1a20e40137553aa33afdf2c76c022695e267d0bd52b00e",
+      "runtime_sha256": "b9e3cecb73842f5f300b92b25cb8c8ffbab8ae45fc61e1d331c652391eb23d6b",
+      "payload_sha256": "cf9e1f0a3aef9a9f8aad9939613fce0ac52500b5e8d5eee8e43c9ced5f74baf9",
+      "excluded_resource_entries": 0,
+      "classes": 10
+    },
+    "diesel-adapted.jar": {
+      "source": "modules/create-diesel-generators-adapted-263/build/libs/createdieselgenerators-26.3-1.3.15-adapted-0.608-pack.1.jar",
+      "input_sha256": "dd9f999ff7c47ff29c4b99885d4243e68727a36b96b369ad40867cee4269fbf3",
+      "runtime_sha256": "b0573e972a99054a92f5dbc357566178f63d7bd3917c3bc7568a7b2b9991e3dd",
+      "payload_sha256": "33a137ff0f38938d927e109815ab1cbae39ab639ea4b19def7d6cd13750a443f",
+      "excluded_resource_entries": 1,
+      "classes": 290
+    },
+    "simulated-adapted.jar": {
+      "source": "modules/create-aeronautics-adapted-263/simulated/build/libs/simulated-neoforge-26.3-1.3.0-adapted.1.jar",
+      "input_sha256": "b30d612e8040a272af29941dae88b0344b4bf7b0a91113924ab5a8836e07b862",
+      "runtime_sha256": "87559e3ffa3069303f9e0f0b3d2ad1cff47c098a2aa1fe34dc4bea10795e9f1d",
+      "payload_sha256": "f99552128009376bcdecd5e9a6abb639ce0211909d69dacf7139829220978ecf",
+      "excluded_resource_entries": 1196,
+      "classes": 921
+    },
+    "offroad-adapted.jar": {
+      "source": "modules/create-aeronautics-adapted-263/offroad/build/libs/offroad-neoforge-26.3-1.3.0-adapted.1.jar",
+      "input_sha256": "18204afd00aca63e78fb5736ff5df1e7c2159461a6d60650502c30a7921910e9",
+      "runtime_sha256": "06a1b89e97ac9ff1138aa69261f185c869df418ceb67bf91e001b783c8d5ab90",
+      "payload_sha256": "6d6e7cee9f09720760b42dfd8f082a2886dda63581350fdb6ffedcc58738f298",
+      "excluded_resource_entries": 139,
+      "classes": 87
+    },
+    "aeronautics-adapted.jar": {
+      "source": "modules/create-aeronautics-adapted-263/aeronautics/build/libs/aeronautics-neoforge-26.3-1.3.0-adapted.1.jar",
+      "input_sha256": "eab58c5d0c099c3d06543d81cf0c4e624ec8ed1380b15d1e4e031daf2a94bfc6",
+      "runtime_sha256": "868feee4cb42c1ab57877b43448a55169b99631d49544bd7a012e40550d9f79c",
+      "payload_sha256": "8ce32013da019fb7ba14ef69981ed8cf41af98aea239b265079ee88e178ee782",
+      "excluded_resource_entries": 484,
+      "classes": 270
+    },
+    "liquid-fuel-adapted.jar": {
+      "source": "modules/create-liquid-fuel-adapted-263/build/libs/createliquidfuel-3.0.0-26.3-adapted.1.jar",
+      "input_sha256": "ab9e0302e4d19f09e5da2651015be06b661d04618e763ec7496097528d2ab391",
+      "runtime_sha256": "bb1cbb1953d7119a581c58b82ff9b0fc2ffd850be90e3a0fb3ac54fa6d6f8792",
+      "payload_sha256": "541eab4d1c023931a9813db9908109da23bbf1ba7e0be26c4156bda39f564a1b",
+      "excluded_resource_entries": 0,
+      "classes": 14
+    },
+    "ore-excavation-adapted.jar": {
+      "source": "modules/create-ore-excavation-adapted-263/build/libs/createoreexcavation-1.6.8-26.3-adapted.1.jar",
+      "input_sha256": "a22712afb4e8c3de068c0e9f0e157f984d2077f935c44d2d86521dd4149ceea3",
+      "runtime_sha256": "ea8233cfc0f97830784e78ddbea130c26fe7b933ed75e68e267f2ceb6e42f5b2",
+      "payload_sha256": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+      "excluded_resource_entries": 0,
+      "classes": 111
+    },
+    "transmission-linkage-adapted.jar": {
+      "source": "modules/transmission-linkage-adapted-263/build/libs/create_aeronautics_transmission_linkage-0.2.8-26.3-adapted.1.jar",
+      "input_sha256": "04ca4fa2305766d656392811c9e22d8fba5c30f79c9731f6caef694ef8978552",
+      "runtime_sha256": "b8ec3ca958338a3a8ef26fd5444ed4bd9068f6109ad16845cf52754cc2e6c6c7",
+      "payload_sha256": "69b2dba16719af0dd33eb8762689ec403ff95813e57a268e07bfec1962e36cff",
+      "excluded_resource_entries": 2,
+      "classes": 142
+    },
+    "dragons-plus-adapted.jar": {
+      "source": "modules/create-dragons-plus-adapted-263/build/libs/create-dragons-plus-26.3-1.11.9-26.3-adapted.1.jar",
+      "input_sha256": "c81334d7c87a924656789bbbc78597dfb8cb38560d89e7b3a0f9b2fc55ef1cc2",
+      "runtime_sha256": "eae9a1aa9182026724e8027240fd6426f46a93c8f4abfce27494efce11c701e0",
+      "payload_sha256": "ad01a72dc6a796facdf1a7a00cccf60a97c3e52f6cea614e63f5f4a0f8eb1f86",
+      "excluded_resource_entries": 0,
+      "classes": 300
+    },
+    "enchantment-industry-adapted.jar": {
+      "source": "modules/create-enchantment-industry-adapted-263/build/libs/create-enchantment-industry-26.3-2.5.4b-26.3-adapted.1.jar",
+      "input_sha256": "613cb8393101c6934b3deeb0283e2b6ecbade978526befea450a362a8a7d4c63",
+      "runtime_sha256": "fb600ef7c9b00b62a8ba44164484172a0daf3d593df633ec002a9e61e060b971",
+      "payload_sha256": "4b56b252452f484c40f190dca1063d13f9d0115984d7b15ed7902c5b501121db",
+      "excluded_resource_entries": 0,
+      "classes": 216
+    },
+    "electroenergetics-adapted.jar": {
+      "source": "modules/create-electro-energetics-adapted-263/build/libs/electroenergetics-1.2.0-26.3-adapted.1.jar",
+      "input_sha256": "9c19be47366b37d478d64d71dc38322c98c2ca9224cd7324539a0dd79eebd31a",
+      "runtime_sha256": "0ea990bba6e0e60f509e2cc7bf5938d657cd509915d57ebf2073c67a4d0e1495",
+      "payload_sha256": "cbe92743cb1b9cae44227a3af84ccfeb74c15945237c3d040cf7731857483f17",
+      "excluded_resource_entries": 0,
+      "classes": 644
+    },
+    "additional-logistics-adapted.jar": {
+      "source": "modules/create-additional-logistics-adapted-263/build/libs/createadditionallogistics-1.4.5-26.3-adapted.1.jar",
+      "input_sha256": "023eb2cc44f446e88e38f5badc90fae28b92b80a81c50bf0bbc57e8254830ae9",
+      "runtime_sha256": "42b8abaf31e11d97e439c8222b0f8dc3936f775ad3675d8c6c4df2603b8e83ed",
+      "payload_sha256": "a3497e6e4ca72587b4a0d5f6f49c560fcc23cda1df5b79113e53f3a8b62b0cec",
+      "excluded_resource_entries": 0,
+      "classes": 215
+    },
+    "storage-adapted.jar": {
+      "source": "modules/create-storage-adapted-263/build/libs/fxntstorage-1.3.8-26.3-adapted.1.jar",
+      "input_sha256": "b610c93b4a204be014f9a9685aea5c779d90d68f9f3d6fc766433d497feb04f0",
+      "runtime_sha256": "ec72435d5c4954ba1544f6f95088f7b1d1003c2c5669a3b56bf83d27de20f8ba",
+      "payload_sha256": "86bee204ede0a8fe960306c4a633eaabd6e10ca2f591d0765ceaff1ce0ec4f3b",
+      "excluded_resource_entries": 0,
+      "classes": 440
+    },
+    "fluid-logistics-adapted.jar": {
+      "source": "modules/create-fluid-logistics-adapted-263/build/libs/fluidlogistics-1.3.1-26.3-adapted.1.jar",
+      "input_sha256": "06fd9d5d66a144ebd893c9119d081a462bc36e6b10879df4f69ee5f96c84c074",
+      "runtime_sha256": "d7078d9438056f053cd3d334ce172bcba20656f2c04c76d8a503b4ec7ef2c677",
+      "payload_sha256": "99f2988b1275b7e9af2a745fe6c0e4603e5d17a15f42a1c64bf68d164349ee36",
+      "excluded_resource_entries": 0,
+      "classes": 673
+    }
+  },
+  "remaining_gameplay": [
+    "Storage equipment/upgrades, mounted contraptions, filters/controllers, multiplayer and long duration",
+    "Electro motor under actual load, moving Sable wire relocation, electric trains and full renderer coverage",
+    "CEI full enchanter/forger output and XP debit, belt printer fluid consumption",
+    "CDP real fan airflow, recoloring and player fluid-hatch interactions",
+    "Additional accelerator timing, vertical belts, train GUI and optional computer peripherals",
+    "Legacy Connected, Diesel oil/fuel production and complete railway gameplay follow-ups"
+  ],
+  "installer": {
+    "installer_script_exit_code": 0,
+    "environment": "Native Windows PowerShell 5.1 module resolution",
+    "log": "artifacts/audit/installer-v0.3.0-alpha.1-native5-test.log",
+    "hmcl_pack": "artifacts/installer-v0.3.0-alpha.1/output/Create263-Pack-v0.3.0-alpha.1-HMCL.zip",
+    "bytes": 99199262,
+    "sha256": "e7783eb30bb6bd7ccbfe1b62b9f6f17f030d17c88bbdc56c1cb42fa75aed68f0",
+    "all_18_jar_entries_match": true,
+    "official_asset_hash_matches": true,
+    "exact_pinned_platform": true,
+    "no_worlds": true,
+    "asset_alignment": "artifacts/audit/asset-alignment/report.json"
+  },
+  "installer_entry_verification": {
+    "additional-logistics-adapted.jar": {
+      "entries": 1354,
+      "content_matches": true
+    },
+    "aeronautics-adapted.jar": {
+      "entries": 861,
+      "content_matches": true
+    },
+    "connected-adapted.jar": {
+      "entries": 1929,
+      "content_matches": true
+    },
+    "connected-simulated-bridge.jar": {
+      "entries": 15,
+      "content_matches": true
+    },
+    "create-adapted-recovered.jar": {
+      "entries": 7132,
+      "content_matches": true
+    },
+    "diesel-adapted.jar": {
+      "entries": 1392,
+      "content_matches": true
+    },
+    "dragons-plus-adapted.jar": {
+      "entries": 893,
+      "content_matches": true
+    },
+    "electroenergetics-adapted.jar": {
+      "entries": 2204,
+      "content_matches": true
+    },
+    "enchantment-industry-adapted.jar": {
+      "entries": 541,
+      "content_matches": true
+    },
+    "fluid-logistics-adapted.jar": {
+      "entries": 1303,
+      "content_matches": true
+    },
+    "liquid-fuel-adapted.jar": {
+      "entries": 20,
+      "content_matches": true
+    },
+    "offroad-adapted.jar": {
+      "entries": 240,
+      "content_matches": true
+    },
+    "ore-excavation-adapted.jar": {
+      "entries": 251,
+      "content_matches": true
+    },
+    "railways-adapted.jar": {
+      "entries": 26539,
+      "content_matches": true
+    },
+    "sable-adapted.jar": {
+      "entries": 704,
+      "content_matches": true
+    },
+    "simulated-adapted.jar": {
+      "entries": 2306,
+      "content_matches": true
+    },
+    "storage-adapted.jar": {
+      "entries": 1059,
+      "content_matches": true
+    },
+    "transmission-linkage-adapted.jar": {
+      "entries": 241,
+      "content_matches": true
+    }
+  }
+}

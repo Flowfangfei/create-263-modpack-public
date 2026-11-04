@@ -1,0 +1,11 @@
+{
+    "type":  "createdieselgenerators:hammering",
+    "ingredients":  [
+                        "#c:ingots/brass"
+                    ],
+    "results":  [
+                    {
+                        "id":  "create:brass_sheet"
+                    }
+                ]
+}

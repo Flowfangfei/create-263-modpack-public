@@ -1,0 +1,74 @@
+{
+  "registrate": {
+    "version": "MC1.21-1.3.0+67",
+    "source_url": "https://mvn.devos.one/snapshots/com/tterrag/registrate/Registrate/MC1.21-1.3.0%2B67/Registrate-MC1.21-1.3.0%2B67-sources.jar",
+    "source_sha256": "6a360539af5dcd9dd2bb6f63f52b44115d20d7d48e0db4f3072b5f73ca4628d7",
+    "source_directory": "vendor/registrate-MC1.21-1.3.0+67",
+    "modifications": "modules/create-adapted-263/build.gradle ASM transformations",
+    "license": "MPL-2.0"
+  },
+  "combined_license": "independent component licenses; no umbrella MIT claim",
+  "restricted_assets_not_mirrored": [
+    "Aeronautics suite assets",
+    "official Create asset JAR",
+    "Diesel engine_normal.ogg"
+  ],
+  "new_components": {
+    "createliquidfuel": {
+      "license": "MIT",
+      "file": "LICENSES/MIT-LIQUID-FUEL.txt"
+    },
+    "createoreexcavation": {
+      "license": "MIT",
+      "file": "LICENSES/MIT-ORE-EXCAVATION.txt"
+    },
+    "aeronautics_utility_objects": {
+      "upstream_declared_license": "CC-BY-NC-4.0",
+      "preserved_additional_license": "PolyForm-Shield-1.0.0",
+      "files": [
+        "LICENSES/CC-BY-NC-4.0-TRANSMISSION-LINKAGE.txt",
+        "LICENSES/POLYFORM-SHIELD-TRANSMISSION-LINKAGE.md"
+      ],
+      "original_author": "enxv233",
+      "modified_for": "Create263 Pack 26.3"
+    },
+    "electroenergetics": {
+      "license": "MIT",
+      "file": "LICENSES/SOURCE-create-electro-energetics-adapted-263-LICENSE",
+      "source_directory": "modules/create-electro-energetics-adapted-263"
+    },
+    "fxntstorage": {
+      "license": "GNU GPL v3 text; original declared-version distinction retained",
+      "file": "LICENSES/SOURCE-create-storage-adapted-263-LICENSE",
+      "source_directory": "modules/create-storage-adapted-263"
+    },
+    "createadditionallogistics": {
+      "license": "MIT",
+      "file": "LICENSES/SOURCE-create-additional-logistics-adapted-263-LICENSE-txt",
+      "source_directory": "modules/create-additional-logistics-adapted-263"
+    },
+    "fluidlogistics": {
+      "license": "BSD-3-Clause, with retained LGPL and MIT portions",
+      "file": "LICENSES/SOURCE-create-fluid-logistics-adapted-263-LICENSE-txt",
+      "source_directory": "modules/create-fluid-logistics-adapted-263"
+    },
+    "create_dragons_plus": {
+      "license": "LGPL-3.0-or-later",
+      "file": "LICENSES/SOURCE-create-dragons-plus-adapted-263-LICENSE-txt",
+      "source_directory": "modules/create-dragons-plus-adapted-263"
+    },
+    "create_enchantment_industry": {
+      "license": "LGPL-3.0-or-later",
+      "file": "LICENSES/SOURCE-create-enchantment-industry-adapted-263-LICENSE-txt",
+      "source_directory": "modules/create-enchantment-industry-adapted-263"
+    }
+  },
+  "fluidlogistics_declared_createfluidstuffs": {
+    "repository": "MoePus/create-fluidstuffs",
+    "license_commit": "63f7f35689b5d73e0828a978db1b8ab2da25abe6",
+    "license_blob_sha": "c98642977d1d24b85d321cf5abf9f0f6d40a29bf",
+    "license_sha256": "aa7e51b6dbf74bc28778d5cdcb54c2cf927d38ccab85d76bf8f0a1c6b79be3ed",
+    "source_url": "https://github.com/MoePus/create-fluidstuffs/blob/63f7f35689b5d73e0828a978db1b8ab2da25abe6/LICENSE",
+    "use": "MIT portions declared by the fixed FluidLogistics upstream README; original notice preserved including unfilled copyright-holder field"
+  }
+}

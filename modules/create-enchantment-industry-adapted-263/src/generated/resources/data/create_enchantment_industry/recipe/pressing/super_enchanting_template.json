@@ -1,0 +1,11 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    "create_enchantment_industry:super_experience_block"
+  ],
+  "results": [
+    {
+      "id": "create_enchantment_industry:super_enchanting_template"
+    }
+  ]
+}

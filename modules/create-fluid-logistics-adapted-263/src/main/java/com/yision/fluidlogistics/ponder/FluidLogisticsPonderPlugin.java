@@ -1,0 +1,139 @@
+package com.yision.fluidlogistics.ponder;
+
+import com.simibubi.create.Create;
+import com.tterrag.registrate.util.entry.ItemProviderEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.yision.fluidlogistics.FluidLogistics;
+import com.yision.fluidlogistics.registry.AllBlocks;
+import com.yision.fluidlogistics.registry.AllItems;
+
+import net.createmod.ponder.api.client.registration.PonderPlugin;
+import net.createmod.ponder.api.client.registration.PonderSceneRegistrationHelper;
+import net.createmod.ponder.api.client.registration.PonderTagRegistrationHelper;
+import net.minecraft.resources.Identifier;
+
+public class FluidLogisticsPonderPlugin implements PonderPlugin {
+
+	public static final Identifier HIGH_LOGISTICS = Create.asResource("high_logistics");
+	public static final Identifier LOGISTICS = Create.asResource("logistics");
+	public static final Identifier FLUIDS = Create.asResource("fluids");
+	public static final Identifier ARM_TARGETS = Create.asResource("arm_targets");
+	public static final Identifier KINETIC_APPLIANCES = Create.asResource("kinetic_appliances");
+	public static final Identifier DISPLAY_SOURCES = Create.asResource("display_sources");
+
+	@Override
+	public String getModId() {
+		return FluidLogistics.MODID;
+	}
+
+	@Override
+	public void registerScenes(PonderSceneRegistrationHelper<Identifier> helper) {
+		PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> registration = helper
+			.withKeyFunction(RegistryEntry::getId);
+
+		registration.forComponents(AllBlocks.FLUID_PACKAGER)
+			.addStoryBoard(FluidPackagerScenes.FLUID_PACKAGER, FluidPackagerScenes::fluidPackager)
+			.addStoryBoard(FluidPackagerScenes.FLUID_PACKAGER_ADDRESS, FluidPackagerScenes::fluidPackagerAddress);
+
+		registration.forComponents(AllBlocks.FLUID_REPACKAGER)
+			.addStoryBoard(FluidRepackagerScenes.FLUID_REPACKAGER,
+				FluidRepackagerScenes::fluidRepackager, HIGH_LOGISTICS);
+
+		registration.forComponents(AllBlocks.COPPER_FROGPORT)
+			.addStoryBoard(CopperFrogportScenes.PLACEMENT, CopperFrogportScenes::placement,
+				storyboard -> storyboard.highlightTag(HIGH_LOGISTICS)
+					.orderBefore(Create.ID, "package_frogport"));
+
+		registration.forComponents(AllBlocks.SMART_FAUCET)
+			.addStoryBoard(SmartFaucetScenes.SMART_FAUCET, SmartFaucetScenes::smartFaucet);
+
+		registration.forComponents(AllBlocks.FAUCET)
+			.addStoryBoard(FaucetScenes.FAUCET, FaucetScenes::faucet);
+
+		registration.forComponents(AllBlocks.MULTI_FLUID_ACCESS_PORT)
+			.addStoryBoard(MultiFluidAccessPortScenes.MULTI_FLUID_ACCESS_PORT,
+				MultiFluidAccessPortScenes::multiFluidAccessPort);
+
+		registration.forComponents(AllBlocks.FLUID_INVENTORY_ACCESS_PORT)
+			.addStoryBoard(FluidInventoryAccessPortScenes.FLUID_INVENTORY_ACCESS_PORT,
+				FluidInventoryAccessPortScenes::fluidInventoryAccessPort);
+
+		registration.forComponents(AllBlocks.MULTI_FLUID_TANK, AllBlocks.HORIZONTAL_MULTI_FLUID_TANK)
+			.addStoryBoard(MultiFluidTankScenes.STORAGE, MultiFluidTankScenes::storage, FLUIDS)
+			.addStoryBoard(MultiFluidTankScenes.SIZES, MultiFluidTankScenes::sizes);
+
+		registration.forComponents(AllItems.COPPER_BUCKET)
+			.addStoryBoard(CopperBucketScenes.INTERACTION, CopperBucketScenes::interaction, FLUIDS);
+
+		registration.forComponents(AllBlocks.SMART_HOPPER)
+			.addStoryBoard(SmartHopperScenes.SMART_HOPPER, SmartHopperScenes::smartHopper);
+
+		registration.forComponents(AllBlocks.FLUID_TRANSPORTER)
+			.addStoryBoard(FluidTransporterScenes.FLUID_TRANSPORTER,
+				FluidTransporterScenes::fluidTransporter);
+
+		registration.forComponents(AllBlocks.FLUID_PUMP)
+			.addStoryBoard(FluidPumpScenes.PUMP_FLOW, FluidPumpScenes::flow, FLUIDS, KINETIC_APPLIANCES)
+			.addStoryBoard(FluidPumpScenes.PUMP_SPEED, FluidPumpScenes::speed);
+
+		registration.forComponents(AllBlocks.FLOW_METER)
+			.addStoryBoard(FlowMeterScenes.FLOW_METER, FlowMeterScenes::flowMeter, FLUIDS);
+
+		registration.forComponents(AllBlocks.POTATO_SERVER)
+			.addStoryBoard(PotatoServerScenes.POTATO_SERVER, PotatoServerScenes::potatoServer, DISPLAY_SOURCES);
+
+		registration.forComponents(AllBlocks.REDSTONE_FLUID_VALVE)
+			.addStoryBoard(RedstoneFluidValveScenes.REDSTONE_FLUID_VALVE,
+				RedstoneFluidValveScenes::redstoneFluidValve, FLUIDS);
+
+		registration.forComponents(AllBlocks.MECHANICAL_FLUID_GUN)
+			.addStoryBoard(MechanicalFluidGunScenes.MECHANICAL_FLUID_GUN_SETUP,
+				MechanicalFluidGunScenes::setup, FLUIDS, KINETIC_APPLIANCES);
+
+		registration.forComponents(AllItems.EMPTY_SNOW_GOLEM_FREEZER)
+			.addStoryBoard(SnowGolemFreezerScenes.CAPTURING, SnowGolemFreezerScenes::capturing);
+
+		registration.forComponents(AllBlocks.SNOW_GOLEM_FREEZER)
+			.addStoryBoard(SnowGolemFreezerScenes.FUELING, SnowGolemFreezerScenes::fueling);
+	}
+
+	@Override
+	public void registerTags(PonderTagRegistrationHelper<Identifier> helper) {
+		PonderTagRegistrationHelper<ItemProviderEntry<?, ?>> registration = helper
+			.withKeyFunction(RegistryEntry::getId);
+
+		registration.addToTag(HIGH_LOGISTICS)
+			.add(AllBlocks.FLUID_PACKAGER)
+			.add(AllBlocks.FLUID_REPACKAGER);
+
+		registration.addToTag(LOGISTICS)
+			.add(AllBlocks.SMART_HOPPER);
+
+		registration.addToTag(FLUIDS)
+			.add(AllItems.COPPER_BUCKET)
+			.add(AllBlocks.SMART_FAUCET)
+			.add(AllBlocks.FAUCET)
+			.add(AllBlocks.MULTI_FLUID_ACCESS_PORT)
+			.add(AllBlocks.FLUID_INVENTORY_ACCESS_PORT)
+			.add(AllBlocks.MULTI_FLUID_TANK)
+			.add(AllBlocks.HORIZONTAL_MULTI_FLUID_TANK)
+			.add(AllBlocks.SMART_HOPPER)
+			.add(AllBlocks.FLUID_TRANSPORTER)
+			.add(AllBlocks.FLUID_PUMP)
+			.add(AllBlocks.FLOW_METER)
+			.add(AllBlocks.REDSTONE_FLUID_VALVE)
+			.add(AllBlocks.MECHANICAL_FLUID_GUN);
+
+		registration.addToTag(KINETIC_APPLIANCES)
+			.add(AllBlocks.FLUID_PUMP)
+			.add(AllBlocks.MECHANICAL_FLUID_GUN);
+
+		registration.addToTag(DISPLAY_SOURCES)
+			.add(AllBlocks.FLOW_METER)
+			.add(AllBlocks.POTATO_SERVER);
+
+		registration.addToTag(ARM_TARGETS)
+			.add(AllBlocks.SMART_HOPPER)
+			.add(AllBlocks.SNOW_GOLEM_FREEZER);
+	}
+}

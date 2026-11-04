@@ -1,0 +1,69 @@
+{
+  "build_log": "../../../artifacts/build/create-ore-excavation-adapted-263-20261025-125547.log",
+  "status": "compiled_and_packaged",
+  "gameplay_status": "initial_restart_real_motor_and_client_render_passed_final_special_recipe_flag_built",
+  "artifacts": [
+    {
+      "file": "createoreexcavation-1.6.8-26.3-adapted.1-sources.jar",
+      "bytes": 262062,
+      "sha256": "a108d418b04f6eeeb5ab9349444e7d04fbb271820e64196270bdf3bc306fb94d"
+    },
+    {
+      "file": "createoreexcavation-1.6.8-26.3-adapted.1.jar",
+      "bytes": 409314,
+      "sha256": "a22712afb4e8c3de068c0e9f0e157f984d2077f935c44d2d86521dd4149ceea3"
+    }
+  ],
+  "static_validation": {
+    "valid_packaged_json_resources": 101,
+    "native_item_definitions": 11,
+    "license_packaged": true
+  },
+  "runtime_probe": {
+    "world": "../../../runtime/three-addons-20261025-125059-362850/server",
+    "result": "../../../runtime/three-addons-20261025-125059-362850/server/ore-excavation-runtime-checks.json",
+    "success_marker": "COE263_RUNTIME_CHECKS_OK",
+    "recipes": {
+      "vein": 15,
+      "drilling": 14,
+      "extracting": 1
+    },
+    "production_ticks": {
+      "drilling": 162,
+      "extracting": 17
+    },
+    "kinetic_source": "controlled Kinetic interface, explicitly detached after production loops"
+  },
+  "live_network_probe": {
+    "mode": "reload",
+    "pending": false,
+    "passed": true,
+    "normal_world_ticks": 220,
+    "motors": [
+      "70 -59 8",
+      "86 -59 8"
+    ],
+    "rpm": 128,
+    "recipe_stress": 256,
+    "iron_items_after_real_network": 2,
+    "water_mb_after_real_network": 16000,
+    "disk_roundtrip_before_powering": true,
+    "result": "../../../runtime/three-addons-20261025-125059-362850/server/ore-excavation-reload-checks.json",
+    "log": "../../../runtime/three-addons-20261025-125059-362850/reload-server.log",
+    "success_marker": "COE263_RELOAD_CHECKS_OK"
+  },
+  "client_probe": {
+    "passed": true,
+    "result": "../../../runtime/three-addons-20261025-125059-362850/client/joint-client-probe.json",
+    "screenshot": "../../../runtime/three-addons-20261025-125059-362850/client/screenshots/2026-10-25_12.54.33.png",
+    "actual_ber": "com.tom.createores.client.DrillRenderer",
+    "saved_and_returned_to_title": true,
+    "namespace_missing_model_texture_item_definition_errors": 0
+  },
+  "final_metadata_fix": {
+    "machine_recipes_special": true,
+    "reason": "prevent vanilla recipe-book placement warnings for intentionally unplaceable machine recipes",
+    "compile_verified": true,
+    "client_log_recheck_pending": true
+  }
+}

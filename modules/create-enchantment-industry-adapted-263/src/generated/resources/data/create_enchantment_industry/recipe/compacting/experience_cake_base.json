@@ -1,0 +1,13 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    "#c:eggs",
+    "minecraft:sugar",
+    "minecraft:lapis_lazuli"
+  ],
+  "results": [
+    {
+      "id": "create_enchantment_industry:experience_cake_base"
+    }
+  ]
+}

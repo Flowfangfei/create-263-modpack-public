@@ -1,0 +1,81 @@
+java { toolchain.languageVersion = JavaLanguageVersion.of(25); withSourcesJar() }
+base { archivesName = "${project.name}-neoforge-26.3" }
+version = '1.3.0-adapted.1'
+neoForge {
+    version = '26.3.0.22-beta'
+    mods { create(project.name) { sourceSet sourceSets.main } }
+    accessTransformers.from(rootProject.ext.adaptedAccessTransformers)
+}
+sourceSets.main {
+    java.srcDir 'src/neoforge/java'
+    java {
+        exclude 'dev/simulated_team/simulated/mixin/diagram/VanillaSubLevelRenderDispatcherMixin.java'
+        exclude 'dev/simulated_team/simulated/mixin/end_sea/VanillaSubLevelRenderDispatcherMixin.java'
+        exclude 'dev/simulated_team/simulated/mixin/hold_interaction/LocalPlayerMixin.java'
+        exclude 'dev/simulated_team/simulated/mixin/lodestone_compat/CompassItemPropertyFunctionMixin.java'
+        exclude 'dev/eriksonn/aeronautics/mixin/levitite/VanillaChunkedSubLevelRenderDataMixin.java'
+        exclude 'dev/eriksonn/aeronautics/mixin/render/vanilla/LevelRendererMixin.java'
+        exclude 'dev/eriksonn/aeronautics/mixin/render/sodium/DefaultMaterialsMixin.java'
+        exclude 'dev/eriksonn/aeronautics/mixin/render/sodium/SodiumWorldRendererMixin.java'
+        exclude 'dev/eriksonn/aeronautics/mixin/render/iris/WorldRenderingPhaseMixin.java'
+        // Obsolete 1.21.1 reference-only hooks; current baseline has no corresponding APIs.
+        exclude '**/neoforge/mixin/diagram/VisualManagerImplMixin.java'
+        exclude '**/neoforge/mixin/BlockRenderDispatcherMixin.java'
+        exclude '**/neoforge/mixin/tooltip_flag/ClientTooltipFlagMixin.java'
+        exclude '**/neoforge/mixin/item_renderer/PhysicsStaffItemMixin.java'
+        exclude '**/neoforge/mixin/self_mixins/PlungerLauncherItemMixin.java'
+        exclude '**/neoforge/mixin/harvesters/SableHarvesterTickerMixin.java'
+        exclude '**/registrate/neoforge/SimBlockEntityBuilderImpl.java'
+        exclude '**/gametest/**'
+        exclude '**/data/neoforge/**', '**/neoforge/data/**'
+        exclude '**/service/SimBlockStateService.java', '**/service/NeoForgeSimBlockStateService.java'
+        exclude '**/data/SimBlockStateGen.java', '**/directional_gearshift/DirectionalGearshiftGenerator.java'
+        exclude '**/redstone_accumulator/RedstoneAccumulatorBlockStateGen.java'
+        exclude '**/steering_wheel/SteeringWheelGenerator.java'
+        // Native NeoForge Registrate is supplied by the fixed Create dependency.
+        exclude 'com/tterrag/registrate/**'
+        exclude 'com/zurrtum/create/**'
+        // Replaced by target Create's combined common/client behaviour implementations.
+        exclude '**/compat/create/LegacyFilteringClientBehaviour.java', '**/compat/create/LegacyScrollValueClientBehaviour.java'
+        exclude '**/compat/create/LegacyTooltipBehaviour.java', '**/compat/create/LegacyKineticTooltipBehaviour.java'
+        exclude '**/compat/create/LegacyCustomKineticTooltipBehaviour.java'
+        exclude '**/swivel_bearing/SwivelLockingClientBehaviour.java', '**/portable_engine/PortableEngineRotationDirectionClientBehaviour.java'
+        exclude '**/mixin/extra_kinetics/SmartBlockEntityMixin.java' 
+        exclude '**/fabric/content/fluid/**'
+        exclude '**/propeller_bearing/PropellerThrustDirectionClientBehaviour.java'
+        exclude '**/data/AeroBlockStateGen.java'
+        exclude '**/create_sublevel/AllHandleMixin.java', '**/create_sublevel/EjectorItemEntityMixin.java'
+        exclude '**/neoforge/compat/jei/package-info.java'
+        exclude '**/fabric/service/**', '**/fabric/transfer/**', '**/fabric/network/**', '**/fabric/data/**'
+        exclude '**/fabric/SimulatedFabric.java', '**/fabric/SimulatedFabricClient.java'
+        exclude '**/fabric/OffroadFabric.java', '**/fabric/OffroadFabricClient.java'
+        exclude '**/fabric/AeronauticsFabric.java', '**/fabric/AeronauticsFabricClient.java'
+        exclude '**/fabric/FabricResourceReloadListener.java'
+        exclude '**/fabric/FabricSimParticleTypes.java', '**/fabric/FabricSimRecipeTypes.java', '**/fabric/FabricSimStats.java'
+        exclude '**/fabric/FabricAeroFluids.java', '**/fabric/FabricAeroParticleTypes.java'
+
+    }
+    resources.srcDir 'src/generated/resources'
+    resources.srcDir 'src/neoforge/resources'
+    resources.exclude 'fabric.mod.json', '*.classtweaker', '**/*.bak'
+    resources.exclude 'META-INF/services/dev.simulated_team.simulated.service.SimBlockStateService'
+}
+dependencies {
+    compileOnly fileTree(rootProject.file('../steam-n-rails-263/tooling/create-adapted/libs')) { include '*.jar' }
+    implementation project(':sable')
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    compileOnly 'org.jspecify:jspecify:1.0.0'
+    compileOnly 'org.projectlombok:lombok:1.18.42'
+    annotationProcessor 'org.projectlombok:lombok:1.18.42'
+    compileOnly 'mezz.jei:jei-26.3-neoforge:31.6.0.25'
+    compileOnly('maven.modrinth:cc-tweaked:1.120.3') { transitive = false }
+    compileOnly('maven.modrinth:natures-compass:26.3-2.5.1-fabric') { transitive = false }
+    compileOnly('maven.modrinth:explorers-compass:26.3-2.5.2-fabric') { transitive = false }
+    compileOnly('maven.modrinth:sodium:mc26.3-0.9.3-alpha.1-fabric') { transitive = false }
+
+}
+tasks.withType(JavaCompile).configureEach { options.release = 25; options.compilerArgs += ['-Xmaxerrs', '4000'] }
+jar {
+    from(rootProject.file('LICENSE.md'))
+    exclude 'net/minecraft/**', 'net/neoforged/**', 'com/simibubi/create/**', 'com/zurrtum/create/**', 'com/tterrag/registrate/**'
+}

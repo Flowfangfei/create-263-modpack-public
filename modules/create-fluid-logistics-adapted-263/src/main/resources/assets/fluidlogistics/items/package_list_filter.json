@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "fluidlogistics:item/package_list_filter"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "simulated:auger_shaft"
+  ],
+  "result": {
+    "id": "simulated:auger_cog"
+  }
+}

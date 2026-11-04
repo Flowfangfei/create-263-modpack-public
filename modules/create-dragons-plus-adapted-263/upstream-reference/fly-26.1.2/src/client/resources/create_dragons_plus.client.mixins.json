@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "plus.dragons.createdragonsplus.mixin.client",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "create.AirFlowParticleMixin",
+    "minecraft.CameraMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

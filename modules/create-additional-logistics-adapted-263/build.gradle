@@ -1,0 +1,29 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+apply from: '../../gradle/create263-addon.gradle'
+neoForge { accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg') }
+repositories {
+    maven { url = 'https://maven.squiddev.cc' }
+}
+dependencies {
+    compileOnly('cc.tweaked:cc-tweaked-26.3-core-api:1.120.2') { transitive = false }
+    compileOnly('cc.tweaked:cc-tweaked-26.3-forge-api:1.120.2') { transitive = false }
+}
+tasks.withType(Jar).configureEach {
+    from('LICENSE.txt') { into 'META-INF'; rename { 'LICENSE_createadditionallogistics' } }
+    from('TEMPLATE_LICENSE.txt') { into 'META-INF' }
+}
+// Create Adapted does not yet ship its optional ComputerCraft peripheral implementation.
+sourceSets.main.java {
+    exclude "dev/khloeleclair/create/additionallogistics/compat/computercraft/implementation/**"
+    exclude "dev/khloeleclair/create/additionallogistics/mixin/IStationPeripheralAccessor.java"
+}
+
+// All 867 upstream generated assets are verified in tooling/generated-resource-coverage.json.
+// This retained source set is an explicit 1.21.1 generator reference, excluded from 26.3 runtime compilation.
+sourceSets {
+    legacyDatagen { java.srcDir 'src/legacyDatagen/java' }
+    main { java.exclude 'dev/khloeleclair/create/additionallogistics/common/datagen/**' }
+}

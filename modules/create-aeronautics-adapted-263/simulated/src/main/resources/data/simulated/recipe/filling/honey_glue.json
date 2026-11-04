@@ -1,0 +1,15 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    "create:iron_sheet",
+    {
+      "ingredient": "#c:honey",
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "id": "simulated:honey_glue"
+    }
+  ]
+}

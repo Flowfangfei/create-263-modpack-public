@@ -1,0 +1,36 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "priority": 1234,
+  "package": "com.george_vi.electroenergetics.mixins",
+  "refmap": "electroenergetics.refmap.json",
+  "compatibilityLevel": "JAVA_25",
+  "plugin": "com.george_vi.electroenergetics.CEEMixinPlugin",
+  "client": [
+    "CarriageSoundsMixin",
+    "HumanoidModelMixin",
+    "ItemInHandRendererMixin",
+    "LevelRendererAccessor",
+    "MouseHandlerMixin",
+    "MultiPlayerGameModeMixin",
+    "SchematicRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "CarriageContraptionMixin",
+    "CarriageMixin",
+    "ComparatorBlockMixin",
+    "FluidPropagatorMixin",
+    "LevelChunkMixin",
+    "LivingEntityMixin",
+    "MinecraftServerMixin",
+    "SchematicLevelMixin",
+    "SchematicPrinterMixin",
+    "StructureTemplateMixin",
+    "SubLevelAssemblyHelperMixin",
+    "TrainMixin",
+    "compat.ElectricFanBlockEntityMixin"
+  ]
+}

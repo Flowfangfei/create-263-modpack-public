@@ -1,0 +1,46 @@
+package net.fxnt.fxntstorage.backpack.inventory;
+
+import net.fxnt.fxntstorage.backpack.upgrade.UpgradeDataSync;
+import net.fxnt.fxntstorage.backpack.upgrade.UpgradeType;
+import net.fxnt.fxntstorage.util.SortOrder;
+import net.minecraft.world.entity.player.Player;
+import com.simibubi.create.compat.neoforge263.items.ItemStackHandler;
+import org.jetbrains.annotations.Nullable;
+
+public interface IBackpackContainer {
+
+    ItemStackHandler getItemHandler();
+
+    int getStackMultiplier();
+
+    void setPlayerInteraction(boolean isPlayer);
+
+    void setDataChanged();
+
+    boolean stillValid(Player player);
+
+    SortOrder getSortOrder();
+
+    void setSortOrder(SortOrder order);
+
+    boolean isPanelExpanded(UpgradeType type);
+
+    void togglePanelExpanded(UpgradeType type);
+
+    void clearPanelExpanded(UpgradeType type);
+
+    @Nullable
+    UpgradeType getExpandedPanel();
+
+    void setExpandedPanel(@Nullable UpgradeType type);
+
+    boolean getUpgradeSetting(UpgradeDataSync.Field upgrade);
+
+    void setUpgradeSetting(UpgradeDataSync.Field upgrade, boolean value);
+
+    int getUpgradeIntSetting(UpgradeDataSync.Field upgrade);
+
+    void setUpgradeIntSetting(UpgradeDataSync.Field upgrade, int value);
+
+    void saveSettings();
+}

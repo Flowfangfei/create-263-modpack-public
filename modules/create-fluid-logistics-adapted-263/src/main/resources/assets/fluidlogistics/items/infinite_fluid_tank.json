@@ -1,0 +1,7 @@
+{
+  "model": {
+    "type": "fluidlogistics:fluid_container",
+    "model": "fluidlogistics:item/infinite_fluid_tank",
+    "kind": "infinite"
+  }
+}

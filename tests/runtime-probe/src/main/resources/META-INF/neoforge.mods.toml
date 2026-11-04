@@ -1,0 +1,13 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+[[dependencies.${mod_id}]]
+modId="createliquidfuel"
+type="required"
+versionRange="[3.0.0-26.3-adapted.1]"
+ordering="AFTER"
+side="BOTH"

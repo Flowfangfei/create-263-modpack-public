@@ -1,0 +1,20 @@
+{
+    "type":  "create:mixing",
+    "ingredients":  [
+                        {
+                            "ingredient":  "minecraft:water",
+                            "amount":  100
+                        },
+                        "minecraft:orange_concrete_powder"
+                    ],
+    "results":  [
+                    {
+                        "id":  "createdieselgenerators:orange_cement",
+                        "amount":  1000
+                    },
+                    {
+                        "id":  "minecraft:orange_concrete_powder",
+                        "chance":  0.25
+                    }
+                ]
+}

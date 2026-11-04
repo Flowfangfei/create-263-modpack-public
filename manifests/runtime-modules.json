@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "modules": [
+    {
+      "name": "create-adapted-recovered.jar",
+      "module": "create-adapted-263",
+      "artifact": "build/recovered-release/*-public-external-assets.jar",
+      "mod_id": "create"
+    },
+    {
+      "name": "sable-adapted.jar",
+      "module": "sable-adapted-263",
+      "artifact": "build/libs/sable-neoforge-26.3-3.0.0-adapted.1.jar",
+      "mod_id": "sable"
+    },
+    {
+      "name": "railways-adapted.jar",
+      "module": "steam-n-rails-263",
+      "artifact": "build/libs/railways-neoforge-26.3-1.4.0-adapted.1.jar",
+      "mod_id": "railways"
+    },
+    {
+      "name": "connected-adapted.jar",
+      "module": "create-connected-adapted-263",
+      "artifact": "build/libs/create_connected-*-pack.1.jar",
+      "mod_id": "create_connected"
+    },
+    {
+      "name": "connected-simulated-bridge.jar",
+      "module": "create-connected-adapted-263",
+      "artifact": "build/libs/create_connected-*-pack.1-simulated.jar",
+      "mod_id": "create_connected_simulated"
+    },
+    {
+      "name": "diesel-adapted.jar",
+      "module": "create-diesel-generators-adapted-263",
+      "artifact": "build/libs/createdieselgenerators-*-pack.1.jar",
+      "mod_id": "createdieselgenerators"
+    },
+    {
+      "name": "simulated-adapted.jar",
+      "module": "create-aeronautics-adapted-263",
+      "artifact": "simulated/build/libs/simulated-neoforge-26.3-1.3.0-adapted.1.jar",
+      "mod_id": "simulated"
+    },
+    {
+      "name": "offroad-adapted.jar",
+      "module": "create-aeronautics-adapted-263",
+      "artifact": "offroad/build/libs/offroad-neoforge-26.3-1.3.0-adapted.1.jar",
+      "mod_id": "offroad"
+    },
+    {
+      "name": "aeronautics-adapted.jar",
+      "module": "create-aeronautics-adapted-263",
+      "artifact": "aeronautics/build/libs/aeronautics-neoforge-26.3-1.3.0-adapted.1.jar",
+      "mod_id": "aeronautics"
+    },
+    {
+      "name": "liquid-fuel-adapted.jar",
+      "module": "create-liquid-fuel-adapted-263",
+      "artifact": "build/libs/createliquidfuel-3.0.0-26.3-adapted.1.jar",
+      "mod_id": "createliquidfuel"
+    },
+    {
+      "name": "ore-excavation-adapted.jar",
+      "module": "create-ore-excavation-adapted-263",
+      "artifact": "build/libs/createoreexcavation-1.6.8-26.3-adapted.1.jar",
+      "mod_id": "createoreexcavation"
+    },
+    {
+      "name": "transmission-linkage-adapted.jar",
+      "module": "transmission-linkage-adapted-263",
+      "artifact": "build/libs/create_aeronautics_transmission_linkage-0.2.8-26.3-adapted.1.jar",
+      "mod_id": "aeronautics_utility_objects"
+    },
+    {
+      "name": "dragons-plus-adapted.jar",
+      "module": "create-dragons-plus-adapted-263",
+      "artifact": "build/libs/create-dragons-plus-26.3-1.11.9-26.3-adapted.1.jar",
+      "mod_id": "create_dragons_plus"
+    },
+    {
+      "name": "enchantment-industry-adapted.jar",
+      "module": "create-enchantment-industry-adapted-263",
+      "artifact": "build/libs/create-enchantment-industry-26.3-2.5.4b-26.3-adapted.1.jar",
+      "mod_id": "create_enchantment_industry"
+    },
+    {
+      "name": "electroenergetics-adapted.jar",
+      "module": "create-electro-energetics-adapted-263",
+      "artifact": "build/libs/electroenergetics-1.2.0-26.3-adapted.1.jar",
+      "mod_id": "electroenergetics"
+    },
+    {
+      "name": "additional-logistics-adapted.jar",
+      "module": "create-additional-logistics-adapted-263",
+      "artifact": "build/libs/createadditionallogistics-1.4.5-26.3-adapted.1.jar",
+      "mod_id": "createadditionallogistics"
+    },
+    {
+      "name": "storage-adapted.jar",
+      "module": "create-storage-adapted-263",
+      "artifact": "build/libs/fxntstorage-1.3.8-26.3-adapted.1.jar",
+      "mod_id": "fxntstorage"
+    },
+    {
+      "name": "fluid-logistics-adapted.jar",
+      "module": "create-fluid-logistics-adapted-263",
+      "artifact": "build/libs/fluidlogistics-1.3.1-26.3-adapted.1.jar",
+      "mod_id": "fluidlogistics"
+    }
+  ]
+}

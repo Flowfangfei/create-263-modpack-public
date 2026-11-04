@@ -1,0 +1,12 @@
+{
+    "type":  "createdieselgenerators:compression_molding",
+    "ingredients":  [
+                        "create:andesite_alloy"
+                    ],
+    "mold":  "createdieselgenerators:chain",
+    "results":  [
+                    {
+                        "id":  "create:minecart_coupling"
+                    }
+                ]
+}

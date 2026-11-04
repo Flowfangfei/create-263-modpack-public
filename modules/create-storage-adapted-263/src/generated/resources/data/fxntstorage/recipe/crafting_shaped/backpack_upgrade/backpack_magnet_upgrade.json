@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fxntstorage:backpack_upgrade_enabled",
+      "upgrade": "fxntstorage:backpack_magnet_upgrade"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "backpack",
+  "key": {
+    "B": "fxntstorage:backpack_blank_upgrade",
+    "I": "create:iron_sheet",
+    "R": "create:redstone_link",
+    "X": "create:extendo_grip"
+  },
+  "pattern": [
+    " R ",
+    "IBI",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:backpack_magnet_upgrade"
+  }
+}

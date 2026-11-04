@@ -1,0 +1,142 @@
+package net.fxnt.fxntstorage.backpack.upgrade;
+
+import net.fxnt.fxntstorage.backpack.inventory.BackpackContainer;
+import net.fxnt.fxntstorage.backpack.inventory.BackpackSlotLayout;
+import net.fxnt.fxntstorage.backpack.util.BackpackHelper;
+import net.fxnt.fxntstorage.item.upgrades.UpgradeItem;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import com.simibubi.create.compat.neoforge263.items.IItemHandler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UpgradeHelper {
+    private static final BackpackSlotLayout LAYOUT = BackpackSlotLayout.createLayout();
+
+    private UpgradeHelper() {
+    }
+
+    public static ItemStack toggleUpgrade(ItemStack stack) {
+        if (!(stack.getItem() instanceof UpgradeItem upgradeItem)) {
+            return stack;
+        }
+
+        String upgradeName = upgradeItem.getUpgradeName();
+        String baseUpgradeName = upgradeItem.getBaseUpgradeName();
+
+        UpgradeType type = UpgradeType.fromBaseName(baseUpgradeName);
+        if (type == null) {
+            return stack;
+        }
+
+        return upgradeName.contains("_deactivated")
+                ? type.getActiveStack()
+                : type.getDeactivatedStack();
+    }
+
+    public static Boolean toggleWornUpgrade(ServerPlayer player, UpgradeType type) {
+        if (type.isDisabled()) return null;
+        ItemStack backpack = BackpackHelper.getEquippedBackpackStack(player);
+        if (backpack.isEmpty()) {
+            return null;
+        }
+
+        BackpackContainer container = BackpackContainer.Cache.getOrCreateWornBackpack(player, backpack);
+        IItemHandler handler = container.getItemHandler();
+
+        for (int i : LAYOUT.upgrades().range()) {
+            ItemStack stack = handler.getStackInSlot(i);
+            if (!type.isInStack(stack)) {
+                continue;
+            }
+
+            boolean wasActive = stack.getItem() == type.getActiveItem();
+            container.setStackInSlot(i, toggleUpgrade(stack));
+            container.setChanged(); // persists to the worn stack + syncs
+
+            IUpgrade upgrade = UpgradeRegistry.get(type);
+            if (upgrade != null) {
+                UpgradeContext ctx = UpgradeContext.forWornBackpack(player, backpack, container);
+                if (wasActive) {
+                    upgrade.onRemoved(ctx);
+                } else {
+                    upgrade.onInstalled(ctx);
+                }
+            }
+            return !wasActive;
+        }
+        return null;
+    }
+
+    // Disabled upgrades count as not installed, so their panels, slots and hotkeys are hidden
+    public static boolean hasUpgrade(IItemHandler handler, UpgradeType type) {
+        if (type.isDisabled()) return false;
+        for (int i : LAYOUT.upgrades().range()) {
+            ItemStack stack = handler.getStackInSlot(i);
+            if (type.isInStack(stack)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Every upgrade behavior gates on this, so disabled upgrades already installed stop working
+    public static boolean hasActiveUpgrade(IItemHandler handler, UpgradeType type) {
+        if (type.isDisabled()) return false;
+        for (int i : LAYOUT.upgrades().range()) {
+            ItemStack stack = handler.getStackInSlot(i);
+            if (stack.getItem() == type.getActiveItem()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static List<UpgradeType> getInstalledUpgrades(IItemHandler handler) {
+        List<UpgradeType> upgrades = new ArrayList<>();
+
+        for (int i : LAYOUT.upgrades().range()) {
+            ItemStack stack = handler.getStackInSlot(i);
+            if (stack.getItem() instanceof UpgradeItem item) {
+                UpgradeType type = UpgradeType.fromBaseName(item.getBaseUpgradeName());
+                if (type != null && !upgrades.contains(type)) {
+                    upgrades.add(type);
+                }
+            }
+        }
+
+        return upgrades;
+    }
+
+    public static List<String> refreshUpgradeList(IItemHandler handler) {
+        List<String> upgradeNames = new ArrayList<>();
+
+        for (int i : LAYOUT.upgrades().range()) {
+            ItemStack stack = handler.getStackInSlot(i);
+            if (stack.getItem() instanceof UpgradeItem upgradeItem) {
+                String name = upgradeItem.getUpgradeName();
+                if (!upgradeNames.contains(name)) {
+                    upgradeNames.add(name);
+                }
+            }
+        }
+
+        return upgradeNames;
+    }
+
+    public static ItemStack ensureActivated(ItemStack stack) {
+        if (!(stack.getItem() instanceof UpgradeItem upgradeItem)) {
+            return stack;
+        }
+
+        String upgradeName = upgradeItem.getUpgradeName();
+        if (!upgradeName.contains("_deactivated")) {
+            return stack; // Already active
+        }
+
+        String baseUpgradeName = upgradeItem.getBaseUpgradeName();
+        UpgradeType type = UpgradeType.fromBaseName(baseUpgradeName);
+        return type != null ? type.getActiveStack() : stack;
+    }
+}

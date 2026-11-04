@@ -1,0 +1,11 @@
+{
+  "type": "create:filling",
+  "fluid_ingredient": {
+    "type": "fluid_stack",
+    "fluid": "create_enchantment_industry:experience"
+  },
+  "ingredient": "create_enchantment_industry:experience_cake_base",
+  "result": {
+    "id": "create_enchantment_industry:experience_cake"
+  }
+}

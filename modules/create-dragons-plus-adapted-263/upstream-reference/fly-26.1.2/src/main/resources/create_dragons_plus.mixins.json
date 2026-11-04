@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "plus.dragons.createdragonsplus.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "create.AirCurrentMixin",
+    "create.AirCurrentMixin$AirCurrentSegmentMixin",
+    "create.BasinOperatingBlockEntityMixin",
+    "create.BlockEntityBehaviourMixin",
+    "create.ContraptionMixin",
+    "create.FluidFillingBehaviourMixin",
+    "create.OpenEndedPipeMixin",
+    "create.PotionRecipeMixin",
+    "create.VanillaFluidTargetsMixin",
+    "minecraft.BottleItemMixin",
+    "minecraft.ConcretePowderBlockMixin",
+    "minecraft.EntityMixin",
+    "minecraft.LiquidBlockMixin",
+    "minecraft.PointedDripstoneBlockMixin",
+    "minecraft.RecipeManagerAccessor",
+    "minecraft.ReloadableServerResourcesMixin",
+    "minecraft.ServerStatsCounterMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

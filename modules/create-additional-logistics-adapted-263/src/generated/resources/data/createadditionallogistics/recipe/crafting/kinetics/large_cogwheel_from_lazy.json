@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "createadditionallogistics:lazy_large_cogwheel",
+    "createadditionallogistics:lazy_large_cogwheel",
+    "createadditionallogistics:lazy_large_cogwheel",
+    "createadditionallogistics:lazy_large_cogwheel"
+  ],
+  "result": {
+    "count": 4,
+    "id": "create:large_cogwheel"
+  }
+}

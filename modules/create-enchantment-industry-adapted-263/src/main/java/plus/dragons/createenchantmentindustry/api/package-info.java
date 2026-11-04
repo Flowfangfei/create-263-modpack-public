@@ -1,0 +1,4 @@
+@ParametersAreNonnullByDefault
+package plus.dragons.createenchantmentindustry.api;
+
+import javax.annotation.ParametersAreNonnullByDefault;

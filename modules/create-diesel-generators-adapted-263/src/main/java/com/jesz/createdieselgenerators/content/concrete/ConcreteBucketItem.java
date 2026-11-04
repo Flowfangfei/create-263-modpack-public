@@ -1,0 +1,51 @@
+package com.jesz.createdieselgenerators.content.concrete;
+
+import com.jesz.createdieselgenerators.CreateDieselGenerators;
+import com.simibubi.create.AllBlocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.PipeBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+
+public class ConcreteBucketItem extends BucketItem {
+    DyeColor color;
+    public ConcreteBucketItem(DyeColor color, Fluid fluid, Properties properties) {
+        super(fluid, properties);
+        this.color = color;
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        BlockPos pos = context.getClickedPos();
+        BlockState pipeState = context.getLevel().getBlockState(pos);
+        if (!AllBlocks.FLUID_PIPE.has(pipeState)) {
+            pos = pos.relative(context.getClickedFace());
+            pipeState = context.getLevel().getBlockState(pos);
+            if (!AllBlocks.FLUID_PIPE.has(pipeState))
+                return super.useOn(context);
+        }
+        Block encasedPipe = BuiltInRegistries.BLOCK
+                .get(CreateDieselGenerators.id(color.getName() + "_concrete_encased_fluid_pipe"))
+                .map(holder -> holder.value())
+                .orElse(Blocks.AIR);
+        if (encasedPipe == Blocks.AIR)
+            return super.useOn(context);
+        context.getLevel().setBlock(pos, encasedPipe.defaultBlockState()
+                .setValue(PipeBlock.NORTH, pipeState.getValue(PipeBlock.NORTH))
+                .setValue(PipeBlock.EAST, pipeState.getValue(PipeBlock.EAST))
+                .setValue(PipeBlock.SOUTH, pipeState.getValue(PipeBlock.SOUTH))
+                .setValue(PipeBlock.WEST, pipeState.getValue(PipeBlock.WEST))
+                .setValue(PipeBlock.UP, pipeState.getValue(PipeBlock.UP))
+                .setValue(PipeBlock.DOWN, pipeState.getValue(PipeBlock.DOWN)), 3);
+        this.playEmptySound(context.getPlayer(), context.getLevel(), pos);
+        context.getPlayer().setItemInHand(context.getHand(), getEmptySuccessItem(context.getItemInHand(), context.getPlayer()));
+        return InteractionResult.SUCCESS;
+    }
+}

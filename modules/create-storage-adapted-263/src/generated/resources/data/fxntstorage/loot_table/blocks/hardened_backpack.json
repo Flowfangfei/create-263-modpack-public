@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "condition": {
+                "type": "fxntstorage:block_entity_save_components"
+              },
+              "modifier": {
+                "type": "fxntstorage:copy_block_entity_data"
+              },
+              "name": "fxntstorage:hardened_backpack"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "fxntstorage:hardened_backpack"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "fxntstorage:blocks/hardened_backpack"
+}

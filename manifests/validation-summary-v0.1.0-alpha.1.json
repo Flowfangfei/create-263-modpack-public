@@ -1,0 +1,28 @@
+{
+  "verified_at": "2026-10-25T00:28:21+08:00",
+  "direct_runtime_mods": 9,
+  "fresh_server": true,
+  "server_reload": true,
+  "vanilla_time": true,
+  "connected_and_diesel_block_assertions": true,
+  "transfer_checks": 12,
+  "aircraft_assembly_propulsion_reload": true,
+  "burner_balloon_gas_lift_checks": true,
+  "client_world_load_save_exit": true,
+  "windows_powershell_installer": true,
+  "create_documentation_only_rebuild": {
+    "tested_sha256": "3d68f8322eab8f4796b80b9d19ac4ee8d6fdd877f65f2b6a4ec7b8c903f37e2c",
+    "release_sha256": "346e0eb70f63de759fc6a0c20845bc991502749272b28d0a833852a5afffd3fc",
+    "changed_entries": [
+      "EXTERNAL_ASSETS.md"
+    ],
+    "all_class_and_other_resource_contents_identical": true
+  },
+  "remaining_scope": [
+    "Connected stress-network gameplay",
+    "Diesel fuel generation and oil extraction gameplay",
+    "full train gameplay",
+    "wireless throttle bridge gameplay",
+    "multiplayer conductor camera audio"
+  ]
+}

@@ -1,0 +1,48 @@
+package com.yision.fluidlogistics.content.equipment.mechanicalFluidGun;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.simibubi.create.content.contraptions.StructureTransform;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+
+public record MechanicalFluidGunTargetConfig(BlockPos relativePos, @Nullable Direction face) {
+
+	public static MechanicalFluidGunTargetConfig fromAbsolute(BlockPos gunPos, BlockPos targetPos,
+		@Nullable Direction face) {
+		return new MechanicalFluidGunTargetConfig(targetPos.subtract(gunPos), face);
+	}
+
+	public BlockPos absoluteFrom(BlockPos gunPos) {
+		return relativePos.offset(gunPos);
+	}
+
+	public CompoundTag serialize() {
+		CompoundTag tag = new CompoundTag();
+		tag.putInt("X", relativePos.getX());
+		tag.putInt("Y", relativePos.getY());
+		tag.putInt("Z", relativePos.getZ());
+		if (face != null) {
+			tag.putInt("Face", face.get3DDataValue());
+		}
+		return tag;
+	}
+
+	public static MechanicalFluidGunTargetConfig deserialize(CompoundTag tag) {
+		BlockPos relativePos = new BlockPos(tag.getIntOr("X", 0), tag.getIntOr("Y", 0), tag.getIntOr("Z", 0));
+		Direction face = tag.contains("Face") ? Direction.from3DDataValue(tag.getIntOr("Face", 0)) : null;
+		return new MechanicalFluidGunTargetConfig(relativePos, face);
+	}
+
+	public MechanicalFluidGunTargetConfig transform(StructureTransform transform) {
+		BlockPos transformedPos = transform.applyWithoutOffset(relativePos);
+		Direction transformedFace = face;
+		if (transformedFace != null) {
+			transformedFace = transform.mirrorFacing(transformedFace);
+			transformedFace = transform.rotateFacing(transformedFace);
+		}
+		return new MechanicalFluidGunTargetConfig(transformedPos, transformedFace);
+	}
+}

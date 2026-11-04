@@ -1,0 +1,34 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "fluidlogistics:item/fluid_package",
+      "sprite": "fluidlogistics:block/world_package/fluid_package"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "fluidlogistics:item/fluid_package_exposed",
+      "sprite": "fluidlogistics:block/world_package/fluid_package_exposed"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "fluidlogistics:item/fluid_package_oxidized",
+      "sprite": "fluidlogistics:block/world_package/fluid_package_oxidized"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "fluidlogistics:item/fluid_package_weathered",
+      "sprite": "fluidlogistics:block/world_package/fluid_package_weathered"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "fluidlogistics:item/package/rare_pig",
+      "sprite": "fluidlogistics:block/world_package/package/rare_pig"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "fluidlogistics:item/package/rare_fox",
+      "sprite": "fluidlogistics:block/world_package/package/rare_fox"
+    }
+  ]
+}

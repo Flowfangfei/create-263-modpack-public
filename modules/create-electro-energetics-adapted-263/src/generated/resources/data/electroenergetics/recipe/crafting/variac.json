@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": "#c:nuggets/copper",
+    "S": "create:shaft",
+    "T": "#minecraft:terracotta",
+    "W": "electroenergetics:wire_spool"
+  },
+  "pattern": [
+    " S ",
+    "WTW",
+    "CCC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:variac"
+  }
+}

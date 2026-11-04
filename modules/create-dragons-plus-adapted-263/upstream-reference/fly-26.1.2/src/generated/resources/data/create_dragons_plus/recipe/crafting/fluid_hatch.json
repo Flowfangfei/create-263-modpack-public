@@ -1,0 +1,18 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "create_dragons_plus:config_feature",
+      "feature": "create_dragons_plus:block/fluid_hatch"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:ingots/copper",
+    "create:item_drain"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_dragons_plus:fluid_hatch"
+  }
+}

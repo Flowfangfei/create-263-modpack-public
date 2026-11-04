@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fluidlogistics:feature_enabled",
+      "feature": "fluidlogistics:multi_fluid_access_port"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "create:brass_casing",
+    "E": "create:electron_tube",
+    "P": "fluidlogistics:fluid_inventory_access_port"
+  },
+  "pattern": [
+    " B ",
+    " P ",
+    " E "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fluidlogistics:multi_fluid_access_port"
+  }
+}

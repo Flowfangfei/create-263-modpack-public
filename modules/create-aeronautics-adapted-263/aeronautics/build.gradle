@@ -1,0 +1,7 @@
+plugins { id 'java-library'; id 'net.neoforged.moddev' }
+apply from: rootProject.file('gradle/neoforge-module.gradle')
+dependencies { api project(':simulated'); implementation project(':offroad') }
+
+// All 32 local envelope items receive native COOKING_FUEL defaults in AeroBlocks.
+// Preserve the obsolete map in source, but never ship the removed NeoForge map type.
+sourceSets.main.resources.exclude 'data/neoforge/data_maps/item/furnace_fuels.json'

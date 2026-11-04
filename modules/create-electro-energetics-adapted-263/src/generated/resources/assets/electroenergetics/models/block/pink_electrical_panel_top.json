@@ -1,0 +1,8 @@
+{
+  "parent": "electroenergetics:block/electrical_panel/block_top",
+  "textures": {
+		"particle": "#casing",
+    "casing": "electroenergetics:block/electrical_panel/pink",
+    "inside": "electroenergetics:block/electrical_panel/pink_inside"
+  }
+}

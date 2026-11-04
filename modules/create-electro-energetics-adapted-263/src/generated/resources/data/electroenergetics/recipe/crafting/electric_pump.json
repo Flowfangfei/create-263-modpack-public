@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "create:andesite_alloy",
+    "C": "electroenergetics:connector",
+    "M": "electroenergetics:magnet",
+    "P": "create:mechanical_pump",
+    "W": "electroenergetics:wire_spool"
+  },
+  "pattern": [
+    " MC",
+    "APA",
+    "CW "
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:electric_pump"
+  }
+}

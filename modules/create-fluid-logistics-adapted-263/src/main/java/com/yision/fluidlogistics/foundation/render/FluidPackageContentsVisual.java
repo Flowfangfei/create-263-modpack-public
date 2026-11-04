@@ -1,0 +1,83 @@
+package com.yision.fluidlogistics.foundation.render;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.joml.Matrix4fc;
+
+import com.yision.fluidlogistics.content.logistics.fluidPackage.client.FluidPackageItemRenderer.FluidDisplayData;
+
+import dev.engine_room.flywheel.api.visualization.VisualizationContext;
+import dev.engine_room.flywheel.lib.instance.InstanceTypes;
+import dev.engine_room.flywheel.lib.instance.TransformedInstance;
+import dev.engine_room.flywheel.lib.visual.util.InstanceRecycler;
+import net.createmod.catnip.api.data.Iterate;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.LightCoordsUtil;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.Direction;
+import net.minecraft.world.inventory.InventoryMenu;
+
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+
+public class FluidPackageContentsVisual {
+	private final VisualizationContext context;
+	private final Map<FluidPackageFluidMesh, InstanceRecycler<TransformedInstance>> surfaces = new HashMap<>();
+	private final Set<FluidPackageFluidMesh> usedSurfaces = new HashSet<>();
+	private final Direction[] sides = Arrays.copyOfRange(Iterate.directions, 1, Iterate.directions.length);
+
+	public FluidPackageContentsVisual(VisualizationContext context) {
+		this.context = context;
+	}
+
+	public void update(FluidDisplayData data, Matrix4fc pose, int light) {
+		if (data == null)
+			return;
+
+		var fluidStack = data.fluid();
+		IClientFluidTypeExtensions clientFluid = IClientFluidTypeExtensions.of(fluidStack.getFluid());
+        TextureAtlasSprite stillTexture = com.yision.fluidlogistics.client.FluidVisuals.still(fluidStack);
+        int color = com.yision.fluidlogistics.client.FluidVisuals.tint(fluidStack);
+		int fluidLight = LightCoordsUtil.pack(
+			Math.max(LightCoordsUtil.block(light), fluidStack.getFluidType().getLightLevel(fluidStack)),
+			LightCoordsUtil.sky(light));
+
+		for (Direction side : sides) {
+			Direction renderedSide = data.gas() && side == Direction.UP ? Direction.DOWN : side;
+			var mesh = new FluidPackageFluidMesh(stillTexture, renderedSide, data.minY(), data.maxY());
+			usedSurfaces.add(mesh);
+			TransformedInstance buffer = surfaces.computeIfAbsent(mesh, key -> {
+				var instancer = context.instancerProvider().instancer(InstanceTypes.TRANSFORMED, key.model());
+				return new InstanceRecycler<>(instancer::createInstance);
+			}).get();
+			buffer.setTransform(pose);
+			buffer.colorArgb(color).light(fluidLight);
+			buffer.setChanged();
+		}
+	}
+
+	public void begin() {
+		usedSurfaces.clear();
+		surfaces.values().forEach(InstanceRecycler::resetCount);
+	}
+
+	public void end() {
+		surfaces.entrySet().removeIf(entry -> {
+			if (!usedSurfaces.contains(entry.getKey())) {
+				entry.getValue().delete();
+				return true;
+			}
+			entry.getValue().discardExtra();
+			return false;
+		});
+	}
+
+	public void delete() {
+		surfaces.values().forEach(InstanceRecycler::delete);
+		surfaces.clear();
+		usedSurfaces.clear();
+	}
+}

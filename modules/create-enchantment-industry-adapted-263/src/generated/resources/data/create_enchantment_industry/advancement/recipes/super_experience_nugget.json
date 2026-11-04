@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": [
+          "create_enchantment_industry:crafting/super_experience_nugget"
+        ]
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "create_enchantment_industry:crafting/super_experience_nugget"
+    ]
+  },
+  "sends_telemetry_event": true
+}

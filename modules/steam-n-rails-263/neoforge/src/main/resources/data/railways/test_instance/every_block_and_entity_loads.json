@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "minecraft:default",
+  "function": "railways:every_block_and_entity_loads",
+  "max_ticks": 500,
+  "required": true,
+  "setup_ticks": 1,
+  "structure": "railways:gametest/empty_9x7x5"
+}

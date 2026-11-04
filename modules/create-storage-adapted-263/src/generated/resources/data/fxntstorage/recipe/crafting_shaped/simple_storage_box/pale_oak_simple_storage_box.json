@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:registered",
+      "value": "minecraft:pale_oak_planks"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "storage_box",
+  "key": {
+    "A": "create:andesite_alloy",
+    "D": "create:display_board",
+    "V": "create:item_vault",
+    "W": "minecraft:pale_oak_planks"
+  },
+  "pattern": [
+    "AWA",
+    "WVW",
+    "ADA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:pale_oak_simple_storage_box"
+  }
+}

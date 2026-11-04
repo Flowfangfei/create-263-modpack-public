@@ -1,0 +1,215 @@
+package net.fxnt.fxntstorage.simple_storage;
+
+import net.fxnt.fxntstorage.init.ModItems;
+import net.fxnt.fxntstorage.init.ModMenuTypes;
+import net.fxnt.fxntstorage.util.Util;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.fxnt.fxntstorage.inventory.StorageMenu;
+import net.minecraft.world.inventory.ContainerInput;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import com.simibubi.create.compat.neoforge263.items.IItemHandler;
+
+import java.util.Objects;
+
+import static net.fxnt.fxntstorage.simple_storage.SimpleStorageBoxEntity.*;
+
+public class SimpleStorageBoxMenu extends StorageMenu implements ISimpleStorageBoxMenu {
+    public final SimpleStorageBoxEntity blockEntity;
+    public final Player player;
+
+    public SimpleStorageBoxMenu(int containerId, Inventory inventory, FriendlyByteBuf buf) {
+        this(containerId, inventory, Objects.requireNonNull(inventory.player.level().getBlockEntity(buf.readBlockPos())));
+    }
+
+    public SimpleStorageBoxMenu(int containerId, Inventory inventory, BlockEntity entity) {
+        super(ModMenuTypes.SIMPLE_STORAGE_BOX_MENU.get(), containerId, inventory.player);
+        this.player = inventory.player;
+        this.blockEntity = ((SimpleStorageBoxEntity) entity);
+        this.initSlots();
+    }
+
+    public void initSlots() {
+        // Add Fake Main slot (Non-intractable)
+        // Just render. Don't add slot
+        IItemHandler itemHandler = this.blockEntity.getItemHandler();
+
+        // Compacting slot (upper) and Void slot (lower).
+        this.addSlot(new SimpleStorageBoxVoidSlot(itemHandler, VOID_UPGRADE_SLOT, 8, 20 + Util.SLOT_SIZE));
+        this.addSlot(new SimpleStorageBoxCompactingSlot(itemHandler, COMPACTING_UPGRADE_SLOT, 8, 20));
+
+        // Add Capacity Slots
+        for (int i = 0; i < MAX_CAPACITY_UPGRADES; i++) {
+            int slot = i + CAPACITY_UPGRADE_SLOT_START;
+            int y = 60;
+            int x = 8;
+            this.addSlot(new SimpleStorageBoxUpgradeSlot(itemHandler, slot, x + (Util.SLOT_SIZE * i), y));
+        }
+
+        Inventory playerInventory = player.getInventory();
+        // Add Inventory Slots
+        int xOffset = 8;
+        int yOffset = 96;
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 9; x++) {
+                this.addSlot(new Slot(playerInventory, y * 9 + x + 9, xOffset + Util.SLOT_SIZE * x, yOffset + y * Util.SLOT_SIZE));
+            }
+        }
+        // Add Hot bar Slots
+        yOffset = yOffset + (Util.SLOT_SIZE * 3) + 4;
+        for (int i = 0; i < 9; i++) {
+            this.addSlot(new Slot(playerInventory, i, xOffset + i * Util.SLOT_SIZE, yOffset));
+        }
+    }
+
+    @Override
+    public ItemStack getFilterItem() {
+        return blockEntity.filterItem;
+    }
+
+    @Override
+    public int getStoredAmount() {
+        return blockEntity.getStoredAmount();
+    }
+
+    @Override
+    public int getMaxItemCapacity() {
+        return blockEntity.getMaxItemCapacity();
+    }
+
+    @Override
+    public boolean getVoidUpgrade() {
+        return blockEntity.hasVoidUpgrade();
+    }
+
+    @Override
+    public int getDisplayedStoredAmount() {
+        return blockEntity.getDisplayedStoredAmount();
+    }
+
+    @Override
+    public int getDisplayedMaxCapacity() {
+        return blockEntity.getDisplayedMaxCapacity();
+    }
+
+    @Override
+    public ItemStack getDisplayedItem() {
+        if (blockEntity.hasCompactingUpgrade() && blockEntity.compactingChain != null) {
+            return blockEntity.compactingChain.itemForSlot(0);
+        }
+        return getFilterItem();
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return !blockEntity.isRemoved()
+                && Container.stillValidBlockEntity(blockEntity, player, 0);
+    }
+
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+    }
+
+    @Override
+    public void clicked(int slotId, int button, ContainerInput clickType, Player player) {
+        if (slotId >= slots.size() || (slotId < -1 && slotId != -999)) return;
+        blockEntity.setPlayerInteraction(true);
+        try {
+        int playerStartSlot = 2 + MAX_CAPACITY_UPGRADES;
+        if (slotId >= 0 && slotId < playerStartSlot) {
+            ItemStack itemStack = slots.get(slotId).getItem();
+            if (itemStack.is(ModItems.STORAGE_BOX_CAPACITY_UPGRADE.get())) {
+                if (!blockEntity.canRemoveCapacityUpgrade()) {
+                    return;
+                }
+                blockEntity.setUpgradeSlotChanged(true);
+            }
+        }
+        super.clicked(slotId, button, clickType, player);
+        } finally {
+            blockEntity.setPlayerInteraction(false);
+        }
+    }
+
+    @Override
+    public ItemStack quickMoveStack(Player player, int index) {
+        if (index < 0 || index >= slots.size() || !slots.get(index).mayPickup(player)) return ItemStack.EMPTY;
+        ItemStack slotStack = this.slots.get(index).getItem();
+
+        // As not adding container slots, void upgrade (container slot 1) is actually index 0 as it's the first added
+        // So upgrade slot 1 (container slot 2) is index 1;
+        // First player slot is maxUpgradeSlots (9) + voidSlot = 10
+        int playerStartSlot = 2 + MAX_CAPACITY_UPGRADES;
+
+        // If click player slot, if upgrade then move to upgrade slot, otherwise, don't allow inserting items
+        if (index < playerStartSlot) {
+            // Clicked on upgrade slot
+            if (slotStack.is(ModItems.STORAGE_BOX_CAPACITY_UPGRADE.get()) && !blockEntity.canRemoveCapacityUpgrade()) {
+                return ItemStack.EMPTY;
+            }
+            int playerSlot = player.getInventory().getSlotWithRemainingSpace(slotStack);
+            if (playerSlot == -1) {
+                playerSlot = player.getInventory().getFreeSlot();
+            }
+            if (playerSlot > -1) {
+                ItemStack playerStack = player.getInventory().getItem(playerSlot);
+                if (playerStack.isEmpty()) {
+                    player.getInventory().setItem(playerSlot, slotStack.copyWithCount(1));
+                } else {
+                    playerStack.grow(1);
+                }
+                this.slots.get(index).set(ItemStack.EMPTY);
+                player.getInventory().setChanged();
+                return ItemStack.EMPTY;
+            }
+
+        } else {
+            // Clicked Player Slot
+            if (slotStack.is(ModItems.STORAGE_BOX_VOID_UPGRADE.get())) {
+                // Move to the void slot (menu index 0)
+                if (!this.slots.getFirst().hasItem()) {
+                    this.slots.getFirst().set(slotStack.copyWithCount(1));
+                    slotStack.shrink(1);
+                    blockEntity.setChanged();
+                    player.getInventory().setChanged();
+                    return slotStack;
+                }
+            } else if (slotStack.is(ModItems.STORAGE_BOX_COMPACTING_UPGRADE.get())) {
+                // Move to the compacting slot (menu index 1)
+                if (!this.slots.get(1).hasItem()) {
+                    this.slots.get(1).set(slotStack.copyWithCount(1));
+                    slotStack.shrink(1);
+                    blockEntity.setChanged();
+                    player.getInventory().setChanged();
+                    return slotStack;
+                }
+            } else if (slotStack.is(ModItems.STORAGE_BOX_CAPACITY_UPGRADE.get())) {
+                // Move to a capacity slot (menu indices 2..2+MAX_CAPACITY_UPGRADES)
+                for (int i = 2; i < 2 + MAX_CAPACITY_UPGRADES; i++) {
+                    if (!this.slots.get(i).hasItem()) {
+                        this.slots.get(i).set(slotStack.copyWithCount(1));
+                        slotStack.shrink(1);
+                        blockEntity.setChanged();
+                        player.getInventory().setChanged();
+                        return slotStack;
+                    }
+                }
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean canTakeItemForPickAll(ItemStack stack, Slot slot) {
+        int playerStartSlot = 2 + MAX_CAPACITY_UPGRADES;
+        if (slot.index < playerStartSlot) {
+            return false;
+        }
+        return super.canTakeItemForPickAll(stack, slot);
+    }
+}

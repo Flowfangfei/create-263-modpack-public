@@ -1,0 +1,6 @@
+{
+  "parent": "create_dragons_plus:item/rare_marble_gate_package",
+  "textures": {
+    "2": "create_dragons_plus:block/package/rare_marble_gate"
+  }
+}

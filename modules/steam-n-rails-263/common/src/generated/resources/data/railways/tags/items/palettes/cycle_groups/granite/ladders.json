@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "railways:granite_locometal_end_ladder",
+      "required": false
+    },
+    {
+      "id": "railways:granite_locometal_rung_ladder",
+      "required": false
+    }
+  ]
+}

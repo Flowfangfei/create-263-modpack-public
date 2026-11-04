@@ -1,0 +1,89 @@
+modLoader = "javafml"
+loaderVersion = "[0,)"
+issueTrackerURL = "https://github.com/Creators-of-Create/Create/issues"
+license = "Read attached LICENSE.md"
+
+[[mods]]
+modId = "create"
+version = "${mod_compat_version}"
+displayName = "${mod_name}"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/create"
+logoFile = "icon.png"
+authors = "${mod_author}"
+description = '''Unofficial Create adaptation for Minecraft 26.3. Original Create assets are not redistributed and must be supplied separately.'''
+
+[[mixins]]
+config = "create.mixins.json"
+
+[[dependencies."create"]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."create"]]
+modId = "minecraft"
+type = "required"
+versionRange = "[${minecraft_version}]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."create"]]
+modId = "create_flywheel"
+type = "required"
+versionRange = "${flywheel_version_range}"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."create"]]
+modId = "ponder"
+type = "required"
+versionRange = "[${ponder_version},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.create]]
+modId = "createaddition"
+type = "optional"
+versionRange = "[26.2-1.7.0-adapted-0.9,)"
+ordering = "NONE"
+side = "BOTH"
+reason = "Update this adapted addon for the isolated Create Flywheel API."
+
+[[dependencies.create]]
+modId = "createdieselgenerators"
+type = "optional"
+versionRange = "[26.2-1.3.15-adapted-0.604,)"
+ordering = "NONE"
+side = "BOTH"
+reason = "Update this adapted addon for the isolated Create Flywheel API."
+
+[[dependencies.create]]
+modId = "tfmg"
+type = "optional"
+versionRange = "[26.2-1.2.3-adapted-0.241,)"
+ordering = "NONE"
+side = "BOTH"
+reason = "Update this adapted addon for the isolated Create Flywheel API."
+
+[[dependencies.create]]
+modId="roughlyenoughitems"
+type="optional"
+versionRange="[26.3.823,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[dependencies.create]]
+modId="sophisticatedstorage"
+type="optional"
+versionRange="[1.5.116,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.create]]
+modId="sophisticatedcore"
+type="optional"
+versionRange="[1.5.2,)"
+ordering="AFTER"
+side="BOTH"

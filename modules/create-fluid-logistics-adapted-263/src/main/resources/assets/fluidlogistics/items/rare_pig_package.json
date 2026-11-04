@@ -1,0 +1,7 @@
+{
+  "model": {
+    "type": "fluidlogistics:fluid_container",
+    "model": "fluidlogistics:item/rare_pig_package",
+    "kind": "package"
+  }
+}

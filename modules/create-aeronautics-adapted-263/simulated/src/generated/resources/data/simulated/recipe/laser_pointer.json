@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": "#simulated:laser_point_lens",
+    "C": "create:andesite_casing",
+    "T": "minecraft:redstone_torch"
+  },
+  "pattern": [
+    "A",
+    "T",
+    "C"
+  ],
+  "result": {
+    "id": "simulated:laser_pointer"
+  }
+}

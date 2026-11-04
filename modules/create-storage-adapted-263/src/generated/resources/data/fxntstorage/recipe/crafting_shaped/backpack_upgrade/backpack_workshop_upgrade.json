@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fxntstorage:backpack_upgrade_enabled",
+      "upgrade": "fxntstorage:backpack_workshop_upgrade"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "backpack",
+  "key": {
+    "B": "fxntstorage:backpack_blank_upgrade",
+    "F": "create:flywheel",
+    "I": "create:iron_sheet",
+    "R": "create:redstone_link",
+    "X": "create:depot"
+  },
+  "pattern": [
+    " R ",
+    "IBI",
+    "FXF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:backpack_workshop_upgrade"
+  }
+}

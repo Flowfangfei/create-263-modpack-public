@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "representation": "Git index blobs (canonical line endings)",
+  "module": "create-liquid-fuel-adapted-263",
+  "files": {
+    "modules/create-liquid-fuel-adapted-263/.build.gradle": {
+      "sha256": "6c7b91caf117c06288990e73f922275f97a070433009a4790d8a3e52a73f7fac",
+      "bytes": 5069
+    },
+    "modules/create-liquid-fuel-adapted-263/.github/FUNDING.yml": {
+      "sha256": "00d0c64836e16076517aab0f10f9e02f3a99d238e3ff0b68ae645a5e0c75fd0f",
+      "bytes": 774
+    },
+    "modules/create-liquid-fuel-adapted-263/.github/workflows/publish.yml": {
+      "sha256": "1c0e63b74241f4983e350c2c873e428ee26226c8db3cc549814a9f47a80a8c12",
+      "bytes": 128
+    },
+    "modules/create-liquid-fuel-adapted-263/.github/workflows/tmp-mr-changelog.yml": {
+      "sha256": "1145664393909a8a7c839176c1fcf0c77e6d834ccb2c0e4cda9d26d6e263ead0",
+      "bytes": 999
+    },
+    "modules/create-liquid-fuel-adapted-263/.gitignore": {
+      "sha256": "51fb9a4ea6149d469861fa38528d3b57deb00c60e5d40464916e76a902342d2e",
+      "bytes": 166
+    },
+    "modules/create-liquid-fuel-adapted-263/LICENSE": {
+      "sha256": "070b98ac616c17893587e92bf44dd8601a47105c2017278178f1831a0b6320cf",
+      "bytes": 1065
+    },
+    "modules/create-liquid-fuel-adapted-263/build.gradle": {
+      "sha256": "f62f339784275adfd4f5f1d7ead910d6ed38a504460239dcc9723e116305e059",
+      "bytes": 132
+    },
+    "modules/create-liquid-fuel-adapted-263/docs/PORTING-26.3.md": {
+      "sha256": "4bef0e7c33301bd275167352e24a7923d383234046a721acc8189b76cb2d3367",
+      "bytes": 2775
+    },
+    "modules/create-liquid-fuel-adapted-263/gradle.properties": {
+      "sha256": "e011605a06235f4bb987334b80e519ae2d5002fbe62abd6a15f34a6385d69805",
+      "bytes": 694
+    },
+    "modules/create-liquid-fuel-adapted-263/gradle/wrapper/gradle-wrapper.jar": {
+      "sha256": "7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172",
+      "bytes": 43764
+    },
+    "modules/create-liquid-fuel-adapted-263/gradle/wrapper/gradle-wrapper.properties": {
+      "sha256": "4d362f1a59d148ce6fde5d62d4bd975e1829a78b28d7a3a72a8cf2d92c90ecda",
+      "bytes": 252
+    },
+    "modules/create-liquid-fuel-adapted-263/gradlew": {
+      "sha256": "a3648413b47ef77af21d5ebc36c687c7d103aaef3e17f33de7d4f080a6f300a3",
+      "bytes": 8762
+    },
+    "modules/create-liquid-fuel-adapted-263/gradlew.bat": {
+      "sha256": "2209f919a22528af59a2af2ad97e8d056cca18e39f7d87aa3fd549a73b180150",
+      "bytes": 2872
+    },
+    "modules/create-liquid-fuel-adapted-263/settings.gradle": {
+      "sha256": "f747259b026ffcfa4abb8eff9eeb3f56cd0cc034bccb8b0400fdca82d2ee0d83",
+      "bytes": 159
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/CreateLiquidFuel.java": {
+      "sha256": "212583d62a18d3f753887ec6b453857eed036f93a18a70e07766c6d27ac097b7",
+      "bytes": 1167
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/core/BurnerStomachHandler.java": {
+      "sha256": "5fa779c7230b27be87614b2d978e5f7b74d53e3c99a771b5987b82b317ad553a",
+      "bytes": 5382
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/core/BurnerTank.java": {
+      "sha256": "f406bc8761fe6f77d28b8ddfd3b5bff4f7e2c31af967284190944d466d8a4584",
+      "bytes": 1957
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/core/IHasStomach.java": {
+      "sha256": "c0fa5e3727e7092d6445b38ffc72b45c0c46721cee48972da0b6391ce8707c49",
+      "bytes": 110
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/core/LiquidBurnerFuelJsonLoader.java": {
+      "sha256": "dc602ef28eb6f634a52f00dae4062d7f95a863b00bcb008fea8c718a1b9c1519",
+      "bytes": 4075
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/core/LiquidFuel.java": {
+      "sha256": "48daa207de0c47d2022a44866908b32395307fa72f29ff77600d60381749996b",
+      "bytes": 1119
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/core/LiquidFuels.java": {
+      "sha256": "cb88a8d46eaf07b2715d61200011e32d4224575f89f50fe256fe9628485cb162",
+      "bytes": 1497
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/eventhandlers/ForgeEventsHandler.java": {
+      "sha256": "407207cf1744d47875f3b953865f2a76f70e75e6afd39ee9a4e267f8ed8dc1ae",
+      "bytes": 490
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/eventhandlers/ModEventHandler.java": {
+      "sha256": "5044ddfd47acc6f9a98a4c5a1c2cb3885dbf7d5847c632cb9d4c1ce6da17dad7",
+      "bytes": 1245
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/mixin/BlazeBurnerAccessor.java": {
+      "sha256": "25fd8145fc358b6da5486043cc2990ff13c55439f04b7e6c935fc2a7220a13e8",
+      "bytes": 579
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/mixin/MixinBlazeBurnerBlock.java": {
+      "sha256": "1f13ee8e3efa51c360a4435ba08fe540eac1f552cc5337b3e851f0d81e7c2acf",
+      "bytes": 1163
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/mixin/MixinBlazeBurnerTileEntity.java": {
+      "sha256": "0019862e386d515211f24471bae681eb2d6a2b9bcde8ac13f3297e46c5bab736",
+      "bytes": 2519
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/util/MathUtil.java": {
+      "sha256": "e4ee8b90fe118ad11d5fb8123e16a8d138b1ea85a822cefc64241af8bfd80bb0",
+      "bytes": 192
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/util/Triplet.java": {
+      "sha256": "56d1dc26c15953df45d1af7bcfae1cb9ee8a35967d38bb4d49582581274e3bbd",
+      "bytes": 253
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/resources/META-INF/neoforge.mods.toml": {
+      "sha256": "5abc7026affd95e64d79345effd23c9e7f55979ada88dc230b56823233dea9a6",
+      "bytes": 736
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/resources/createliquidfuel.mixins.json": {
+      "sha256": "eff28fe82d3b056c8851e1a3dd8829e86cda9e906ca1d5c4d3b8b1ad23bf741f",
+      "bytes": 303
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/resources/data/createliquidfuel/data_maps/fluid/liquid_fuel.json": {
+      "sha256": "c20a8f5f53b2c98b6a336732cc274c7d60239823b12697309e2723c595511482",
+      "bytes": 1019
+    },
+    "modules/create-liquid-fuel-adapted-263/src/main/resources/pack.mcmeta": {
+      "sha256": "6bd7b03a2af79d6335bc35e750913be16e90e7ae997a1971f7f56a899e8e9c0b",
+      "bytes": 166
+    }
+  }
+}

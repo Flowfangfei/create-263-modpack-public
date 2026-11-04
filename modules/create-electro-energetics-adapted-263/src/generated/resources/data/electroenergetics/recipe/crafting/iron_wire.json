@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "n": "#c:nuggets/iron"
+  },
+  "pattern": [
+    "n",
+    "n",
+    "n"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:iron_wire"
+  }
+}

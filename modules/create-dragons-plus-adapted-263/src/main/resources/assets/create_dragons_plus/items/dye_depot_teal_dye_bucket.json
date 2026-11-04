@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "create_dragons_plus:item/dye_depot_teal_dye_bucket",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -13665433
+      }
+    ]
+  }
+}

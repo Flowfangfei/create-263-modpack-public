@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "create:andesite_alloy",
+    "C": "#c:chains",
+    "S": "#c:plates/iron"
+  },
+  "pattern": [
+    " S ",
+    " C ",
+    "A A"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:wire_damper"
+  }
+}

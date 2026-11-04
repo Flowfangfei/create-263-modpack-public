@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "create_dragons_plus:dyenamics_fluorescent_dye",
+      "required": false
+    },
+    {
+      "id": "create_dragons_plus:flowing_dyenamics_fluorescent_dye",
+      "required": false
+    }
+  ]
+}

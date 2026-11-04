@@ -1,0 +1,40 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+apply from: '../../gradle/create263-addon.gradle'
+sourceSets.main.java.setSrcDirs(['src/neoforge/java'])
+sourceSets.main.java.exclude 'com/george_vi/electroenergetics/events/datagen/*RecipeGen.java'
+sourceSets.main.java.exclude 'com/george_vi/electroenergetics/events/datagen/CEEGeneratedEntriesProvider.java'
+sourceSets.main.java.exclude 'com/george_vi/electroenergetics/compat/CEEJEI.java'
+sourceSets.main.java.exclude 'com/george_vi/electroenergetics/compat/strut_your_stuff/**'
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.squiddev.cc' }
+    maven { url = 'https://maven.ryanhcode.dev/releases' }
+}
+dependencies {
+    compileOnly files('../sable-adapted-263/build/libs/sable-neoforge-26.3-3.0.0-adapted.1.jar')
+    compileOnly files('../create-aeronautics-adapted-263/aeronautics/build/libs/aeronautics-neoforge-26.3-1.3.0-adapted.1.jar')
+    compileOnly files('../create-aeronautics-adapted-263/simulated/build/libs/simulated-neoforge-26.3-1.3.0-adapted.1.jar')
+    compileOnly('dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:1.6.0') { transitive = false }
+    compileOnly 'cc.tweaked:cc-tweaked-26.3-core-api:1.120.2'
+}
+tasks.named('processResources').configure {
+    exclude 'fabric.mod.json'
+    exclude '.cache/**'
+}
+
+
+
+sourceSets.main.java.exclude 'com/george_vi/electroenergetics/compat/computercraft/**'
+sourceSets.main.java.exclude 'com/george_vi/electroenergetics/content/wire/attachments/Bunting*'
+tasks.withType(JavaCompile).configureEach { options.compilerArgs += ['-Xmaxerrs', '2000'] }
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.13.4'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.13.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.13.4'
+}
+sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
+sourceSets.test.runtimeClasspath += sourceSets.main.compileClasspath
+tasks.withType(Test).configureEach { useJUnitPlatform() }

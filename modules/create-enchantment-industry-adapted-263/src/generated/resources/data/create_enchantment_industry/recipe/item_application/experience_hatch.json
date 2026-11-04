@@ -1,0 +1,12 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    "create_dragons_plus:fluid_hatch",
+    "create:experience_block"
+  ],
+  "results": [
+    {
+      "id": "create_enchantment_industry:experience_hatch"
+    }
+  ]
+}

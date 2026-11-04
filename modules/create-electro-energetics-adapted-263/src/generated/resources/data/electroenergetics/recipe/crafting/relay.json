@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "create:andesite_alloy",
+    "S": "electroenergetics:cut_off_switch",
+    "W": "electroenergetics:wire_spool"
+  },
+  "pattern": [
+    " W ",
+    "ASA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:relay"
+  }
+}

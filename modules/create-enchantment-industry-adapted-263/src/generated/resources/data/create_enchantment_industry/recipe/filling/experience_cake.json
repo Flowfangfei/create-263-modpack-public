@@ -1,0 +1,15 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    "create_enchantment_industry:experience_cake_base",
+    {
+      "ingredient": "create_enchantment_industry:experience",
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "id": "create_enchantment_industry:experience_cake"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:registered",
+      "value": "minecraft:poplar_planks"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "storage_box",
+  "key": {
+    "A": "create:andesite_alloy",
+    "D": "create:display_board",
+    "V": "create:item_vault",
+    "W": "minecraft:poplar_planks"
+  },
+  "pattern": [
+    "AWA",
+    "WVW",
+    "ADA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:poplar_simple_storage_box"
+  }
+}

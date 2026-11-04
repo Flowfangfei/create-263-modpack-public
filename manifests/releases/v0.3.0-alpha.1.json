@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "version": "0.3.0-alpha.1",
+  "repository": {
+    "defaultBranchRef": {
+      "name": "main"
+    },
+    "isPrivate": true,
+    "nameWithOwner": "Flowfangfei/create-263-modpack"
+  },
+  "release": {
+    "html_url": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.1",
+    "tag_name": "v0.3.0-alpha.1",
+    "prerelease": true,
+    "draft": false,
+    "published_at": "2026-10-26T16:51:55Z"
+  },
+  "verified_at": "2026-10-27T00:53:15+08:00",
+  "source_commit": "203897ef96ebe398787376ba1372fcd915286748",
+  "source_tree": "9b460a0f1aeb185628cf8d3f58c7a5e643745a15",
+  "source_modules": 15,
+  "canonical_module_files": 53365,
+  "runtime_jars": 18,
+  "pull_request": "https://github.com/Flowfangfei/create-263-modpack/pull/2",
+  "assets": [
+    {
+      "name": "Create263-Pack-v0.3.0-alpha.1-installer.zip",
+      "size": 57702850,
+      "digest": "sha256:da0b8d457c95604269678c54ce25de6cb0e2151d0c170f01938985ff303a2443",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Flowfangfei/create-263-modpack/releases/download/v0.3.0-alpha.1/Create263-Pack-v0.3.0-alpha.1-installer.zip"
+    },
+    {
+      "name": "Create263-Pack-v0.3.0-alpha.1-sources.zip",
+      "size": 101394016,
+      "digest": "sha256:26ccb089a80047769ba2ea032b990606fee64c16602511175aa311c726706c37",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Flowfangfei/create-263-modpack/releases/download/v0.3.0-alpha.1/Create263-Pack-v0.3.0-alpha.1-sources.zip"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "size": 218,
+      "digest": "sha256:2c3ad1ed8551d7e0fe6dbbf6e86aba27be170e9dab408574c0196f7f30ff4928",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Flowfangfei/create-263-modpack/releases/download/v0.3.0-alpha.1/SHA256SUMS.txt"
+    }
+  ],
+  "redownload_verified": [
+    "Create263-Pack-v0.3.0-alpha.1-installer.zip",
+    "SHA256SUMS.txt"
+  ],
+  "restricted_assets_uploaded": false,
+  "worlds_uploaded": false,
+  "ai_records_uploaded": false,
+  "all_requested_features_verified": false,
+  "validation": "../../docs/VALIDATION.md"
+}

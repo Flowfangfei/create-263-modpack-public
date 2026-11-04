@@ -1,0 +1,12 @@
+/build/
+/.gradle/
+/.idea/
+/run/
+/runs/
+*.bak
+
+# Local adaptation and private test inputs
+/artifacts/
+/tooling/
+/runtime/
+/docs/ai-collaboration/private/

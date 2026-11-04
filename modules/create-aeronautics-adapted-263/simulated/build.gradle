@@ -1,0 +1,2 @@
+plugins { id 'java-library'; id 'net.neoforged.moddev' }
+apply from: rootProject.file('gradle/neoforge-module.gradle')

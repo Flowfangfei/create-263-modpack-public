@@ -1,0 +1,12 @@
+{
+  "type": "create:cutting",
+  "processing_time": 250,
+  "results": [
+    {
+      "id": "minecraft:diamond"
+    }
+  ],
+  "ingredients": [
+    "createoreexcavation:raw_diamond"
+  ]
+}

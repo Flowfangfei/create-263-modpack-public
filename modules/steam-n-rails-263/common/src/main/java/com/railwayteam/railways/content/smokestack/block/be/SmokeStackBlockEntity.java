@@ -1,0 +1,190 @@
+/*
+ * Steam 'n' Rails
+ * Copyright (c) 2022-2026 The Railways Team
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package com.railwayteam.railways.content.smokestack.block.be;
+
+import com.railwayteam.railways.content.smokestack.SmokeEmissionParams;
+import com.railwayteam.railways.content.smokestack.block.SmokeStackBlock;
+import com.railwayteam.railways.content.smokestack.block.variable.SmokeStackExtenderBlock;
+import com.railwayteam.railways.content.smokestack.block.variable.VariableSmokeStackBlock;
+import com.railwayteam.railways.util.ColorUtils;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
+public class SmokeStackBlockEntity extends SmartBlockEntity {
+    protected @Nullable DyeColor color = null;
+    protected boolean isSoul = false;
+    protected int height = 0;
+
+    public SmokeStackBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
+    }
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {}
+
+    public @Nullable DyeColor getColor() {
+        return color;
+    }
+
+    public void setColor(@Nullable DyeColor color) {
+        if (this.color == color) return;
+        this.color = color;
+        this.isSoul = false;
+        notifyUpdate();
+    }
+
+    public boolean isSoul() {
+        return color == null && isSoul;
+    }
+
+    public void setSoul(boolean isSoul) {
+        if (this.isSoul == isSoul) return;
+        this.color = null;
+        this.isSoul = isSoul;
+        notifyUpdate();
+    }
+
+    protected void read(net.minecraft.nbt.CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries, boolean clientPacket) {
+        ValueInput input = net.minecraft.world.level.storage.TagValueInput.create(net.minecraft.util.ProblemReporter.DISCARDING, registries, tag);
+        super.read(tag, registries, clientPacket);
+        color = input.getInt("color").map(DyeColor::byId).orElse(null);
+        isSoul = input.getBooleanOr("isSoul", false);
+        height = Math.max(0, input.getIntOr("height", 0));
+    }
+
+    protected void write(net.minecraft.nbt.CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries, boolean clientPacket) {
+        net.minecraft.world.level.storage.TagValueOutput output = net.minecraft.world.level.storage.TagValueOutput.createWithContext(net.minecraft.util.ProblemReporter.DISCARDING, registries);
+        super.write(tag, registries, clientPacket);
+        if (color != null) {
+            output.putInt("color", color.getId());
+        }
+        output.putBoolean("isSoul", isSoul());
+        if (height > 0) {
+            output.putInt("height", height);
+        }
+
+        tag.merge(output.buildResult());
+    }
+    public ItemStack getIcon(boolean isPlayerSneaking) {
+        if (color != null)
+            return ColorUtils.getDyeColorDyeItem(color).getDefaultInstance();
+
+        return isSoul ? Items.SOUL_SOIL.getDefaultInstance() : Items.DYE.black().getDefaultInstance();
+    }
+
+    private void setHeight(int height) {
+        if (this.height == height) return;
+        this.height = height;
+        notifyUpdate();
+    }
+
+    public void updateHeight() {
+        if (level == null) return;
+
+        if (!(getBlockState().getBlock() instanceof VariableSmokeStackBlock baseBlock)) {
+            setHeight(0);
+            return;
+        }
+
+        switch (getBlockState().getValue(baseBlock.partProperty())) {
+            case SINGLE -> {
+                setHeight(0);
+                return;
+            }
+            case DOUBLE -> {
+                setHeight(1);
+                return;
+            }
+        }
+
+        SmokeStackExtenderBlock extenderBlock = baseBlock.extenderBlock();
+        MutableBlockPos currentPos = getBlockPos().mutable().move(Direction.UP);
+        int newHeight;
+        Loop: for (newHeight = 1; newHeight < 24; newHeight += 2) {
+            BlockState state = level.getBlockState(currentPos);
+            if (!state.is(extenderBlock)) break;
+
+            switch (state.getValue(extenderBlock.partProperty())) {
+                case SINGLE -> {
+                    newHeight += 1;
+                    break Loop;
+                }
+                case DOUBLE -> {
+                    newHeight += 2;
+                    break Loop;
+                }
+            }
+
+            currentPos.move(Direction.UP);
+        }
+
+        setHeight(newHeight);
+    }
+
+    public static double getHeightOffset(int height) {
+        // odd height is a double stack
+        int fullBlocks = height / 2;
+        return fullBlocks + (height % 2 == 1 ? 0.5 : 0);
+    }
+
+    protected void animateTick() {
+        if (level == null || !level.isClientSide()) return;
+
+        BlockState state = getBlockState();
+        RandomSource random = level.getRandom();
+        SmokeStackBlock block = ((SmokeStackBlock) state.getBlock());
+
+        if (!state.getValue(SmokeStackBlock.ENABLED)) return;
+        if (!block.createsStationarySmoke) return;
+        if (random.nextFloat() >= 0.11f) return;
+
+        double heightOffset = getHeightOffset(height);
+
+        SmokeEmissionParams emissionParams = block.emissionParams;
+        if (random.nextFloat() < emissionParams.particleSpawnChance() * 1.5) {
+            int n = random.nextInt((emissionParams.maxParticles() - emissionParams.minParticles())) + emissionParams.minParticles();
+            for (int i = 0; i < n; ++i) {
+                emissionParams.makeParticles(
+                    level, Vec3.atLowerCornerOf(getBlockPos()).add(0, heightOffset, 0),
+                    random.nextBoolean(),
+                    1.0, true,
+                    getColor(), null, isSoul()
+                );
+            }
+        }
+    }
+    public void tick() {
+        super.tick();
+
+        animateTick();
+    }
+}

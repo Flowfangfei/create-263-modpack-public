@@ -1,0 +1,17 @@
+{
+    "type":  "createdieselgenerators:hammering",
+    "ingredients":  [
+                        "#c:ingots/electrum"
+                    ],
+    "results":  [
+                    {
+                        "id":  "createaddition:electrum_sheet"
+                    }
+                ],
+    "neoforge:conditions":  [
+                                {
+                                    "type":  "neoforge:mod_loaded",
+                                    "modid":  "createaddition"
+                                }
+                            ]
+}

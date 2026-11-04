@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "create_dragons_plus:item/lime_dye_bucket",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -8337633
+      }
+    ]
+  }
+}

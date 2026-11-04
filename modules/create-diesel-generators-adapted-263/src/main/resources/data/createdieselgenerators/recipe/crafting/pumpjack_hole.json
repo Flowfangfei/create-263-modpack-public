@@ -1,0 +1,17 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    " P ",
+                    "NCN",
+                    " P "
+                ],
+    "key":  {
+                "C":  "create:copper_casing",
+                "N":  "minecraft:iron_chain",
+                "P":  "create:fluid_pipe"
+            },
+    "result":  {
+                   "id":  "createdieselgenerators:pumpjack_hole",
+                   "count":  1
+               }
+}

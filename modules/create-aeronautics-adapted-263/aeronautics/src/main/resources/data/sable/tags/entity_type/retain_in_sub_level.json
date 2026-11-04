@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "aeronautics:propeller_bearing_contraption",
+    "aeronautics:gust",
+    {
+      "id": "create:ejector_item",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+@ParametersAreNonnullByDefault
+package plus.dragons.createenchantmentindustry.integration.jei.category.assembly;
+
+import javax.annotation.ParametersAreNonnullByDefault;

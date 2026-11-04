@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "create_dragons_plus:config_feature",
+      "feature": "create_dragons_plus:fluid/dye"
+    }
+  ],
+  "type": "create:mixing",
+  "ingredients": [
+    "#create_dragons_plus:dyes/minecraft/lime",
+    {
+      "ingredient": "minecraft:water",
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "amount": 250,
+      "id": "create_dragons_plus:lime_dye"
+    }
+  ]
+}

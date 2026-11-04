@@ -1,0 +1,764 @@
+package com.simibubi.create.content.kinetics.belt;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.simibubi.create.Create;
+import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.AllSpriteShifts;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
+import com.simibubi.create.content.kinetics.belt.transport.BeltInventory;
+import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
+import com.simibubi.create.content.logistics.box.PackageItem;
+import com.simibubi.create.foundation.model.CreateStandaloneModels;
+
+import com.simibubi.create.foundation.render.CreateVisualizationManager;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
+import net.createmod.catnip.api.client.render.SpriteShiftEntry;
+import net.createmod.ponder.api.client.level.PonderLevel;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.block.BlockModelRenderState;
+import net.minecraft.client.renderer.block.dispatch.BlockStateModelPart;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.Vec3i;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class BeltRenderer extends KineticBlockEntityRenderer<BeltBlockEntity> {
+	private static final Identifier BELT_SCROLL_TEXTURE = Create.asResource("textures/block/belt_scroll.png");
+	private static final Identifier DIAGONAL_BELT_SCROLL_TEXTURE =
+		Create.asResource("textures/block/belt_diagonal_scroll.png");
+	private static final Map<DyeColor, Identifier> DYED_BELT_TEXTURES = dyedBeltTextures(false);
+	private static final Map<DyeColor, Identifier> DYED_DIAGONAL_BELT_TEXTURES = dyedBeltTextures(true);
+	private static final Map<Integer, List<CachedBeltQuad>> HORIZONTAL_BELT_QUAD_CACHE = new ConcurrentHashMap<>();
+	private static final ThreadLocal<List<CachedBeltQuad>> BUILDING_BELT_QUADS = new ThreadLocal<>();
+	private List<BlockStateModelPart> pulleyModel;
+
+	private static Map<DyeColor, Identifier> dyedBeltTextures(boolean diagonal) {
+		Map<DyeColor, Identifier> textures = new EnumMap<>(DyeColor.class);
+		for (DyeColor color : DyeColor.values())
+			textures.put(color, Create.asResource("textures/block/belt/" + color.getSerializedName()
+				+ (diagonal ? "_diagonal_scroll.png" : "_scroll.png")));
+		return textures;
+	}
+
+	private static Identifier getBeltTexture(BeltBlockEntity be, boolean diagonal) {
+		DyeColor color = be.color.orElse(null);
+		if (color == null)
+			return diagonal ? DIAGONAL_BELT_SCROLL_TEXTURE : BELT_SCROLL_TEXTURE;
+		return (diagonal ? DYED_DIAGONAL_BELT_TEXTURES : DYED_BELT_TEXTURES).get(color);
+	}
+
+	public BeltRenderer(BlockEntityRendererProvider.Context context) {
+		super(context);
+	}
+
+	@Override
+	public boolean shouldRenderOffScreen() {
+		return true;
+	}
+
+	@Override
+	protected BlockState getRenderedBlockState(BeltBlockEntity be) {
+		return shaft(getRotationAxisOf(be));
+	}
+
+	@Override
+	protected List<BlockStateModelPart> getRotatingModelParts(BeltBlockEntity be, BlockState renderedState) {
+		return List.of();
+	}
+
+	@Override
+	public void submit(BlockEntityRenderState state, PoseStack ms, SubmitNodeCollector collector,
+		CameraRenderState cameraRenderState) {
+		super.submit(state, ms, collector, cameraRenderState);
+		if (!(state instanceof KineticRenderState kineticState))
+			return;
+		if (!(kineticState.blockEntity instanceof BeltBlockEntity be))
+			return;
+		if (isInvalid(be))
+			return;
+		// The 26.2 Flywheel scrolling instance is not yet a reliable replacement for
+		// the submitted belt surface. Keep the renderer-owned surface visible.
+		// Keep the belt pulley on the same Flywheel coordinate path as connected shafts.
+		// The compatibility renderer remains the fallback when visualization is disabled.
+		if (!CreateVisualizationManager.supportsVisualization(be.getLevel()))
+			renderPulley(be, kineticState.partialTicks, state.lightCoords, ms, collector);
+		renderAnimatedBelt(be, kineticState.partialTicks, state.lightCoords, ms, collector);
+		renderItems(be, kineticState.partialTicks, state.lightCoords, ms, collector);
+	}
+
+	private void renderPulley(BeltBlockEntity be, float partialTicks, int light, PoseStack ms,
+		SubmitNodeCollector collector) {
+		if (!be.hasPulley())
+			return;
+
+		List<BlockStateModelPart> pulley = getPulleyModel();
+		if (pulley.isEmpty())
+			return;
+
+		Axis axis = getRotationAxisOf(be);
+		ms.pushPose();
+		ms.translate(.5, .5, .5);
+		orientPulleyToAxis(ms, axis);
+		ms.rotate(com.mojang.math.Axis.YP.rotation(getAngleForBelt(be, axis, partialTicks)));
+		ms.translate(-.5, -.5, -.5);
+		collector.submitBlockModel(ms, RenderTypes.cutoutMovingBlock(), pulley,
+			BlockModelRenderState.EMPTY_TINTS, light, OverlayTexture.NO_OVERLAY, 0);
+		ms.popPose();
+	}
+
+	private List<BlockStateModelPart> getPulleyModel() {
+		if (pulleyModel != null)
+			return pulleyModel;
+		BlockStateModelPart pulley = Minecraft.getInstance()
+			.getModelManager()
+			.getStandaloneModel(CreateStandaloneModels.BELT_PULLEY);
+		return pulleyModel = pulley == null ? List.of() : List.of(pulley);
+	}
+
+	private static void orientPulleyToAxis(PoseStack ms, Axis axis) {
+		switch (axis) {
+			case X -> {
+				ms.rotate(com.mojang.math.Axis.YP.rotationDegrees(90));
+				ms.rotate(com.mojang.math.Axis.XP.rotationDegrees(90));
+			}
+			case Z -> ms.rotate(com.mojang.math.Axis.XP.rotationDegrees(90));
+			case Y -> {
+			}
+		}
+	}
+
+	private static void renderAnimatedBelt(BeltBlockEntity be, float partialTicks, int light, PoseStack ms,
+		SubmitNodeCollector collector) {
+		BlockState blockState = be.getBlockState();
+		BeltSlope slope = blockState.getValue(BeltBlock.SLOPE);
+		if (!be.isController() || be.beltLength == 0)
+			return;
+		if (slope.isDiagonal()) {
+			renderDiagonalBelt(be, partialTicks, light, ms, collector);
+			return;
+		}
+		if (slope != BeltSlope.HORIZONTAL && !slope.isDiagonal() && slope != BeltSlope.VERTICAL)
+			return;
+
+		Direction facing = blockState.getValue(BeltBlock.HORIZONTAL_FACING);
+		float speed = getBeltSpeed(be);
+		float time = getRenderTime(be, partialTicks) * facing.getAxisDirection()
+			.getStep();
+		boolean alongX = facing.getAxis() == Axis.X;
+		if (alongX)
+			speed = -speed;
+		// The direction-aware vertical transform already cancels the controller's
+		// up/down axis direction. Only the pulley axis remains: both EAST and WEST
+		// use X-facing belt geometry and need the same additional inversion.
+		if (slope == BeltSlope.VERTICAL && facing.getAxis() == Axis.X)
+			speed = -speed;
+		float scroll = BeltScroll.offset(-speed, time, BeltVisual.SCROLL_FACTOR_OTHERWISE);
+
+		float topScroll = scroll;
+		float bottomScroll = scroll + .5f;
+		int verticality = slope == BeltSlope.UPWARD ? 1 : slope == BeltSlope.DOWNWARD ? -1 : 0;
+		Identifier texture = getBeltTexture(be, slope.isDiagonal());
+		Direction geometryFacing = facing;
+		if (slope == BeltSlope.VERTICAL) {
+			ms.pushPose();
+			ms.translate(.5, .5, .5);
+			ms.rotate(com.mojang.math.Axis.YP.rotationDegrees(facing.toYRot()));
+			// A vertical belt stores the direction from its controller to the other
+			// pulley in HORIZONTAL_FACING's axis direction. The generated strip grows
+			// along local +Z, so it must be tilted up or down to match that direction.
+			// Using a fixed +90 degrees made every vertical strip grow downward.
+			ms.rotate(com.mojang.math.Axis.XP.rotationDegrees(-90 * facing.getAxisDirection()
+				.getStep()));
+			ms.translate(-.5, -.5, -.5);
+			geometryFacing = Direction.SOUTH;
+		}
+		Direction submittedFacing = geometryFacing;
+		collector.submitCustomGeometry(ms, com.simibubi.create.foundation.render.RenderTypes.belt(texture),
+			(pose, consumer) -> renderBeltQuads(pose, consumer, be.beltLength, submittedFacing, verticality,
+				topScroll, bottomScroll, light));
+		if (slope == BeltSlope.VERTICAL)
+			ms.popPose();
+	}
+
+	private static void renderDiagonalBelt(BeltBlockEntity be, float partialTicks, int light, PoseStack ms,
+		SubmitNodeCollector collector) {
+		BlockState state = be.getBlockState();
+		Direction facing = state.getValue(BeltBlock.HORIZONTAL_FACING);
+		boolean upward = state.getValue(BeltBlock.SLOPE) == BeltSlope.UPWARD;
+		float speed = getBeltSpeed(be);
+		if (!upward ^ facing.getAxis() == Axis.X)
+			speed = -speed;
+		float uvScroll = BeltScroll.offset(speed,
+			getRenderTime(be, partialTicks) * facing.getAxisDirection().getStep(), BeltVisual.SCROLL_FACTOR_DIAGONAL);
+		var models = Minecraft.getInstance().getModelManager();
+		for (int segment = 0; segment < be.beltLength; segment++) {
+			boolean start = segment == 0;
+			boolean end = segment == be.beltLength - 1;
+			var key = (upward ? start : end) ? CreateStandaloneModels.BELT_DIAGONAL_START
+				: (upward ? end : start) ? CreateStandaloneModels.BELT_DIAGONAL_END
+				: CreateStandaloneModels.BELT_DIAGONAL_MIDDLE;
+			BlockStateModelPart model = models.getStandaloneModel(key);
+			if (model == null)
+				continue;
+			List<net.minecraft.client.resources.model.geometry.BakedQuad> quads = new ArrayList<>(model.getQuads(null));
+			for (Direction side : Direction.values())
+				quads.addAll(model.getQuads(side));
+			ms.pushPose();
+			ms.translate(segment * facing.getStepX(), segment * (upward ? 1 : -1), segment * facing.getStepZ());
+			ms.translate(.5, .5, .5);
+			ms.rotate(com.mojang.math.Axis.YP.rotationDegrees(
+				net.createmod.catnip.api.math.AngleHelper.horizontalAngle(facing) + (upward ? 180 : 0)));
+			ms.translate(-.5, -.5, -.5);
+			collector.submitCustomGeometry(ms, com.simibubi.create.foundation.render.RenderTypes.belt(getBeltTexture(be, true)),
+				(pose, consumer) -> {
+					for (var quad : quads) {
+						var sprite = quad.materialInfo().sprite();
+						var edge = new org.joml.Vector3f(quad.position1()).sub(quad.position0());
+						var normal = edge.cross(new org.joml.Vector3f(quad.position2()).sub(quad.position0())).normalize();
+						for (int vertex = 0; vertex < 4; vertex++) {
+							var position = quad.position(vertex);
+							long uv = quad.packedUV(vertex);
+							float u = (Float.intBitsToFloat((int) (uv >>> 32)) - sprite.getU0()) / (sprite.getU1() - sprite.getU0());
+							float v = (Float.intBitsToFloat((int) uv) - sprite.getV0()) / (sprite.getV1() - sprite.getV0());
+							addVertex(pose, consumer, position.x(), position.y(), position.z(), u,
+								// The source sprite is 16px high; the scrolling sheet is 32px.
+								// Its 12px animation period (3/8) is not the UV scale (1/2).
+								v * .5f + uvScroll, light, normal.x, normal.y, normal.z);
+						}
+					}
+				});
+			ms.popPose();
+		}
+	}
+
+	private static float getBeltSpeed(BeltBlockEntity be) {
+		BeltBlockEntity controller = be.getControllerBE();
+		BeltBlockEntity source = controller != null ? controller : be;
+		// Ponder assigns speeds directly and does not construct a live kinetic network.
+		if (source.getLevel() instanceof PonderLevel)
+			return source.getSpeed();
+		if (!hasLiveSpeedSource(source))
+			return 0;
+		return source.getSpeed();
+	}
+
+	private static boolean hasLiveSpeedSource(BeltBlockEntity be) {
+		if (be.isSource())
+			return true;
+		if (!be.hasSource())
+			return false;
+		if (be.getLevel() == null || be.source == null)
+			return false;
+		BlockEntity sourceBE = be.getLevel()
+			.getBlockEntity(be.source);
+		return sourceBE instanceof com.simibubi.create.content.kinetics.base.KineticBlockEntity kinetic
+			&& kinetic.getTheoreticalSpeed() != 0;
+	}
+
+	private static float getAngleForBelt(BeltBlockEntity be, Axis axis, float partialTicks) {
+		float time = getRenderTime(be, partialTicks);
+		float offset = getRotationOffsetForPosition(be, be.getBlockPos(), axis);
+		return ((time * getBeltSpeed(be) * 3f / 10 + offset) % 360) / 180 * (float) Math.PI;
+	}
+
+	private static void renderBeltQuads(PoseStack.Pose pose, VertexConsumer consumer, int beltLength, Direction facing,
+		int verticality, float topScroll, float bottomScroll, int light) {
+		for (CachedBeltQuad quad : HORIZONTAL_BELT_QUAD_CACHE.computeIfAbsent(beltLength,
+			BeltRenderer::buildHorizontalBeltQuads))
+			renderCachedBeltQuad(pose, consumer, quad, facing, verticality,
+				quad.bottom() ? bottomScroll : topScroll, light);
+	}
+
+	private static List<CachedBeltQuad> buildHorizontalBeltQuads(int beltLength) {
+		List<CachedBeltQuad> quads = new ArrayList<>();
+		BUILDING_BELT_QUADS.set(quads);
+		try {
+		for (int segment = 0; segment < beltLength; segment++) {
+			BeltPart part = segment == 0 ? BeltPart.START : segment == beltLength - 1 ? BeltPart.END : BeltPart.MIDDLE;
+				renderHorizontalBeltModel(null, null, part, false, 0, 0, segment);
+				renderHorizontalBeltModel(null, null, part, true, 0, 0, segment);
+			}
+		} finally {
+			BUILDING_BELT_QUADS.remove();
+		}
+		return List.copyOf(quads);
+	}
+
+	private static void renderCachedBeltQuad(PoseStack.Pose pose, VertexConsumer consumer, CachedBeltQuad quad,
+		Direction facing, int verticality, float scroll, int light) {
+		float[] vertices = quad.vertices();
+		float[] u = quad.u();
+		float[] v = quad.v();
+		float localNormalX = quad.normalX();
+		float localNormalY = quad.normalY();
+		float localNormalZ = quad.normalZ() - verticality * localNormalY;
+		float normalLength = Mth.sqrt(localNormalX * localNormalX + localNormalY * localNormalY
+			+ localNormalZ * localNormalZ);
+		if (normalLength != 0) {
+			localNormalX /= normalLength;
+			localNormalY /= normalLength;
+			localNormalZ /= normalLength;
+		}
+		float normalX = transformNormalX(facing, localNormalX, localNormalZ);
+		float normalZ = transformNormalZ(facing, localNormalX, localNormalZ);
+		for (int i = 0; i < 4; i++) {
+			int vertexOffset = i * 3;
+			float x = vertices[vertexOffset];
+			float z = vertices[vertexOffset + 2];
+			float y = vertices[vertexOffset + 1] + verticality * z;
+			addVertex(pose, consumer, transformX(facing, x, z), y, transformZ(facing, x, z),
+				u[i], v[i] + scroll, light, normalX, localNormalY, normalZ);
+		}
+	}
+
+	private static float transformX(Direction facing, float x, float z) {
+		return switch (facing) {
+			case NORTH -> 1 - x;
+			case EAST -> z;
+			case WEST -> 1 - z;
+			default -> x;
+		};
+	}
+
+	private static float transformZ(Direction facing, float x, float z) {
+		return switch (facing) {
+			case NORTH -> 1 - z;
+			case EAST -> 1 - x;
+			case WEST -> x;
+			default -> z;
+		};
+	}
+
+	private static float transformNormalX(Direction facing, float x, float z) {
+		return switch (facing) {
+			case NORTH -> -x;
+			case EAST -> z;
+			case WEST -> -z;
+			default -> x;
+		};
+	}
+
+	private static float transformNormalZ(Direction facing, float x, float z) {
+		return switch (facing) {
+			case NORTH -> -z;
+			case EAST -> -x;
+			case WEST -> x;
+			default -> z;
+		};
+	}
+
+	private static void renderHorizontalBeltModel(PoseStack.Pose pose, VertexConsumer consumer, BeltPart part,
+		boolean bottom, float scroll, int light, int segment) {
+		float uvOffset = segment;
+		if (bottom) {
+			switch (part) {
+				case START -> {
+					renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 1, 3, 1, 15, 5, 16,
+						face(Direction.NORTH, 1, 0, 15, 1, 0),
+						face(Direction.EAST, 0, 1, 2, 16, 90),
+						face(Direction.WEST, 14, 1, 16, 16, 270),
+						face(Direction.UP, 1, 1, 15, 16, 0),
+						face(Direction.DOWN, 1, 1, 15, 16, 180));
+					renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 3, 5, 2, 13, 6, 16,
+						face(Direction.EAST, 12, 2, 13, 16, 90),
+						face(Direction.WEST, 3, 2, 4, 16, 270),
+						face(Direction.UP, 3, 2, 13, 16, 0));
+				}
+				case MIDDLE -> {
+					renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 1, 3, 0, 15, 5, 16,
+						face(Direction.EAST, 0, 0, 2, 16, 90),
+						face(Direction.WEST, 14, 0, 16, 16, 270),
+						face(Direction.UP, 1, 0, 15, 16, 0),
+						face(Direction.DOWN, 1, 0, 15, 16, 180));
+					renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 3, 5, 0, 13, 6, 16,
+						face(Direction.EAST, 12, 0, 13, 16, 90),
+						face(Direction.WEST, 3, 0, 4, 16, 270),
+						face(Direction.UP, 3, 0, 13, 16, 0));
+				}
+				case END -> {
+					renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 1, 3, 0, 15, 5, 15,
+						face(Direction.EAST, 0, 0, 2, 15, 90),
+						face(Direction.SOUTH, 1, 15, 15, 16, 180),
+						face(Direction.WEST, 14, 0, 16, 15, 270),
+						face(Direction.UP, 1, 0, 15, 15, 0),
+						face(Direction.DOWN, 1, 0, 15, 15, 180));
+					renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 3, 5, 0, 13, 6, 14,
+						face(Direction.EAST, 3, 0, 4, 14, 90),
+						face(Direction.WEST, 12, 0, 13, 14, 270),
+						face(Direction.UP, 3, 0, 13, 14, 0));
+				}
+			}
+			return;
+		}
+
+		switch (part) {
+			case START -> {
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 3, 10, 2, 13, 11, 16,
+					face(Direction.EAST, 3, 0, 4, 14, 270),
+					face(Direction.WEST, 12, 0, 13, 14, 90),
+					face(Direction.DOWN, 3, 0, 13, 14, 0));
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 1, 11, 1, 15, 13, 16,
+					face(Direction.NORTH, 1, 15, 15, 16, 0),
+					face(Direction.EAST, 0, 0, 2, 15, 270),
+					face(Direction.WEST, 14, 0, 16, 15, 90),
+					face(Direction.UP, 1, 0, 15, 15, 180),
+					face(Direction.DOWN, 1, 0, 15, 15, 0));
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 1.1f, 4, -.05f, 14.9f, 12, 1.95f,
+					face(Direction.NORTH, 1, 0, 15, 8, 0),
+					face(Direction.EAST, 0, 0, 2, 8, 0),
+					face(Direction.SOUTH, 1, 0, 15, 8, 0),
+					face(Direction.WEST, 14, 0, 16, 8, 0),
+					face(Direction.UP, 1, 15, 15, 16, 180),
+					face(Direction.DOWN, 1, 8, 15, 9, 180));
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 3, 6, 2, 13, 10, 3,
+					face(Direction.EAST, 3, 6, 4, 10, 0),
+					face(Direction.SOUTH, 3, 2, 13, 6, 0),
+					face(Direction.WEST, 12, 6, 13, 10, 0));
+			}
+			case MIDDLE -> {
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 1, 11, 0, 15, 13, 16,
+					face(Direction.EAST, 0, 0, 2, 16, 270),
+					face(Direction.WEST, 14, 0, 16, 16, 90),
+					face(Direction.UP, 1, 0, 15, 16, 180),
+					face(Direction.DOWN, 1, 0, 15, 16, 0));
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 3, 10, 0, 13, 11, 16,
+					face(Direction.EAST, 12, 0, 13, 16, 270),
+					face(Direction.WEST, 3, 0, 4, 16, 90),
+					face(Direction.DOWN, 3, 0, 13, 16, 0));
+			}
+			case END -> {
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 1, 11, 0, 15, 13, 15,
+					face(Direction.EAST, 0, 1, 2, 16, 270),
+					face(Direction.SOUTH, 1, 0, 15, 1, 180),
+					face(Direction.WEST, 14, 1, 16, 16, 90),
+					face(Direction.UP, 1, 1, 15, 16, 180),
+					face(Direction.DOWN, 1, 1, 15, 16, 0));
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 3, 10, 0, 13, 11, 14,
+					face(Direction.EAST, 3, 2, 4, 16, 270),
+					face(Direction.WEST, 12, 2, 13, 16, 90),
+					face(Direction.DOWN, 3, 2, 13, 16, 0));
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 1.1f, 4, 14.05f, 14.9f, 12, 16.05f,
+					face(Direction.NORTH, 1, 8, 15, 16, 180),
+					face(Direction.EAST, 0, 8, 2, 16, 180),
+					face(Direction.SOUTH, 1, 8, 15, 16, 180),
+					face(Direction.WEST, 14, 8, 16, 16, 180),
+					face(Direction.UP, 1, 0, 15, 1, 180),
+					face(Direction.DOWN, 1, 7, 15, 8, 180));
+				renderBox(pose, consumer, light, scroll, uvOffset, segment, bottom, 3, 6, 13, 13, 10, 14,
+					face(Direction.NORTH, 3, 10, 13, 14, 180),
+					face(Direction.EAST, 12, 10, 13, 14, 180),
+					face(Direction.WEST, 3, 10, 4, 14, 180));
+			}
+		}
+	}
+
+	private static FaceSpec face(Direction direction, float u1, float v1, float u2, float v2, int rotation) {
+		return new FaceSpec(direction, u1 / 16f, v1 / 16f, u2 / 16f, v2 / 16f, rotation);
+	}
+
+	private static void renderBox(PoseStack.Pose pose, VertexConsumer consumer, int light, float scroll, float uvOffset,
+		float zOffset, boolean bottom, float x1, float y1, float z1, float x2, float y2, float z2, FaceSpec... faces) {
+		x1 /= 16f;
+		y1 /= 16f;
+		z1 = z1 / 16f + zOffset;
+		x2 /= 16f;
+		y2 /= 16f;
+		z2 = z2 / 16f + zOffset;
+		for (FaceSpec face : faces)
+			renderBoxFace(pose, consumer, light, scroll + uvOffset, x1, y1, z1, x2, y2, z2, face, bottom);
+	}
+
+	private static void renderBoxFace(PoseStack.Pose pose, VertexConsumer consumer, int light, float scroll, float x1,
+		float y1, float z1, float x2, float y2, float z2, FaceSpec face, boolean bottom) {
+		float[][] vertices = switch (face.direction()) {
+			case UP -> new float[][]{{x1, y2, z2}, {x2, y2, z2}, {x2, y2, z1}, {x1, y2, z1}};
+			case DOWN -> new float[][]{{x1, y1, z1}, {x2, y1, z1}, {x2, y1, z2}, {x1, y1, z2}};
+			case NORTH -> new float[][]{{x1, y1, z1}, {x2, y1, z1}, {x2, y2, z1}, {x1, y2, z1}};
+			case SOUTH -> new float[][]{{x2, y1, z2}, {x1, y1, z2}, {x1, y2, z2}, {x2, y2, z2}};
+			case WEST -> new float[][]{{x1, y1, z2}, {x1, y1, z1}, {x1, y2, z1}, {x1, y2, z2}};
+			case EAST -> new float[][]{{x2, y1, z1}, {x2, y1, z2}, {x2, y2, z2}, {x2, y2, z1}};
+		};
+		float[][] uvs = rotatedUvs(face, scroll, vertices);
+		float normalX = face.direction()
+			.getStepX();
+		float normalY = face.direction()
+			.getStepY();
+		float normalZ = face.direction()
+			.getStepZ();
+		List<CachedBeltQuad> buildingQuads = BUILDING_BELT_QUADS.get();
+		if (buildingQuads != null) {
+			float[] cachedVertices = new float[12];
+			float[] cachedU = new float[4];
+			float[] cachedV = new float[4];
+			for (int i = 0; i < 4; i++) {
+				int vertexOffset = i * 3;
+				cachedVertices[vertexOffset] = vertices[i][0];
+				cachedVertices[vertexOffset + 1] = vertices[i][1];
+				cachedVertices[vertexOffset + 2] = vertices[i][2];
+				cachedU[i] = uvs[i][0];
+				cachedV[i] = uvs[i][1];
+			}
+			buildingQuads.add(new CachedBeltQuad(cachedVertices, cachedU, cachedV, normalX, normalY, normalZ, bottom));
+			return;
+		}
+		for (int i = 0; i < 4; i++)
+			addVertex(pose, consumer, vertices[i][0], vertices[i][1], vertices[i][2], uvs[i][0], uvs[i][1], light,
+				normalX, normalY, normalZ);
+	}
+
+	private static float[][] rotatedUvs(FaceSpec face, float scroll, float[][] vertices) {
+		float[][] uvs = new float[][]{
+			{face.u1(), face.v1()},
+			{face.u2(), face.v1()},
+			{face.u2(), face.v2()},
+			{face.u1(), face.v2()}
+		};
+		int steps = Math.floorMod(face.rotation() / 90, 4);
+		float[][] rotated = new float[4][2];
+		for (int i = 0; i < 4; i++) {
+			float[] uv = uvs[Math.floorMod(i - steps, 4)];
+			rotated[i][0] = uv[0];
+			rotated[i][1] = uv[1];
+		}
+
+		float minY = Float.MAX_VALUE;
+		float maxY = -Float.MAX_VALUE;
+		float minZ = Float.MAX_VALUE;
+		float maxZ = -Float.MAX_VALUE;
+		for (float[] vertex : vertices) {
+			minY = Math.min(minY, vertex[1]);
+			maxY = Math.max(maxY, vertex[1]);
+			minZ = Math.min(minZ, vertex[2]);
+			maxZ = Math.max(maxZ, vertex[2]);
+		}
+
+		boolean useY = maxY - minY > maxZ - minZ;
+		int axisIndex = useY ? 1 : 2;
+		int first = -1;
+		int second = -1;
+		for (int i = 0; i < 4 && first == -1; i++) {
+			for (int j = i + 1; j < 4; j++) {
+				if (Math.abs(vertices[i][axisIndex] - vertices[j][axisIndex]) > 1 / 1024f) {
+					first = i;
+					second = j;
+					break;
+				}
+			}
+		}
+
+		if (first != -1) {
+			float coordDelta = vertices[second][axisIndex] - vertices[first][axisIndex];
+			float vDelta = rotated[second][1] - rotated[first][1];
+			float direction = coordDelta == 0 || vDelta == 0 ? 1 : Math.signum(vDelta / coordDelta);
+			for (int i = 0; i < 4; i++)
+				rotated[i][1] = scroll + vertices[i][axisIndex] * direction;
+			return rotated;
+		}
+
+		for (int i = 0; i < 4; i++)
+			rotated[i][1] += scroll;
+		return rotated;
+	}
+
+	private record FaceSpec(Direction direction, float u1, float v1, float u2, float v2, int rotation) {
+	}
+
+	private record CachedBeltQuad(float[] vertices, float[] u, float[] v, float normalX, float normalY, float normalZ,
+								  boolean bottom) {
+	}
+
+	private static void renderItems(BeltBlockEntity be, float partialTicks, int light, PoseStack ms,
+		SubmitNodeCollector collector) {
+		if (!be.isController() || be.beltLength == 0)
+			return;
+		BeltInventory inventory = be.getInventory();
+		if (inventory == null)
+			return;
+
+		ms.pushPose();
+		Direction beltFacing = be.getBeltFacing();
+		Vec3i directionVec = beltFacing.getUnitVec3i();
+		Vec3 beltStartOffset = Vec3.atLowerCornerOf(directionVec)
+			.scale(-.5)
+			.add(.5, 15 / 16f, .5);
+		ms.translate(beltStartOffset.x, beltStartOffset.y, beltStartOffset.z);
+
+		for (TransportedItemStack transported : inventory.getTransportedItems())
+			renderTransportedItem(be, partialTicks, light, ms, collector, beltFacing, directionVec, transported);
+		if (inventory.getLazyClientItem() != null)
+			renderTransportedItem(be, partialTicks, light, ms, collector, beltFacing, directionVec,
+				inventory.getLazyClientItem());
+
+		ms.popPose();
+	}
+
+	private static void renderTransportedItem(BeltBlockEntity be, float partialTicks, int light, PoseStack ms,
+		SubmitNodeCollector collector, Direction beltFacing, Vec3i directionVec, TransportedItemStack transported) {
+		if (transported.stack.isEmpty())
+			return;
+
+		float offset = Mth.lerp(partialTicks, transported.prevBeltPosition, transported.beltPosition);
+		float sideOffset = Mth.lerp(partialTicks, transported.prevSideOffset, transported.sideOffset);
+		if (be.getSpeed() == 0) {
+			offset = transported.beltPosition;
+			sideOffset = transported.sideOffset;
+		}
+
+		Vec3 offsetVec = Vec3.atLowerCornerOf(directionVec)
+			.scale(offset);
+		BeltSlope slope = be.getBlockState().getValue(BeltBlock.SLOPE);
+		int verticality = slope == BeltSlope.UPWARD ? 1 : slope == BeltSlope.DOWNWARD ? -1 : 0;
+		float height = verticality * Mth.clamp(offset - .5f, 0, be.beltLength - 1);
+		offsetVec = offsetVec.add(0, height, 0);
+		boolean onSlope = slope.isDiagonal() && offset >= .5f && offset <= be.beltLength - .5f;
+		ms.pushPose();
+		ms.translate(offsetVec.x, offsetVec.y, offsetVec.z);
+
+		boolean alongX = beltFacing.getClockWise()
+			.getAxis() == Axis.X;
+		if (!alongX)
+			sideOffset *= -1;
+		ms.translate(alongX ? sideOffset : 0, 0, alongX ? 0 : sideOffset);
+
+		ItemStackRenderState itemState = BeltItemRenderHelper.createRenderState(transported.stack);
+		boolean renderUpright = BeltHelper.isItemUpright(transported.stack);
+		boolean blockItem = BeltItemRenderHelper.isGui3d(itemState);
+		if (onSlope) {
+			if (!renderUpright) {
+				boolean tiltForward = (slope == BeltSlope.DOWNWARD
+					^ beltFacing.getAxisDirection() == Direction.AxisDirection.POSITIVE) == (beltFacing.getAxis() == Axis.Z);
+				ms.rotate((beltFacing.getAxis() == Axis.X ? com.mojang.math.Axis.ZP : com.mojang.math.Axis.XP)
+					.rotationDegrees(tiltForward ? -45 : 45));
+			}
+			ms.translate(0, 1 / 8f, 0);
+		}
+		if (renderUpright) {
+			Vec3 cameraPosition = Minecraft.getInstance().gameRenderer.mainCamera()
+				.position();
+			Vec3 vectorForOffset = BeltHelper.getVectorForOffset(be, offset);
+			Vec3 diff = vectorForOffset.subtract(cameraPosition);
+			float yRot = (float) (Mth.atan2(diff.x, diff.z) + Math.PI);
+			ms.rotate(com.mojang.math.Axis.YP.rotation(yRot));
+			ms.translate(0, 3 / 32d, 1 / 16f);
+		}
+
+		renderItem(ms, collector, light, transported.stack, itemState, transported.angle, renderUpright, blockItem);
+		ms.popPose();
+	}
+
+	private static void renderItem(PoseStack ms, SubmitNodeCollector collector, int light, ItemStack itemStack,
+		ItemStackRenderState itemState, int angle, boolean renderUpright, boolean blockItem) {
+		if (itemStack.isEmpty())
+			return;
+
+		int count = Mth.log2(itemStack.getCount()) / 2;
+		Random random = new Random(0);
+
+		ms.pushPose();
+		ms.rotate(com.mojang.math.Axis.YP.rotationDegrees(angle));
+		boolean box = PackageItem.isPackage(itemStack);
+
+		for (int i = 0; i <= count; i++) {
+			ms.pushPose();
+			if (blockItem && !box)
+				ms.translate(random.nextFloat() * .0625f * i, 0, random.nextFloat() * .0625f * i);
+
+			if (box) {
+				ms.translate(0, 4 / 16f, 0);
+				ms.scale(1.5f, 1.5f, 1.5f);
+			} else {
+				ms.scale(.5f, .5f, .5f);
+			}
+
+			if (!blockItem && !renderUpright) {
+				ms.translate(0, -3 / 16f, 0);
+				ms.rotate(com.mojang.math.Axis.XP.rotationDegrees(90));
+			}
+
+			itemState.submit(ms, collector, light, OverlayTexture.NO_OVERLAY, 0);
+			ms.popPose();
+
+			if (!renderUpright) {
+				if (!blockItem)
+					ms.rotate(com.mojang.math.Axis.YP.rotationDegrees(10));
+				ms.translate(0, blockItem ? 1 / 64d : 1 / 16d, 0);
+			} else
+				ms.translate(0, 0, -1 / 16f);
+		}
+
+		ms.popPose();
+	}
+
+	private static void renderQuad(PoseStack.Pose pose, VertexConsumer consumer,
+		float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x4,
+		float y4, float z4, float minU, float minV, float maxU, float maxV, int light, float normalX, float normalY,
+		float normalZ) {
+		addVertex(pose, consumer, x1, y1, z1, minU, minV, light, normalX, normalY, normalZ);
+		addVertex(pose, consumer, x2, y2, z2, maxU, minV, light, normalX, normalY, normalZ);
+		addVertex(pose, consumer, x3, y3, z3, maxU, maxV, light, normalX, normalY, normalZ);
+		addVertex(pose, consumer, x4, y4, z4, minU, maxV, light, normalX, normalY, normalZ);
+	}
+
+	private static void addVertex(PoseStack.Pose pose, VertexConsumer consumer, float x, float y, float z, float u,
+		float v, int light, float normalX, float normalY, float normalZ) {
+		consumer.addVertex(pose, x, y, z)
+			.setColor(1.0f, 1.0f, 1.0f, 1.0f)
+			.setUv(u, v)
+			.setOverlay(OverlayTexture.NO_OVERLAY)
+			.setLight(light)
+			.setNormal(pose, normalX, normalY, normalZ);
+	}
+
+	public static PartialModel getBeltPartial(boolean diagonal, boolean start, boolean end, boolean bottom) {
+		if (diagonal) {
+			if (start)
+				return AllPartialModels.BELT_DIAGONAL_START;
+			if (end)
+				return AllPartialModels.BELT_DIAGONAL_END;
+			return AllPartialModels.BELT_DIAGONAL_MIDDLE;
+		} else if (bottom) {
+			if (start)
+				return AllPartialModels.BELT_START_BOTTOM;
+			if (end)
+				return AllPartialModels.BELT_END_BOTTOM;
+			return AllPartialModels.BELT_MIDDLE_BOTTOM;
+		} else {
+			if (start)
+				return AllPartialModels.BELT_START;
+			if (end)
+				return AllPartialModels.BELT_END;
+			return AllPartialModels.BELT_MIDDLE;
+		}
+	}
+
+	public static SpriteShiftEntry getSpriteShiftEntry(DyeColor color, boolean diagonal, boolean bottom) {
+		if (color != null) {
+			return (diagonal ? AllSpriteShifts.DYED_DIAGONAL_BELTS
+				: bottom ? AllSpriteShifts.DYED_OFFSET_BELTS : AllSpriteShifts.DYED_BELTS).get(color);
+		} else
+			return diagonal ? AllSpriteShifts.BELT_DIAGONAL
+				: bottom ? AllSpriteShifts.BELT_OFFSET : AllSpriteShifts.BELT;
+	}
+
+}

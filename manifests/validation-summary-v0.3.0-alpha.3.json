@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "version": "0.3.0-alpha.3",
+  "verified_at": "2026-11-04T21:41:24+08:00",
+  "passed": true,
+  "installation_host": "Windows PowerShell 5.1",
+  "upstream_inputs": "SHA-256-verified cache of pinned upstream downloads",
+  "aeronautics_locked_targets_absent_from_installer_and_restored": 1593,
+  "runtime_jars": {
+    "additional-logistics-adapted.jar": {
+      "non_directory_entries": 1354,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "aeronautics-adapted.jar": {
+      "non_directory_entries": 861,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "connected-adapted.jar": {
+      "non_directory_entries": 1929,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "connected-simulated-bridge.jar": {
+      "non_directory_entries": 15,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "create-adapted-recovered.jar": {
+      "non_directory_entries": 7133,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "diesel-adapted.jar": {
+      "non_directory_entries": 1392,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "dragons-plus-adapted.jar": {
+      "non_directory_entries": 893,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "electroenergetics-adapted.jar": {
+      "non_directory_entries": 2204,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "enchantment-industry-adapted.jar": {
+      "non_directory_entries": 541,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "fluid-logistics-adapted.jar": {
+      "non_directory_entries": 1303,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "liquid-fuel-adapted.jar": {
+      "non_directory_entries": 20,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "offroad-adapted.jar": {
+      "non_directory_entries": 240,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "ore-excavation-adapted.jar": {
+      "non_directory_entries": 251,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "railways-adapted.jar": {
+      "non_directory_entries": 26539,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "sable-adapted.jar": {
+      "non_directory_entries": 704,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "simulated-adapted.jar": {
+      "non_directory_entries": 2311,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "storage-adapted.jar": {
+      "non_directory_entries": 1059,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    },
+    "transmission-linkage-adapted.jar": {
+      "non_directory_entries": 241,
+      "exact_content_match": true,
+      "editor_metadata_redactions": [],
+      "all_gameplay_and_runtime_assets_unchanged": true
+    }
+  },
+  "editor_metadata_only_differences": [],
+  "original_saves_accessed": false,
+  "gameplay_runtime_repeated": false,
+  "official_create_assets_hash_verified": true,
+  "diesel_separate_audio_hash_verified": true,
+  "hmcl_zip_sha256": "a5dbdbcc03ee9d3cf7203cab2d5cc4cd163cb5de9c79c23667f3d21bf9ad82bf"
+}

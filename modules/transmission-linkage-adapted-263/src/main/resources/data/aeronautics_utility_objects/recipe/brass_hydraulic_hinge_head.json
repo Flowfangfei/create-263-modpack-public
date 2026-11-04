@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "b": "create:brass_casing",
+    "i": "create:iron_sheet",
+    "p": "create:precision_mechanism",
+    "s": "create:shaft"
+  },
+  "pattern": [
+    " s ",
+    "ipi",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "aeronautics_utility_objects:brass_hydraulic_hinge_head"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": "railways:track_ender",
+  "loops": 1,
+  "sequence": [
+    {
+      "type": "create:cutting",
+      "results": ["$result"],
+      "ingredient": "$ingredient",
+      "processing_time": 50
+    },
+    {
+      "type": "create:deploying",
+      "results": ["$result"],
+      "target": "$ingredient",
+      "ingredient": "minecraft:end_stone_brick_slab"
+    },
+    {
+      "type": "create:pressing",
+      "results": ["$result"],
+      "ingredient": "$ingredient"
+    }
+  ],
+  "transitional_item": {
+    "id": "railways:track_incomplete_ender_wide"
+  },
+  "result": {
+    "id": "railways:track_ender_wide"
+  }
+}

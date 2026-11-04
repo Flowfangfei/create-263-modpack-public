@@ -1,0 +1,189 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.107'
+}
+
+version = "${minecraft_version}-${mod_version}-neoforge"
+group = mod_group_id
+
+base {
+    archivesName = 'createoreexcavation-1.21.11'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+    mavenLocal()
+    maven { url = 'https://maven.ithundxr.dev/snapshots' }
+    maven { url = 'https://maven.blamejared.com' }
+    maven {
+        name = 'CC: Tweaked'
+        url = 'https://squiddev.cc/maven/'
+    }
+}
+
+neoForge {
+    version = neo_version
+    validateAccessTransformers = false
+
+    mods {
+        createoreexcavation {
+            sourceSet sourceSets.main
+        }
+    }
+    runs {
+        configureEach {
+            systemProperty 'forge.logging.console.level', 'info'
+        }
+        client {
+            client()
+            gameDirectory = project.file('run/client')
+        }
+        server {
+            server()
+            gameDirectory = project.file('run/server')
+            programArgument '--nogui'
+        }
+        data {
+            serverData()
+            gameDirectory = project.file('run/data')
+            programArguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources').absolutePath,
+                '--existing', file('src/main/resources').absolutePath, '--existing', file('src/platform-shared/resources').absolutePath
+        }
+    }
+}
+
+sourceSets.main {
+    java {
+        srcDirs = [layout.buildDirectory.dir('generated/sources/createFly/main').get().asFile]
+    }
+    resources {
+        srcDir 'src/platform-shared/resources'
+        srcDir 'src/generated/resources'
+        exclude '.cache/'
+        if (!kubejs_enabled.toBoolean()) {
+            exclude 'kubejs.plugins.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation files(project.property('create_fly_jar'))
+
+    // Optional APIs are compile-only: neither is required for the base mod.
+    compileOnly 'mezz.jei:jei-1.21.11-neoforge:27.48.0.106'
+}
+
+def remapCreateFlyImports = tasks.register('remapCreateFlyImports', Sync) {
+    from('src/main/java') {
+        if (!jei_enabled.toBoolean()) {
+            exclude 'com/tom/createores/jei/**'
+        }
+        if (!data_generation_enabled.toBoolean()) {
+            exclude 'com/tom/createores/data/**'
+        }
+        if (!journeymap_enabled.toBoolean()) {
+            exclude 'com/tom/createores/jm/**'
+        }
+        if (!cc_tweaked_enabled.toBoolean()) {
+            exclude 'com/tom/createores/client/CCClientInit.java'
+        }
+    }
+    from('src/platform-shared/java') {
+        if (!jei_enabled.toBoolean()) {
+            exclude 'com/tom/createores/jei/**'
+        }
+        if (!data_generation_enabled.toBoolean()) {
+            exclude 'com/tom/createores/data/**'
+        }
+        if (!kubejs_enabled.toBoolean()) {
+            exclude 'com/tom/createores/kubejs/**'
+        }
+        if (!journeymap_enabled.toBoolean()) {
+            exclude 'com/tom/createores/jm/**'
+        }
+        if (!cc_tweaked_enabled.toBoolean()) {
+            exclude 'com/tom/createores/cc/**'
+        }
+    }
+    if (!journeymap_enabled.toBoolean() || !cc_tweaked_enabled.toBoolean()) {
+        from('src/compat-disabled/java')
+    }
+    into(layout.buildDirectory.dir('generated/sources/createFly/main'))
+    outputs.upToDateWhen { false }
+    filter { line ->
+        line.replace('com.simibubi.create', 'com.zurrtum.create')
+            .replace('net.createmod.ponder', 'com.zurrtum.create.client.ponder')
+            .replace('dev.engine_room.flywheel', 'com.zurrtum.create.client.flywheel')
+            .replace('net.createmod.catnip.animation', 'com.zurrtum.create.client.catnip.animation')
+            .replace('net.createmod.catnip.gui', 'com.zurrtum.create.client.catnip.gui')
+            .replace('net.createmod.catnip.render', 'com.zurrtum.create.client.catnip.render')
+            .replace('net.createmod.catnip.lang', 'com.zurrtum.create.client.catnip.lang')
+            .replace('net.createmod.catnip.layout', 'com.zurrtum.create.client.catnip.layout')
+            .replace('net.createmod.catnip', 'com.zurrtum.create.catnip')
+            .replace('com.zurrtum.create.foundation.blockEntity.behaviour.BlockEntityBehaviour', 'com.zurrtum.create.api.behaviour.BlockEntityBehaviour')
+            .replace('com.zurrtum.create.api.equipment.goggles.IHaveGoggleInformation', 'com.zurrtum.create.client.api.goggles.IHaveGoggleInformation')
+            .replace('com.zurrtum.create.api.equipment.goggles.IHaveHoveringInformation', 'com.zurrtum.create.client.api.goggles.IHaveHoveringInformation')
+            .replace('com.zurrtum.create.foundation.data.CreateRegistrate', 'com.tterrag.registrate.Registrate')
+            .replace('CreateRegistrate', 'Registrate')
+            .replace('com.zurrtum.create.foundation.data.SharedProperties', 'com.tom.createores.compat.CreateFlySharedProperties')
+            .replace('com.zurrtum.create.foundation.data.TagGen', 'com.tom.createores.compat.CreateFlyTagGen')
+			.replace('SharedProperties::', 'CreateFlySharedProperties::')
+			.replace('TagGen.', 'CreateFlyTagGen.')
+			.replace('com.zurrtum.create.foundation.item.TooltipHelper', 'com.zurrtum.create.client.foundation.item.TooltipHelper')
+			.replace('com.zurrtum.create.foundation.utility.CreateLang', 'com.zurrtum.create.client.foundation.utility.CreateLang')
+            .replace('com.zurrtum.create.foundation.blockEntity.behaviour.ValueBoxTransform', 'com.zurrtum.create.client.foundation.blockEntity.behaviour.ValueBoxTransform')
+            .replace('com.zurrtum.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer', 'com.zurrtum.create.client.foundation.blockEntity.renderer.SafeBlockEntityRenderer')
+            .replace('com.zurrtum.create.content.kinetics.base.KineticBlockEntityVisual', 'com.zurrtum.create.client.content.kinetics.base.KineticBlockEntityVisual')
+            .replace('com.zurrtum.create.content.kinetics.base.KineticBlockEntityRenderer', 'com.zurrtum.create.client.content.kinetics.base.KineticBlockEntityRenderer')
+            .replace('com.zurrtum.create.foundation.render.AllInstanceTypes', 'com.zurrtum.create.client.foundation.render.AllInstanceTypes')
+            .replace('com.zurrtum.create.AllPartialModels', 'com.zurrtum.create.client.AllPartialModels')
+            .replace('com.zurrtum.create.foundation.gui.AllGuiTextures', 'com.zurrtum.create.client.foundation.gui.AllGuiTextures')
+            .replace('com.zurrtum.create.foundation.item.ItemDescription', 'com.zurrtum.create.client.foundation.item.ItemDescription')
+            .replace('com.zurrtum.create.foundation.item.KineticStats', 'com.zurrtum.create.client.foundation.item.KineticStats')
+            .replace('com.zurrtum.create.foundation.item.TooltipModifier', 'com.zurrtum.create.client.foundation.item.TooltipModifier')
+            .replace('com.zurrtum.create.foundation.ponder.CreateSceneBuilder', 'com.zurrtum.create.client.foundation.ponder.CreateSceneBuilder')
+            .replace('com.zurrtum.create.infrastructure.ponder.AllCreatePonderTags', 'com.zurrtum.create.client.infrastructure.ponder.AllCreatePonderTags')
+            .replace('net.minecraft.resources.ResourceLocation', 'net.minecraft.resources.Identifier')
+            .replace('ResourceLocation.fromNamespaceAndPath', 'Identifier.fromNamespaceAndPath')
+            .replace('ResourceLocation', 'Identifier')
+            .replace('net.minecraft.advancements.critereon', 'net.minecraft.advancements.criterion')
+    }
+}
+
+java { withSourcesJar() }
+
+tasks.named('compileJava').configure { dependsOn(remapCreateFlyImports) }
+tasks.named('sourcesJar').configure { dependsOn(remapCreateFlyImports) }
+
+tasks.withType(ProcessResources).configureEach {
+    def replaceProperties = [
+        minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
+        neo_version: neo_version, neo_version_range: neo_version_range,
+        loader_version_range: loader_version_range, mod_id: mod_id, mod_name: mod_name,
+        mod_license: mod_license, mod_version: project.version, mod_authors: mod_authors,
+        mod_description: mod_description, pack_format_number: pack_format_number,
+        file: [jarVersion: project.version]
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+            artifact sourcesJar
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += '-Xdiags:verbose'
+}

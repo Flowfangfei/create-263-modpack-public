@@ -1,0 +1,45 @@
+package dev.eriksonn.aeronautics.content.ponder;
+
+import com.simibubi.create.foundation.ponder.CreatePonderPlugin;
+import dev.eriksonn.aeronautics.Aeronautics;
+import dev.eriksonn.aeronautics.index.AeroPonderScenes;
+import net.createmod.ponder.api.client.level.PonderLevel;
+import net.createmod.ponder.api.client.registration.IndexExclusionHelper;
+import net.createmod.ponder.api.client.registration.PonderSceneRegistrationHelper;
+import net.createmod.ponder.api.client.registration.PonderTagRegistrationHelper;
+import net.createmod.ponder.api.client.registration.SharedTextRegistrationHelper;
+import net.minecraft.resources.Identifier;
+
+public class AeroPonderPlugin extends CreatePonderPlugin {
+    public AeroPonderPlugin() {
+    }
+
+    public String getModId() {
+        return Aeronautics.MOD_ID;
+    }
+
+    @Override
+    public void registerScenes(final PonderSceneRegistrationHelper<Identifier> helper) {
+        AeroPonderScenes.register(helper);
+    }
+
+    @Override
+    public void registerTags(final PonderTagRegistrationHelper<Identifier> helper) {
+        AeroPonderTags.register(helper);
+    }
+
+    @Override
+    public void registerSharedText(final SharedTextRegistrationHelper helper) {
+
+    }
+
+    @Override
+    public void onPonderLevelRestore(final PonderLevel ponderLevel) {
+
+    }
+
+    @Override
+    public void indexExclusions(final IndexExclusionHelper helper) {
+
+    }
+}

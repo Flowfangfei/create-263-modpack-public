@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fluidlogistics:feature_enabled",
+      "feature": "fluidlogistics:fluid_transporter"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": true,
+  "category": "misc",
+  "key": {
+    "B": "#c:plates/brass",
+    "C": "#c:plates/copper",
+    "E": "create:electron_tube",
+    "F": "create:fluid_pipe",
+    "P": "create:precision_mechanism"
+  },
+  "pattern": [
+    "CBC",
+    "PFP",
+    "CEC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fluidlogistics:fluid_transporter"
+  }
+}

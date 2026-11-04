@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "storage_box",
+  "key": {
+    "C": "minecraft:chest",
+    "D": "create:display_board",
+    "S": "#minecraft:wooden_slabs",
+    "W": "#minecraft:planks"
+  },
+  "pattern": [
+    "WSW",
+    "WCW",
+    "WDW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:reserve_storage_box"
+  }
+}

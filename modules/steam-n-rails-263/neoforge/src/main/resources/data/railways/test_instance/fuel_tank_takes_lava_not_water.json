@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:function",
+  "environment": "minecraft:default",
+  "function": "railways:fuel_tank_takes_lava_not_water",
+  "max_ticks": 500,
+  "required": true,
+  "setup_ticks": 1,
+  "structure": "railways:gametest/empty_9x7x5"
+}

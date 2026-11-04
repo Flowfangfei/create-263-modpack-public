@@ -1,0 +1,25 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "create_dragons_plus:config_feature",
+      "feature": "create_dragons_plus:fluid/dye"
+    }
+  ],
+  "type": "create:mixing",
+  "fluid_ingredients": [
+    {
+      "type": "fluid_stack",
+      "amount": 20250,
+      "fluid": "minecraft:water"
+    }
+  ],
+  "fluid_results": [
+    {
+      "amount": 20250,
+      "id": "create_dragons_plus:purple_dye"
+    }
+  ],
+  "ingredients": [
+    "#create_dragons_plus:dyes/minecraft/purple"
+  ]
+}

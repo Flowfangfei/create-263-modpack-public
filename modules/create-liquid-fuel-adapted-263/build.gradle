@@ -1,0 +1,5 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+apply from: '../../gradle/create263-addon.gradle'

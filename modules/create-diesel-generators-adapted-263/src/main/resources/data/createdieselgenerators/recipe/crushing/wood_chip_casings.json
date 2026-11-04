@@ -1,0 +1,24 @@
+{
+    "type":  "create:crushing",
+    "ingredients":  [
+                        {
+                            "neoforge:ingredient_type":  "neoforge:compound",
+                            "children":  [
+                                             "#create:casing",
+                                             "create:linear_chassis",
+                                             "create:secondary_linear_chassis",
+                                             "create:radial_chassis"
+                                         ]
+                        }
+                    ],
+    "results":  [
+                    {
+                        "id":  "createdieselgenerators:wood_chip",
+                        "count":  31
+                    },
+                    {
+                        "id":  "createdieselgenerators:wood_chip",
+                        "chance":  0.5
+                    }
+                ]
+}

@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "computercraft"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "create:railway_casing",
+    "create:transmitter",
+    "computercraft:wireless_modem_advanced"
+  ],
+  "result": {
+    "count": 1,
+    "id": "createadditionallogistics:network_monitor"
+  }
+}

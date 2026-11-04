@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "create:brass_casing",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "S",
+    "B"
+  ],
+  "result": {
+    "id": "simulated:throttle_lever"
+  }
+}

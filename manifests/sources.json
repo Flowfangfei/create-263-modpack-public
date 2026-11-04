@@ -1,0 +1,251 @@
+{
+  "created_at": "2026-10-24T23:00:08.125247+08:00",
+  "modules": [
+    {
+      "module": "create-adapted-263",
+      "upstream": "https://github.com/AlexSensey/create-adapted.git",
+      "upstream_head": "30ec1245a5af80228699453c8e59f3285a6be074",
+      "import_kind": "current working-tree snapshot, including uncommitted port changes",
+      "source_sha256_manifest": "manifests/source-sha256/create-adapted-263.json",
+      "source_manifest_sha256": "b313fa44742cd631b2686c6bba031ac6ae79afd54862b3cd57747b31908b6655",
+      "file_count": 8207
+    },
+    {
+      "module": "steam-n-rails-263",
+      "upstream": "https://github.com/zoom-packers/Create-Steam-n-Rails-Fly.git",
+      "upstream_head": "575ee893a9842998d1609329429c7e67495ddc7d",
+      "import_kind": "current working-tree snapshot, including uncommitted port changes",
+      "source_sha256_manifest": "manifests/source-sha256/steam-n-rails-263.json",
+      "source_manifest_sha256": "a47413469f137abad2a4052e7a8a8daef8685e0f787ac5d12781a1eb8a08d3f9",
+      "file_count": 26604
+    },
+    {
+      "module": "sable-adapted-263",
+      "upstream": "https://github.com/LyXith/sable-port.git",
+      "upstream_head": "113035f369cf737b4c8a8c2262c609939d5dab22",
+      "import_kind": "current working-tree snapshot, including uncommitted port changes",
+      "source_sha256_manifest": "manifests/source-sha256/sable-adapted-263.json",
+      "source_manifest_sha256": "ddf76d2c885f0330eb0cfe33484aee1d21aa4b2b3137c73f787d14235df15d76",
+      "file_count": 703
+    },
+    {
+      "module": "create-aeronautics-adapted-263",
+      "upstream": "https://github.com/LyXith/create-aeronautics-fly.git",
+      "upstream_head": "943753a38209dde0f24eaeacc89240772d9e5581",
+      "import_kind": "current working-tree snapshot, including uncommitted port changes",
+      "source_sha256_manifest": "manifests/source-sha256/create-aeronautics-adapted-263.json",
+      "source_manifest_sha256": "56961870569349d80c660360fd76f3c77ac0ef877b6dcd9075d609c32856b0f6",
+      "file_count": 1774
+    },
+    {
+      "module": "create-connected-adapted-263",
+      "upstream": "https://github.com/AlexSensey/create-connected-adapted.git",
+      "upstream_head": "eca2561fc423f9d024eed290b671025073d79c4c",
+      "import_kind": "current working-tree snapshot, including uncommitted port changes",
+      "source_sha256_manifest": "manifests/source-sha256/create-connected-adapted-263.json",
+      "source_manifest_sha256": "a91ef0bcf973a919fbbc709d2285cae53fa6a9ad5561c38185c7948d6776004f",
+      "file_count": 1846,
+      "requested_distribution": "https://www.curseforge.com/minecraft/mc-mods/create-connected-adapted/files/9038377",
+      "upstream_version": "1.3.3-adapted-26.3-0.7"
+    },
+    {
+      "module": "create-diesel-generators-adapted-263",
+      "upstream": "https://github.com/AlexSensey/create-diesel-generators-adapted.git",
+      "upstream_head": "f5cff1bc288a373bdb304c8bb312ebb3246c9556",
+      "import_kind": "current working-tree snapshot, including uncommitted port changes",
+      "source_sha256_manifest": "manifests/source-sha256/create-diesel-generators-adapted-263.json",
+      "source_manifest_sha256": "b322b27d688b5fd6fc73c7ff08dbf98fc48f3b16054d018da4648c61c09f179c",
+      "file_count": 1228,
+      "requested_distribution": "https://www.curseforge.com/minecraft/mc-mods/create-diesel-generators-adapted/files/9031432",
+      "source_version_note": "Public source properties say 0.607; requested binary says 0.608. Published config-enum compatibility fix is implemented locally."
+    },
+    {
+      "module": "create-liquid-fuel-adapted-263",
+      "upstream": "https://github.com/vibeported-mc/CreateLiquidFuel.git",
+      "upstream_head": "7728b17e541c046012860987191e5026da3c8358",
+      "upstream_branch": "26.2-vibeported",
+      "import_kind": "pinned upstream source snapshot with local 26.3 port modifications",
+      "port_documentation": "modules/create-liquid-fuel-adapted-263/docs/PORTING-26.3.md",
+      "source_sha256_manifest": "manifests/source-sha256/create-liquid-fuel-adapted-263.json",
+      "source_manifest_sha256": "61e0689819ebef993a257bcb0e22f658159787f2b9e696a7300f46250beb77c3",
+      "file_count": 32
+    },
+    {
+      "module": "create-ore-excavation-adapted-263",
+      "upstream": "https://github.com/tom5454/Create-Ore-Excavation.git",
+      "upstream_head": "724e18dd2c792440976c0ec469d56d9f2c5e8411",
+      "upstream_branch": "main",
+      "import_kind": "pinned upstream source snapshot with local 26.3 port modifications",
+      "port_documentation": "modules/create-ore-excavation-adapted-263/docs/PORTING-26.3.md",
+      "additional_port_reference": {
+        "upstream": "https://github.com/Jere655/Create-Ore-Excavation",
+        "branch": "port-neoforge-1.21.11-wip",
+        "commit": "d95850584d1c6beb055ca1b50e510f0e1d500832"
+      },
+      "source_sha256_manifest": "manifests/source-sha256/create-ore-excavation-adapted-263.json",
+      "source_manifest_sha256": "5bfa671b93d3e813c367fc41163643855bd115ac68c77425e3918dc78fbe1be9",
+      "file_count": 398
+    },
+    {
+      "module": "transmission-linkage-adapted-263",
+      "upstream": "https://github.com/userenxv/aeronautics-utility-objects.git",
+      "upstream_head": "322c4182d0593cde79fd7a5217dbb84283d9c65f",
+      "upstream_branch": "main",
+      "import_kind": "pinned upstream source snapshot with local 26.3 port modifications",
+      "port_documentation": "modules/transmission-linkage-adapted-263/docs/PORTING-26.3.md",
+      "source_sha256_manifest": "manifests/source-sha256/transmission-linkage-adapted-263.json",
+      "source_manifest_sha256": "3f610fdf00a8a5c01680641bf61299c797145f0b207942e2236f56b707c061f1",
+      "file_count": 218
+    },
+    {
+      "module": "create-dragons-plus-adapted-263",
+      "upstream": "https://github.com/DragonsPlusMinecraft/CreateDragonsPlus.git",
+      "upstream_head": "56f7a4a9f2fc04fa643fd993f217094bd30f8275",
+      "upstream_branch": "1.21.1/6.0.0-dev",
+      "import_kind": "pinned upstream snapshots with local NeoForge 26.3 port modifications",
+      "highest_minecraft_reference": {
+        "repository": "https://github.com/DragonsPlusMinecraft/CreateDragonsPlus-Fly",
+        "ref": "26.1.2/6.0.0-dev",
+        "commit": "27fd0e647e2e1f644dce92aeba4027fe2dfb6414",
+        "archive": "dragons-plus-fly-27fd0e647e2e.zip",
+        "sha256": "ffdf5f954708d78fa638063263c9f30eb5461db243046c1b1f8a2f4afdc0e63b"
+      },
+      "feature_baseline": {
+        "repository": "https://github.com/DragonsPlusMinecraft/CreateDragonsPlus",
+        "ref": "1.21.1/6.0.0-dev",
+        "commit": "56f7a4a9f2fc04fa643fd993f217094bd30f8275",
+        "archive": "dragons-plus-neoforge-56f7a4a9f2fc.zip",
+        "sha256": "79f13a9f1af44d8bec06e46ce0c487900e96cc0a7588483d43889355adb5da55"
+      },
+      "port_documentation": "docs/porting-notes/ENCHANTMENT-DRAGONS-26.3.md",
+      "source_sha256_manifest": "manifests/source-sha256/create-dragons-plus-adapted-263.json",
+      "source_manifest_sha256": "9d3a58fe07ece1bbd14a4ee21ebc9c7a1ad21250426537fb26113ca209b42956",
+      "file_count": 2166
+    },
+    {
+      "module": "create-enchantment-industry-adapted-263",
+      "upstream": "https://github.com/DragonsPlusMinecraft/CreateEnchantmentIndustry.git",
+      "upstream_head": "7cb2e9f59d83c800b3dde4d0a9123cbcc083c9a5",
+      "upstream_branch": "1.21.1/6.0.0-dev",
+      "import_kind": "pinned upstream snapshots with local NeoForge 26.3 port modifications",
+      "highest_minecraft_reference": {
+        "repository": "https://github.com/DragonsPlusMinecraft/CreateEnchantmentIndustry-Fly",
+        "ref": "26.1.2/6.0.0-dev",
+        "commit": "2dcc94608cf7787ce6bc045fb191eba3f82ef676",
+        "archive": "enchantment-industry-fly-2dcc94608cf7.zip",
+        "sha256": "da9bbdf1f938b3ffed262fb2e5db1d777a2fa7361e09d3d26e541d14fcac3bae"
+      },
+      "feature_baseline": {
+        "repository": "https://github.com/DragonsPlusMinecraft/CreateEnchantmentIndustry",
+        "ref": "1.21.1/6.0.0-dev",
+        "commit": "7cb2e9f59d83c800b3dde4d0a9123cbcc083c9a5",
+        "archive": "enchantment-industry-neoforge-7cb2e9f59d83.zip",
+        "sha256": "a1c2bb2d9e088401ef065fbab8c363b000d1ae33b9e505d7f13ba912a618a05c"
+      },
+      "port_documentation": "docs/porting-notes/ENCHANTMENT-DRAGONS-26.3.md",
+      "source_sha256_manifest": "manifests/source-sha256/create-enchantment-industry-adapted-263.json",
+      "source_manifest_sha256": "8b97f4bfc16e19abf11d128ef17823d6d02de7f2bdd72bee658d914d948f7957",
+      "file_count": 1992
+    },
+    {
+      "module": "create-electro-energetics-adapted-263",
+      "upstream": "https://github.com/george8188625/Create-Electro-Energetics.git",
+      "upstream_head": "4828c3487a9fc0703717b415eb07d005c7a48653",
+      "upstream_branch": "1.21.1",
+      "import_kind": "pinned upstream snapshots with local NeoForge 26.3 port modifications",
+      "highest_minecraft_reference": {
+        "repository": "https://github.com/cat4blep/Creaty-fly-Electro-Energetics",
+        "ref": "fabric-26.2",
+        "commit": "1033dcb653a3dafcbd436f1da5bd109fbd8e6ac6",
+        "archive": "electroenergetics-fly-1033dcb653a3.zip",
+        "sha256": "0fb63fad90591438b9450dbaba9bec22ec86f75c169d97ab980deabef36290c8"
+      },
+      "feature_baseline": {
+        "repository": "https://github.com/george8188625/Create-Electro-Energetics",
+        "ref": "1.21.1",
+        "commit": "4828c3487a9fc0703717b415eb07d005c7a48653",
+        "archive": "electroenergetics-upstream-dev-4828c3487a9f.zip",
+        "sha256": "6fd00fc816f77990ed87628969f7bba8859b64e92de64d84f4f911a8f718a88d"
+      },
+      "port_documentation": "docs/porting-notes/ELECTRO-26.3.md",
+      "source_sha256_manifest": "manifests/source-sha256/create-electro-energetics-adapted-263.json",
+      "source_manifest_sha256": "7725db315ddd8945df4e06c487a82712a10f4b4061fd1a08c17619d023d61cfc",
+      "file_count": 4675
+    },
+    {
+      "module": "create-additional-logistics-adapted-263",
+      "upstream": "https://github.com/KhloeLeclair/CreateAdditionalLogistics.git",
+      "upstream_head": "b96c27a72c51dd2e41b75d8945863774a68a0f6a",
+      "upstream_branch": "main",
+      "import_kind": "pinned upstream snapshots with local NeoForge 26.3 port modifications",
+      "highest_minecraft_reference": {
+        "repository": "https://github.com/KhloeLeclair/CreateAdditionalLogistics",
+        "ref": "main",
+        "commit": "b96c27a72c51dd2e41b75d8945863774a68a0f6a",
+        "archive": "additional-logistics-b96c27a72c51.zip",
+        "sha256": "89292cc6a4aaa394560e4099e27908d203e24a604edf63963ba285c6cd9d3f52"
+      },
+      "feature_baseline": {
+        "repository": "https://github.com/KhloeLeclair/CreateAdditionalLogistics",
+        "ref": "main",
+        "commit": "b96c27a72c51dd2e41b75d8945863774a68a0f6a",
+        "archive": "additional-logistics-b96c27a72c51.zip",
+        "sha256": "89292cc6a4aaa394560e4099e27908d203e24a604edf63963ba285c6cd9d3f52"
+      },
+      "port_documentation": "docs/porting-notes/STORAGE-LOGISTICS-26.3.md",
+      "source_sha256_manifest": "manifests/source-sha256/create-additional-logistics-adapted-263.json",
+      "source_manifest_sha256": "b65bf6318c4f95c6dbbe61c6fdd1430a98389a894d56d8937fc8ef464daf03e9",
+      "file_count": 1339
+    },
+    {
+      "module": "create-storage-adapted-263",
+      "upstream": "https://github.com/ausmez/create-storage-neo-forge.git",
+      "upstream_head": "fc8ab27bde33458b7edfc24cf9cd053caf5fa9a7",
+      "upstream_branch": "1.21.1-6.0.x",
+      "import_kind": "pinned upstream snapshots with local NeoForge 26.3 port modifications",
+      "highest_minecraft_reference": {
+        "repository": "https://github.com/ausmez/create-storage-neo-forge",
+        "ref": "1.21.1-6.0.x",
+        "commit": "fc8ab27bde33458b7edfc24cf9cd053caf5fa9a7",
+        "archive": "storage-neoforge-fc8ab27bde33.zip",
+        "sha256": "9a79b85202e61f3aa701ac46a2222b2c906d0505cade7be6d3eefb409d5c5771"
+      },
+      "feature_baseline": {
+        "repository": "https://github.com/ausmez/create-storage-neo-forge",
+        "ref": "1.21.1-6.0.x",
+        "commit": "fc8ab27bde33458b7edfc24cf9cd053caf5fa9a7",
+        "archive": "storage-neoforge-fc8ab27bde33.zip",
+        "sha256": "9a79b85202e61f3aa701ac46a2222b2c906d0505cade7be6d3eefb409d5c5771"
+      },
+      "port_documentation": "docs/porting-notes/STORAGE-LOGISTICS-26.3.md",
+      "source_sha256_manifest": "manifests/source-sha256/create-storage-adapted-263.json",
+      "source_manifest_sha256": "308a9f310374f44f0b3b726848a7f6ba56961859cd0a7aabbf6187bd85139412",
+      "file_count": 1038
+    },
+    {
+      "module": "create-fluid-logistics-adapted-263",
+      "upstream": "https://github.com/yision1/CreateFluidLogistics.git",
+      "upstream_head": "28e0af76fe8f4300ba5cc7f28cc25691ff1ac5e3",
+      "upstream_branch": "master",
+      "import_kind": "pinned upstream snapshots with local NeoForge 26.3 port modifications",
+      "highest_minecraft_reference": {
+        "repository": "https://github.com/yision1/CreateFluidLogistics",
+        "ref": "master",
+        "commit": "28e0af76fe8f4300ba5cc7f28cc25691ff1ac5e3",
+        "archive": "fluidlogistics-28e0af76fe8f.zip",
+        "sha256": "d60edb15a099fd1abb66ca735d0f8213bd04f8227ec2c8cf1b94f46a549fa865"
+      },
+      "feature_baseline": {
+        "repository": "https://github.com/yision1/CreateFluidLogistics",
+        "ref": "master",
+        "commit": "28e0af76fe8f4300ba5cc7f28cc25691ff1ac5e3",
+        "archive": "fluidlogistics-28e0af76fe8f.zip",
+        "sha256": "d60edb15a099fd1abb66ca735d0f8213bd04f8227ec2c8cf1b94f46a549fa865"
+      },
+      "port_documentation": "docs/porting-notes/FLUID-26.3.md",
+      "source_sha256_manifest": "manifests/source-sha256/create-fluid-logistics-adapted-263.json",
+      "source_manifest_sha256": "f925cc0671cca226461b7551970638f770e981f0493439bce3713436cae94a56",
+      "file_count": 1143
+    }
+  ]
+}

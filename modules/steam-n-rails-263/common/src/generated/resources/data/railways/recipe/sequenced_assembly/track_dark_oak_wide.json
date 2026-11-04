@@ -1,0 +1,30 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": "railways:track_dark_oak",
+  "loops": 1,
+  "sequence": [
+    {
+      "type": "create:cutting",
+      "results": ["$result"],
+      "ingredient": "$ingredient",
+      "processing_time": 50
+    },
+    {
+      "type": "create:deploying",
+      "results": ["$result"],
+      "target": "$ingredient",
+      "ingredient": "minecraft:dark_oak_slab"
+    },
+    {
+      "type": "create:pressing",
+      "results": ["$result"],
+      "ingredient": "$ingredient"
+    }
+  ],
+  "transitional_item": {
+    "id": "railways:track_incomplete_dark_oak_wide"
+  },
+  "result": {
+    "id": "railways:track_dark_oak_wide"
+  }
+}

@@ -1,0 +1,45 @@
+package dev.ryanhcode.offroad.content.ponder;
+
+import com.simibubi.create.foundation.ponder.CreatePonderPlugin;
+import dev.ryanhcode.offroad.Offroad;
+import dev.ryanhcode.offroad.index.OffroadPonderScenes;
+import net.createmod.ponder.api.client.level.PonderLevel;
+import net.createmod.ponder.api.client.registration.IndexExclusionHelper;
+import net.createmod.ponder.api.client.registration.PonderSceneRegistrationHelper;
+import net.createmod.ponder.api.client.registration.PonderTagRegistrationHelper;
+import net.createmod.ponder.api.client.registration.SharedTextRegistrationHelper;
+import net.minecraft.resources.Identifier;
+
+public class OffroadPonderPlugin extends CreatePonderPlugin {
+    public OffroadPonderPlugin() {
+    }
+
+    public String getModId() {
+        return Offroad.MOD_ID;
+    }
+
+    @Override
+    public void registerScenes(final PonderSceneRegistrationHelper<Identifier> helper) {
+        OffroadPonderScenes.register(helper);
+    }
+
+    @Override
+    public void registerTags(final PonderTagRegistrationHelper<Identifier> helper) {
+        OffroadPonderTags.register(helper);
+    }
+
+    @Override
+    public void registerSharedText(final SharedTextRegistrationHelper helper) {
+
+    }
+
+    @Override
+    public void onPonderLevelRestore(final PonderLevel ponderLevel) {
+
+    }
+
+    @Override
+    public void indexExclusions(final IndexExclusionHelper helper) {
+
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "railways:magenta_locometal_end_ladder",
+      "required": false
+    },
+    {
+      "id": "railways:magenta_locometal_rung_ladder",
+      "required": false
+    }
+  ]
+}

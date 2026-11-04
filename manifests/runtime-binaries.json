@@ -1,0 +1,146 @@
+{
+  "create-adapted-recovered.jar": {
+    "source": "modules/create-adapted-263/build/recovered-release/create-adapted-26.3-1.31-recovered.1-public-external-assets.jar",
+    "input_sha256": "eae23af8f4598335e8c592c14805362e258e18145e736b0af7733fa9453de6ae",
+    "runtime_sha256": "eae23af8f4598335e8c592c14805362e258e18145e736b0af7733fa9453de6ae",
+    "payload_sha256": "163e9555cb8ba133362cd55590976401a1004a3be2cc7a600d10f273c18ac721",
+    "excluded_resource_entries": 0,
+    "classes": 3027
+  },
+  "sable-adapted.jar": {
+    "source": "modules/sable-adapted-263/build/libs/sable-neoforge-26.3-3.0.0-adapted.1.jar",
+    "input_sha256": "9c47a3f735f9cd45e6646668e504d209dff031a4d5d0ef0694da4a313917868e",
+    "runtime_sha256": "c45d68e393efe119ce88a5948ae8987949b6c427b446537bda6385e44f0d72f2",
+    "payload_sha256": "7424089a8bbb79b51f8f5de2f7cf3835d253446ec5eaddece145ce72d195c215",
+    "excluded_resource_entries": 0,
+    "classes": 628
+  },
+  "railways-adapted.jar": {
+    "source": "modules/steam-n-rails-263/build/libs/railways-neoforge-26.3-1.4.0-adapted.1.jar",
+    "input_sha256": "a45d31913fe2b29bc0fbaffdb402c8aa6436c7da47e23c4a58a701c1260d71c2",
+    "runtime_sha256": "fa0109ef8c54a03a78a95c99fecc7a67c4024629e3eb7ef6d4437671e8bb3fa8",
+    "payload_sha256": "8a38a6898447ad7349137bce8ff7c4391881f11a02c65873f31876c2a7b367df",
+    "excluded_resource_entries": 0,
+    "classes": 998
+  },
+  "connected-adapted.jar": {
+    "source": "modules/create-connected-adapted-263/build/libs/create_connected-1.3.3-adapted-26.3-0.7-pack.1.jar",
+    "input_sha256": "0b1169463388ac943e5127067b5092e9de73a4c2b7dd2fe617324b51c4fc3599",
+    "runtime_sha256": "949c4a65346132946443d6237f6bd21fd31079dcd2e644b98518d71c0c7af728",
+    "payload_sha256": "2a0f8e24e2cff6721f26177cebd8f191b8eaccecc2ade992ab004d27205c952c",
+    "excluded_resource_entries": 0,
+    "classes": 447
+  },
+  "connected-simulated-bridge.jar": {
+    "source": "modules/create-connected-adapted-263/build/libs/create_connected-1.3.3-adapted-26.3-0.7-pack.1-simulated.jar",
+    "input_sha256": "b9e717ebf993e31fbb1a20e40137553aa33afdf2c76c022695e267d0bd52b00e",
+    "runtime_sha256": "b9e3cecb73842f5f300b92b25cb8c8ffbab8ae45fc61e1d331c652391eb23d6b",
+    "payload_sha256": "cf9e1f0a3aef9a9f8aad9939613fce0ac52500b5e8d5eee8e43c9ced5f74baf9",
+    "excluded_resource_entries": 0,
+    "classes": 10
+  },
+  "diesel-adapted.jar": {
+    "source": "modules/create-diesel-generators-adapted-263/build/libs/createdieselgenerators-26.3-1.3.15-adapted-0.608-pack.1.jar",
+    "input_sha256": "dd9f999ff7c47ff29c4b99885d4243e68727a36b96b369ad40867cee4269fbf3",
+    "runtime_sha256": "b0573e972a99054a92f5dbc357566178f63d7bd3917c3bc7568a7b2b9991e3dd",
+    "payload_sha256": "33a137ff0f38938d927e109815ab1cbae39ab639ea4b19def7d6cd13750a443f",
+    "excluded_resource_entries": 1,
+    "classes": 290
+  },
+  "simulated-adapted.jar": {
+    "source": "modules/create-aeronautics-adapted-263/simulated/build/libs/simulated-neoforge-26.3-1.3.0-adapted.1.jar",
+    "input_sha256": "b30d612e8040a272af29941dae88b0344b4bf7b0a91113924ab5a8836e07b862",
+    "runtime_sha256": "87559e3ffa3069303f9e0f0b3d2ad1cff47c098a2aa1fe34dc4bea10795e9f1d",
+    "payload_sha256": "f99552128009376bcdecd5e9a6abb639ce0211909d69dacf7139829220978ecf",
+    "excluded_resource_entries": 1196,
+    "classes": 921
+  },
+  "offroad-adapted.jar": {
+    "source": "modules/create-aeronautics-adapted-263/offroad/build/libs/offroad-neoforge-26.3-1.3.0-adapted.1.jar",
+    "input_sha256": "18204afd00aca63e78fb5736ff5df1e7c2159461a6d60650502c30a7921910e9",
+    "runtime_sha256": "06a1b89e97ac9ff1138aa69261f185c869df418ceb67bf91e001b783c8d5ab90",
+    "payload_sha256": "6d6e7cee9f09720760b42dfd8f082a2886dda63581350fdb6ffedcc58738f298",
+    "excluded_resource_entries": 139,
+    "classes": 87
+  },
+  "aeronautics-adapted.jar": {
+    "source": "modules/create-aeronautics-adapted-263/aeronautics/build/libs/aeronautics-neoforge-26.3-1.3.0-adapted.1.jar",
+    "input_sha256": "eab58c5d0c099c3d06543d81cf0c4e624ec8ed1380b15d1e4e031daf2a94bfc6",
+    "runtime_sha256": "868feee4cb42c1ab57877b43448a55169b99631d49544bd7a012e40550d9f79c",
+    "payload_sha256": "8ce32013da019fb7ba14ef69981ed8cf41af98aea239b265079ee88e178ee782",
+    "excluded_resource_entries": 484,
+    "classes": 270
+  },
+  "liquid-fuel-adapted.jar": {
+    "source": "modules/create-liquid-fuel-adapted-263/build/libs/createliquidfuel-3.0.0-26.3-adapted.1.jar",
+    "input_sha256": "ab9e0302e4d19f09e5da2651015be06b661d04618e763ec7496097528d2ab391",
+    "runtime_sha256": "bb1cbb1953d7119a581c58b82ff9b0fc2ffd850be90e3a0fb3ac54fa6d6f8792",
+    "payload_sha256": "541eab4d1c023931a9813db9908109da23bbf1ba7e0be26c4156bda39f564a1b",
+    "excluded_resource_entries": 0,
+    "classes": 14
+  },
+  "ore-excavation-adapted.jar": {
+    "source": "modules/create-ore-excavation-adapted-263/build/libs/createoreexcavation-1.6.8-26.3-adapted.1.jar",
+    "input_sha256": "a22712afb4e8c3de068c0e9f0e157f984d2077f935c44d2d86521dd4149ceea3",
+    "runtime_sha256": "ea8233cfc0f97830784e78ddbea130c26fe7b933ed75e68e267f2ceb6e42f5b2",
+    "payload_sha256": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+    "excluded_resource_entries": 0,
+    "classes": 111
+  },
+  "transmission-linkage-adapted.jar": {
+    "source": "modules/transmission-linkage-adapted-263/build/libs/create_aeronautics_transmission_linkage-0.2.8-26.3-adapted.1.jar",
+    "input_sha256": "04ca4fa2305766d656392811c9e22d8fba5c30f79c9731f6caef694ef8978552",
+    "runtime_sha256": "b8ec3ca958338a3a8ef26fd5444ed4bd9068f6109ad16845cf52754cc2e6c6c7",
+    "payload_sha256": "69b2dba16719af0dd33eb8762689ec403ff95813e57a268e07bfec1962e36cff",
+    "excluded_resource_entries": 2,
+    "classes": 142
+  },
+  "dragons-plus-adapted.jar": {
+    "source": "modules/create-dragons-plus-adapted-263/build/libs/create-dragons-plus-26.3-1.11.9-26.3-adapted.1.jar",
+    "input_sha256": "c81334d7c87a924656789bbbc78597dfb8cb38560d89e7b3a0f9b2fc55ef1cc2",
+    "runtime_sha256": "eae9a1aa9182026724e8027240fd6426f46a93c8f4abfce27494efce11c701e0",
+    "payload_sha256": "ad01a72dc6a796facdf1a7a00cccf60a97c3e52f6cea614e63f5f4a0f8eb1f86",
+    "excluded_resource_entries": 0,
+    "classes": 300
+  },
+  "enchantment-industry-adapted.jar": {
+    "source": "modules/create-enchantment-industry-adapted-263/build/libs/create-enchantment-industry-26.3-2.5.4b-26.3-adapted.1.jar",
+    "input_sha256": "613cb8393101c6934b3deeb0283e2b6ecbade978526befea450a362a8a7d4c63",
+    "runtime_sha256": "fb600ef7c9b00b62a8ba44164484172a0daf3d593df633ec002a9e61e060b971",
+    "payload_sha256": "4b56b252452f484c40f190dca1063d13f9d0115984d7b15ed7902c5b501121db",
+    "excluded_resource_entries": 0,
+    "classes": 216
+  },
+  "electroenergetics-adapted.jar": {
+    "source": "modules/create-electro-energetics-adapted-263/build/libs/electroenergetics-1.2.0-26.3-adapted.1.jar",
+    "input_sha256": "7af9eab9d34669f1fb31e022ab3106c3dc452e6095be3fe40f6bf21876db0efb",
+    "runtime_sha256": "01db7cfe0e498bc1dcf5798e454367b97633373c99f95a937c48a2913dff744b",
+    "payload_sha256": "d6e37bd470d359344e3bae1fb198d214f3841f1623cf2f7b69f1e35f093ffe12",
+    "excluded_resource_entries": 0,
+    "classes": 644
+  },
+  "additional-logistics-adapted.jar": {
+    "source": "modules/create-additional-logistics-adapted-263/build/libs/createadditionallogistics-1.4.5-26.3-adapted.1.jar",
+    "input_sha256": "023eb2cc44f446e88e38f5badc90fae28b92b80a81c50bf0bbc57e8254830ae9",
+    "runtime_sha256": "42b8abaf31e11d97e439c8222b0f8dc3936f775ad3675d8c6c4df2603b8e83ed",
+    "payload_sha256": "a3497e6e4ca72587b4a0d5f6f49c560fcc23cda1df5b79113e53f3a8b62b0cec",
+    "excluded_resource_entries": 0,
+    "classes": 215
+  },
+  "storage-adapted.jar": {
+    "source": "modules/create-storage-adapted-263/build/libs/fxntstorage-1.3.8-26.3-adapted.1.jar",
+    "input_sha256": "b610c93b4a204be014f9a9685aea5c779d90d68f9f3d6fc766433d497feb04f0",
+    "runtime_sha256": "ec72435d5c4954ba1544f6f95088f7b1d1003c2c5669a3b56bf83d27de20f8ba",
+    "payload_sha256": "86bee204ede0a8fe960306c4a633eaabd6e10ca2f591d0765ceaff1ce0ec4f3b",
+    "excluded_resource_entries": 0,
+    "classes": 440
+  },
+  "fluid-logistics-adapted.jar": {
+    "source": "modules/create-fluid-logistics-adapted-263/build/libs/fluidlogistics-1.3.1-26.3-adapted.1.jar",
+    "input_sha256": "06fd9d5d66a144ebd893c9119d081a462bc36e6b10879df4f69ee5f96c84c074",
+    "runtime_sha256": "d7078d9438056f053cd3d334ce172bcba20656f2c04c76d8a503b4ec7ef2c677",
+    "payload_sha256": "99f2988b1275b7e9af2a745fe6c0e4603e5d17a15f42a1c64bf68d164349ee36",
+    "excluded_resource_entries": 0,
+    "classes": 673
+  }
+}

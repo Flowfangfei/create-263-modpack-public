@@ -1,0 +1,14 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "ingredient": "create_enchantment_industry:experience",
+      "amount": 27
+    }
+  ],
+  "results": [
+    {
+      "id": "create:experience_block"
+    }
+  ]
+}

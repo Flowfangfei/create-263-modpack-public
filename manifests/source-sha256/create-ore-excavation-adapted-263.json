@@ -1,0 +1,1599 @@
+{
+  "schema": 1,
+  "representation": "Git index blobs (canonical line endings)",
+  "module": "create-ore-excavation-adapted-263",
+  "files": {
+    "modules/create-ore-excavation-adapted-263/.github/FUNDING.yml": {
+      "sha256": "6f03d9f62eee9b149f500924441d564e10ac9a926e3d941fea9319a79ee9cdbb",
+      "bytes": 48
+    },
+    "modules/create-ore-excavation-adapted-263/.gitignore": {
+      "sha256": "736f3bef7ac3788f0bf84aa26fca3ce1fd327c40ada31ea40811a02ca4cd04a0",
+      "bytes": 90
+    },
+    "modules/create-ore-excavation-adapted-263/Credits.md": {
+      "sha256": "587c4ab07ec484cc6b8f96013377568df1afb1dbbec9f7a21f16a82c74aa13ec",
+      "bytes": 79
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/.gitignore": {
+      "sha256": "a30fa4e66db1c55ad101551a635eb4ca1f4044d620d9c79b8e02dcdd5fc696a4",
+      "bytes": 93
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/build.gradle": {
+      "sha256": "6297e4e8e5872ab0dcca42a42db55751783819adf3a6a7cb3ac40d4b15991927",
+      "bytes": 8847
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/gradle.properties": {
+      "sha256": "469d0284ecd0d04cb5a74ca5a543f9342eff3f19ef792e5c8144f6bb8e4ae1b9",
+      "bytes": 766
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/gradle/wrapper/gradle-wrapper.jar": {
+      "sha256": "91a239400bb638f36a1795d8fdf7939d532cdc7d794d1119b7261aac158b1e60",
+      "bytes": 60756
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/gradle/wrapper/gradle-wrapper.properties": {
+      "sha256": "71d04b0cbc600a65ca7f52f9081803e37d3f30d4632d29888cdadb26a18f827f",
+      "bytes": 200
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/gradlew": {
+      "sha256": "8deee7d70dd19cf8180712bd9a4fc2f957ad4ce81f64ce825aec066275fdf761",
+      "bytes": 8188
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/gradlew.bat": {
+      "sha256": "3a015f427b699bc64b0c85e23000aad45d5cbcd0dbc58fc8a54907f58bb4af5c",
+      "bytes": 2747
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/project.json": {
+      "sha256": "bb5391e1fdd252fc14f1dd46cc0a53c0f67d141b7163ee88d69b10210cd23db6",
+      "bytes": 705
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/settings.gradle": {
+      "sha256": "de778f9b659da8aac3fb13afb4ca1a581cbe0dfd293a00b2a4d1752108b33d55",
+      "bytes": 251
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/.cache/033a090254199066c4774b3658ee5762038d69df": {
+      "sha256": "966e3d3f6ab167f69d6ad7b3d3ea7d32591e523547024c3fa98e6d18f6fb63ce",
+      "bytes": 189
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/.cache/aa17ea299b3312c01b9788b832001ad7784eb2f1": {
+      "sha256": "e650e76c052986ff3481eb66bb0e29e8fcd33f4faba33d70b1457be9db905e98",
+      "bytes": 2948
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/.cache/fd2cabe493523646e35349f0a7011dfe49bfb4da": {
+      "sha256": "f1b7e5c263804c575f9aa5d3333e9e845e72540dbd554caf09a568eed7766d48",
+      "bytes": 4732
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/blockstates/drilling_machine.json": {
+      "sha256": "75db1ddb34bfe273cfd4001756e8c18ea8fadf2263379697766e967f9d1ac1fc",
+      "bytes": 403
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/blockstates/extractor.json": {
+      "sha256": "7171b5d68c064344f6d888d99df2cb36cc859dc546a07a4f6be97b000b3db935",
+      "bytes": 419
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/blockstates/io_block.json": {
+      "sha256": "7f4450acc72f42321bf6a20093abd40598880892bdb9632cffeb3f62488e1b8a",
+      "bytes": 91
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/blockstates/kinetic_input.json": {
+      "sha256": "2118b9b2887ec5a71dc6e06c7dbfe9edaff5b1af859492c2f767aff7c0bee880",
+      "bytes": 93
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/blockstates/multiblock.json": {
+      "sha256": "461aa624bb6218ab5a8bee2256a60eedb77380054c1c5dfc70427ed8d7e7f086",
+      "bytes": 99
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/blockstates/sample_drill.json": {
+      "sha256": "ad7584856bc9e8ad4afc9239dfdc43ef2ab37ee0235ca932350ba6689ca6f7e9",
+      "bytes": 101
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/lang/en_ud.json": {
+      "sha256": "f2d6614ac151a94492d3c0a38b7ec2bf59a64c33fd6f636716b7e7346bfe6793",
+      "bytes": 8258
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/lang/en_us.json": {
+      "sha256": "926de4a8c8c6c4a088a205874dcec4c43e98261cdbeff8a533be06a187584936",
+      "bytes": 6812
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/block/io_block.json": {
+      "sha256": "361d788d2a08b9338b19ff9b8a1a6aa712b17d97e11fdfc850665ad7f60c6736",
+      "bytes": 67
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/block/kinetic_in.json": {
+      "sha256": "361d788d2a08b9338b19ff9b8a1a6aa712b17d97e11fdfc850665ad7f60c6736",
+      "bytes": 67
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/block/multiblock_ghost.json": {
+      "sha256": "361d788d2a08b9338b19ff9b8a1a6aa712b17d97e11fdfc850665ad7f60c6736",
+      "bytes": 67
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/diamond_drill.json": {
+      "sha256": "f6c31e5b8b4edb3fb23754e20b88d06bf0c41bbace31945e43ce8afd32f43a10",
+      "bytes": 118
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/drill.json": {
+      "sha256": "dc22c03c506bd11ee2f4fbab187ccf82b54fcaf235f4f7f02ff334aafd80f2b1",
+      "bytes": 117
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/drilling_machine.json": {
+      "sha256": "f909f9db8f33848d80f1c88a5e5983501850aa31a0d7056d4973cbdbbc6c7e54",
+      "bytes": 55
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/extractor.json": {
+      "sha256": "e5a203bbc0a505fbcf506314b84c4d439fce94e6efcc2d8b6020f406551473e3",
+      "bytes": 59
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/netherite_drill.json": {
+      "sha256": "6cda76de99e51703bc567ec4b45862bceae9ef3d465def3135decabb839cc2fc",
+      "bytes": 120
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/raw_diamond.json": {
+      "sha256": "be7a851e1c0c580989ea4f7180ac44680291e9dfcb5b590def6f94aeeaad4e7d",
+      "bytes": 116
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/raw_emerald.json": {
+      "sha256": "f9312d85db2dca5ac4d36644358471f4e947a4622860b688ab57cc808c03d528",
+      "bytes": 116
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/raw_redstone.json": {
+      "sha256": "65d0ca7c95fefc10bbc9908837b892f94e8b4c85672f3e1b7edfae2ef9cd251f",
+      "bytes": 117
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/sample_drill.json": {
+      "sha256": "15ce4608a78ba7e84f36e9b0e4c2024ebf391f05844eacd685fcd58e9d9709d2",
+      "bytes": 61
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/vein_atlas.json": {
+      "sha256": "187cd52230c29c16d920f2d5eb6ea2279ac41290f1a8f840c26fc327790562ad",
+      "bytes": 115
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/assets/createoreexcavation/models/item/vein_finder.json": {
+      "sha256": "643d1343de8ff1389510cc5fc88f4a1fa45f04bb7911fbd9ee23c7ba4922f27b",
+      "bytes": 115
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/advancements/recipes/misc/diamond_drill.json": {
+      "sha256": "0b9da71763983c5c6154a9b7573847c4fdc22b49a55a3ba9c78e5f8f81d9761b",
+      "bytes": 604
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/advancements/recipes/misc/drill.json": {
+      "sha256": "13bbdce38c7925d7173d55b20de3ac0acd44c765b1cbc910e7ddc318909d3d7e",
+      "bytes": 585
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/advancements/recipes/misc/netherite_drill_smithing.json": {
+      "sha256": "111ccfa89313f7d9923fe7d6f5d8785cc4ce76d39380f748084997c8095b3770",
+      "bytes": 677
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/advancements/recipes/misc/vein_atlas.json": {
+      "sha256": "79fd35686e8dc9aa2f7467e7e18380af6d0ab76e1367aba1951457c14c5959f0",
+      "bytes": 625
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/advancements/recipes/misc/vein_finder.json": {
+      "sha256": "77b4fecaa1da27e7d005f4d583b820d2bbc370d19bfd046750fd0df0b51fa3d0",
+      "bytes": 641
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/computercraft/turtle_upgrades/vein_finder.json": {
+      "sha256": "ad295cfc6a604dd1eb2d2f2158e1e9adf6470d4c7a33d5637bfbdcd669e3021c",
+      "bytes": 92
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/loot_tables/blocks/drilling_machine.json": {
+      "sha256": "ef6bf1c39dd1a22efe7326b9cf833a3faa104cc02be041892c887b7352860553",
+      "bytes": 420
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/loot_tables/blocks/extractor.json": {
+      "sha256": "01e550bd9d38bdbe58c7e4b14a61931e505aafc1f087b0d9eb26497440ca4b6a",
+      "bytes": 406
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/loot_tables/blocks/sample_drill.json": {
+      "sha256": "b6028fe6127e5c0839a82108653f22fb6dba7980d597ee6c2e9fd10fb9450bc9",
+      "bytes": 412
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/crushing/redstone_crushing.json": {
+      "sha256": "973bd70e7463de593a13b069306435a589e7583166332cbd677e111bad758168",
+      "bytes": 226
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/cutting/diamond_cutting.json": {
+      "sha256": "25a8813bb0b06eb0a8dc4d9e1e6b780177e41f42d9676ccea7e3dfb03111845d",
+      "bytes": 205
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/cutting/emerald_cutting.json": {
+      "sha256": "5f6951f41ef6f45e7d25cc22dd4a9b311a57b868f2b5dc140572948c3550da65",
+      "bytes": 205
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/diamond_drill.json": {
+      "sha256": "79060c97886d42ac8f8965b08cff23d388e2a36cfbf694a9527ef8724ba71c60",
+      "bytes": 401
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drill.json": {
+      "sha256": "7c00abcdc66e314146cbb6fe2efce4be3379c77056b1c4e47adc58d17dca8792",
+      "bytes": 333
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/coal.json": {
+      "sha256": "4e380a0879d0b16335e5b63055edb732e72bd19fcc2b27ce2d6170e838532994",
+      "bytes": 269
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/copper.json": {
+      "sha256": "b556177bcb1db28874dbc6e5b11ef80b53a8e0a7ad35328c9b1646cbbc5565f0",
+      "bytes": 277
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/diamond.json": {
+      "sha256": "2068be75add5174888d3fa9cd958aa139a2e83965326f9cf79c2ef1d0115fec7",
+      "bytes": 290
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/emerald.json": {
+      "sha256": "1a5da19a979dcb039c536c40622d7990c86a74cca56721e3a4fb14c4673cb766",
+      "bytes": 290
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/glowstone.json": {
+      "sha256": "5a9b410793b642fe1b94744024096e457821cf350bc9a32ba3e0e3c233f4e410",
+      "bytes": 285
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/gold.json": {
+      "sha256": "fae7ebc19abb9d97d5c92eb4478ab299799c4d11083b0b81b307aeea2c1cc842",
+      "bytes": 273
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/hardened_diamond.json": {
+      "sha256": "840a442072037635f68f3558b0cb44361bb88fa0b22fa8ad5cfb2c20029e11d8",
+      "bytes": 459
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/iron.json": {
+      "sha256": "1b81aacdcef67a52c08460737436c7c141ba978f3a0488df4b357ae38cb44c6d",
+      "bytes": 273
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/lapis.json": {
+      "sha256": "24877ff0cfaae706e21d98d3db551c7e3a23ec1516cab1bde348ce4a10968ccc",
+      "bytes": 278
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/nether_gold.json": {
+      "sha256": "8ace93d455fba70fdef7451be959de2a8cc592ef8f54dd626ebc00355330de2e",
+      "bytes": 373
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/netherite.json": {
+      "sha256": "d7a0d538379ee734bf684e4b34e0d253a5175f2b044cb98a7e6b6a887156c900",
+      "bytes": 615
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/quartz.json": {
+      "sha256": "0364646009460d5cb9ee9e652e815f5f6063a607ae54722e983665aee31ea6ac",
+      "bytes": 274
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/redstone.json": {
+      "sha256": "cc796cfabd782cc42bbbf4aa5fe6824304ec110a513900365e0d6014e08ee388",
+      "bytes": 291
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling/zinc.json": {
+      "sha256": "4f1071a66df3c23b3f4e0c92010ff76efff28981e8b6ede602f14715621cf956",
+      "bytes": 270
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/drilling_machine.json": {
+      "sha256": "f50b2170711785cff7d38984db1db1723c2c694a0233c0fb96c290c65574f919",
+      "bytes": 771
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/extractor.json": {
+      "sha256": "dfeae44b161bdffa377c085ab33551b8d84b44ed459ad3f7ec42f386a2b94297",
+      "bytes": 718
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/extractor/water.json": {
+      "sha256": "222f43dddb4c544e0f38fbc84cfadee7d014e7c8c6708e5d864d87ee92f5135d",
+      "bytes": 278
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/milling/redstone_milling.json": {
+      "sha256": "7e9c5111045d18a954977cb310d5878d8fdef539c200e39081b0c721d96f6967",
+      "bytes": 225
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/netherite_drill_smithing.json": {
+      "sha256": "9fb2555cdff6038782a653ebf503b821ef28e7351427411e811d6b52df9fbe94",
+      "bytes": 320
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/coal.json": {
+      "sha256": "85a61dbd7e6bd15a3a0c3d6ada2ef642b2ab377b92ee2af71377a3c0ccb9713a",
+      "bytes": 330
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/copper.json": {
+      "sha256": "bd0282609cbf6379bb666812dc65017fc79e108c0e7491e35d078c62d384f86e",
+      "bytes": 341
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/diamond.json": {
+      "sha256": "4347cc9da6cbac43d101176a056393acea4cba0797f4dcbba58abd2b899f92ec",
+      "bytes": 363
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/emerald.json": {
+      "sha256": "0d2deb313b622ca4230fca3bc484013b61b9d4810bc9b8e1b37bc5d0d9c52af5",
+      "bytes": 362
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/glowstone.json": {
+      "sha256": "2415bf0b57fc6225aa8c319fdcef0d59074a1efb103ff7d681a4f8174e33aef1",
+      "bytes": 345
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/gold.json": {
+      "sha256": "3f45203114b29129338cab4395575432162d377c0d49648e7a3e1ac39ea723f9",
+      "bytes": 337
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/hardened_diamond.json": {
+      "sha256": "0ef979a7abff5ffc828a9daaf228e5a495a63d1003f44afc9151baf9dc8c7b60",
+      "bytes": 350
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/iron.json": {
+      "sha256": "b747470119378d2a7e9ee12fec86700f03c908b19f77a6e4beb3ea51b16ae994",
+      "bytes": 338
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/lapis.json": {
+      "sha256": "cb34e4b47e65816679c1ab33c36b93012b6d2d4253b689a64a759351915fb1f9",
+      "bytes": 344
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/nether_gold.json": {
+      "sha256": "cb8438dd50903e261e7a8b44e0e1f67b70398dcfff4185a0e07940137f06b04f",
+      "bytes": 339
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/netherite.json": {
+      "sha256": "b56d7d5a8da5507d9521c2d671c9e2f7cc4d56c95524debcc431884c97d294f3",
+      "bytes": 347
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/quartz.json": {
+      "sha256": "c73283b625a3267f8d577d2736e87a0ff50b3aea7719154d37b5f913e430cde2",
+      "bytes": 330
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/redstone.json": {
+      "sha256": "f7c58ff59ca2841b098f0cfad1d5391c82506cf8f58eb0b689a2f561cb6b98b8",
+      "bytes": 366
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/water.json": {
+      "sha256": "58576645814366c24a070e36c909e26ea51138f310b3c41bc2d8358ed0c4d9d0",
+      "bytes": 360
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/ore_vein_type/zinc.json": {
+      "sha256": "3354fd9d0bd4ab6fbbb95155d794b4c1ccfeaa887ff1e076c46a21abb3aff60e",
+      "bytes": 331
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/sample_drill.json": {
+      "sha256": "90aa8d13030f38abdff3dc15bf7d9da136393036e9a9ecaba6389477dc09b8d9",
+      "bytes": 531
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/vein_atlas.json": {
+      "sha256": "ce0e9ee66179bfa0a236b724528800299ed1c860ddf42752035a1eb4a374355e",
+      "bytes": 423
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/recipes/vein_finder.json": {
+      "sha256": "8c9ca5175bf939044a4820c76138db0ea9982a57dd5764a675522dcadba4b2a1",
+      "bytes": 439
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/createoreexcavation/tags/items/drills.json": {
+      "sha256": "57d3dcb3b78ffb38d40b70f6847fa641b914ee02122aa0066c7e8f0fda02ccfe",
+      "bytes": 157
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/minecraft/tags/blocks/mineable/pickaxe.json": {
+      "sha256": "6d42264441126000db5bf3ce9e22897839f35af30b469e2d277a0379e9a7f949",
+      "bytes": 276
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/generated/resources/data/minecraft/tags/blocks/needs_iron_tool.json": {
+      "sha256": "6d42264441126000db5bf3ce9e22897839f35af30b469e2d277a0379e9a7f949",
+      "bytes": 276
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/COECommand.java": {
+      "sha256": "e5b0048e821fde22f50258b291cbdcd845efdd7b673b1352152efe4e3d2a5e8c",
+      "bytes": 6821
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/CreateOreExcavation.java": {
+      "sha256": "12e222aa597f1b5c6afa4ee750edff7a36b1ce2aff311a983ab27a61205dc3bd",
+      "bytes": 4527
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/OreDataCapability.java": {
+      "sha256": "dc539658fe465d44aacee0137af9297663844a4800180bea7373a726d9d6bfff",
+      "bytes": 3829
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/block/entity/DrillBlockEntity.java": {
+      "sha256": "861e23bcd9c0b6c99642aae54e63e1188ef2abc6e5271ebccf284fe0301a341a",
+      "bytes": 2102
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/block/entity/ExcavatingBlockEntityImpl.java": {
+      "sha256": "dc0e533f58a6d7170a04b86b274f0fdf5d44f2147cdad8a81bc6b09823b19da1",
+      "bytes": 2847
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/block/entity/ExtractorBlockEntity.java": {
+      "sha256": "a7a09e1d7d9c4740dad3db9a2bc2ce4fda74664b3443fb0215842cb05f52a02f",
+      "bytes": 3252
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/block/entity/IOBlockEntity.java": {
+      "sha256": "0570bf69bf9ce10d385fc014b7670427bca77f83f82acca665d8100afacd5a67",
+      "bytes": 3544
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/block/entity/MultiblockCapHandler.java": {
+      "sha256": "6637799acbb880f0d622fb2da9711353e3a72d79a2dcc1a7bd7239398de5c985",
+      "bytes": 488
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/client/CreateOreExcavationClient.java": {
+      "sha256": "467d5f90ecaff0c62bc7c86d992de6f2c4638c0669819e4f3bea104e65ba6316",
+      "bytes": 2559
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/client/PlatformClient.java": {
+      "sha256": "f35b72a3b226b0f24c6927b10ab4a2776441eae75ee6dc82cfcdfc4f7290f5f2",
+      "bytes": 507
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/data/COEDataGenerator.java": {
+      "sha256": "dc41c59a3778b978160174954c052270089457fec3d30654fec75bfb0db4e14f",
+      "bytes": 1277
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/data/COERecipes.java": {
+      "sha256": "f2a4972f1394db266b2bb8fc9fad0119a6b7e58e3d61ec842b3228764627e00c",
+      "bytes": 16960
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/AnimatedBlock.java": {
+      "sha256": "1ee8f466c0417d9e3c3c2496d8764635f3a2abc3d18753b43592a553792a8796",
+      "bytes": 714
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/DrillingEmiRecipe.java": {
+      "sha256": "8dea5e0b8a74a603e65a7c9e918fd9a6325f081d38aee2813120a48d39065cad",
+      "bytes": 1975
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/EMIPlugin.java": {
+      "sha256": "80e5c8d5fa4e417b75f6420885132c1e67aa42ea3b9b79b00a9a73f64e95bc53",
+      "bytes": 2697
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/ExcavatingEmiRecipe.java": {
+      "sha256": "101fa94fcc85bc6888d64f26aa05161df042fb8dac0d7358a0b41a0d65382d46",
+      "bytes": 1787
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/ExtractingEmiRecipe.java": {
+      "sha256": "1d9d53e107606f965fbc544adcc8a1816040c4d4ed927966a334108937d104a2",
+      "bytes": 1025
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/RecipeTooltipWidget.java": {
+      "sha256": "df1d82877ef3d54aed67299af9c11d1ec3d40570eb447e12a404a91b7b103817",
+      "bytes": 1132
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/VeinEmiRecipe.java": {
+      "sha256": "cd2cf46ded3ce6f3819f8473973a8e003539310ce5c5e51a3f68dd65c4d4a715",
+      "bytes": 926
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/VeinEmiStack.java": {
+      "sha256": "becef937f20011e34210642e2cfe2d2e4b43aa57040ede1c3a947fbfd80f6dc0",
+      "bytes": 3928
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/emi/VeinTooltipWidget.java": {
+      "sha256": "6cbd62190798458e6da5ad8d0dcfe700ee1fad8f5fb761a72502060f4f8ac8f4",
+      "bytes": 1859
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/jei/JeiPlatform.java": {
+      "sha256": "725059d3b53863b108c3a25e1f21f2e83c4e73a5ed38e0824acb6aab871868e1",
+      "bytes": 1009
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/jm/JMEventListener.java": {
+      "sha256": "2feb30bf4cf782cd587b91a4db851d5df80169daeab4d720058dd8a715f7fc38",
+      "bytes": 950
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/network/ClientNetwork.java": {
+      "sha256": "abd05dc8cb2fd1d21c5884cc5d618a58b8145a5518f1f4c3accabac97f9c8791",
+      "bytes": 362
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/network/NetworkHandler.java": {
+      "sha256": "9f193797172a867a67f2d5956bb48132e44db8ce55531d07e243395569e011fa",
+      "bytes": 1111
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/recipe/ExtractorRecipe.java": {
+      "sha256": "fde1302f5384a73212e2e0d1dc1e61a5cf99a9d605a0b7a3909f8b45ba20f65c",
+      "bytes": 1218
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/AnimatedBlock.java": {
+      "sha256": "e0db6492cb16b739bfa09f826c8e4d57852ec447b8d7b4e042fa1a736062d77c",
+      "bytes": 1037
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/DrillingCategory.java": {
+      "sha256": "0aa25c04a47661326a48db4cde3538aa447e2aefc0faa9bfc0da07d089dcb3ab",
+      "bytes": 3261
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/DrillingDisplay.java": {
+      "sha256": "b63afdf9aa4a39769ce8b73d361cafbb48de2828cea78c9f49bef3d93fdb1516",
+      "bytes": 1351
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/ExcavatingCategory.java": {
+      "sha256": "d0b995d1bbc37252191b0ebca492ee300288c6754bf247729b902fd18eda558a",
+      "bytes": 3633
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/ExtractingCategory.java": {
+      "sha256": "140b781aaa2951efcbc425490133616bcdeb9087e42fd8ac34d261e13f8d9837",
+      "bytes": 1999
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/ExtractingDisplay.java": {
+      "sha256": "ea6cbbcbdd058fa64c485fafd7c85f400f678f6079261edb8862106a3e149c79",
+      "bytes": 1095
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/REIPlugin.java": {
+      "sha256": "fdbfb7e357d414ccbb3f935f734cfb124cd8dbe6c4abf7a80f89683aa1b9976d",
+      "bytes": 3052
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/ReiPlatform.java": {
+      "sha256": "1d1e4a37e1daf6563838dfa0cc85ffa922c5684e1ee4214ecce5e901263c379c",
+      "bytes": 523
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/VeinCategory.java": {
+      "sha256": "85f2f465f47e7048869d6bd2061fc4082406b313ad46e0426e79655aa2b064ea",
+      "bytes": 3636
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/VeinDefinition.java": {
+      "sha256": "199169dbaeeaebb72742946c313c8a889c88e17b8fde9f7975dd21275ddd65dd",
+      "bytes": 5340
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/rei/VeinDisplay.java": {
+      "sha256": "a23ddca220bcef922b2a512dfb2f49d9c493901a3f1d474206a4d5883d1d1a54",
+      "bytes": 561
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/util/IOBlockType.java": {
+      "sha256": "11096cf4cabc9b86ad47cd1388c5bc07a36b7a8f9ca6cda2bb7b9c0e5d19ab65",
+      "bytes": 531
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/util/PlatformMenuProvider.java": {
+      "sha256": "82362969bdbdfe746a58cf5aaea0503ac7384a7cee213a5ff63d474152929bc7",
+      "bytes": 436
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/java/com/tom/createores/util/QueueInventory.java": {
+      "sha256": "cbc1592a6fbf5d6005cd70e8f90e5cb69b0275ffbf352d4f01e4e4f53a99f2a1",
+      "bytes": 3160
+    },
+    "modules/create-ore-excavation-adapted-263/Fabric/src/main/resources/fabric.mod.json": {
+      "sha256": "095d5a130f60734ebdb96006cef8331338f9e26f41d9fe1e05d5b358ec06eb37",
+      "bytes": 1149
+    },
+    "modules/create-ore-excavation-adapted-263/LICENSE": {
+      "sha256": "8d09626329d731d0d72da7a0dcd59174f53b3081ed4e729816a3e68c0b78b244",
+      "bytes": 1064
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/.gitignore": {
+      "sha256": "411df4242c5f63823f79d97520ed48c788b85295397b1023f311f468690898d6",
+      "bytes": 90
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/build.gradle": {
+      "sha256": "020a1dae503c736d197069b7a46bea600ecc39d9da90215065ac32768fcbc92a",
+      "bytes": 8730
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/gradle.properties": {
+      "sha256": "80d02724bf221a8e613a4c6c2ca289f4846d94184dabef9578d2d77f79af1dfc",
+      "bytes": 4077
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/gradle/wrapper/gradle-wrapper.jar": {
+      "sha256": "91a239400bb638f36a1795d8fdf7939d532cdc7d794d1119b7261aac158b1e60",
+      "bytes": 60756
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/gradle/wrapper/gradle-wrapper.properties": {
+      "sha256": "36a692ac4a7ef3f659c02fd62eca29bf67ced53f2f80db7de55d302eb3328218",
+      "bytes": 201
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/gradlew": {
+      "sha256": "8deee7d70dd19cf8180712bd9a4fc2f957ad4ce81f64ce825aec066275fdf761",
+      "bytes": 8188
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/gradlew.bat": {
+      "sha256": "3a015f427b699bc64b0c85e23000aad45d5cbcd0dbc58fc8a54907f58bb4af5c",
+      "bytes": 2747
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/project.json": {
+      "sha256": "cdd3522bcdd8c13f73621a9e584a9a1b434ba584fd90d933cea93e17a60bc687",
+      "bytes": 457
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/settings.gradle": {
+      "sha256": "4161a19d17a8198840863a12f0bd81d4b434b1ddd31a9f3295f0c807118261ce",
+      "bytes": 292
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/compat-disabled/java/com/tom/createores/cc/CCRegistration.java": {
+      "sha256": "9cdf7331a920fc1f3268d8788f9677023f16e47c2861281e682b5912eff8b08d",
+      "bytes": 221
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/compat-disabled/java/com/tom/createores/client/CCClientInit.java": {
+      "sha256": "f618df0aad0c8e40ae9495fd17be2067bb40970c65873ad66a8a1c6a3082ede4",
+      "bytes": 428
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/compat-disabled/java/com/tom/createores/compat/CreateFlySharedProperties.java": {
+      "sha256": "b243e13e7e0ac8854a1b9037aa9cb649bbd86ba9fada4f2805fa7e8e94794fbf",
+      "bytes": 385
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/compat-disabled/java/com/tom/createores/compat/CreateFlyTagGen.java": {
+      "sha256": "a272d45792410ea9c130a53167c49021884746fac0f9ac3e2f59177ee1670751",
+      "bytes": 491
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/compat-disabled/java/com/tom/createores/jm/JMEventListener.java": {
+      "sha256": "c90eb3a78b9980b269f79cc6950d51add1a6d68f3f91f36280aec51ade5aaa4c",
+      "bytes": 304
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/compat-disabled/java/com/tom/createores/jm/OreVeinsOverlay.java": {
+      "sha256": "c5c639e01a691e663d9665e490ab412cda6eee65b6614fd4ab970a7bd24b9012",
+      "bytes": 416
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/.cache/1295088f11fa70c6ab0cc888f386294449f004f4": {
+      "sha256": "82085544dfdf632c00fe8fc03f9ec4277f8d165a4a2a84f84a9c953148738423",
+      "bytes": 3014
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/.cache/9fb1092f32d4fcbf9e061ffd718d4ec689c6c95e": {
+      "sha256": "aa3777c25428ce90817812fbc9252ccd0e086a27dffbf20680c5cea256770df0",
+      "bytes": 4644
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/blockstates/drilling_machine.json": {
+      "sha256": "75db1ddb34bfe273cfd4001756e8c18ea8fadf2263379697766e967f9d1ac1fc",
+      "bytes": 403
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/blockstates/extractor.json": {
+      "sha256": "7171b5d68c064344f6d888d99df2cb36cc859dc546a07a4f6be97b000b3db935",
+      "bytes": 419
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/blockstates/io_block.json": {
+      "sha256": "7f4450acc72f42321bf6a20093abd40598880892bdb9632cffeb3f62488e1b8a",
+      "bytes": 91
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/blockstates/kinetic_input.json": {
+      "sha256": "2118b9b2887ec5a71dc6e06c7dbfe9edaff5b1af859492c2f767aff7c0bee880",
+      "bytes": 93
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/blockstates/multiblock.json": {
+      "sha256": "461aa624bb6218ab5a8bee2256a60eedb77380054c1c5dfc70427ed8d7e7f086",
+      "bytes": 99
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/blockstates/sample_drill.json": {
+      "sha256": "ad7584856bc9e8ad4afc9239dfdc43ef2ab37ee0235ca932350ba6689ca6f7e9",
+      "bytes": 101
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/diamond_drill.json": {
+      "sha256": "006ee2534c111f3f4f487ed4e9cb9bfe51f4edbb4e3deed32849bb902cd41a6d",
+      "bytes": 106
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/drill.json": {
+      "sha256": "d7800d3d7d6f1ec5df4efa95491642eeccef902d6c45627e539e3ee0178b0162",
+      "bytes": 98
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/drilling_machine.json": {
+      "sha256": "fa204ea1672914d30e8599acfb4789c2c3684a6d1c7252aa8c74385747d83eab",
+      "bytes": 109
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/extractor.json": {
+      "sha256": "79e1aa123d5bf70455b38c4aa31e0bae47a2dab1c9de3dd2ad362cb3b6552f0b",
+      "bytes": 102
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/netherite_drill.json": {
+      "sha256": "254f25bb950e5b6b99308a090f08c9085a84e0af0a291351f0efae316c4e7bed",
+      "bytes": 108
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/raw_diamond.json": {
+      "sha256": "a386845658dc6245b09551431de3d2ba57fe8be12a90425f947d45d605b9e3f6",
+      "bytes": 104
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/raw_emerald.json": {
+      "sha256": "2f8dc75726289f130c04ffa21ed453ecbe44e05e6574d0ecdc4359056e76a922",
+      "bytes": 104
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/raw_redstone.json": {
+      "sha256": "736a0ebb94d3d270876ff403ee9175520c8cfe24447b0067f5aa2e1af5e64b08",
+      "bytes": 105
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/sample_drill.json": {
+      "sha256": "3b940afb68ab38aa328fda48b4a4bef1f0755ca5e7571ba7eb0e8d25f2f4c536",
+      "bytes": 105
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/vein_atlas.json": {
+      "sha256": "fdf3775e3c286a386430a963d063cf7af286c21e8ff5afa8a408e067da4160da",
+      "bytes": 103
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/items/vein_finder.json": {
+      "sha256": "50055cc15b9c454a58bff8a2fe04ae2b73fcfddbf380f601692233c700c59cb7",
+      "bytes": 104
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/lang/en_ud.json": {
+      "sha256": "f2d6614ac151a94492d3c0a38b7ec2bf59a64c33fd6f636716b7e7346bfe6793",
+      "bytes": 8258
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/lang/en_us.json": {
+      "sha256": "926de4a8c8c6c4a088a205874dcec4c43e98261cdbeff8a533be06a187584936",
+      "bytes": 6812
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/block/io_block.json": {
+      "sha256": "361d788d2a08b9338b19ff9b8a1a6aa712b17d97e11fdfc850665ad7f60c6736",
+      "bytes": 67
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/block/kinetic_in.json": {
+      "sha256": "361d788d2a08b9338b19ff9b8a1a6aa712b17d97e11fdfc850665ad7f60c6736",
+      "bytes": 67
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/block/multiblock_ghost.json": {
+      "sha256": "361d788d2a08b9338b19ff9b8a1a6aa712b17d97e11fdfc850665ad7f60c6736",
+      "bytes": 67
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/diamond_drill.json": {
+      "sha256": "f6c31e5b8b4edb3fb23754e20b88d06bf0c41bbace31945e43ce8afd32f43a10",
+      "bytes": 118
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/drill.json": {
+      "sha256": "dc22c03c506bd11ee2f4fbab187ccf82b54fcaf235f4f7f02ff334aafd80f2b1",
+      "bytes": 117
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/drilling_machine.json": {
+      "sha256": "f909f9db8f33848d80f1c88a5e5983501850aa31a0d7056d4973cbdbbc6c7e54",
+      "bytes": 55
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/extractor.json": {
+      "sha256": "e5a203bbc0a505fbcf506314b84c4d439fce94e6efcc2d8b6020f406551473e3",
+      "bytes": 59
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/netherite_drill.json": {
+      "sha256": "6cda76de99e51703bc567ec4b45862bceae9ef3d465def3135decabb839cc2fc",
+      "bytes": 120
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/raw_diamond.json": {
+      "sha256": "be7a851e1c0c580989ea4f7180ac44680291e9dfcb5b590def6f94aeeaad4e7d",
+      "bytes": 116
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/raw_emerald.json": {
+      "sha256": "f9312d85db2dca5ac4d36644358471f4e947a4622860b688ab57cc808c03d528",
+      "bytes": 116
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/raw_redstone.json": {
+      "sha256": "65d0ca7c95fefc10bbc9908837b892f94e8b4c85672f3e1b7edfae2ef9cd251f",
+      "bytes": 117
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/sample_drill.json": {
+      "sha256": "15ce4608a78ba7e84f36e9b0e4c2024ebf391f05844eacd685fcd58e9d9709d2",
+      "bytes": 61
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/vein_atlas.json": {
+      "sha256": "187cd52230c29c16d920f2d5eb6ea2279ac41290f1a8f840c26fc327790562ad",
+      "bytes": 115
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/assets/createoreexcavation/models/item/vein_finder.json": {
+      "sha256": "643d1343de8ff1389510cc5fc88f4a1fa45f04bb7911fbd9ee23c7ba4922f27b",
+      "bytes": 115
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/advancement/recipes/misc/diamond_drill.json": {
+      "sha256": "9515db47a5a324f666d30ef66e28257cc68e8b65d1c10100916bef485831d9fa",
+      "bytes": 601
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/advancement/recipes/misc/drill.json": {
+      "sha256": "99c64546315e74e6213ef6f9f5d95f1d39f4487f446f036a5e5f93f9282873be",
+      "bytes": 578
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/advancement/recipes/misc/vein_atlas.json": {
+      "sha256": "7150569c756b02b40e18e56367e08e9f551ee2f79572f6580a396eeafeaef3b2",
+      "bytes": 585
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/advancement/recipes/misc/vein_finder.json": {
+      "sha256": "2c141493eea28453ba93db0e37d4c7b423bd742c4ecee240dd5a1bd511541733",
+      "bytes": 601
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/loot_table/blocks/drilling_machine.json": {
+      "sha256": "ef6bf1c39dd1a22efe7326b9cf833a3faa104cc02be041892c887b7352860553",
+      "bytes": 420
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/loot_table/blocks/extractor.json": {
+      "sha256": "01e550bd9d38bdbe58c7e4b14a61931e505aafc1f087b0d9eb26497440ca4b6a",
+      "bytes": 406
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/loot_table/blocks/sample_drill.json": {
+      "sha256": "b6028fe6127e5c0839a82108653f22fb6dba7980d597ee6c2e9fd10fb9450bc9",
+      "bytes": 412
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/crushing/redstone_crushing.json": {
+      "sha256": "2e5d30151195c388cd16a7f45b0692806a55003c68dc9374f0cba8e45ad0216d",
+      "bytes": 204
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/cutting/diamond_cutting.json": {
+      "sha256": "56aa8eb4c8b00c7dd94dd4ca12c95bca3a9bf5a42a35d14a0051ed266d6ed86f",
+      "bytes": 183
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/cutting/emerald_cutting.json": {
+      "sha256": "bfa7e6fab3e0734933f87d77c64db56cd26889d985f73738291959bb76443d71",
+      "bytes": 183
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/diamond_drill.json": {
+      "sha256": "bfd84effb2f2ae07e616a061e960e1a0b03f9a6f692e876ea8c464bdb03e3a75",
+      "bytes": 337
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drill.json": {
+      "sha256": "9cb902a6b7fe33a3dc4f7dc9e77e5a050987bc47e8167ea072dab4f02e8176c2",
+      "bytes": 287
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/coal.json": {
+      "sha256": "a08c3080f1e9b75f82e37dbb05b52a4ecfbba0c42802d50e621b0521445c19d1",
+      "bytes": 251
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/copper.json": {
+      "sha256": "bc43e723be44e8b5430eb8d2ac95363126c696cf3ed0c2f1d6804466c466489e",
+      "bytes": 259
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/diamond.json": {
+      "sha256": "eb568400b1fb476da911cf96760126ba015b60385e5b39341dbeda50882b6b55",
+      "bytes": 272
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/emerald.json": {
+      "sha256": "a5f3767aab93834e3fcb4fc4d65207a3e98b5fa44d574596c461e21d5b5ebd0d",
+      "bytes": 272
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/glowstone.json": {
+      "sha256": "e8a13b9bbe7895f7423aff6c06de2c8736ea4b7a35775c10672591a784fb1881",
+      "bytes": 267
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/gold.json": {
+      "sha256": "3e7e1b02f0837956fd8198b1749f76972d6b33354a2d2d51a5313d2790c14c6c",
+      "bytes": 255
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/hardened_diamond.json": {
+      "sha256": "65ec8f27802afce982b85516485d6985d18776e35dfbd51e79269a667ea61725",
+      "bytes": 427
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/iron.json": {
+      "sha256": "94ca8628bee9e366a25295543b5b419273deb036644d19cd5fccb3bd82a598ad",
+      "bytes": 255
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/lapis.json": {
+      "sha256": "814c452e834330060b241aab8f76adf1425f829e12e21e889b004cbbab77fd05",
+      "bytes": 260
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/nether_gold.json": {
+      "sha256": "57b4bb7baa5c2c9c0fd6fa59b4aa989af9fb89e1ee12e838891915648f651706",
+      "bytes": 353
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/netherite.json": {
+      "sha256": "05cdb66b104362ea00851ad6cf9cee8a36c365c7d30ca37414b366faf4af1553",
+      "bytes": 579
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/quartz.json": {
+      "sha256": "4c2e4d980f3e047ce8d0cf087a93fc10c127e00b751a1dd4307dec1818483265",
+      "bytes": 256
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/redstone.json": {
+      "sha256": "e1d8f34b0a371121aae78b20acf82596a623e9c0b45d243aee1600f963c432d9",
+      "bytes": 273
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling/zinc.json": {
+      "sha256": "cacceb6ea6054f4b39d1222f47a7c3c1ee5d862982fe09bc1d91ccd90c11e9b9",
+      "bytes": 252
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/drilling_machine.json": {
+      "sha256": "bf4eafb41d471793770e534e11184ee9b3a6f99383b5c0ee218517a0519d796c",
+      "bytes": 601
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/extractor.json": {
+      "sha256": "9118fa0032662f1a854d492fbde8ed6a1ccf065f99bfba86e3755abd2ddb716b",
+      "bytes": 570
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/extractor/water.json": {
+      "sha256": "1788454a7c8e9813a8fd141c93b3b31aae072bedf80a2c38f27f55c7eaaede68",
+      "bytes": 259
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/milling/redstone_milling.json": {
+      "sha256": "202d47252715b1d543518ebae1f6f46745b8eda894fb744c22ad26f0c82daffe",
+      "bytes": 203
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/coal.json": {
+      "sha256": "884e89b1ff3f9264b6a89fd5663ed736e5bea1a29c03910b6bb42e6cd3fbdd88",
+      "bytes": 387
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/copper.json": {
+      "sha256": "f00f8f16bd2ac6b8864bbb98aaecbfd7ec3fb1f4fb7f5a55cee9f2a8861c7ccb",
+      "bytes": 398
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/diamond.json": {
+      "sha256": "b068fb2161a1e88e09c229c62e038b1642f5210e5937c4ad0b3f196ef3d44d39",
+      "bytes": 422
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/emerald.json": {
+      "sha256": "81c8dc050d88c66f2b5df63c46d9bc690e5e37ece1202adb5cfd6daf27576e7e",
+      "bytes": 421
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/glowstone.json": {
+      "sha256": "db8041824d38b375532a89d064b64e62b417d933331a94b513110e77809abbcd",
+      "bytes": 402
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/gold.json": {
+      "sha256": "60182183b81c29b8a10bdb74a4095b99bf71d04d77fa2a38d703dcc442d87f6b",
+      "bytes": 394
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/hardened_diamond.json": {
+      "sha256": "15608c7e731b3590d6cef6c734ecc90d7df747ce6d121dd894b85d9b581c2571",
+      "bytes": 407
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/iron.json": {
+      "sha256": "615ecc3d6730a0243661e638fcab558827530b49a93f58f0cc278f784674bbca",
+      "bytes": 395
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/lapis.json": {
+      "sha256": "7f4e387e1be61f3ed62a6c352d94516a3290f95dabaf890fdcfcae55aefbb46d",
+      "bytes": 401
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/nether_gold.json": {
+      "sha256": "e86ec110d2a870311d1b641f1f8574a14496a283b81e9ba2ccb6213258454e41",
+      "bytes": 396
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/netherite.json": {
+      "sha256": "3abbbe11b42cc0e3a13c7a3582ac1d75dbbae277b8f2687592ccef02c483d0eb",
+      "bytes": 408
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/quartz.json": {
+      "sha256": "9a70a477cf2dea1be3d91c04e4d459cba45c86a2937577355ebc8542c7ba4a73",
+      "bytes": 387
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/redstone.json": {
+      "sha256": "c592d43c78ca99072d90be05b71c851920cb078c87baaf3dfced9c110811d15b",
+      "bytes": 423
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/water.json": {
+      "sha256": "50753120e43e3a15770f981395cf6bf4b77dedbf4131b07b4ca4de59ebce3a8f",
+      "bytes": 392
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/ore_vein_type/zinc.json": {
+      "sha256": "e414c6f4ad883fd038ff79e9e98cad7466821e1696f9cdd66aabe2c8c057330a",
+      "bytes": 388
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/sample_drill.json": {
+      "sha256": "4c9cd6a7bf6f8a9fddee30796cf9b410a27077a802ace47bab764cb25414d4ec",
+      "bytes": 439
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/vein_atlas.json": {
+      "sha256": "01bea23893bead318691f517fd628e461ae95ca0a437c2003f1c86de52dfd472",
+      "bytes": 330
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/recipe/vein_finder.json": {
+      "sha256": "ef3d9e8b14308042d2a1a691a220e81697287dc825ff85654b391f436aeac78a",
+      "bytes": 348
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/createoreexcavation/tags/item/drills.json": {
+      "sha256": "33865a6c03b63436fbb65d611e80d731f73deddd8786cc2d1699ae3f85bd7c59",
+      "bytes": 137
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/minecraft/advancement/recipes/misc/netherite_drill_smithing.json": {
+      "sha256": "6e6fc411b1fd0f6286999a75c57e5ad8961f9306b7515f39139ca0f6ef7df099",
+      "bytes": 637
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/minecraft/recipe/netherite_drill_smithing.json": {
+      "sha256": "ef732da436e0479a713c0496ae91f85267ad5f707ea201e9ab8d225316ce8d6c",
+      "bytes": 281
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/minecraft/tags/block/mineable/pickaxe.json": {
+      "sha256": "cef1653201a6cad7e81f37b3c9e65933d3568685481f6aa7386d3cbc042a12c3",
+      "bytes": 256
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/generated/resources/data/minecraft/tags/block/needs_iron_tool.json": {
+      "sha256": "cef1653201a6cad7e81f37b3c9e65933d3568685481f6aa7386d3cbc042a12c3",
+      "bytes": 256
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/COECommand.java": {
+      "sha256": "59914710a601cb3c7d20e20d9d9905592e8ea3fd188bfc03a0f4712e137b4f95",
+      "bytes": 6378
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/CreateOreExcavation.java": {
+      "sha256": "e14a666cf21e5c5f98bc6f352eba08851894a0bf6e9f3c4278eed4c9f150f8a9",
+      "bytes": 8400
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/ForgeConfig.java": {
+      "sha256": "bfd10c12b0e54f0b8dc8531da2d07eba470e3688b91bcc310c7340ae275a5745",
+      "bytes": 654
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/OreDataAttachment.java": {
+      "sha256": "4f3ca29f3bb67c3fc05ccc6ceaa4edb62033873c02b554f0c77e90afe205e01d",
+      "bytes": 1234
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/block/entity/DrillBlockEntity.java": {
+      "sha256": "edd3922a9c4178f7cc2be093d3e2b170172a78ff25189bffd1cfd3914982d215",
+      "bytes": 2292
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/block/entity/ExcavatingBlockEntityImpl.java": {
+      "sha256": "e9730b85d7611cb3039b14ed7d91c2f9c361793002814d649ad5aee1a4b0525f",
+      "bytes": 3178
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/block/entity/ExtractorBlockEntity.java": {
+      "sha256": "81cfbf798fd2377e44c15465395e25fab169bc1e4b934aa32b2237e5d0de70a0",
+      "bytes": 2823
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/block/entity/IOBlockEntity.java": {
+      "sha256": "e71ece3eb7d4e3b154cf2f6cf2b84406b2f6a34505bc1396293457be6a3b3270",
+      "bytes": 2629
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/block/entity/MultiblockCapHandler.java": {
+      "sha256": "26133f4c1e48ce70540e60a3cd71ece7b025fbb136d7370fe13f2398bc51cfe1",
+      "bytes": 547
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/block/entity/OreExcavationRuntimeChecks.java": {
+      "sha256": "388146da6f00815bbeef5943249616af276ae5b44abeae1c3dbb81503bbbe4a9",
+      "bytes": 25833
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/client/CCClientInit.java": {
+      "sha256": "cdbffa5e78e8e7d14a170d3738b72fabe34fdf2cfeb4b1b0917ef6268195a117",
+      "bytes": 585
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/client/COEClient.java": {
+      "sha256": "bb9defea283086e49a206c9535270cd34d3ac6f8780a7d8ac0c471ffb590eb41",
+      "bytes": 1487
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/client/ClientEventHandler.java": {
+      "sha256": "e6f4c4da99fb17fe55936fbbe28d76f838cec62ec988d5dc9d4350a7dfaf1e57",
+      "bytes": 2151
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/client/ClientVeinRecipes.java": {
+      "sha256": "935bd0bac900c5c7b56e9e7f5c578e7faceb2a91d1454ee13722a9b1b4f48e93",
+      "bytes": 2274
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/client/PlatformClient.java": {
+      "sha256": "2575602311b7d528f0e0385e040a0bca0bacb6c26ab7df322cfcfac0a48311df",
+      "bytes": 524
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/data/COERecipes.java": {
+      "sha256": "d666e4c8306fa076b93c937f36cb54f81824b35dff66c8fc5f86d7ee505d8635",
+      "bytes": 15533
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/data/DataGenerators.java": {
+      "sha256": "4847e7fbf10025302a4e35c2b59cc75f60dda875aa8f9ce3a1781f3126b49014",
+      "bytes": 1722
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/jei/JeiPlatform.java": {
+      "sha256": "90b11ad40e4be668146e421a071b99fe6f7245a3b4cfd389b6f9b66d58a1728c",
+      "bytes": 468
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/jm/JMEventListener.java": {
+      "sha256": "3fa15a3ee56602a2c43a0fbcf40ad1387c62fbc57619810127659f4857a8e7b7",
+      "bytes": 388
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/network/NetworkHandler.java": {
+      "sha256": "794ec093264acc608f03a53fbff40a9a55dd1ebe0e435540687d5df8aa908153",
+      "bytes": 1457
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/recipe/ExtractorRecipe.java": {
+      "sha256": "a0b475d5de8de22847b8f4b20fe91613a3a3a5d9e34a5a21411931998c5aec9f",
+      "bytes": 2282
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/util/FluidIngredient.java": {
+      "sha256": "60eae0b555891f042abda6d54e2c0c372dad0866b08f5ae96f43068c48e07af1",
+      "bytes": 2340
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/util/FluidTankHandler.java": {
+      "sha256": "46a9040eb71e379d29dca9260bf589e97de9a9a4fba7768ca867ed388d545d0b",
+      "bytes": 2370
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/util/IOBlockType.java": {
+      "sha256": "10eaf833fa490db2821439062b3598f2e00e9e77e4fefa4bb1a32d5bab7c6786",
+      "bytes": 990
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/util/PlatformMenuProvider.java": {
+      "sha256": "d5e30a8b665c7c6088bc94a78b6c9c9cb6cbf7a34909ba94fc10f3450b1724c7",
+      "bytes": 140
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/java/com/tom/createores/util/QueueInventory.java": {
+      "sha256": "c4730b3ed74752a97305df4c8ca2e3cf30e796022a091c8beaaf80c293cec529",
+      "bytes": 3855
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/main/resources/META-INF/neoforge.mods.toml": {
+      "sha256": "f5eb6b691fce178cacada402faa29852e27fb50df10dfdb1d02061adaf2ba686",
+      "bytes": 3901
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/Config.java": {
+      "sha256": "e1868fc138971b92c51f571b53d1512391c29938ed58eb5b3879c97f597db547",
+      "bytes": 3724
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/OreData.java": {
+      "sha256": "8f0051ef35d088c72ea562e2bfefb65f0cb5ca804c77e410b5d49ada3eeda12f",
+      "bytes": 3792
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/OreVeinGenerator.java": {
+      "sha256": "0db2f892401779c0d131762efe86618e1d08a85bd6095d24add76527cbfb7690",
+      "bytes": 1201
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/Registration.java": {
+      "sha256": "7cc98a3d1a3eec00226e2c8af6b93a461f43ff4be33a70ed97ee78157e5a4d34",
+      "bytes": 10125
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/DrillBlock.java": {
+      "sha256": "d9998588033650cfb6834756b4f5ba8b68586489e8c8b26b89a0260f5ed1dff6",
+      "bytes": 2393
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/ExtractorBlock.java": {
+      "sha256": "5312d0820dbc7a75844cfd1fc25a5831509de3a8898f125cf933f97d2a9118ca",
+      "bytes": 2427
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/IOBlock.java": {
+      "sha256": "7f8bc69d9f7eb0fa8048a4b2ceb230ef2dbe4f2416e33a6f43b1285cf73f50a1",
+      "bytes": 4053
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/KineticInputBlock.java": {
+      "sha256": "0ffe711450531ce1247431f089bd3c826f39a9859f2b628ab8c51f42c7846cf9",
+      "bytes": 4520
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/MultiblockBlock.java": {
+      "sha256": "c348774afa40abbc2b1f9b44af4c817690c13b7c2226dc10c8432f64e5ef40ec",
+      "bytes": 3979
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/MultiblockController.java": {
+      "sha256": "7adba53e00621e07e30c9fcc5ea65819900f937c80132ab803e20718e0d0c1ef",
+      "bytes": 3567
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/MultiblockPart.java": {
+      "sha256": "a96962ecc7d79e781d7324dfb586ceb50baa116bf681db99e5f98270924e7130",
+      "bytes": 9769
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/SampleDrillBlock.java": {
+      "sha256": "e930a53f1eadbe86171d994fd9f0c288d57639ebea586647c9e49463d3812301",
+      "bytes": 2090
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/entity/ExcavatingBlockEntity.java": {
+      "sha256": "a1c531645607ee70fd74d04788b7876d2da113bf267abdcb1690d4a1da9175ac",
+      "bytes": 13126
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/entity/ExcavationSmartBlockEntity.java": {
+      "sha256": "43d6474e545733f18eb4569220364c83939764d3f2be5dfd04b5625671b728e2",
+      "bytes": 1497
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/entity/IDrill.java": {
+      "sha256": "d5ba0fc97e5c8d1a3bffada4e49c6eaf7467c4a667031f80f9220fba88c5f2fd",
+      "bytes": 411
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/entity/KineticInputBlockEntity.java": {
+      "sha256": "e3a7d5dd3d5974c4e9f4b9a62082f4d89a1887693b722791c72feea87d6128ac",
+      "bytes": 2666
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/entity/KineticInputVisual.java": {
+      "sha256": "16f6b45ac43fe405ba3b1a0ffd6f0288ea662737f4e24cb42cdb78cf7c0ed0b9",
+      "bytes": 1718
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/entity/MultiblockBlockEntity.java": {
+      "sha256": "60965163a4bb9cc17820dbfecf2150801b36edac30a1fd210f83bd6d80be438b",
+      "bytes": 1639
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/block/entity/SampleDrillBlockEntity.java": {
+      "sha256": "0881a5f82482624d133d8b2a6baacbbb8151d92c9572b2b1488c8330f388a020",
+      "bytes": 9410
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/cc/CCRegistration.java": {
+      "sha256": "10e35d1e4b4f553ca9b552c723ba3166e3c7b5915c0f9705eed1db2210b3fba9",
+      "bytes": 2300
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/cc/OreVeinFinderTurtle.java": {
+      "sha256": "1e31b10db018cbf17bbb222bf27ad74df0a2fc09e96acce2c3f556cc6b6c6966",
+      "bytes": 4634
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/client/COEPonderPlugin.java": {
+      "sha256": "bb9231c2b46b42f7ca00ce89358d4776783a790daeab3c80ba029037a8aa063b",
+      "bytes": 2005
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/client/ClientRegistration.java": {
+      "sha256": "3c258d9c8143ecd84bfc03ffaec588478871ff2fb86b580a892890f35e560233",
+      "bytes": 210
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/client/ClientUtil.java": {
+      "sha256": "f69f48dc667fa61bf0a108863afe811d7baa82d8867c1b498c65b5c4ebd30c06",
+      "bytes": 779
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/client/DrillRenderer.java": {
+      "sha256": "7a9b97133b0de050bb412d0d14d537f963c3e7b2c1cf0853350c9104a3e5e1bf",
+      "bytes": 8080
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/client/KineticInputBlockEntityRenderer.java": {
+      "sha256": "840e2e624aaf43175f732f1911bb60edec4cee9caaa7029b13de9593b3cf7d2a",
+      "bytes": 2638
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/client/PonderScenes.java": {
+      "sha256": "a900b2983563094ce2815f40b81a9f25c99eb40342920a7649cd96cb4a904da6",
+      "bytes": 8850
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/components/OreVeinAtlasDataComponent.java": {
+      "sha256": "b489444721026b04ee403114a4fa953226a39702db9fc6dbe18c74c6c736f89a",
+      "bytes": 3996
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/item/MultiBlockItem.java": {
+      "sha256": "02f599fe44e706af49c37b39d1a8aecba5f9dfc2aef8526eb1286186ebaf1c7b",
+      "bytes": 4053
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/item/OreVeinAtlasItem.java": {
+      "sha256": "dfb869101b9bc295d43af4ffbcd487b63a18a42a64117f4de6ced56264a157ad",
+      "bytes": 4003
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/item/OreVeinFinderItem.java": {
+      "sha256": "1ce3514af56361148e0620da6e36ce195b17f2704576cfc0d84f9deb8e670307",
+      "bytes": 7030
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/AnimatedBlock.java": {
+      "sha256": "bb65ce77e99a78d751873b5409ee15bfe84faa87f2cc1a241e77e8f1d5cb27b9",
+      "bytes": 879
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/DrillingCategory.java": {
+      "sha256": "e2497fca810208fc5412b879f879696a525dcc3c7fb62abcb165c9d85c9513a8",
+      "bytes": 2432
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/ExcavatingCategory.java": {
+      "sha256": "af34751e256c3435ad17497ae64f957f597bd9d7d214b702be486897db4f6835",
+      "bytes": 3763
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/ExtractingCategory.java": {
+      "sha256": "d148f09fdffdadb31701c5d08bedbc25403d1bcb46d62268f93c689785a5eb39",
+      "bytes": 1415
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/ItemIcon.java": {
+      "sha256": "17ec1fefd2a9c42664d5ee61856136434e92100d97465f8cd66c298974a883f0",
+      "bytes": 1120
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/JEIHandler.java": {
+      "sha256": "5b2a215390e3b61191735db8da105f3a4c13e94056b11c1ae8731b0ced57f97b",
+      "bytes": 1987
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/JEIRecipes.java": {
+      "sha256": "c5f694906d2d5af7551371e82fd44f748e9f36e7ffddf7a87d405e462f93c612",
+      "bytes": 814
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/Vein.java": {
+      "sha256": "2a4e54e7889deb53c9c6802a8b323cdb64a7429f82774f9a8753b5e4f84f2c9f",
+      "bytes": 875
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/VeinCategory.java": {
+      "sha256": "de865344505d74e2395a8fdc62eee7679a7a5f5b0d6f3098fe281e367153c50c",
+      "bytes": 2728
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jei/VeinIngredient.java": {
+      "sha256": "08ba302fb72dbfaf0b0ebcd3ece1a04c4ccf18bbba3ad0502ed5becdf3f86d93",
+      "bytes": 3456
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jm/JMPlugin.java": {
+      "sha256": "05c18ca51967fcadff34107314fed8b38f1ae231b1983a130e87915c7b9f36dc",
+      "bytes": 1466
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jm/OreDistanceInfo.java": {
+      "sha256": "353aea82cc51414209c34695afa5f54ac4808fdef068773ab3c98f0f90ac813b",
+      "bytes": 1702
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jm/OreNearbyInfo.java": {
+      "sha256": "4388df7bf0236d7df9cc67766d0fa9e6c8031f7d7de5b3a2b55cb62a75210e7d",
+      "bytes": 1730
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jm/OreVeinInfo.java": {
+      "sha256": "bcede633a1f315481b8107c733a2b181535113ac2d2ee68ed97962ea73e22bb4",
+      "bytes": 2040
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/jm/OreVeinsOverlay.java": {
+      "sha256": "7032c64fdb15ee7cd49d11dfd65361802914a3b31fdc491f99cea2ef913b6fd9",
+      "bytes": 10294
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/COEUtil.java": {
+      "sha256": "4e8e954531a8f1e641d327ece600f4b7fb056045b47e7173eeb4fc65ca403921",
+      "bytes": 306
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/ComponentComponent.java": {
+      "sha256": "f5de94fb373b3d3b479f9f809640ae5f216082416a0e3b1db7f6ac4e9046d2b2",
+      "bytes": 1059
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/DrillingRecipeJS.java": {
+      "sha256": "1bac7a05a82f18e501033da2ba067c5468ed5ef858a2fec096725d8e11bc204f",
+      "bytes": 1001
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/ExcavatingRecipeJS.java": {
+      "sha256": "534f2f54318015c55e320ff5b9a2a73d6a05a6ba970996e8ae4f22332944f573",
+      "bytes": 2818
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/ExtractorRecipeJS.java": {
+      "sha256": "e10b3888db568191abb2826ac397b5a5c9ba99dcf0acfd6569d595683e118fff",
+      "bytes": 1004
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/FluidIngredientJS.java": {
+      "sha256": "f744513547ed9609b5dfaba1761d6f6803b3312d4b361b4bec189faddbe65d24",
+      "bytes": 1669
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/KubeJSExcavation.java": {
+      "sha256": "fb6cab35070c076ea06ca911886b3e45b8e32435e2742efb1caf3c9b5172f78e",
+      "bytes": 2578
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/KubeJSUtil.java": {
+      "sha256": "dff5aa2a23647ffa6012c9bf9f9798f80b6d2d9a118d6491f56ae331ef47a61b",
+      "bytes": 2367
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/PlacementJS.java": {
+      "sha256": "628f406b5a723acd22e1634b7625e35d7239406a9d8c8c65376f266a77ced873",
+      "bytes": 1213
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/ProcessingOutputJS.java": {
+      "sha256": "80d7ae672e6b87baf4830b00fd91832423c5b2a29f70d9759929f0784751bd5d",
+      "bytes": 1542
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/RandomSpreadStructurePlacementJS.java": {
+      "sha256": "36146364f22c21eb5e224d2cd63337eaa2140129a68394aeda9002e633bf5a8c",
+      "bytes": 1850
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/kubejs/VeinRecipeJS.java": {
+      "sha256": "9c64be083690bb3e4a6f0f7e2cbb90165859359cfdced23d36539ea3df9c4b56",
+      "bytes": 6035
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/menu/OreVeinAtlasMenu.java": {
+      "sha256": "3cb719f7431e0b14430141673babd5154f08609b42aaa1a8529fbc0fdd775301",
+      "bytes": 1822
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/menu/OreVeinAtlasScreen.java": {
+      "sha256": "e5065c1fb1c90257e16e0060cc03484794576c7eb99dc1b4282746f04671f98b",
+      "bytes": 19421
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/menu/PagedListWidget.java": {
+      "sha256": "05a1124ec5c78c388ed83335bd733a938755c9ad3b9524a54d193170b115fd34",
+      "bytes": 3202
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/network/OreVeinAtlasClickPacket.java": {
+      "sha256": "0bb113e329eb00134edfdf83c5b3a330d7fde4b4a2e3061c374df7dd94fd9744",
+      "bytes": 1857
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/network/OreVeinInfoPacket.java": {
+      "sha256": "fda7f66f61fbf2899bdf9cb476ead54397ed98e4eeab0c6e0b2a92a1e0b34fce",
+      "bytes": 1335
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/network/Packet.java": {
+      "sha256": "8023e200eb730a90c9ebbab2542e3832a69bc169cc7c92d1b1ec0ea1e645a3ba",
+      "bytes": 355
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/recipe/DrillingRecipe.java": {
+      "sha256": "9c856497589bbbcc91f0dd10d86eff6b52287a68578068b8590e89ff5882a41d",
+      "bytes": 2467
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/recipe/ExcavatingRecipe.java": {
+      "sha256": "4033d7b0d572b2cf8c42381bd1f039bbbb81a94453156b906e426c957dece806",
+      "bytes": 5071
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/recipe/VeinRecipe.java": {
+      "sha256": "b22a452505efebda0c54a27aec9c6515e8d5473f8f90ac2a52597e7aec7d1b74",
+      "bytes": 8468
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/util/BiomeTooltip.java": {
+      "sha256": "dfa4f8a12602aba7d6647c05cd70eec3ea4fe1042925290661d22e4204f74d7a",
+      "bytes": 2549
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/util/ComponentJoiner.java": {
+      "sha256": "c7be3538f789152aef9cbdf29e801b79041835912dc63ba5dd7de9385da22fc7",
+      "bytes": 1768
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/util/DimChunkPos.java": {
+      "sha256": "6ebba23abda955e46e9a9d7ac858cf2f5cf6bbac8f39dfaa2535260dfa605be8",
+      "bytes": 1846
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/util/NumberFormatter.java": {
+      "sha256": "e3c74e40ccfe958a58a7181d0af6c16eb30163efc701b62fc15bcc6901610611",
+      "bytes": 1446
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/util/PlayerMessages.java": {
+      "sha256": "0e7f0c89b04acee0bad2e9063ac2301f114dcbcd837faf9ea56c06777040d5dd",
+      "bytes": 381
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/util/RandomSpreadGenerator.java": {
+      "sha256": "c7339db4cae2d4dad66d925be8baba53a2c43a5b4c830df55eeb8f57be6ca8e7",
+      "bytes": 6017
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/util/ThreeState.java": {
+      "sha256": "d4c118e4a349c9a60123faead5cc7ed9e1ea68bb130cd3d71d916953bb8f01ef",
+      "bytes": 442
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/java/com/tom/createores/util/TooltipUtil.java": {
+      "sha256": "d3f781fa46edb0b15b5f86459f112432713dc039cbc8d708c21314887e5c1588",
+      "bytes": 1052
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/atlases/gui.json": {
+      "sha256": "668d8303d33df1c622d351ea353633d970a814632bdc50a843dc0c954d24183a",
+      "bytes": 142
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/es_es.json": {
+      "sha256": "2b59c6f1cac384fd26dffc0eab8c38a54fe4c8d1dfb12ba00e74bdf9b976f96c",
+      "bytes": 7771
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/es_mx.json": {
+      "sha256": "3948a57083da2d75aef9fd7e1bb6bc4ae8f252315db96d513a3b44f5e4821a03",
+      "bytes": 7422
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/it_it.json": {
+      "sha256": "f56020c40b8aa04fcb172c06b2f8fb587afa57c5f5adc937df341adffd7829ff",
+      "bytes": 4510
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/ja_jp.json": {
+      "sha256": "9679e6594dcf9716696fd482a940a6926a265e8b2865d70c355ab46f753eec4b",
+      "bytes": 3698
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/ko_kr.json": {
+      "sha256": "f594b835b3b731f504b38139cb3bac0c74486a42b685dbcb33091c77ffe8f30a",
+      "bytes": 4586
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/nl_nl.json": {
+      "sha256": "3f543eee88e4f3f47f86e650ddd61d15d0db1df389f0f0b4d430dff2e2d06b41",
+      "bytes": 3523
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/pt_br.json": {
+      "sha256": "6d4b14bba0c9bd95494380cca93d2184e17d2e85d9140c4eeeae6f00edf29d7c",
+      "bytes": 3809
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/ru_ru.json": {
+      "sha256": "17b2f46be2736114ac82f8e79dd272b3f06d6e84da164e2a998d1d0894549f02",
+      "bytes": 9705
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/lang/zh_cn.json": {
+      "sha256": "8a869b4e83adba60feff0108ee2749273c2170b1e61ee46338913ba06a4242d5",
+      "bytes": 6673
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/models/block/drill_model.json": {
+      "sha256": "f15a6899deaef0ca2081e222d319b42141b619c85c1f1bf570de4dd6c373f030",
+      "bytes": 27254
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/models/block/extractor_model.json": {
+      "sha256": "96d797cbda2bf1beabb1f6e22f9176322d92c2b6ca42483e3328a0213e4bd3d9",
+      "bytes": 35180
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/models/block/sample_drill_item.json": {
+      "sha256": "d5bf09f99bfd62b1c66b577acd65034b7b34cbc7371606db1cfbb348449532b5",
+      "bytes": 11151
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/models/block/sample_drill_model.json": {
+      "sha256": "47c7ec516f3978bd84e5af091ef3d146bd100cd986ad64d1b80910082c98d20e",
+      "bytes": 5983
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/ponder/drilling_machine.nbt": {
+      "sha256": "af1f5a0d8b6371953505b28afc83cabf5a5bc6e682ba18d52a56274b9d816a2c",
+      "bytes": 2426
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/ponder/sample_drill.nbt": {
+      "sha256": "7e9a701f0d03c29303a943a5a33df5b5f4e2691ef913e99e82ffbff15ddb62b6",
+      "bytes": 1235
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/ponder/vein_finder.nbt": {
+      "sha256": "af1f5a0d8b6371953505b28afc83cabf5a5bc6e682ba18d52a56274b9d816a2c",
+      "bytes": 2426
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/block/arrow.png": {
+      "sha256": "6487e378aa0ac7538c088018795273f8fece5d6f48e05b8b7d7e97354cd1dd8c",
+      "bytes": 4322
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/entity/drill/diamond_drill.png": {
+      "sha256": "ef1e0df8171b6c6948e3bac41c7ee71ccc1758fea30731d60e3f7e1ea7b03693",
+      "bytes": 781
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/entity/drill/drill.png": {
+      "sha256": "b581b1d3a5735016351c9ddeb83165256ddb3543337c7fad1ceac99f2ca15da4",
+      "bytes": 741
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/entity/drill/netherite_drill.png": {
+      "sha256": "6d2c0e33f96aa24737fa237e55daaf51ab572535051007eb3647b0261ecc243b",
+      "bytes": 736
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/entity/shaft.png": {
+      "sha256": "de25325a2cf178ab797bd0013e3befe78016f46f60e6c5a6e705d236a3ff64d4",
+      "bytes": 372
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/atlas.png": {
+      "sha256": "257056f753ff1029e7a7ec98620892de317dbb48142e7e07021018653711b7ad",
+      "bytes": 21150
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/jm_coe_veins.png": {
+      "sha256": "b669ff8daf1413c792ae6ba682fb95b81e9a93800c330e1556e32ffb87fe7e52",
+      "bytes": 4395
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_action_button.png": {
+      "sha256": "2c9d550b75e5db4f185217c047e0abdc2f64006fa11bc00d52c644bd190b83f0",
+      "bytes": 4523
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_action_button.png.mcmeta": {
+      "sha256": "5af1d372bd20243a9b11402bbef7164ee31603786b11371f9cde1b5240327b9d",
+      "bytes": 163
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_action_button_disabled.png": {
+      "sha256": "93dff466f25e0c84443a0c4e8e5f6a78521c59fade6ead5078dd0a65eca06476",
+      "bytes": 4502
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_action_button_disabled.png.mcmeta": {
+      "sha256": "5af1d372bd20243a9b11402bbef7164ee31603786b11371f9cde1b5240327b9d",
+      "bytes": 163
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_action_button_hovered.png": {
+      "sha256": "5b863a95919dacbb2ff95477a85604d61862c591ee444315798abc9a8ac7f1e1",
+      "bytes": 4754
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_action_button_hovered.png.mcmeta": {
+      "sha256": "5af1d372bd20243a9b11402bbef7164ee31603786b11371f9cde1b5240327b9d",
+      "bytes": 163
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_button.png": {
+      "sha256": "023db9ed7a0806719daa9d8ba419d9a4dc6046681473aa1a056e46b31cae6e6b",
+      "bytes": 4502
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_button.png.mcmeta": {
+      "sha256": "5af1d372bd20243a9b11402bbef7164ee31603786b11371f9cde1b5240327b9d",
+      "bytes": 163
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_button_disabled.png": {
+      "sha256": "7717d6768bf6cf9931e8b57ffd414ba12296c13d2276114f27ed9e655889e738",
+      "bytes": 4500
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_button_disabled.png.mcmeta": {
+      "sha256": "5af1d372bd20243a9b11402bbef7164ee31603786b11371f9cde1b5240327b9d",
+      "bytes": 163
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_button_hovered.png": {
+      "sha256": "2c9d550b75e5db4f185217c047e0abdc2f64006fa11bc00d52c644bd190b83f0",
+      "bytes": 4523
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_button_hovered.png.mcmeta": {
+      "sha256": "5af1d372bd20243a9b11402bbef7164ee31603786b11371f9cde1b5240327b9d",
+      "bytes": 163
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_exclude.png": {
+      "sha256": "4b4e43a12c0c1d816cda6e8a15751afdcc10ba46de0f3981dc5c7347b595c544",
+      "bytes": 680
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_hidden.png": {
+      "sha256": "c33858128ae9f4334c937a2ceadadf7a7acde3b637c3f2389c3e6a274ea50606",
+      "bytes": 4408
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_show.png": {
+      "sha256": "e84f9ba561cf5a9759ca46e4f5a9fd0a9bc7a551693862f2e03690e123d906f4",
+      "bytes": 4396
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/gui/sprites/atlas_target.png": {
+      "sha256": "7de5500f68b0a8be627ea4e3c3cd58c1ed7915dc3714e884da9eb8c687c599c8",
+      "bytes": 636
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/item/diamond_drill.png": {
+      "sha256": "41f32f95f21bb26b06275197bfaa2e3a6aaa625dbf2447b8457f2a8d000499f2",
+      "bytes": 331
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/item/netherite_drill.png": {
+      "sha256": "90c15f3004d899e294a47595e8be54056317008acd139e799f8afed21262c0e0",
+      "bytes": 291
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/item/normal_drill.png": {
+      "sha256": "884a18dc824ebc2e293bf7ef9ec84229bc6364f165d356f9327d2d324e07f170",
+      "bytes": 280
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/item/raw_diamond.png": {
+      "sha256": "10a323540264e6c2873582f9d42f84e1efe005d56f7d843ea5fb09ec3a8bcfab",
+      "bytes": 398
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/item/raw_emerald.png": {
+      "sha256": "1c0650994c7b7810579687feb9eff5a3d26aaae4942aa41d4950763da5ca146f",
+      "bytes": 374
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/item/raw_redstone.png": {
+      "sha256": "3744e656b88004ca95ccca61fa56da19849ed44d30b817ce63cce8f4f2797526",
+      "bytes": 293
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/item/vein_atlas.png": {
+      "sha256": "94a85d746e5b073364a6592cb5d67a451a06faf309cef2f219d4249481c4ec5b",
+      "bytes": 427
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/assets/createoreexcavation/textures/item/vein_finder.png": {
+      "sha256": "b7cf90a74e53dc472edb7f191e61906bcca50f510ba50a63f4ac959f5408460d",
+      "bytes": 391
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/createoreexcavation.png": {
+      "sha256": "6212b4831e189806c1954b8e73b35cca84f657278ffe040653285e8674017271",
+      "bytes": 52561
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/data/createoreexcavation/computercraft/turtle_upgrade/vein_finder.json": {
+      "sha256": "ad295cfc6a604dd1eb2d2f2158e1e9adf6470d4c7a33d5637bfbdcd669e3021c",
+      "bytes": 92
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/kubejs.plugins.txt": {
+      "sha256": "02a5f4fd90ec1e75206cccb971f6033dbae28c436b64fd21aad49cbce04646b0",
+      "bytes": 42
+    },
+    "modules/create-ore-excavation-adapted-263/NeoForge/src/platform-shared/resources/pack.mcmeta": {
+      "sha256": "5e172c4313a215c007997c7a8ed56f44463d476ebdb4ba1661048cff03f54318",
+      "bytes": 183
+    },
+    "modules/create-ore-excavation-adapted-263/README.md": {
+      "sha256": "5f3486a7eb70de0dc77a121aebc27d1964364169c34db42b30995fc977c63f29",
+      "bytes": 3459
+    },
+    "modules/create-ore-excavation-adapted-263/build.gradle": {
+      "sha256": "e4ce134dfbf82ac0938ee21b319a5efdb6e7be081858e06169c050708a8c0628",
+      "bytes": 1347
+    },
+    "modules/create-ore-excavation-adapted-263/docs/BUILD-EVIDENCE.json": {
+      "sha256": "be74ebcaf6afa685c99a181dd1481d734327dc785cb7fcb68fb70b3b74f569bf",
+      "bytes": 2570
+    },
+    "modules/create-ore-excavation-adapted-263/docs/PORTING-26.3.md": {
+      "sha256": "77ce776809952c24644c1d6e639b0c4ba702d4b5a7b7394a29ec4c1295a7ac8d",
+      "bytes": 7857
+    },
+    "modules/create-ore-excavation-adapted-263/docs/UPSTREAM-PROVENANCE.json": {
+      "sha256": "e6cbb5e3622afcf3b8d5aa8adc8d7b65c603f1dda4ac567ca251fae9d746ef5e",
+      "bytes": 791
+    },
+    "modules/create-ore-excavation-adapted-263/gradle.properties": {
+      "sha256": "bc53d58e9ce8cb546b7d77773a46c7dfc6fc3a8ba46c5b61d54c0dd5647e6d35",
+      "bytes": 536
+    },
+    "modules/create-ore-excavation-adapted-263/settings.gradle": {
+      "sha256": "f2ecd4b04d044376ef130fac87447665c26fc3fbad643f9b48190b92c7f611f4",
+      "bytes": 174
+    },
+    "modules/create-ore-excavation-adapted-263/version-check.json": {
+      "sha256": "e236c9061303c38dc79cf89ff57e2c5926822a39647bce2b9e37d6ae2ba5f1ab",
+      "bytes": 4485
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "electroenergetics:item/three_phase_alternator_brushes"
+  }
+}

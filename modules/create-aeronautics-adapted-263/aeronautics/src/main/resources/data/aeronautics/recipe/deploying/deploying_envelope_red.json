@@ -1,0 +1,13 @@
+{
+  "type": "create:deploying",
+  "results": [
+    {
+      "count": 3,
+      "id": "aeronautics:red_envelope"
+    }
+  ],
+  "ingredients": [
+    "minecraft:red_wool",
+    "minecraft:stick"
+  ]
+}

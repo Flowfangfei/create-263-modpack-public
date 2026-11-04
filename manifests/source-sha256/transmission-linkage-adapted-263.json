@@ -1,0 +1,879 @@
+{
+  "schema": 1,
+  "representation": "Git index blobs (canonical line endings)",
+  "module": "transmission-linkage-adapted-263",
+  "files": {
+    "modules/transmission-linkage-adapted-263/LICENSE": {
+      "sha256": "ffbc5f636d540adfaaafea5883eac158e5819fdfa969a3101084c8255cab7024",
+      "bytes": 845
+    },
+    "modules/transmission-linkage-adapted-263/LICENSE.md": {
+      "sha256": "80ee7a573d585da44a6b993274071240470d2645922fff9f37910418b34fb836",
+      "bytes": 5747
+    },
+    "modules/transmission-linkage-adapted-263/README.md": {
+      "sha256": "d0d9f033a5ca03d3734317ffe785eec97cc87c8a1cacc3ce352fd7b03ac6ba05",
+      "bytes": 1743
+    },
+    "modules/transmission-linkage-adapted-263/build.gradle": {
+      "sha256": "e695e73d9bed149a7ca1979af435c23df0ba72750691d9f457c354a3cf5827ba",
+      "bytes": 1355
+    },
+    "modules/transmission-linkage-adapted-263/docs/PORTING-26.3.md": {
+      "sha256": "ffb29e487cceaba1b3bb6428208c3bea39c5c72019bdffd002ee1fe1556df574",
+      "bytes": 12376
+    },
+    "modules/transmission-linkage-adapted-263/docs/architecture/compatibility-contract.md": {
+      "sha256": "bc1a8b46e77988a83632f9d1ba9d397e015a1b77c7947cebaa92542557610f60",
+      "bytes": 1632
+    },
+    "modules/transmission-linkage-adapted-263/docs/architecture/component-ownership.md": {
+      "sha256": "367cef9cb3f030665ec62a35e9d0975f860d9c86fa5b47fb746182b321263504",
+      "bytes": 2870
+    },
+    "modules/transmission-linkage-adapted-263/docs/architecture/sable-constraint-lifecycle.md": {
+      "sha256": "b3ba8dd3fd8369e1103bc9470bd16d72db61bc71f36b06a6750680118986b56a",
+      "bytes": 1863
+    },
+    "modules/transmission-linkage-adapted-263/docs/model_sources/\u6db2\u538b\u6746.png": {
+      "sha256": "c5d79e76e0bc80c55bbc94b2d8c71e527adfde57793b5bfb5bfbd45fac843152",
+      "bytes": 1303
+    },
+    "modules/transmission-linkage-adapted-263/gradle.properties": {
+      "sha256": "7e65fae1c66c07e0792c741dbdac8dfaa3232655dc9a59bd1a490d742d838de7",
+      "bytes": 867
+    },
+    "modules/transmission-linkage-adapted-263/gradle/wrapper/gradle-wrapper.jar": {
+      "sha256": "7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172",
+      "bytes": 43764
+    },
+    "modules/transmission-linkage-adapted-263/gradle/wrapper/gradle-wrapper.properties": {
+      "sha256": "f47a929ae55faf35bcc01236d991ada4fc47213fb704aa50a1b41d3cf3650db4",
+      "bytes": 253
+    },
+    "modules/transmission-linkage-adapted-263/gradlew": {
+      "sha256": "b187b4c52e749f5760afdd6fadc31b2a98ad35fb249bf0dff03b72650f320409",
+      "bytes": 8733
+    },
+    "modules/transmission-linkage-adapted-263/gradlew.bat": {
+      "sha256": "94102713eb8fb22d032397924c0f38ab2da783ba60d07054339f1190a0c4e2cd",
+      "bytes": 2843
+    },
+    "modules/transmission-linkage-adapted-263/settings.gradle": {
+      "sha256": "dc9804aa8f0797abc59353544aa88230d5ae6fd56304942b8b3f499ed3533aa7",
+      "bytes": 261
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/AeroUniversalJointCommonEvents.java": {
+      "sha256": "07ccbc36c093ff3ea9f64decd27873ab51133be1edd73c2ce2f2a7f6ba3ebea3",
+      "bytes": 2680
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/AeroUniversalJointConfig.java": {
+      "sha256": "090bf367f45e8e26656a8346195c609761c178ca8d9c422b5f0a7c7f3b595595",
+      "bytes": 32824
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/AeroUniversalJointMod.java": {
+      "sha256": "0148d95e50c54b612bba1add8baa7ef904cf7db6395e8fdec4ae02fb5962068a",
+      "bytes": 1179
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/ModBlockEntities.java": {
+      "sha256": "8d4ebd59de6e18c57cbfcbdc4e60bc31809085c187eb878f4f05d6fa68f2b47a",
+      "bytes": 2748
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/ModBlocks.java": {
+      "sha256": "02f8ea20ec34d2a978bb0ee6faad560adbbab4ee908824cdba23b50e261ee4b3",
+      "bytes": 6389
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/ModCreativeTabs.java": {
+      "sha256": "12eefd8f9c7753adfa18c8c9b6214b526d502b2bf7d49aa6ceb0c16dfc6c641e",
+      "bytes": 1974
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/ModItems.java": {
+      "sha256": "46c0bd54c5e5fd8050bae8b380889ed2fcdb808a3e9386dbbdeaf5874b849f40",
+      "bytes": 6684
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/ModMenuTypes.java": {
+      "sha256": "f67e6d49338e268c96986d2b57ceb4b076323516a3158d8e55d61d402d3d778a",
+      "bytes": 1606
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/access/DetachedKineticSafetyGuard.java": {
+      "sha256": "85a883a14f53e4173e5af8746a5cb7c1f53490b1679f8d845c89662f5dbc55d0",
+      "bytes": 93
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/access/KineticEffectHandlerAccess.java": {
+      "sha256": "30d6f5198775f63b4614e74976947dc77b157aa91a7ca6454ecf7af8dfe236d7",
+      "bytes": 140
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/access/KineticVisualEffectAccess.java": {
+      "sha256": "297dbd86cc7f7c7491daa47cbf9bb36501942f1459042337d24cef6efde50ad2",
+      "bytes": 248
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/access/SwivelBearingConstraintHandleAccess.java": {
+      "sha256": "e5ea1b20329ff16b279fce38c4fde9f06bfccb21c021357f66f9d15209faa643",
+      "bytes": 298
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/access/SwivelBearingPlateParentAccess.java": {
+      "sha256": "0fa9b390323e3a5607f5083209ce223715fff0e8c8308cb401c92268c95d7ee5",
+      "bytes": 1072
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/AeroUniversalJointClient.java": {
+      "sha256": "09cb76fd8a25513a998c89749fd5fed57b13a0e9c2d729f435569851a8290bb0",
+      "bytes": 2487
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/AeroUniversalJointPartials.java": {
+      "sha256": "010d8bc20d433132f10a8f9829d33b9fcbad84a3c619c2ca6682754ffaf45226",
+      "bytes": 1988
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/ConnectionPreviewRenderer.java": {
+      "sha256": "2dee7048532d225d7b6ec234549ee0f0a61a6bb6d41602803bc7d2e0bf66d9b1",
+      "bytes": 12466
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/DampingStressBearingScreen.java": {
+      "sha256": "561a2845cadaffde66e5a4e166ffb398a6227a4207e17a26562233d5fb318592",
+      "bytes": 9359
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/HydraulicConnectionHeadScreen.java": {
+      "sha256": "e167749daeabb7cb49b9e6870e8d04756169272a23715ec2e1cc2e6ee5e7866a",
+      "bytes": 24791
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/HydraulicConnectionHeadSettingsRenderer.java": {
+      "sha256": "b1df1b1a55d7ae487832da2501c8725e992146d449e70e007a52d0fe34da1121",
+      "bytes": 18470
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/HydraulicRodTargeting.java": {
+      "sha256": "0db8e72f303a421796b2b768dda08f4228109622b23d2701f6f0508a2f87119c",
+      "bytes": 20882
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/LinkRenderEvents.java": {
+      "sha256": "d71ae1c9c5dfe7c5d0066379c55edf7d5c03a3c1d7f8c47b317e271c890e9fad",
+      "bytes": 2770
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/ToolgunCompatibilityNotice.java": {
+      "sha256": "8ab436c3ce24402793337a773a21747de89cdb81a54c6c4224fd718a43b5ee81",
+      "bytes": 3310
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/UniversalJointScreen.java": {
+      "sha256": "9db8c1bea9ed9d21e1bed39f012aadca50b879bbeb124dacc63417436196e687",
+      "bytes": 8922
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/render/ExtractedGeometry.java": {
+      "sha256": "2b48f44483be7e082598416fd4dd8609ed521facae3f565690081715e0a7d128",
+      "bytes": 1978
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/render/FrozenKineticBlockEntityRenderer.java": {
+      "sha256": "4fc3ef0a9518b87c8aa7615e4efaac9e1234abaaddac36da8813091af0db1239",
+      "bytes": 2091
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/client/render/FrozenSmartBlockEntityRenderer.java": {
+      "sha256": "8bcb71d8d6855c653a9e90d7c59b08ee3e4eb0712c2b4883472a512a9ec00628",
+      "bytes": 2065
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/BrassHydraulicHingeHeadBlock.java": {
+      "sha256": "1647b9fde13765c08a256211f23bf4cca321671a5e90bcd1e376a80cf7f5a4ae",
+      "bytes": 565
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DampingOutputKinetics.java": {
+      "sha256": "930537859f5469b292f049671d2befd5154cebc565f103c2f5bf2f42b4e02d7c",
+      "bytes": 11374
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DampingStressBearingAngleHelper.java": {
+      "sha256": "db5414523d0a24a0090ad25b41515715f2c7aa88cb1765dba10d59d00e8b99bb",
+      "bytes": 2080
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DampingStressBearingBlock.java": {
+      "sha256": "24cb5f7bb8a4ef1cfa43ce6db3e8eb0405a06a7f70ef13b86d3afe31bbe69a91",
+      "bytes": 3695
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DampingStressBearingBlockEntity.java": {
+      "sha256": "c1c7650800b30e8059a36e6f395f7cfff8c80f2f67ff98f1fb48beca95a9c5dc",
+      "bytes": 37027
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DampingStressBearingBlockItem.java": {
+      "sha256": "e4acfb18996478798fe28457fcc6e816f28041176605f67534fe25624057213a",
+      "bytes": 1314
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DampingStressBearingMenu.java": {
+      "sha256": "593f2aa25485a4b8b96be1668142f4d62b7dbbf062700effc827ebb46314f8db",
+      "bytes": 3231
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DampingStressBearingRenderer.java": {
+      "sha256": "e8c0c5f9d364e79f978c09d6925a5648bc6986ecafb601a0d1417aebe9a6a521",
+      "bytes": 5336
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DampingStressOutputModel.java": {
+      "sha256": "e4255c5946ba4617966b940c9899364ef4c0a3f2f45eb54d9215a375d1437398",
+      "bytes": 1717
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DirectionalConnectionShapes.java": {
+      "sha256": "12e29b1e9a42be7f24c32567665433e81107f1c14e208d30eb2fa2c7e3c27571",
+      "bytes": 3367
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/DirectionalValueBoxTransform.java": {
+      "sha256": "98437622e3ca5675e7ff4b183a2d63f47f959715e5f7b9d936fac5a944fd1da9",
+      "bytes": 2797
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/GiantHydraulicRodVisualState.java": {
+      "sha256": "6ae19d93c98c75a0559eec861ecc4b17f1d47b50f47bc3fa8d82e07c3fc22c2d",
+      "bytes": 1894
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HingeAssemblyOrphanCleaner.java": {
+      "sha256": "3c9778948d0fe491c223b3de86f6b74d9f67201a18a7e6e9cbb4485488db9e6c",
+      "bytes": 3447
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicConnectionHeadBlock.java": {
+      "sha256": "f2f95f04503ca6df09c92d7281a54aaa4ee89db94d731cf71fc83e55e88fcd99",
+      "bytes": 6098
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicConnectionHeadBlockEntity.java": {
+      "sha256": "db69ddae2eb1a6b9c3085ec8dc6ba0c784189678f006a81d2052b6666d160113",
+      "bytes": 113635
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicConnectionHeadBlockItem.java": {
+      "sha256": "47e49b87e87d5f014553deaba1202fe72c8c936a2a147007ca737969dead9d9a",
+      "bytes": 1543
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicConnectionHeadMenu.java": {
+      "sha256": "04015aab691c3571dec1d1212f1da8fd6502f5a44db234bcfa41efc87e51b767",
+      "bytes": 8004
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicConnectionHeadRenderer.java": {
+      "sha256": "c357abf4e4931e2d822c1b174db985898b2043f7e2a3ad8241becc6e6395e8a8",
+      "bytes": 22010
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicHingeHeadBlock.java": {
+      "sha256": "3a82a63f13a6ad8fb59cf5ae798c5ca1780ab353d5413823aa14127346b89e7b",
+      "bytes": 6031
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicHingeLinkBlock.java": {
+      "sha256": "bb57147bc0ab760a370279e55512b6dda35d7c440bdc86a2c488c564116d98f9",
+      "bytes": 1614
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicRegulatorBlock.java": {
+      "sha256": "1182ae3324fa9af55b73156bc5d4c8e939e2f2a5421796541ffa3bc15775d04e",
+      "bytes": 4119
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicRegulatorBlockEntity.java": {
+      "sha256": "fae1732943db0368d7d31888cfe2decdcf51adb9201f096dd0bce6086b9b1ae5",
+      "bytes": 10894
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicRegulatorBlockItem.java": {
+      "sha256": "26a927b75d60c8537729afb837bf0710b4e7de4e12325779bd211929ac3ce906",
+      "bytes": 1373
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicRegulatorRenderer.java": {
+      "sha256": "279f66e20a647cfd6a149938aeac9ad4a85cd15b6cdd2c2b5205e0c8441c099a",
+      "bytes": 2247
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/HydraulicRodItem.java": {
+      "sha256": "1546164d4f428e16b21eb0a40ed29f3b0c288600a6de308cdb7e6a8db289c024",
+      "bytes": 3250
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/JointBindingData.java": {
+      "sha256": "db52142a3f9bcf96356761f54ee658a3787db8188d40f4dbc410f5a1257f9deb",
+      "bytes": 846
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/JointVariant.java": {
+      "sha256": "d2a2c0b5fc8275609367169db8b10931ac004fc34678424f20994a664d4842e0",
+      "bytes": 2540
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/LinkVisualEffects.java": {
+      "sha256": "1449018e836af939c0e58d575eae3d22b7e3d747148fc3798c3fa9285775557a",
+      "bytes": 501
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/PendingHydraulicSelections.java": {
+      "sha256": "69caf1d6081ca1a4386436d5b5a1063cc2f7c2172243eebcae5780120e74d042",
+      "bytes": 1070
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/PendingRodSelections.java": {
+      "sha256": "f7fbbc3f58e918c95cac1b41022b3be21eda69ba057524c4cbc5c50ba875e407",
+      "bytes": 1527
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/PersistentLinkTags.java": {
+      "sha256": "09a4ac137193901abd69612e89becd6680fdf513395e4fa5d3bfeec65b84d5d9",
+      "bytes": 1068
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/PlayerSelectionStore.java": {
+      "sha256": "b206933ad4b17f767d7d1d64641cdecd98a260a37527f8b4473442d95bfcd0d8",
+      "bytes": 1349
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/RecentMoveRemapper.java": {
+      "sha256": "1ff359a7b9f57e4cb65350c4e43f5eb9cf47945addbe9e5a2493bf027a746009",
+      "bytes": 2997
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/SubLevelLinkedEndpoint.java": {
+      "sha256": "da3d79627e9efc8b9c7a01c0fc92e7b9abbfcaa93dae6bc5acc24ed56177570d",
+      "bytes": 465
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/SubLevelMoveHandler.java": {
+      "sha256": "579f3bfdbc4241e895887b20ac2eb8e787152471fe74144660afbfcc65ad32bc",
+      "bytes": 1381
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/TransmissionLinkageRuntimeProbe.java": {
+      "sha256": "e1597c0aae70e7bd862af1c81489a8651b85a02e029b97c847f63cffed3df5cf",
+      "bytes": 13727
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/TypedScrollOptionBehaviour.java": {
+      "sha256": "5af3f4e841857630401c5c3e64c50cb8229f15e6cf4f91a43c6e1a01f8916a4f",
+      "bytes": 1505
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/TypedScrollValueBehaviour.java": {
+      "sha256": "d28e99aad526b526c48bcbdc5d1cc4b60478bdf3bcb243cd42aef1e3d2a658d7",
+      "bytes": 1336
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/UniversalJointBlock.java": {
+      "sha256": "9ed841bc0a6bdc738a95d3fbf466ae1bb70df0ae6fb15d8d699229a68ac3b1f9",
+      "bytes": 7779
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/UniversalJointBlockEntity.java": {
+      "sha256": "1430e37595cbe7900d335e0534d7930b2e35b85203ae188df116d2ddbf1bd7d7",
+      "bytes": 44306
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/UniversalJointBlockItem.java": {
+      "sha256": "4a1aee3a8420f1027e120dab3c6f66624bb95b7bdb12dbe6b4810a84d57cda72",
+      "bytes": 1140
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/UniversalJointMenu.java": {
+      "sha256": "0ee62c4df00950e059fb148cbe7128a5a03e2494aac8027f0defea316b2e27b3",
+      "bytes": 3073
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/UniversalJointRenderer.java": {
+      "sha256": "d312452171eff566ad3b963dee3b9cc9ecad56592a0d0be4b329ab1c478cbf92",
+      "bytes": 18524
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/UniversalJointRodItem.java": {
+      "sha256": "f63a28b01c1cd64b0421f750d38d601e243a0462996d17dab2d9dfc4cd0150ca",
+      "bytes": 2587
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/WrenchRemovalHelper.java": {
+      "sha256": "c4ef52ae7ad1e07e0c1701016142adc8cac5a03578be2f8ba78392b140ea2f7f",
+      "bytes": 2230
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/hydraulic/GiantHydraulicPhysics.java": {
+      "sha256": "b2864c3a74bf5465eb3ff599dca244c1b104b153ad0fa2ce3861bb4df3797426",
+      "bytes": 7272
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/hydraulic/GiantHydraulicSettingsState.java": {
+      "sha256": "e51781d903cc421899a6a4651864c8ee7d26dc85a561b42d963622746cac416d",
+      "bytes": 2596
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/hydraulic/HydraulicCylinderControl.java": {
+      "sha256": "ba3c31d432ab14b3bcaf48fff4f31b78d5aec0327145e04cad48a15985ff5966",
+      "bytes": 6289
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/hydraulic/HydraulicLengthControl.java": {
+      "sha256": "a14368a596b1a50778cce9d6fd1d0b2ea4f0ae77a54fb57aa046cacba7e45cd7",
+      "bytes": 3081
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/hydraulic/HydraulicSettings.java": {
+      "sha256": "d3c7806f4939c404f5c78709fd13205dfb70a03d86a9fde695bf71a64b31090d",
+      "bytes": 4984
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/hydraulic/HydraulicSettingsState.java": {
+      "sha256": "d8db7bb3dc0e9686965f389b086f824df43d29a5751446cb323c67205aaa2947",
+      "bytes": 3576
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/AeroUniversalJointPonderPlugin.java": {
+      "sha256": "f15e7bac53c2e42b0007a452b25895a81a51278a039f1bf40af648fa377e2d88",
+      "bytes": 5861
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/AeroUniversalJointPonderScenes.java": {
+      "sha256": "b898321763e26fa38d418329dbc09d4385b6fe007c9eec0fc8f48f9766e4728d",
+      "bytes": 1882
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/CreateHydraulicRodInstruction.java": {
+      "sha256": "a5eb14dddd5344953799b0bac67a9351de3fcbc9f57314d5e5893e3a392a1928",
+      "bytes": 678
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/CreateHydraulicSettingsOverlayInstruction.java": {
+      "sha256": "b8654002c2454b466afb9d5e26cbfc8833d7a6f691b684cd7528b48b90521afd",
+      "bytes": 871
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/CreateUniversalJointLinkInstruction.java": {
+      "sha256": "d2b267df6940cd8f0fbd4827acb90b979cc0fdb057bc080a8f1fa4119f99b27a",
+      "bytes": 726
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/HydraulicRodElement.java": {
+      "sha256": "9e27991d22bcdb752b1891a10fd13916bae74dfe1c17fcdb12709d93c308f862",
+      "bytes": 4116
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/HydraulicRodScenes.java": {
+      "sha256": "1b4b631eba53fa6f5c81137b8d093947784d48ea2f273f8524d114e851d76cc5",
+      "bytes": 37540
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/HydraulicSettingsOverlayElement.java": {
+      "sha256": "49d0f6a34174f47c82c21af0a19e88b443f45e22e449e95d7f171bbe4b75bdd5",
+      "bytes": 6747
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/KineticConversionBearingScenes.java": {
+      "sha256": "dc9312877f4fcdde99c8949449528fa64dcfc290bea021ed1e4149cc37a6b2e0",
+      "bytes": 6862
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/SectionAnchor.java": {
+      "sha256": "142319e1fe1787f264b3e97cff3bd05746ab688a35fac0acf1b1e895287fb8fe",
+      "bytes": 1549
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/SetHydraulicSettingsOverlayInstruction.java": {
+      "sha256": "f0981ac731e809f7fef714be613f7b239192609ae6407516a66c561a9470eb3e",
+      "bytes": 2235
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/content/ponder/UniversalJointLinkElement.java": {
+      "sha256": "3ecdac732831648e44d1a7ec4c9fc5e1bc59a7262f2e0d69f3cba388d52208a5",
+      "bytes": 6004
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/mixin/BlockRenderDispatcherMixin.java": {
+      "sha256": "849a089cf4d31f6d7220de4fe75fea6b54bf21536d8c6fa07643be3286d04dff",
+      "bytes": 1873
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/mixin/KineticBlockEntityTickMixin.java": {
+      "sha256": "13e0f43581f8e7c1acc8091824211bf74b21d18bc4bb3065566c089311e35efe",
+      "bytes": 1489
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/mixin/KineticEffectHandlerMixin.java": {
+      "sha256": "4969fc908ed6ef5f146f84d3e5e2f26287e512939ceb68c35a493c80846192cc",
+      "bytes": 1162
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/mixin/SwivelBearingBlockEntityAccessor.java": {
+      "sha256": "8d47ca6bac2992aec5a5210a9006cb3754c41356d2beb8a2ca66597c1b718319",
+      "bytes": 1035
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/mixin/SwivelBearingCogwheelBlockEntityMixin.java": {
+      "sha256": "2ecb294e0a874a9475306423dcb3163eb0b9a910df0594c75dda4af178b42077",
+      "bytes": 415
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/mixin/SwivelBearingPlateBlockEntityMixin.java": {
+      "sha256": "965a7d8a430ec0ae80f668b7469df649a81e294e1b18b8e038a8df10c356a2c5",
+      "bytes": 5784
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/AeroUniversalJointNetwork.java": {
+      "sha256": "f1212bcca165fb70df2a4652b79a0de6ae8e296fe9d954916ed8488b087b5179",
+      "bytes": 1902
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/BreakHydraulicRodPayload.java": {
+      "sha256": "896e17dfe4972898bedefbf656dd5ac58d251c5c00695db469f5665fe8ce61d9",
+      "bytes": 2500
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/OpenHydraulicRodSettingsPayload.java": {
+      "sha256": "d04d82cb4be37d02567c9354f2823e9fc5ec73463195db259191a7f609fd8ecb",
+      "bytes": 2611
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/SetDampingResistancePayload.java": {
+      "sha256": "8e2ed4a38a7623b6dc4b58b1509374f44381af686a67a3596f228397d9de2fa4",
+      "bytes": 1941
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/SetGiantHydraulicSettingsPayload.java": {
+      "sha256": "37ef89c26c4517346619e1bbc72a29ab6ce907a0937ffd849bbb52835fcfa89d",
+      "bytes": 3259
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/SetHydraulicHingeLimitsPayload.java": {
+      "sha256": "9e8b176b2f3d013a0c3e5984c9b3d159415ff483a734d207cb05a82105278d37",
+      "bytes": 2377
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/SetHydraulicSettingsPayload.java": {
+      "sha256": "9fe71fb07cbc34bfb9304b8498576db0816c308a8bc02ef61487a8eba3919226",
+      "bytes": 3941
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/SetJointSpeedRatioPayload.java": {
+      "sha256": "b5118daa53f3988c1cd735ef1ff2449a417ce200f297102c26ca96c9f56721af",
+      "bytes": 1891
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/network/SyncHydraulicSelectionPayload.java": {
+      "sha256": "e9fb79dcf3653133acf0bb56c5297770ac803d26bc06535ecab542514a995247",
+      "bytes": 3458
+    },
+    "modules/transmission-linkage-adapted-263/src/main/java/com/enxv/aerouniversaljoint/util/SubLevelReferenceHelper.java": {
+      "sha256": "917079a36360ef271f51543b5ec839cf38d31cb423217ee415db3a233b75db50",
+      "bytes": 5426
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/aeronautics_utility_objects.mixins.json": {
+      "sha256": "43915b6bf88597111ec274bc92fff29e53fc04a5a2aa2059ffac3ca2809b9741",
+      "bytes": 396
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/blockstates/brass_hydraulic_hinge_head.json": {
+      "sha256": "355f74b7940d584b18ce0a51da94c0f3f2b5908be7a7637757eb312c170ad8fd",
+      "bytes": 2115
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/blockstates/brass_universal_joint.json": {
+      "sha256": "d1cfdb7ca37d5114f0572048e4b31bb2cc245982e5116d53d96a0c638decd56b",
+      "bytes": 737
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/blockstates/damping_stress_bearing.json": {
+      "sha256": "b3fcac4c163df4ed27bfe06cd7f2a632b445de76a493224bee295941473dd84b",
+      "bytes": 3779
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/blockstates/hydraulic_connection_head.json": {
+      "sha256": "5ef3767ba978f1af4f789e8df83b3fa5ab603e1606b2c1806fa557857068769a",
+      "bytes": 668
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/blockstates/hydraulic_hinge_head.json": {
+      "sha256": "b90cbf589030728ea21887fd722f1ec196a61bd1b1d72dc3809d19f7fc74b908",
+      "bytes": 2276
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/blockstates/hydraulic_hinge_link.json": {
+      "sha256": "842644b51f021056ae55bdd87a893639dc27d99132371aef7c6f7a70a4649b70",
+      "bytes": 67
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/blockstates/hydraulic_regulator.json": {
+      "sha256": "147792c8487a82c0de63ab79c503095697a29916c64b19574588fd2da3ca24aa",
+      "bytes": 9941
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/blockstates/universal_joint.json": {
+      "sha256": "160ae7a37cc7f9c11716aba293affedc79519f41f8a6e4dff437e87455880e46",
+      "bytes": 702
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/2.json": {
+      "sha256": "e5bb1ecc76487f61ef83deccebddfd87209a7acc580314c3b3c4e9e0c5b795d7",
+      "bytes": 102
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/brass_hydraulic_hinge_head.json": {
+      "sha256": "de110cab26449e86828851b7ac7ae59e644cac9cf62c0e55e5e13eaa8dbb75fc",
+      "bytes": 127
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/brass_universal_joint.json": {
+      "sha256": "9a83eba2278bfeb9f411fddc8a15b029a8476b6c2cc29ce81ad3434a4597bbcd",
+      "bytes": 122
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/creative_hydraulic_rod.json": {
+      "sha256": "8280d6fbef6c35bb90fafd75ad6f1bf057752be78ad8810a9078d9fff8f20c28",
+      "bytes": 123
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/damping_stress_bearing.json": {
+      "sha256": "61525bcfb4d0298ccb01bb664476f4d11fe7b029e6adb6408a1c66f6a30f0622",
+      "bytes": 123
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/giant_hydraulic_rod.json": {
+      "sha256": "a4d59936bc8c7e1c54e268381fa7bec68453c56df0c332e68476125e93c1096d",
+      "bytes": 120
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/hydraulic_connection_head.json": {
+      "sha256": "6b8902b53d97a66d71934c593283bb3155b9c12405f1b1afaba4e145a2f984d7",
+      "bytes": 126
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/hydraulic_hinge_head.json": {
+      "sha256": "196a317e64c91a99c237ee3078b1a613ff60623a5c968c16d667c1c08ffb579d",
+      "bytes": 121
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/hydraulic_regulator.json": {
+      "sha256": "bd88af0768b1be064263d31b9c0e500f631a44785e8475beb5b24382abb06417",
+      "bytes": 120
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/hydraulic_rod.json": {
+      "sha256": "519a18a15d1d822572c545e460be57fa3d5f6a327a1b9f49489f149e43df7810",
+      "bytes": 114
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/universal_joint.json": {
+      "sha256": "fdcad5ea7e63ccc4fc03dfbc57a550ccd6772be69780f25c829d96eeba061bf8",
+      "bytes": 116
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/universal_joint_rod.json": {
+      "sha256": "e1063237ee66f50ff09f44b56ce210be6f5d33d520db2b39297703147d5b49cd",
+      "bytes": 120
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/items/universal_joint_rod2.json": {
+      "sha256": "471b142337fb59090d160b7760a1c4d87d2c9b5b70a6329bd2f40f7bd7c0a754",
+      "bytes": 121
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/lang/en_us.json": {
+      "sha256": "37be64abad5f7baf0ebebd36c36c68b42932136ba8a8b0dba367ce7775c4bf8e",
+      "bytes": 17010
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/lang/zh_cn.json": {
+      "sha256": "024de951d62a69710a16412839c5b789bc03884d9a2d0f9a1cd122c2f5f1f001",
+      "bytes": 16065
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/1.json": {
+      "sha256": "8fc8548f867b1773a37a56b856199ecb4b53802e385d392cd4526fdbccfbbcfd",
+      "bytes": 2480
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/andesite_hydraulic_hinge_head.json": {
+      "sha256": "b9b31ab84577804f198bdc4199091aa1f8a3263542e2c6e32fa9a2d6dc1e84c9",
+      "bytes": 4949
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/andesite_hydraulic_hinge_head_z.json": {
+      "sha256": "78d28cc1850d394da68762a27bb53ea16c1e22b2430d130186406ee9044a4022",
+      "bytes": 41591
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/brass_universal_joint.json": {
+      "sha256": "2eb1d5b9c3080dbf315200950bcdd829bbe57e791cbb348d90afd59812646cf1",
+      "bytes": 2023
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/brass_universal_jointhead.json": {
+      "sha256": "a141d628f10ac8d534446822e64a1dd61b386fa80d45e2aa9209db368289a4de",
+      "bytes": 3642
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/control_block.json": {
+      "sha256": "48c8110f0fb35c529ae77635048cd950de389dc49d8da2633f79e5421822f831",
+      "bytes": 43177
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/control_block_item_shaft.json": {
+      "sha256": "cec961d16e2085a409dc625cf9983f9a4d2c86c8d58b00bd0e599e65832bff17",
+      "bytes": 693
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/control_block_powered.json": {
+      "sha256": "c5294c113be2937f954a6c484e29f20447c2cf9362efbc09f0f58477402ab7c9",
+      "bytes": 43156
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/control_block_powered_rolled.json": {
+      "sha256": "75d17e5f2a2faa0304619a37b4120428f682bc9d0f80d0904559bf94e8c58866",
+      "bytes": 43479
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/control_block_rolled.json": {
+      "sha256": "55ef0a7bef96ddc121c10d48206dc69842ec084d59a8e8fb27dc06fe80945f76",
+      "bytes": 6009
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/creative_hydraulic_rod.json": {
+      "sha256": "763429a75c09a881edfd6851204f2ad59c3884003fe2530eb9afd580b86d5181",
+      "bytes": 231
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/damping_stress_bearing_body.json": {
+      "sha256": "700160c9aaf9053836e5d5d2a8f215f72e267706dae4c569befb470a6cfa6ba6",
+      "bytes": 1419
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/damping_stress_bearing_head.json": {
+      "sha256": "f905f2aa8e48eb204695ba6122dfa84f03ea213814a01e3d5759d8cd9f73c246",
+      "bytes": 2816
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/giant_hydraulic_rod_fixed.json": {
+      "sha256": "5b98dd5321d935584b05e8518e4f77c35be365d96e3666fa9de6533193ea628f",
+      "bytes": 23249
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/giant_hydraulic_rod_medium.json": {
+      "sha256": "03ea0bf5207068168e3db209ae6a364b7b81476e9307cd0fba711d1210d2a93c",
+      "bytes": 676
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/giant_hydraulic_rod_thick.json": {
+      "sha256": "cf977993487ebd328d909b87d82cb66a19240fb77797a5554b45b959c525441c",
+      "bytes": 682
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/giant_hydraulic_rod_thin.json": {
+      "sha256": "5f026ad20a488d9fcf264b094523ae329b7a1b94ba1b0cdea9633e9f5c9d45ad",
+      "bytes": 680
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/hydraulic_connection_head.json": {
+      "sha256": "232929798228586312fb2dd3a7f8e0b72bc6b24c7c142149871747527bf843a5",
+      "bytes": 48
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/hydraulic_hinge_head.json": {
+      "sha256": "a0ab1c0824333cad304b18781155ec75918bc7428adaeda12066f715e1097859",
+      "bytes": 5489
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/hydraulic_hinge_head_z.json": {
+      "sha256": "5b8117cd4a2801adb7794d6c9d6fefadb1abc17f4a232c2231b9d5f1dd1ee2e7",
+      "bytes": 46008
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/hydraulic_hinge_sleeve.json": {
+      "sha256": "8ff320385ed874af12f95dad182f54e0612a520574c4c85e12e4ee83841b91c7",
+      "bytes": 776
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/hydraulic_rod.json": {
+      "sha256": "7533c60b9b14228e81c6a07c3bcef9f53d838c5ce4b1d4f93ac352d30b3aa3ab",
+      "bytes": 2059
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/universal_joint.json": {
+      "sha256": "139df4da843a1d8ad20db71156b5b95dd2fe740e472af0e355032b57c6c63988",
+      "bytes": 1692
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/universal_joint_link_core.json": {
+      "sha256": "24dd1adb837eb64f512de638d0b3ca24b1b054ee26e1697c0a05b33c706cf25c",
+      "bytes": 2018
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/universal_joint_link_core0.json": {
+      "sha256": "19484ab3d5bd84a7656df935fd8eeeb2b85186911dd7eea45295e64db359c7c3",
+      "bytes": 729
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/universal_joint_link_core0_a1.json": {
+      "sha256": "66a0026b3ba8e9b6c75b7aeb805f7e81740201e6af3738db154090ae451b613a",
+      "bytes": 2594
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/universal_joint_link_core_a1.json": {
+      "sha256": "66a0026b3ba8e9b6c75b7aeb805f7e81740201e6af3738db154090ae451b613a",
+      "bytes": 2594
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/block/universal_joint_link_sleeve.json": {
+      "sha256": "6524c3bf19725b5040560b80d05475d213c8fb8a52263aa6cbdf16e0a2279974",
+      "bytes": 1546
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/damping_stress_bearing.json": {
+      "sha256": "5032207826e1ddcba42b8ca0885b55c0b40483e904b37c38de53d893acb2fbac",
+      "bytes": 4938
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/2.json": {
+      "sha256": "1bd1c464de0b3f151372ab867139091e66bccdb5c76bedc110ab8ef05ee3872d",
+      "bytes": 5488
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/brass_hydraulic_hinge_head.json": {
+      "sha256": "4defc6c3e38171c32dcd47329f64551eeba0a6378626f29662d1092483922571",
+      "bytes": 73
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/brass_universal_joint.json": {
+      "sha256": "6c1605ff1499576bca8ca9ad8bc666fe860a496bcdebdd070d47f7da4d300b53",
+      "bytes": 74
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/creative_hydraulic_rod.json": {
+      "sha256": "f744ed74802f3b641da6012ad5ee5d97f594b6430b782bac2e3f51c9e49efbce",
+      "bytes": 230
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/damping_stress_bearing.json": {
+      "sha256": "5032207826e1ddcba42b8ca0885b55c0b40483e904b37c38de53d893acb2fbac",
+      "bytes": 4938
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/giant_hydraulic_rod.json": {
+      "sha256": "fccaaab50d7a71902a88076ec37b1c7e571f1cd697a973c0aff037d1274e8aac",
+      "bytes": 25478
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/hydraulic_connection_head.json": {
+      "sha256": "845d3ad2e2fd345ac3d0f9ec6830be58c8f62a99c9bbd54fea7d54623ab93525",
+      "bytes": 78
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/hydraulic_hinge_head.json": {
+      "sha256": "52d84ee442dfc382e01bc21e3b78615c3fd1626e5974e2d42d4ff9275282f583",
+      "bytes": 82
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/hydraulic_regulator.json": {
+      "sha256": "ba032a1014aff08fff29fe44f16d8afc80d97dccaed908103ca6390c46310f40",
+      "bytes": 1102
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/hydraulic_rod.json": {
+      "sha256": "70c87668caa38f851e8e5fc72a8e3137e4d303591de221ee46fea02a2c2e0150",
+      "bytes": 3664
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/universal_joint.json": {
+      "sha256": "b03a2f13b43e1ba227854a98fbe186e08862866e443def70e850b1510ae2b5fd",
+      "bytes": 69
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/universal_joint_rod.json": {
+      "sha256": "f836b2fd56a0d5a635804e2209bd062562f3a606dad0354061f57482c60b65cd",
+      "bytes": 3389
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/models/item/universal_joint_rod2.json": {
+      "sha256": "1b5de6237709e879b0c52a15962f601a80abb2a66e0743ae9f33fed02c55d2f1",
+      "bytes": 3900
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/textures/block/andesite_casing.png": {
+      "sha256": "c7da24aacfb6170ebd570e5a302a6c9d3f3c0b324314e3df79236209667f192a",
+      "bytes": 263
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/textures/block/base.png": {
+      "sha256": "e1081a8d7fd328daa98acacc79a4c7fe6717484822c3a3d2d9697a006ebf54a4",
+      "bytes": 1721
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/textures/block/base2.png": {
+      "sha256": "5c00a3f57c98c8e9113d220a0588761d969997af681c680d846b5371b0cd559c",
+      "bytes": 2514
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/textures/block/brass_casing.png": {
+      "sha256": "3f82796571a690a9722abdcd825b88c988745bc322c6333809d1da7e160292a9",
+      "bytes": 243
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/textures/block/creative_hydraulic_rod.png": {
+      "sha256": "0830987ce4daf8470662d558f28c98c12a7abbc7fe206a6670a2b28e67932718",
+      "bytes": 1064
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/textures/block/damping_stress_bearing.png": {
+      "sha256": "fcaa18c4309a672853ff3088d6763228c01c7f5c5aa46e442d9c0b01bb480dcb",
+      "bytes": 1646
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/textures/block/giant_hydraulic_rod.png": {
+      "sha256": "fad3f5c2454f1358ceaa4468b031e0d265c430a5975d7dc576bbf69a3b305449",
+      "bytes": 6146
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/assets/aeronautics_utility_objects/textures/block/rope.png": {
+      "sha256": "c5d79e76e0bc80c55bbc94b2d8c71e527adfde57793b5bfb5bfbd45fac843152",
+      "bytes": 1303
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/loot_table/blocks/brass_hydraulic_hinge_head.json": {
+      "sha256": "a64f75dc71782bd6a4a6daedbf0f36248d1a67520cf3e7eb0b0aa2e8566e7b53",
+      "bytes": 247
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/loot_table/blocks/brass_universal_joint.json": {
+      "sha256": "f811fd835388b07d2208129cc498bc25abc1b81c19fb76fd39c4a7e3b6fb419d",
+      "bytes": 447
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/loot_table/blocks/damping_stress_bearing.json": {
+      "sha256": "3da49575cd3e7de970e80af972d1b66276c5d8cb18fdb945f6aed338577d703e",
+      "bytes": 449
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/loot_table/blocks/hydraulic_connection_head.json": {
+      "sha256": "0515cba79fd7fd70a69731fb215b2ccf35b01e1d2e9aa1a09acad6f5442464d2",
+      "bytes": 455
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/loot_table/blocks/hydraulic_hinge_head.json": {
+      "sha256": "e44ce8e6b7e32ca7c62d810822f0464ce6d1cc6e7e63aee3f745e6769c4f58c5",
+      "bytes": 445
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/loot_table/blocks/hydraulic_regulator.json": {
+      "sha256": "99fb63b7e4886beed0d99d33db896bc700b434e346a5656a19dd35771ebb3775",
+      "bytes": 443
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/loot_table/blocks/universal_joint.json": {
+      "sha256": "464b472a03a323d6d328daf0787d05ca5180803b95b2e9e62d9d4e0f5dce367c",
+      "bytes": 436
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/brass_hydraulic_hinge_head.json": {
+      "sha256": "37eacc1bc07e25fa41ba71686bdecb177bf24e873407b3ea84896d4c7e159a47",
+      "bytes": 363
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/brass_universal_joint.json": {
+      "sha256": "11f9ce1c36ca72ebf8606d9cd46c01b24cdc87fb2264bbc24c9d9b401e006812",
+      "bytes": 361
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/damping_stress_bearing.json": {
+      "sha256": "859ff2f7508878727cc493962793670abde0f4ee6f294751971d80d4be586fba",
+      "bytes": 302
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/giant_hydraulic_rod.json": {
+      "sha256": "4e9e313d824e98a170aaa6e1ce58ad9ff0ac072f9d94e6df8e74b83d8a3a147b",
+      "bytes": 568
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/hydraulic_connection_head.json": {
+      "sha256": "62139853d76c4ec8d6efb88d8780c97631181351fe2adea2a5e0bfc26b132995",
+      "bytes": 362
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/hydraulic_hinge_head.json": {
+      "sha256": "e41a225eacc006f5f564ffec2c4a971e2ac984e46e99787101972b34ee337104",
+      "bytes": 352
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/hydraulic_regulator.json": {
+      "sha256": "2629e917e9cf75bb672b1c62b08acbd9ac3180c5e89423f2bb2d30d991fc00b9",
+      "bytes": 390
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/hydraulic_rod.json": {
+      "sha256": "42700199e89fd80b7acf5f5ace20c8f0d48076ef0748734fdcee6abadee4e986",
+      "bytes": 340
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/universal_joint_rod.json": {
+      "sha256": "f68fc3db136901d9f093a721584f4b2a4ef7a4557062f536bfc38066a6ef934c",
+      "bytes": 315
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/aeronautics_utility_objects/recipe/universal_joint_rod2.json": {
+      "sha256": "b85d66e1da8dc3d186a4f4f01ac81f99d3701f16ba911a8554c8b79e2c9c13be",
+      "bytes": 319
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/minecraft/tags/block/mineable/pickaxe.json": {
+      "sha256": "b860e5e406374351bdada541fb339da7f43a2fc7e7d324941dc606ee48426cfe",
+      "bytes": 442
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/data/minecraft/tags/block/needs_stone_tool.json": {
+      "sha256": "b860e5e406374351bdada541fb339da7f43a2fc7e7d324941dc606ee48426cfe",
+      "bytes": 442
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/logo.png": {
+      "sha256": "85244feade4801e64eff2df79979565d8ca9e1a9dd07a26ec93b1440a8bbfd94",
+      "bytes": 316620
+    },
+    "modules/transmission-linkage-adapted-263/src/main/resources/pack.mcmeta": {
+      "sha256": "5ac3e1af2ff625af19227965d4e51e5d844b7cc9a80d8ac1bf783e5f2363c617",
+      "bytes": 114
+    },
+    "modules/transmission-linkage-adapted-263/src/main/templates/META-INF/neoforge.mods.toml": {
+      "sha256": "6cc5f60bae8e0380a33f443c890364913e0ad52ca0d48becd2fede25803e8a83",
+      "bytes": 928
+    },
+    "modules/transmission-linkage-adapted-263/src/verification/java/com/enxv/aerouniversaljoint/verification/CompatibilityContractRegressionCheck.java": {
+      "sha256": "002daa9c16499074a0597f6599bf8baec1d958366a10997e56a37064d7af1246",
+      "bytes": 9568
+    },
+    "modules/transmission-linkage-adapted-263/src/verification/java/com/enxv/aerouniversaljoint/verification/HydraulicLengthControlRegressionCheck.java": {
+      "sha256": "78ca9814884a3982c57d84b5fb36d2182fe8748b1d056f4a5cfb7efa81e495c6",
+      "bytes": 13715
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "create_dragons_plus:blaze_upgrade_smithing_template",
+    "create:sturdy_sheet",
+    "create:sturdy_sheet",
+    "minecraft:experience_bottle",
+    "minecraft:experience_bottle",
+    "minecraft:magma_block"
+  ],
+  "result": {
+    "id": "create_enchantment_industry:blazes_enchanting_handbook"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "railways:chartreuse_locometal_end_ladder",
+      "required": false
+    },
+    {
+      "id": "railways:chartreuse_locometal_rung_ladder",
+      "required": false
+    }
+  ]
+}

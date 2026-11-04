@@ -1,0 +1,34 @@
+{
+  "project_id": "create263-pack",
+  "name": "Create263 Pack",
+  "status": "active",
+  "schema_version": 1,
+  "created_at": "2026-10-24T23:00:08+08:00",
+  "platform": {
+    "minecraft": "26.3",
+    "loader": "NeoForge 26.3.0.22-beta",
+    "java": 25
+  },
+  "source_manifest": "manifests/sources.json",
+  "license_manifest": "manifests/third-party-licenses.json",
+  "updated_at": "2026-11-04T21:48:01+08:00",
+  "repository": "https://github.com/Flowfangfei/create-263-modpack-public",
+  "release": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.2",
+  "release_tag": "v0.3.0-alpha.2",
+  "release_source_commit": "35cb63c63412f2bef62f6fd37afe77977235fbc6",
+  "candidate_version": "0.3.0-alpha.3",
+  "candidate_source_branch": "codex/railways-storage-hotfix-263",
+  "candidate_validation": "Ponder regression completed; Windows PowerShell 5.1 installer passed; all 18 runtime JAR entry bytes match tested combination; source export pending",
+  "candidate_release_tag": "v0.3.0-alpha.3",
+  "previous_release": {
+    "release": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.1",
+    "release_tag": "v0.3.0-alpha.1",
+    "release_source_commit": "203897ef96ebe398787376ba1372fcd915286748"
+  },
+  "release_status": "alpha3-preparing-clean-public-snapshot",
+  "release_verified_at": "2026-10-28T14:04:40+08:00",
+  "candidate_release_url": "https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3",
+  "candidate_pull_request": "https://github.com/Flowfangfei/create-263-modpack/pull/4",
+  "public_repository": "https://github.com/Flowfangfei/create-263-modpack-public",
+  "maintenance_archive_repository": "https://github.com/Flowfangfei/create-263-modpack"
+}

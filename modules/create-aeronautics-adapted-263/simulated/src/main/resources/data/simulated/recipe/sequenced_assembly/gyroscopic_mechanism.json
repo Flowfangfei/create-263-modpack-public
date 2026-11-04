@@ -1,0 +1,71 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": "#c:plates/iron",
+  "transitional_item": {
+    "id": "simulated:incomplete_gyroscopic_mechanism"
+  },
+  "loops": 5,
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "results": [
+        {
+          "id": "simulated:incomplete_gyroscopic_mechanism"
+        }
+      ],
+      "ingredients": [
+        "simulated:incomplete_gyroscopic_mechanism",
+        "create:cogwheel"
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "results": [
+        {
+          "id": "simulated:incomplete_gyroscopic_mechanism"
+        }
+      ],
+      "ingredients": [
+        "simulated:incomplete_gyroscopic_mechanism",
+        "create:shaft"
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "results": [
+        {
+          "id": "simulated:incomplete_gyroscopic_mechanism"
+        }
+      ],
+      "ingredients": [
+        "simulated:incomplete_gyroscopic_mechanism",
+        "#c:nuggets/brass"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "chance": 200.0,
+      "id": "simulated:gyroscopic_mechanism"
+    },
+    {
+      "chance": 8.0,
+      "id": "create:iron_sheet"
+    },
+    {
+      "chance": 8.0,
+      "id": "create:andesite_alloy"
+    },
+    {
+      "chance": 3.0,
+      "id": "create:brass_nugget"
+    },
+    {
+      "chance": 2.0,
+      "id": "create:crushed_raw_iron"
+    },
+    {
+      "id": "minecraft:compass"
+    }
+  ]
+}

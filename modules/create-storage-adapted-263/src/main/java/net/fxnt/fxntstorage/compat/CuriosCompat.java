@@ -1,0 +1,108 @@
+package net.fxnt.fxntstorage.compat;
+
+import net.fxnt.fxntstorage.backpack.BackpackItem;
+import net.fxnt.fxntstorage.backpack.upgrade.UpgradeEventDispatcher;
+import net.fxnt.fxntstorage.backpack.upgrade.jukebox.JukeboxHandler;
+import net.fxnt.fxntstorage.config.ConfigManager;
+import net.fxnt.fxntstorage.init.ModBlocks;
+import net.fxnt.fxntstorage.init.ModTags;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.CuriosCapability;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.event.CurioChangeEvent;
+import top.theillusivec4.curios.api.event.DropRulesEvent;
+import top.theillusivec4.curios.api.type.capability.ICurio;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+
+import java.util.Optional;
+
+public class CuriosCompat {
+
+    public static void registerCapabilities(final RegisterCapabilitiesEvent event) {
+        event.registerItem(
+                CuriosCapability.ITEM,
+                (stack, context) -> new BackpackCurio(stack),
+                ModBlocks.BACKPACK.get().asItem(),
+                ModBlocks.ANDESITE_BACKPACK.get().asItem(),
+                ModBlocks.COPPER_BACKPACK.get().asItem(),
+                ModBlocks.BRASS_BACKPACK.get().asItem(),
+                ModBlocks.HARDENED_BACKPACK.get().asItem()
+        );
+    }
+
+    public static void onCurioChange(CurioChangeEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!event.getIdentifier().equals("back")) return;
+
+        ItemStack oldStack = event.getFrom();
+        ItemStack newStack = event.getTo();
+
+        if (oldStack.is(ModTags.Items.BACKPACK_ITEM) && !newStack.is(ModTags.Items.BACKPACK_ITEM)) {
+            if (JukeboxHandler.isPlayerPlaying(player)) JukeboxHandler.stopPlayer(player);
+            UpgradeEventDispatcher.dispatchBackpackUnequipped(player, oldStack);
+        }
+
+        if (!oldStack.is(ModTags.Items.BACKPACK_ITEM) && newStack.is(ModTags.Items.BACKPACK_ITEM)) {
+            UpgradeEventDispatcher.dispatchBackpackEquipped(player, newStack);
+        }
+    }
+
+    public static void keepBackpack(DropRulesEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if (ConfigManager.ServerConfig.CURIOS_KEEP_BACKPACK.get()) {
+                CuriosApi.getCuriosInventory(player).ifPresent(curiosInv -> {
+                    for (SlotResult slot : curiosInv.findCurios("back")) {
+                        if (slot.stack().getItem() instanceof BackpackItem)
+                            event.addOverride(itemStack -> itemStack == slot.stack(), ICurio.DropRule.ALWAYS_KEEP);
+                    }
+                });
+            }
+        }
+    }
+
+    public static class BackpackCurio implements ICurio {
+        private final ItemStack stack;
+
+        private BackpackCurio(ItemStack stack) {
+            this.stack = stack;
+        }
+
+        @Override
+        public ItemStack getStack() {
+            return stack;
+        }
+
+        @Override
+        public @NotNull SoundInfo getEquipSound(SlotContext slotContext) {
+            return new SoundInfo(SoundEvents.ARMOR_EQUIP_LEATHER.value(), 1.0F, 1.0F);
+        }
+
+        @Override
+        public boolean canEquip(SlotContext slotContext) {
+            if (slotContext.entity().getItemBySlot(EquipmentSlot.CHEST).getItem().asItem() instanceof BackpackItem) {
+                return false;
+            }
+            Optional<ICuriosItemHandler> curios = CuriosApi.getCuriosInventory(slotContext.entity());
+            if (curios.isPresent()) {
+                ICuriosItemHandler curiosInv = curios.get(); // Check ALL slots
+                Optional<SlotResult> backpackSlot = curiosInv.findFirstCurio(stack -> stack.getItem() instanceof BackpackItem);
+                return backpackSlot.isEmpty();
+            }
+
+            return false;
+        }
+
+        @Override
+        public boolean canSync(SlotContext slotContext) {
+            return true;
+        }
+    }
+}

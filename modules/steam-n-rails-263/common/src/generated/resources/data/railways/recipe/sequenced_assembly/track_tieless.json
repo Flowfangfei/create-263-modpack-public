@@ -1,0 +1,30 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": "minecraft:glass_pane",
+  "loops": 1,
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "results": ["$result"],
+      "target": "$ingredient",
+      "ingredient": "#create:track_nuggets"
+    },
+    {
+      "type": "create:deploying",
+      "results": ["$result"],
+      "target": "$ingredient",
+      "ingredient": "#create:track_nuggets"
+    },
+    {
+      "type": "create:pressing",
+      "results": ["$result"],
+      "ingredient": "$ingredient"
+    }
+  ],
+  "transitional_item": {
+    "id": "railways:track_incomplete_tieless"
+  },
+  "result": {
+    "id": "railways:track_tieless"
+  }
+}

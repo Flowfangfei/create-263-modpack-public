@@ -1,0 +1,17 @@
+{
+    "type":  "createdieselgenerators:hammering",
+    "ingredients":  [
+                        "#c:ingots/silver"
+                    ],
+    "results":  [
+                    {
+                        "id":  "immersiveengineering:plate_silver"
+                    }
+                ],
+    "neoforge:conditions":  [
+                                {
+                                    "type":  "neoforge:mod_loaded",
+                                    "modid":  "immersiveengineering"
+                                }
+                            ]
+}

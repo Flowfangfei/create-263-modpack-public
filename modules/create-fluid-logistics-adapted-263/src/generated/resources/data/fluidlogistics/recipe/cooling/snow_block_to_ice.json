@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fluidlogistics:feature_enabled",
+      "feature": "fluidlogistics:snow_golem_freezer"
+    }
+  ],
+  "type": "fluidlogistics:cooling_compacting",
+  "ingredients": [
+    "minecraft:snow_block",
+    {
+      "ingredient": "minecraft:water",
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:ice"
+    }
+  ]
+}

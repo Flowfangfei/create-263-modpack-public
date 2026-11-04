@@ -1,0 +1,31 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": "minecraft:phantom_membrane",
+  "loops": 1,
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "results": ["$result"],
+      "target": "$ingredient",
+      "ingredient": "minecraft:iron_ingot"
+    },
+    {
+      "type": "create:deploying",
+      "results": ["$result"],
+      "target": "$ingredient",
+      "ingredient": "minecraft:iron_ingot"
+    },
+    {
+      "type": "create:pressing",
+      "results": ["$result"],
+      "ingredient": "$ingredient"
+    }
+  ],
+  "transitional_item": {
+    "id": "railways:track_incomplete_phantom"
+  },
+  "result": {
+    "count": 32,
+    "id": "railways:track_phantom"
+  }
+}

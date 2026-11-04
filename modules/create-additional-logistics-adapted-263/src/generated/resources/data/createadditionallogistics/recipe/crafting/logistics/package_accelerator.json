@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "create:brass_casing",
+    "C": "create:cogwheel",
+    "D": "create:cardboard_block",
+    "G": "create:super_glue",
+    "M": "create:precision_mechanism"
+  },
+  "pattern": [
+    "GMD",
+    " B ",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "createadditionallogistics:package_accelerator"
+  }
+}

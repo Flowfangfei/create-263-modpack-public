@@ -1,0 +1,6 @@
+{
+  "parent": "create_dragons_plus:item/rare_blaze_package",
+  "textures": {
+    "2": "create_dragons_plus:block/package/rare_blaze"
+  }
+}

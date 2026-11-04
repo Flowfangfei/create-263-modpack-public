@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "electroenergetics:textures/gui/advancements.png",
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.electroenergetics.root.desc"
+    },
+    "icon": {
+      "id": "electroenergetics:connector"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.electroenergetics.root"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

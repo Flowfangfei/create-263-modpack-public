@@ -1,0 +1,19 @@
+{
+  "upstream": {
+    "repository": "https://github.com/tom5454/Create-Ore-Excavation",
+    "branch": "main",
+    "commit": "724e18dd2c792440976c0ec469d56d9f2c5e8411",
+    "version": "1.6.8",
+    "original_target": "NeoForge 1.21.1"
+  },
+  "port_reference": {
+    "repository": "https://github.com/Jere655/Create-Ore-Excavation",
+    "branch": "port-neoforge-1.21.11-wip",
+    "commit": "d95850584d1c6beb055ca1b50e510f0e1d500832",
+    "applied_scope": "NeoForge source and generated resources; adjusted to genuine Create263 APIs",
+    "original_target": "NeoForge 1.21.11 with CreateFly"
+  },
+  "license": "MIT",
+  "canonical_build": "module root build.gradle applies ../../gradle/create263-addon.gradle",
+  "fabric_tree": "Retained upstream snapshot; not part of the 26.3 NeoForge build"
+}

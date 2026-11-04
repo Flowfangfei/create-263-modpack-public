@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "electroenergetics:item/electrum_wire_spool"
+  }
+}

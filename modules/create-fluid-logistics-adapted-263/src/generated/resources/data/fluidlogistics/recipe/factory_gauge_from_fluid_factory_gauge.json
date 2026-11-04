@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "fluidlogistics:fluid_factory_gauge",
+    "create:andesite_alloy"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create:factory_gauge"
+  }
+}

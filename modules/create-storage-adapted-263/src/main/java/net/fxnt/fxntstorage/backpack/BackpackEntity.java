@@ -1,0 +1,652 @@
+package net.fxnt.fxntstorage.backpack;
+
+import net.fxnt.fxntstorage.FXNTStorage;
+import net.fxnt.fxntstorage.backpack.client.menu.BackpackMenu;
+import net.fxnt.fxntstorage.backpack.inventory.BackpackSlotLayout;
+import net.fxnt.fxntstorage.backpack.inventory.IBackpackContainer;
+import net.fxnt.fxntstorage.backpack.upgrade.*;
+import net.fxnt.fxntstorage.backpack.upgrade.jukebox.JukeboxHandler;
+import net.fxnt.fxntstorage.backpack.upgrade.voiding.VoidUpgrade;
+import net.fxnt.fxntstorage.backpack.upgrade.workshop.FlywheelSpin;
+import net.fxnt.fxntstorage.init.ModDataComponents;
+import net.fxnt.fxntstorage.init.ModMenuTypes;
+import net.fxnt.fxntstorage.item.upgrades.UpgradeItem;
+import net.fxnt.fxntstorage.network.packet.SetSortOrderPacket;
+import net.fxnt.fxntstorage.network.packet.UpgradeDataPacket;
+import net.fxnt.fxntstorage.network.packet.UpgradeIntDataPacket;
+import net.fxnt.fxntstorage.util.SortOrder;
+import net.fxnt.fxntstorage.util.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.Mth;
+import net.minecraft.world.Container;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.Nameable;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.fxnt.fxntstorage.inventory.StorageContents;
+import net.fxnt.fxntstorage.inventory.StorageInventoryHandler;
+import net.fxnt.fxntstorage.inventory.BackpackInventoryRules;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import com.simibubi.create.compat.neoforge263.items.ItemStackHandler;
+import net.neoforged.neoforge.network.PacketDistributor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.*;
+
+@ParametersAreNonnullByDefault
+public class BackpackEntity extends com.simibubi.create.foundation.blockEntity.SyncedBlockEntity implements IBackpackContainer, MenuProvider, Nameable {
+    private int slotCount;
+
+    private final BlockPos pos;
+    private Component customName;
+
+    private final Block block;
+    private int stackMultiplier;
+    private SortOrder sortOrder;
+
+    public final NonNullList<String> upgrades = NonNullList.create();
+    public boolean isPlayerInteraction = false;
+
+    private final ItemStackHandler itemHandler;
+    private final BackpackSlotLayout layout = BackpackSlotLayout.createLayout();
+
+    private Set<UpgradeType> cachedInstalledUpgradeTypes = new HashSet<>();
+    private final UpgradeDataManager upgradeData = new UpgradeDataManager();
+
+    private DataComponentPatch savedExtraComponents = DataComponentPatch.EMPTY;
+    private boolean workshopProcessing;
+    private FlywheelSpin clientFlywheelSpin;
+
+    public BackpackEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
+        super(pType, pPos, pBlockState);
+        this.pos = pPos;
+        this.block = pBlockState.getBlock();
+        this.sortOrder = SortOrder.COUNT;
+
+        if (this.block instanceof BackpackBlock backpackBlock) {
+            this.stackMultiplier = backpackBlock.getStackMultiplier();
+            this.slotCount = layout.getTotalSlots();
+        }
+
+        this.itemHandler = createItemHandler();
+    }
+
+    private ItemStackHandler createItemHandler() {
+        return new StorageInventoryHandler(layout.getTotalSlots()) {
+            @Override
+            public void validateContents(StorageContents contents) {
+                BackpackInventoryRules.validateContents(contents, actualStackMultiplier());
+            }
+
+            @Override
+            protected void validateStackInSlot(int slot, ItemStack stack) {
+                BackpackInventoryRules.validateStack(slot, stack, actualStackMultiplier());
+            }
+
+            @Override
+            protected int restoredSlotCount(StorageContents contents) {
+                return layout.getTotalSlots();
+            }
+
+            @Override
+            public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+                if (isPlayerInteraction || layout.items().contains(slot))
+                    return super.extractItem(slot, amount, simulate);
+                return ItemStack.EMPTY;
+            }
+
+            @Override
+            public @NotNull ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                ItemStack toInsert = !filterTest(stack) && layout.items().contains(slot)
+                        ? VoidUpgrade.acceptableInsert(BackpackEntity.this, level, stack)
+                        : stack;
+                if (toInsert.isEmpty()) return ItemStack.EMPTY;
+
+                return super.insertItem(slot, toInsert, simulate);
+            }
+
+            @Override
+            public boolean isItemValid(int slot, ItemStack stack) {
+                try {
+                    BackpackInventoryRules.validateStack(slot, stack.isEmpty() ? stack : stack.copyWithCount(1), actualStackMultiplier());
+                } catch (IllegalArgumentException invalid) {
+                    return false;
+                }
+                if (isPlayerInteraction)
+                    return true;
+                if (!layout.items().contains(slot))
+                    return false;
+                return hasEmptyOrNonMaxSlot(stack);
+            }
+
+            @Override
+            public int getSlotLimit(int slot) {
+                return BackpackInventoryRules.slotCapacity(slot, getStackInSlot(slot), actualStackMultiplier());
+            }
+
+            @Override
+            protected int getStackLimit(int slot, ItemStack stack) {
+                return BackpackInventoryRules.slotCapacity(slot, stack, actualStackMultiplier());
+            }
+
+            @Override
+            protected void onContentsChanged(int slot) {
+                super.onContentsChanged(slot);
+                setChanged();
+            }
+
+            @Override
+            public void setSize(int size) {
+                if (size != layout.getTotalSlots())
+                    throw new IllegalArgumentException("Backpack inventory size must remain " + layout.getTotalSlots());
+                if (size != stacks.size()) super.setSize(size);
+            }
+        };
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (getLevel() != null && getLevel().isClientSide()) {
+            getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);
+        }
+    }
+
+    public void setCustomName(Component hoverName) {
+        this.customName = hoverName;
+    }
+
+    @Override
+    public @Nullable Component getCustomName() {
+        return customName;
+    }
+
+    @Override
+    public @NotNull Component getName() {
+        return getDisplayName();
+    }
+
+    public @NotNull Component getDisplayName() {
+        return displayNameFor(this.block, savedExtraComponents, this.customName);
+    }
+
+    public static Component displayNameFor(Block block, DataComponentPatch extraComponents, @Nullable Component customName) {
+        ItemStack displayStack = new ItemStack(block.asItem());
+        if (!extraComponents.isEmpty())
+            displayStack.applyComponents(extraComponents);
+        if (customName != null)
+            displayStack.set(DataComponents.CUSTOM_NAME, customName);
+        return displayStack.getHoverName();
+    }
+
+    public void setData(int slotCount, int stackMultiplier) {
+        if (slotCount != layout.getTotalSlots()) throw new IllegalArgumentException("Invalid backpack layout size");
+        this.slotCount = layout.getTotalSlots();
+        this.stackMultiplier = actualStackMultiplier();
+    }
+
+    private int actualStackMultiplier() {
+        return ((BackpackBlock) block).getStackMultiplier();
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        if (level != null && !level.isClientSide() && this.upgrades.contains(Util.JUKEBOX_UPGRADE)) {
+            JukeboxHandler.stopBlock(level, pos);
+        }
+    }
+
+    @Override
+    public SortOrder getSortOrder() {
+        return sortOrder;
+    }
+
+    @Override
+    public void setSortOrder(SortOrder sortOrder) {
+        this.sortOrder = sortOrder;
+        if (this.level != null && this.level.isClientSide())
+            net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new SetSortOrderPacket(sortOrder));
+        setChanged();
+    }
+
+    @Override
+    public boolean isPanelExpanded(UpgradeType type) {
+        return upgradeData.isPanelExpanded(type);
+    }
+
+    @Override
+    public void togglePanelExpanded(UpgradeType type) {
+        upgradeData.togglePanel(type);
+        setChanged();
+    }
+
+    @Override
+    public void clearPanelExpanded(UpgradeType type) {
+        upgradeData.clearPanel(type);
+        setChanged();
+    }
+
+    @Override
+    public UpgradeType getExpandedPanel() {
+        return upgradeData.getExpandedPanel();
+    }
+
+    @Override
+    public void setExpandedPanel(@Nullable UpgradeType type) {
+        upgradeData.setExpandedPanel(type);
+        setChanged();
+    }
+
+    @Override
+    public boolean getUpgradeSetting(UpgradeDataSync.Field setting) {
+        return upgradeData.getSetting(setting);
+    }
+
+    @Override
+    public void setUpgradeSetting(UpgradeDataSync.Field setting, boolean value) {
+        if (getUpgradeSetting(setting) == value) return;
+
+        upgradeData.setSetting(setting, value);
+        if (this.level != null && this.level.isClientSide())
+            net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new UpgradeDataPacket(setting.getIndex(), value));
+        setChanged();
+    }
+
+    @Override
+    public int getUpgradeIntSetting(UpgradeDataSync.Field setting) {
+        return upgradeData.getIntSetting(setting);
+    }
+
+    @Override
+    public void setUpgradeIntSetting(UpgradeDataSync.Field setting, int value) {
+        if (getUpgradeIntSetting(setting) == value) return;
+
+        upgradeData.setIntSetting(setting, value);
+        if (this.level != null && this.level.isClientSide())
+            net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new UpgradeIntDataPacket(setting.getIndex(), value));
+        setChanged();
+    }
+
+    @Override
+    public void saveSettings() {
+        setChanged();
+    }
+
+    @Override
+    public int getStackMultiplier() {
+        return actualStackMultiplier();
+    }
+
+    @Override
+    public void setPlayerInteraction(boolean isPlayer) {
+        this.isPlayerInteraction = isPlayer;
+    }
+
+    @Override
+    public void setDataChanged() {
+        this.setChanged();
+    }
+
+    public List<ItemStack> getStacks() {
+        List<ItemStack> stacks = new ArrayList<>();
+        for (int i = 0; i < itemHandler.getSlots(); ++i) {
+            stacks.add(itemHandler.getStackInSlot(i));
+        }
+        return stacks;
+    }
+
+    public void readInventory(StorageContents contents) {
+        ((StorageInventoryHandler) itemHandler).replaceContents(contents);
+    }
+
+    public void saveExtraComponents(ItemStack stack) {
+        DataComponentPatch.Builder builder = DataComponentPatch.builder();
+        for (DataComponentType<?> type : stack.getComponentsPatch().keySet()) {
+            if (isManagedComponent(type)) continue;
+            applyPatchEntryToBuilder(builder, type, Optional.ofNullable(stack.getComponentsPatch().getPatch(type)));
+        }
+        this.savedExtraComponents = builder.build();
+    }
+
+    private static boolean isManagedComponent(DataComponentType<?> type) {
+        if (type == net.fxnt.fxntstorage.init.ModDataComponents.STORAGE_CONTENTS
+                || type == DataComponents.CONTAINER
+                || type == DataComponents.BLOCK_ENTITY_DATA
+                || type == DataComponents.CUSTOM_NAME
+                || type == ModDataComponents.BACKPACK_STACK_MULTIPLIER
+                || type == ModDataComponents.BACKPACK_UPGRADES
+                || type == ModDataComponents.INVENTORY_SORT_ORDER
+                || type == ModDataComponents.BACKPACK_ACTIVE_PANELS) {
+            return true;
+        }
+        for (UpgradeDataSync.Field field : UpgradeDataSync.Field.values()) {
+            DataComponentType<Boolean> component = ModDataComponents.getComponentForField(field);
+            if (component != null && type == component) return true;
+        }
+        return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> void applyPatchEntryToBuilder(DataComponentPatch.Builder builder, DataComponentType<?> type, Optional<?> value) {
+        if (value.isPresent()) {
+            builder.set((DataComponentType<T>) type, (T) value.get());
+        } else {
+            builder.remove(type);
+        }
+    }
+
+    private boolean hasEmptyOrNonMaxSlot(ItemStack pStack) {
+        for (int i : layout.items().range()) {
+            ItemStack stack = this.itemHandler.getStackInSlot(i);
+
+            if (stack.isEmpty() || (ItemStack.isSameItemSameComponents(stack, pStack) && stack.getCount() < this.stackMultiplier * pStack.getMaxStackSize())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean filterTest(ItemStack stack) {
+        return stack.getItem() instanceof BackpackItem;
+    }
+
+    public void refreshUpgrades() {
+        this.upgrades.clear();
+
+        for (int i : layout.upgrades().range()) {
+            ItemStack itemStack = this.itemHandler.getStackInSlot(i);
+            if (itemStack.getItem() instanceof UpgradeItem upgradeItem) {
+                // ADD TO UPGRADE CACHE
+                String upgradeName = upgradeItem.getUpgradeName();
+                if (!this.upgrades.contains(upgradeName)) {
+                    this.upgrades.add(upgradeName);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter componentInput) {
+        super.applyImplicitComponents(componentInput);
+        componentInput.get(ModDataComponents.BACKPACK_STACK_MULTIPLIER);
+        componentInput.get(ModDataComponents.BACKPACK_UPGRADES);
+        componentInput.getOrDefault(ModDataComponents.INVENTORY_SORT_ORDER, SortOrder.COUNT);
+        readInventory(componentInput.getOrDefault(net.fxnt.fxntstorage.init.ModDataComponents.STORAGE_CONTENTS, StorageContents.EMPTY));
+
+        upgradeData.setExpandedPanel(UpgradeType.fromBaseName(componentInput.getOrDefault(ModDataComponents.BACKPACK_ACTIVE_PANELS, "")));
+        for (UpgradeDataSync.Field field : UpgradeDataSync.Field.values()) {
+            DataComponentType<Boolean> component = ModDataComponents.getComponentForField(field);
+            if (component != null) {
+                boolean defaultSetting = UpgradeRegistry.getDefaultSetting(field);
+                upgradeData.setSetting(field, componentInput.getOrDefault(component, defaultSetting));
+            }
+
+            DataComponentType<Integer> intComponent = ModDataComponents.getIntComponentForField(field);
+            if (intComponent != null) {
+                int defaultSetting = UpgradeRegistry.getDefaultIntSetting(field);
+                upgradeData.setIntSetting(field, componentInput.getOrDefault(intComponent, defaultSetting));
+            }
+        }
+        populateDefaultsForInstalledUpgrades();
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components) {
+        super.collectImplicitComponents(components);
+        applyPatchToBuilder(components, savedExtraComponents);
+        components.set(ModDataComponents.BACKPACK_STACK_MULTIPLIER, this.stackMultiplier);
+        components.set(ModDataComponents.BACKPACK_UPGRADES, this.upgrades);
+        components.set(ModDataComponents.INVENTORY_SORT_ORDER, this.sortOrder);
+        UpgradeType expandedPanel = upgradeData.getExpandedPanel();
+        components.set(ModDataComponents.BACKPACK_ACTIVE_PANELS, expandedPanel != null ? expandedPanel.getId() : "");
+        components.set(DataComponents.CUSTOM_NAME, this.customName);
+        components.set(net.fxnt.fxntstorage.init.ModDataComponents.STORAGE_CONTENTS, StorageContents.fromItems(this.getStacks()));
+
+        for (UpgradeDataSync.Field field : UpgradeDataSync.Field.values()) {
+            DataComponentType<Boolean> component = ModDataComponents.getComponentForField(field);
+            if (component != null) {
+                boolean defaultSetting = UpgradeRegistry.getDefaultSetting(field);
+                components.set(component, upgradeData.getSetting(field, defaultSetting));
+            }
+
+            DataComponentType<Integer> intComponent = ModDataComponents.getIntComponentForField(field);
+            if (intComponent != null) {
+                components.set(intComponent, upgradeData.getIntSetting(field));
+            }
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> void applyPatchToBuilder(DataComponentMap.Builder builder, DataComponentPatch patch) {
+        for (DataComponentType<?> type : patch.keySet()) {
+            Optional.ofNullable(patch.getPatch(type)).ifPresent(value -> builder.set((DataComponentType<T>) type, (T) value));
+        }
+    }
+
+    public ItemStack saveToItemStack(ItemStack stack) {
+        stack.remove(DataComponents.CONTAINER);
+        if (!savedExtraComponents.isEmpty())
+            stack.applyComponents(savedExtraComponents);
+        stack.set(ModDataComponents.BACKPACK_STACK_MULTIPLIER, this.stackMultiplier);
+        stack.set(ModDataComponents.BACKPACK_UPGRADES, this.upgrades);
+        stack.set(ModDataComponents.INVENTORY_SORT_ORDER, this.sortOrder);
+        stack.set(DataComponents.CUSTOM_NAME, this.customName);
+        stack.set(net.fxnt.fxntstorage.init.ModDataComponents.STORAGE_CONTENTS, StorageContents.fromItems(this.getStacks()));
+
+        upgradeData.saveToItem(stack);
+        return stack;
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.put("Items", net.fxnt.fxntstorage.util.StorageSerialization.write(itemHandler, registries));
+        ListTag upgradesList = new ListTag();
+        for (int i = 0; i < upgrades.size(); i++) {
+            upgradesList.add(i, StringTag.valueOf(upgrades.get(i)));
+        }
+        tag.put("Upgrades", upgradesList);
+        tag.putInt("StackMultiplier", stackMultiplier);
+        if (customName != null)
+            tag.putString("CustomName", net.fxnt.fxntstorage.util.StorageSerialization.writeComponentJson(customName, registries));
+        tag.putString("SortOrder", sortOrder.name());
+
+        // Only persist settings for upgrades that are currently installed, so that
+        // removing an upgrade cleanly strips its settings from the saved data
+        Set<UpgradeType> installedForSave = new HashSet<>(UpgradeHelper.getInstalledUpgrades(itemHandler));
+        upgradeData.saveToNBT(tag, installedForSave);
+
+        if (!savedExtraComponents.isEmpty()) {
+            DataComponentPatch.CODEC.encodeStart(
+                    registries.createSerializationContext(NbtOps.INSTANCE),
+                    savedExtraComponents
+            ).result().ifPresent(encoded -> tag.put("ExtraComponents", encoded));
+        }
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        net.fxnt.fxntstorage.util.StorageSerialization.read(itemHandler, registries, tag.getCompound("Items").orElse(new CompoundTag()));
+        if (itemHandler.getSlots() < slotCount) {
+            itemHandler.setSize(slotCount);
+        }
+        if (tag.contains("Upgrades")) {
+            upgrades.clear();
+            ListTag upgradesList = tag.getList("Upgrades").orElseGet(ListTag::new);
+            for (int i = 0; i < upgradesList.size(); i++) {
+                upgrades.add(i, upgradesList.getString(i).orElse(""));
+            }
+        }
+        stackMultiplier = ((BackpackBlock)block).getStackMultiplier();
+        if (tag.contains("CustomName"))
+            customName = net.fxnt.fxntstorage.util.StorageSerialization.readComponentJson(tag.getString("CustomName").orElse(""), registries);
+        sortOrder = (tag.contains("SortOrder")) ? SortOrder.valueOf(tag.getString("SortOrder").orElse("")) : SortOrder.COUNT;
+        this.workshopProcessing = tag.getBoolean("WorkshopProcessing").orElse(false);
+
+        UpgradeDataManager loadedData = UpgradeDataManager.loadFromNBT(tag);
+        upgradeData.copyFrom(loadedData);
+        populateDefaultsForInstalledUpgrades();
+
+        if (tag.contains("ExtraComponents")) {
+            DataComponentPatch.CODEC.parse(
+                    registries.createSerializationContext(NbtOps.INSTANCE),
+                    tag.get("ExtraComponents")
+            ).result().ifPresent(patch -> this.savedExtraComponents = patch);
+        }
+    }
+
+    @Override
+    public @Nullable ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag tag = super.getUpdateTag(registries);
+        tag.put("Items", net.fxnt.fxntstorage.util.StorageSerialization.write(itemHandler, registries));
+        tag.putString("SortOrder", sortOrder.name());
+        tag.putBoolean("WorkshopProcessing", workshopProcessing);
+        upgradeData.saveToNBT(tag, new HashSet<>(UpgradeHelper.getInstalledUpgrades(itemHandler)));
+        return tag;
+    }
+
+    @Override
+    public void handleUpdateTag(net.minecraft.world.level.storage.ValueInput input) {
+        CompoundTag tag = net.fxnt.fxntstorage.util.StorageSerialization.readCompound(input);
+        HolderLookup.Provider lookupProvider = input.lookup();
+        super.handleUpdateTag(input);
+        net.fxnt.fxntstorage.util.StorageSerialization.read(itemHandler, lookupProvider, tag.getCompound("Items").orElse(new CompoundTag()));
+        if (tag.contains("SortOrder"))
+            this.sortOrder = SortOrder.valueOf(tag.getString("SortOrder").orElse(""));
+        this.workshopProcessing = tag.getBoolean("WorkshopProcessing").orElse(false);
+    }
+
+    public boolean isWorkshopProcessing() {
+        return workshopProcessing;
+    }
+
+    public void setWorkshopProcessing(boolean processing) {
+        if (this.workshopProcessing == processing) return;
+        this.workshopProcessing = processing;
+        Level level = getLevel();
+        if (level != null && !level.isClientSide()) {
+            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+        }
+    }
+
+    public float advanceClientFlywheelAngle(float targetSpeed) {
+        if (clientFlywheelSpin == null) {
+            clientFlywheelSpin = new net.fxnt.fxntstorage.backpack.upgrade.workshop.FlywheelSpin();
+        }
+        return clientFlywheelSpin.advance(targetSpeed);
+    }
+
+    public void serverTick(Level level) {
+        if (!level.isClientSide()) {
+            for (IUpgrade upgrade : UpgradeRegistry.getAll()) {
+                if (upgrade.getType().equals(UpgradeType.MAGNET) || upgrade.getType().equals(UpgradeType.JUKEBOX)
+                        || upgrade.getType().equals(UpgradeType.WORKSHOP) || upgrade.getType().equals(UpgradeType.VOID)) {
+                    UpgradeContext ctx = UpgradeContext.forBlock(
+                            this, level, BackpackMenu.BackpackType.BLOCK, worldPosition
+                    );
+                    upgrade.tick(ctx);
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return !this.isRemoved()
+                && Container.stillValidBlockEntity(this, player, 0);
+    }
+
+    private void populateDefaultsForInstalledUpgrades() {
+        Set<UpgradeType> installedTypes = new HashSet<>(UpgradeHelper.getInstalledUpgrades(itemHandler));
+        for (UpgradeType type : installedTypes) {
+            IUpgrade upgrade = UpgradeRegistry.get(type);
+            if (upgrade == null) continue;
+            for (UpgradeDataSync.Field field : upgrade.getSettings()) {
+                // Only insert the registry default if no value is already recorded
+                // This preserves any value that was loaded from NBT or set by the player
+                if (!upgradeData.hasSetting(field)) {
+                    upgradeData.setSetting(field, UpgradeRegistry.getDefaultSetting(field));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void setChanged() {
+        refreshUpgrades();
+
+        Set<UpgradeType> currentInstalledTypes = new HashSet<>(UpgradeHelper.getInstalledUpgrades(itemHandler));
+
+        if (!currentInstalledTypes.equals(cachedInstalledUpgradeTypes)) {
+            for (UpgradeType type : UpgradeType.values()) {
+                if (currentInstalledTypes.contains(type)) continue;
+
+                IUpgrade upgrade = UpgradeRegistry.get(type);
+                if (upgrade != null) {
+                    for (UpgradeDataSync.Field field : upgrade.getSettings()) {
+                        upgradeData.clearSetting(field);
+                    }
+                }
+                // Collapse the panel for this removed upgrade type
+                upgradeData.clearPanel(type);
+            }
+
+            populateDefaultsForInstalledUpgrades();
+            cachedInstalledUpgradeTypes = currentInstalledTypes;
+        }
+
+        super.setChanged();
+    }
+
+    @Override
+    public ItemStackHandler getItemHandler() {
+        return this.itemHandler;
+    }
+
+    public int calcRedstoneFromInventory() {
+        int itemsFound = 0;
+        float proportion = 0.0F;
+
+        for (int i : layout.items().range()) {
+            ItemStack itemstack = this.itemHandler.getStackInSlot(i);
+            if (!itemstack.isEmpty()) {
+                proportion += (float) itemstack.getCount() / (itemstack.getMaxStackSize() * this.stackMultiplier);
+                itemsFound++;
+            }
+        }
+
+        proportion /= layout.items().getEndIndex();
+        return Mth.floor(proportion * 14.0F) + (itemsFound > 0 ? 1 : 0);
+    }
+
+    @Override
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
+        return new BackpackMenu(ModMenuTypes.BACKPACK_MENU.get(), containerId, inventory, this, BackpackMenu.BackpackType.BLOCK, this.pos);
+    }
+}

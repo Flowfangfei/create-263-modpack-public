@@ -1,0 +1,587 @@
+{
+  "schema": "railways-ponder-track-migration/v1",
+  "scope": "Fixed module Ponder resource directory only; no world path accepted.",
+  "source_contracts": [
+    "modules/create-adapted-263/src/main/java/com/simibubi/create/content/trains/track/BezierConnection.java#write(BlockPos)",
+    "modules/create-adapted-263/Ponder/catnip/common/src/main/java/net/createmod/catnip/api/math/VecHelper.java#writeNBTCompound(Vec3)"
+  ],
+  "verification": {
+    "original_type_preserving_roundtrip": true,
+    "full_original_nbt_recovered_by_unwrapping": true,
+    "curve_geometry_flags_and_material_unchanged": true,
+    "reciprocal_connections_preserved": true,
+    "normalization_idempotent": true,
+    "runtime_validation": "Required from the integrated client; not run by this tool."
+  },
+  "templates_audited": 7,
+  "files": 2,
+  "connections": 6,
+  "records": [
+    {
+      "path": "modules/steam-n-rails-263/common/src/main/resources/assets/railways/ponder/semaphore.nbt",
+      "before_sha256": "834a55f90ce5665af142c262364f6248560fe8b2af9cc08959f9216e601ec9a7",
+      "after_sha256": "e398a5c26fd459eacff0b9dce8da5ed16c92355f5c70f9391c3d7f5146426c91",
+      "connections": [
+        {
+          "block_position": [
+            5,
+            1,
+            10
+          ],
+          "connection_index": 0,
+          "normalized_fields": [
+            "Positions",
+            "Starts",
+            "Axes",
+            "Normals"
+          ],
+          "geometry": {
+            "relative_positions": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                -3
+              ]
+            ],
+            "absolute_positions": [
+              [
+                5,
+                1,
+                10
+              ],
+              [
+                12,
+                1,
+                7
+              ]
+            ],
+            "relative_starts": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                7.0,
+                0.0,
+                -2.5
+              ]
+            ],
+            "absolute_starts": [
+              [
+                6.0,
+                1.0,
+                10.0
+              ],
+              [
+                12.0,
+                1.0,
+                7.5
+              ]
+            ],
+            "axes": [
+              [
+                0.7071067811865475,
+                0.0,
+                -0.7071067811865475
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "normals": [
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "primary": 0,
+            "girder": 0,
+            "material": "railways:dark_oak",
+            "untouched_fields_sha256": "f25c86bfd56ba7aab355f202c87f96af2ca3347d343a4d4d1b147063b209ddff"
+          }
+        },
+        {
+          "block_position": [
+            12,
+            1,
+            7
+          ],
+          "connection_index": 0,
+          "normalized_fields": [
+            "Positions",
+            "Starts",
+            "Axes",
+            "Normals"
+          ],
+          "geometry": {
+            "relative_positions": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                -7,
+                0,
+                3
+              ]
+            ],
+            "absolute_positions": [
+              [
+                12,
+                1,
+                7
+              ],
+              [
+                5,
+                1,
+                10
+              ]
+            ],
+            "relative_starts": [
+              [
+                0.0,
+                0.0,
+                0.5
+              ],
+              [
+                -6.0,
+                0.0,
+                3.0
+              ]
+            ],
+            "absolute_starts": [
+              [
+                12.0,
+                1.0,
+                7.5
+              ],
+              [
+                6.0,
+                1.0,
+                10.0
+              ]
+            ],
+            "axes": [
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.7071067811865475,
+                0.0,
+                -0.7071067811865475
+              ]
+            ],
+            "normals": [
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "primary": 1,
+            "girder": 0,
+            "material": "railways:dark_oak",
+            "untouched_fields_sha256": "2064aaa02bafb4a626afb67f6fc7a87203f909e4d2d49c006183a0fb1a91243c"
+          }
+        }
+      ]
+    },
+    {
+      "path": "modules/steam-n-rails-263/common/src/main/resources/assets/railways/ponder/switch.nbt",
+      "before_sha256": "375dcc204561b5b5c437370c5a917e397b3c845c0d40cf9795d7deca5c5ce7d3",
+      "after_sha256": "fb413f44a827d4ccccaa62cb54ffeec57b0138aa9e8fd6f17e2d54208842ffc8",
+      "connections": [
+        {
+          "block_position": [
+            2,
+            1,
+            12
+          ],
+          "connection_index": 0,
+          "normalized_fields": [
+            "Positions",
+            "Starts",
+            "Axes",
+            "Normals"
+          ],
+          "geometry": {
+            "relative_positions": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                -11
+              ]
+            ],
+            "absolute_positions": [
+              [
+                2,
+                1,
+                12
+              ],
+              [
+                7,
+                1,
+                1
+              ]
+            ],
+            "relative_starts": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                5.5,
+                0.0,
+                -10.0
+              ]
+            ],
+            "absolute_starts": [
+              [
+                3.0,
+                1.0,
+                12.0
+              ],
+              [
+                7.5,
+                1.0,
+                2.0
+              ]
+            ],
+            "axes": [
+              [
+                0.7071067811865475,
+                0.0,
+                -0.7071067811865475
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "normals": [
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "primary": 0,
+            "girder": 0,
+            "material": "railways:dark_oak",
+            "untouched_fields_sha256": "4d2f28e1d33c989a2a1755a403783179ac3375aa6bedec8c781246e9b64432f4"
+          }
+        },
+        {
+          "block_position": [
+            7,
+            1,
+            1
+          ],
+          "connection_index": 0,
+          "normalized_fields": [
+            "Positions",
+            "Starts",
+            "Axes",
+            "Normals"
+          ],
+          "geometry": {
+            "relative_positions": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                11
+              ]
+            ],
+            "absolute_positions": [
+              [
+                7,
+                1,
+                1
+              ],
+              [
+                12,
+                1,
+                12
+              ]
+            ],
+            "relative_starts": [
+              [
+                0.5,
+                0.0,
+                1.0
+              ],
+              [
+                5.0,
+                0.0,
+                11.0
+              ]
+            ],
+            "absolute_starts": [
+              [
+                7.5,
+                1.0,
+                2.0
+              ],
+              [
+                12.0,
+                1.0,
+                12.0
+              ]
+            ],
+            "axes": [
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                -0.7071067811865475,
+                0.0,
+                -0.7071067811865475
+              ]
+            ],
+            "normals": [
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "primary": 1,
+            "girder": 0,
+            "material": "railways:dark_oak",
+            "untouched_fields_sha256": "8fea10349d33f83c231958e80992cbb52a3547d64916034298c803898c471764"
+          }
+        },
+        {
+          "block_position": [
+            7,
+            1,
+            1
+          ],
+          "connection_index": 1,
+          "normalized_fields": [
+            "Positions",
+            "Starts",
+            "Axes",
+            "Normals"
+          ],
+          "geometry": {
+            "relative_positions": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                -5,
+                0,
+                11
+              ]
+            ],
+            "absolute_positions": [
+              [
+                7,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                12
+              ]
+            ],
+            "relative_starts": [
+              [
+                0.5,
+                0.0,
+                1.0
+              ],
+              [
+                -4.0,
+                0.0,
+                11.0
+              ]
+            ],
+            "absolute_starts": [
+              [
+                7.5,
+                1.0,
+                2.0
+              ],
+              [
+                3.0,
+                1.0,
+                12.0
+              ]
+            ],
+            "axes": [
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                0.7071067811865475,
+                0.0,
+                -0.7071067811865475
+              ]
+            ],
+            "normals": [
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "primary": 1,
+            "girder": 0,
+            "material": "railways:dark_oak",
+            "untouched_fields_sha256": "8fea10349d33f83c231958e80992cbb52a3547d64916034298c803898c471764"
+          }
+        },
+        {
+          "block_position": [
+            12,
+            1,
+            12
+          ],
+          "connection_index": 0,
+          "normalized_fields": [
+            "Positions",
+            "Starts",
+            "Axes",
+            "Normals"
+          ],
+          "geometry": {
+            "relative_positions": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                -5,
+                0,
+                -11
+              ]
+            ],
+            "absolute_positions": [
+              [
+                12,
+                1,
+                12
+              ],
+              [
+                7,
+                1,
+                1
+              ]
+            ],
+            "relative_starts": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.5,
+                0.0,
+                -10.0
+              ]
+            ],
+            "absolute_starts": [
+              [
+                12.0,
+                1.0,
+                12.0
+              ],
+              [
+                7.5,
+                1.0,
+                2.0
+              ]
+            ],
+            "axes": [
+              [
+                -0.7071067811865475,
+                0.0,
+                -0.7071067811865475
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "normals": [
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "primary": 0,
+            "girder": 0,
+            "material": "railways:dark_oak",
+            "untouched_fields_sha256": "4d2f28e1d33c989a2a1755a403783179ac3375aa6bedec8c781246e9b64432f4"
+          }
+        }
+      ]
+    }
+  ]
+}

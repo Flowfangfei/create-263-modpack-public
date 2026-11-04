@@ -1,0 +1,60 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "apothic_enchanting"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": "apothic_enchanting:pearl_endshelf",
+  "loops": 3,
+  "results": [
+    {
+      "id": "create_enchantment_industry:brass_bookshelf"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        "create_enchantment_industry:incomplete_brass_bookshelf",
+        "create:brass_ingot"
+      ],
+      "results": [
+        {
+          "id": "create_enchantment_industry:incomplete_brass_bookshelf"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        "create_enchantment_industry:incomplete_brass_bookshelf",
+        {
+          "ingredient": "#create_enchantment_industry:infusing/ingredients",
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "id": "create_enchantment_industry:incomplete_brass_bookshelf"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        "create_enchantment_industry:incomplete_brass_bookshelf",
+        "create:precision_mechanism"
+      ],
+      "results": [
+        {
+          "id": "create_enchantment_industry:incomplete_brass_bookshelf"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "create_enchantment_industry:incomplete_brass_bookshelf"
+  }
+}

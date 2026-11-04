@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "create:brass_casing",
+    "P": "create:precision_mechanism",
+    "S": "create:brass_sheet"
+  },
+  "pattern": [
+    "S",
+    "P",
+    "B"
+  ],
+  "result": {
+    "id": "simulated:navigation_table"
+  }
+}

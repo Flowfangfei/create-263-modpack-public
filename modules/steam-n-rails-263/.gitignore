@@ -1,0 +1,57 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out/
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build/
+.gradle/
+gradle/patched-deps/
+
+# other
+eclipse/
+run/
+
+# Files from Forge MDK
+forge*changelog.txt
+/server/
+
+# Custom
+**/src/main/resources/assets/create/
+jars/
+**/libs/
+**/changelog.html
+**/recent_changelog.html
+.DS_Store
+PORT_HANDOFF.md
+
+##################
+# Dev's Personal #
+##################
+
+# Slimeist (techno-sam)
+/build_archive/
+/development_assets/venv/
+/common/src/main/resources/assets/minecraft/textures/block/
+/.architectury-transformer/
+
+last_run_console.txt
+last_run_error.txt
+.vscode/*
+net/*
+
+# Local adaptation workspace
+/artifacts/
+/tooling/
+/runtime/
+/docs/ai-collaboration/private/

@@ -1,0 +1,153 @@
+package com.yision.fluidlogistics.compat.jei;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.simibubi.create.content.logistics.filter.AbstractFilterScreen;
+import com.simibubi.create.content.logistics.redstoneRequester.RedstoneRequesterScreen;
+import com.simibubi.create.content.logistics.stockTicker.StockKeeperRequestScreen;
+import com.simibubi.create.content.processing.basin.BasinRecipe;
+import com.simibubi.create.Create;
+import com.simibubi.create.compat.jei.ConversionRecipe;
+import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.compat.jei.category.ProcessingViaFanCategory;
+import com.yision.fluidlogistics.FluidLogistics;
+import com.yision.fluidlogistics.content.logistics.redstoneRequester.RedstoneRequesterAmountsAccess;
+import com.yision.fluidlogistics.compat.CompatMods;
+import com.yision.fluidlogistics.infrastructure.config.Config;
+import com.yision.fluidlogistics.content.processing.cooling.BulkCoolingRecipe;
+import com.yision.fluidlogistics.content.equipment.handPointer.filter.HandPointerFilterScreen;
+import com.yision.fluidlogistics.content.logistics.factoryGauge.client.ResourceFactoryGaugeSetFilterScreen;
+import com.yision.fluidlogistics.foundation.fluid.FluidAmountHelper;
+import com.yision.fluidlogistics.content.logistics.fluidPackage.FluidProxyRegistry;
+import com.yision.fluidlogistics.registry.AllItems;
+import com.yision.fluidlogistics.registry.AllBlocks;
+import com.yision.fluidlogistics.registry.AllFluidLogisticsRecipeTypes;
+
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.registration.IAdvancedRegistration;
+import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.runtime.IJeiRuntime;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import plus.dragons.createdragonsplus.config.CDPConfig;
+import plus.dragons.createdragonsplus.integration.jei.category.FanFreezingCategory;
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
+
+@JeiPlugin
+@SuppressWarnings("unused")
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public class FluidLogisticsJEI implements IModPlugin {
+
+	private static final Identifier ID = FluidLogistics.asResource("jei_plugin");
+    private static final RecipeType<RecipeHolder<ConversionRecipe>> MYSTERY_CONVERSION =
+        RecipeType.createRecipeHolderType(Create.asResource("mystery_conversion"));
+	private static final List<RecipeType<RecipeHolder<BasinRecipe>>> BASIN_RECIPE_TYPES = List.of(
+		RecipeType.createRecipeHolderType(Create.asResource("mixing")),
+		RecipeType.createRecipeHolderType(Create.asResource("automatic_shapeless")),
+		RecipeType.createRecipeHolderType(Create.asResource("automatic_brewing")),
+		RecipeType.createRecipeHolderType(Create.asResource("packing")),
+        RecipeType.createRecipeHolderType(Create.asResource("automatic_packing"))
+    );
+	private static IJeiRuntime runtime;
+	private CreateRecipeCategory<BulkCoolingRecipe> bulkCooling;
+
+	@SuppressWarnings("rawtypes")
+	private static final FluidGhostIngredientHandler FILTER_FLUID_HANDLER = new FluidGhostIngredientHandler();
+    private static final FluidGhostIngredientHandler<ResourceFactoryGaugeSetFilterScreen> RESOURCE_GAUGE_SET_FILTER_FLUID_HANDLER =
+        new FluidGhostIngredientHandler<>();
+    private static final FluidGhostIngredientHandler<RedstoneRequesterScreen> REDSTONE_REQUESTER_FLUID_HANDLER =
+        new FluidGhostIngredientHandler<>((gui, slotIndex) ->
+            ((RedstoneRequesterAmountsAccess) gui).fluidlogistics$getAmounts()
+			.set(slotIndex, FluidAmountHelper.DEFAULT_FLUID_REQUEST_AMOUNT));
+
+	@Override
+	public Identifier getPluginUid() {
+		return ID;
+	}
+
+	@Nullable
+	static IJeiRuntime getRuntime() {
+		return runtime;
+	}
+
+	@Override
+	public void registerAdvanced(IAdvancedRegistration registration) {
+		registration.addRecipeManagerPlugin(new FluidTankRecipeLookupPlugin(
+			registration.getJeiHelpers(), FluidLogisticsJEI::getRuntime));
+	}
+
+	@Override
+	public void registerCategories(IRecipeCategoryRegistration registration) {
+		bulkCooling = null;
+		if (!Config.isSnowGolemFreezerEnabled() || CompatMods.createDragonsPlusLoaded())
+			return;
+		bulkCooling = new CreateRecipeCategory.Builder<>(BulkCoolingRecipe.class)
+			.addTypedRecipes(AllFluidLogisticsRecipeTypes.BULK_COOLING)
+			.addTypedRecipes(AllFluidLogisticsRecipeTypes.INACTIVE_BULK_COOLING)
+			.catalystStack(ProcessingViaFanCategory.getFan("fan_cooling"))
+			.catalyst(AllBlocks.SNOW_GOLEM_FREEZER::get)
+			.doubleItemIcon(com.simibubi.create.AllItems.PROPELLER.get(), AllBlocks.SNOW_GOLEM_FREEZER.get())
+			.emptyBackground(178, 72)
+			.build(FluidLogistics.asResource("fan_cooling"), FanBulkCoolingCategory::new);
+		registration.addRecipeCategories(bulkCooling);
+	}
+
+	@Override
+	public void registerRecipes(IRecipeRegistration registration) {
+		if (!Config.isSnowGolemFreezerEnabled())
+			return;
+		if (bulkCooling != null)
+			bulkCooling.registerRecipes(registration);
+		registration.addRecipes(MYSTERY_CONVERSION, List.of(
+			ConversionRecipe.create(AllItems.EMPTY_SNOW_GOLEM_FREEZER.asStack(),
+				AllBlocks.SNOW_GOLEM_FREEZER.asStack())));
+	}
+
+	@Override
+	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+		if (bulkCooling != null)
+			bulkCooling.registerCatalysts(registration);
+		if (Config.isSnowGolemFreezerEnabled() && CompatMods.createDragonsPlusLoaded()
+			&& CDPConfig.recipes().enableBulkFreezing.get())
+			registration.addRecipeCatalyst(AllBlocks.SNOW_GOLEM_FREEZER.asStack(), FanFreezingCategory.TYPE);
+		for (RecipeType<RecipeHolder<BasinRecipe>> recipeType : BASIN_RECIPE_TYPES)
+			registration.addRecipeCatalyst(AllBlocks.COPPER_BASIN.asStack(), recipeType);
+	}
+
+	@Override
+	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+		if (!CompatMods.emiLoaded()) {
+			registration.addGhostIngredientHandler(AbstractFilterScreen.class, FILTER_FLUID_HANDLER);
+			registration.addGhostIngredientHandler(ResourceFactoryGaugeSetFilterScreen.class,
+				RESOURCE_GAUGE_SET_FILTER_FLUID_HANDLER);
+			registration.addGhostIngredientHandler(RedstoneRequesterScreen.class, REDSTONE_REQUESTER_FLUID_HANDLER);
+            registration.addGhostIngredientHandler(HandPointerFilterScreen.class, HandPointerFilterGhostHandler.INSTANCE);
+		}
+		registration.addGuiContainerHandler(StockKeeperRequestScreen.class, new StockKeeperRequestFluidGuiHandler());
+	}
+
+	@Override
+	public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+		runtime = jeiRuntime;
+		List<ItemStack> hidden = jeiRuntime.getIngredientManager().getAllIngredients(VanillaTypes.ITEM_STACK).stream()
+			.filter(stack -> FluidProxyRegistry.isProxy(stack) || stack.is(AllItems.COMPRESSED_STORAGE_TANK.get()))
+			.toList();
+		jeiRuntime.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, hidden);
+	}
+
+	@Override
+	public void onRuntimeUnavailable() {
+		runtime = null;
+	}
+
+}

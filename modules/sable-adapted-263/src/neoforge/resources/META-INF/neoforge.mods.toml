@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="PolyForm Shield License 1.0.0"
+[[mods]]
+modId="sable"
+version="3.0.0-adapted.1"
+displayName="Sable - local NeoForge adaptation"
+description="Local NeoForge 26.3 physics core for Create Aeronautics migration."
+[[mixins]]
+config="sable.mixins.json"
+[[mixins]]
+config="sable-fabric.mixins.json"
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
+[[dependencies.sable]]
+modId="minecraft"
+type="required"
+versionRange="[26.3,26.4)"
+side="BOTH"
+[[dependencies.sable]]
+modId="neoforge"
+type="required"
+versionRange="[26.3.0.22-beta,26.4)"
+side="BOTH"

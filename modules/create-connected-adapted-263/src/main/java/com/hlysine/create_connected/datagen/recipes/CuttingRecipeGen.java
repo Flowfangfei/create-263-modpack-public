@@ -1,0 +1,22 @@
+package com.hlysine.create_connected.datagen.recipes;
+
+import com.hlysine.create_connected.registries.CCBlocks;
+import com.hlysine.create_connected.CreateConnected;
+import com.simibubi.create.AllBlocks;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+
+import java.util.concurrent.CompletableFuture;
+
+@SuppressWarnings("unused")
+public class CuttingRecipeGen extends com.simibubi.create.api.data.recipe.CuttingRecipeGen {
+
+    GeneratedRecipe SHEAR_PIN = create(AllBlocks.SHAFT::get, b -> b.duration(200)
+            .withCondition(new FeatureEnabledCondition(CCBlocks.SHEAR_PIN.getId()))
+            .output(CCBlocks.SHEAR_PIN.get()));
+
+    public CuttingRecipeGen(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.item.crafting.Recipe<?>> registries, net.minecraft.data.worldgen.BootstrapContext<net.minecraft.advancements.Advancement> output) {
+        super(registries, output, CreateConnected.MODID);
+    }
+}
+

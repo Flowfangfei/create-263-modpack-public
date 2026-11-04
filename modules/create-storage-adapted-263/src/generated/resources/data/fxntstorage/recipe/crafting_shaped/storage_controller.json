@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "storage_box",
+  "key": {
+    "X": "create:redstone_link",
+    "Y": "create:brass_casing",
+    "Z": "create:electron_tube"
+  },
+  "pattern": [
+    "X",
+    "Y",
+    "Z"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:storage_controller"
+  }
+}

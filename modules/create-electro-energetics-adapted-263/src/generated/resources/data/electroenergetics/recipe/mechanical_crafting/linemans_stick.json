@@ -1,0 +1,24 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "D": "minecraft:red_dye",
+    "H": "create:brass_hand",
+    "N": "#c:nuggets/iron",
+    "R": "create:precision_mechanism",
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "NRH",
+    " S ",
+    " S ",
+    " S ",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:linemans_stick"
+  },
+  "show_notification": false
+}

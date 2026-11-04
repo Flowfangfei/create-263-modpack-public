@@ -1,0 +1,70 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "apotheosis"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": "minecraft:paper",
+  "results": [
+    {
+      "id": "create_enchantment_industry:crystal_affix_template"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        "create_enchantment_industry:incomplete_crystal_affix_template",
+        "create:brass_sheet"
+      ],
+      "results": [
+        {
+          "id": "create_enchantment_industry:incomplete_crystal_affix_template"
+        }
+      ]
+    },
+    {
+      "type": "create:filling",
+      "ingredients": [
+        "create_enchantment_industry:incomplete_crystal_affix_template",
+        {
+          "ingredient": "create_enchantment_industry:crystal_essence",
+          "amount": 50
+        }
+      ],
+      "results": [
+        {
+          "id": "create_enchantment_industry:incomplete_crystal_affix_template"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        "create_enchantment_industry:incomplete_crystal_affix_template",
+        "minecraft:amethyst_shard"
+      ],
+      "results": [
+        {
+          "id": "create_enchantment_industry:incomplete_crystal_affix_template"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        "create_enchantment_industry:incomplete_crystal_affix_template"
+      ],
+      "results": [
+        {
+          "id": "create_enchantment_industry:incomplete_crystal_affix_template"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "create_enchantment_industry:incomplete_crystal_affix_template"
+  }
+}

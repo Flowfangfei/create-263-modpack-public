@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fluidlogistics:feature_enabled",
+      "feature": "fluidlogistics:horizontal_multi_fluid_tank"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "#c:plates/brass",
+    "C": "#c:barrels/wooden"
+  },
+  "pattern": [
+    "BCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fluidlogistics:horizontal_multi_fluid_tank"
+  }
+}

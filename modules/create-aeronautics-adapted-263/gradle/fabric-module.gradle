@@ -1,0 +1,118 @@
+base {
+    archivesName = "${mod_id}-fabric-${minecraft_version}"
+}
+
+apply from: rootProject.file('gradle/item-model-compat.gradle')
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+    withSourcesJar()
+}
+
+sourceSets {
+    main {
+        java {
+            exclude 'dev/simulated_team/simulated/mixin/diagram/VanillaSubLevelRenderDispatcherMixin.java'
+            exclude 'dev/simulated_team/simulated/mixin/end_sea/VanillaSubLevelRenderDispatcherMixin.java'
+            exclude 'dev/simulated_team/simulated/mixin/hold_interaction/LocalPlayerMixin.java'
+            exclude 'dev/simulated_team/simulated/mixin/lodestone_compat/CompassItemPropertyFunctionMixin.java'
+            exclude 'dev/eriksonn/aeronautics/mixin/levitite/VanillaChunkedSubLevelRenderDataMixin.java'
+            exclude 'dev/eriksonn/aeronautics/mixin/render/vanilla/LevelRendererMixin.java'
+            exclude 'dev/eriksonn/aeronautics/mixin/render/sodium/DefaultMaterialsMixin.java'
+            exclude 'dev/eriksonn/aeronautics/mixin/render/sodium/SodiumWorldRendererMixin.java'
+            exclude 'dev/eriksonn/aeronautics/mixin/render/iris/WorldRenderingPhaseMixin.java'
+        }
+        resources {
+            srcDir 'src/generated/resources'
+        }
+    }
+}
+
+loom {
+    def accessWidener = file("src/main/resources/${mod_id}.classtweaker")
+    if (accessWidener.exists()) {
+        accessWidenerPath = accessWidener
+    }
+    mods {
+        "${mod_id}" { sourceSet sourceSets.main }
+    }
+    runs {
+        client {
+            client()
+            name = "${mod_name} Fabric Client"
+            runDir = 'runs/client'
+            // -PquickPlaySingleplayer='<世界名>' 让 runClient 启动后直接进那个单人世界。
+            // 用来复现"进世界后卡死"这类只在世界里出现的问题：进程一起就挂着等，
+            // 一旦日志停止推进就 jstack 抓渲染线程栈。
+            if (project.hasProperty('quickPlaySingleplayer')) {
+                programArgs(['--quickPlaySingleplayer', project.property('quickPlaySingleplayer').toString()])
+            }
+        }
+        server {
+            server()
+            name = "${mod_name} Fabric Server"
+            runDir = 'runs/server'
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "io.github.llamalad7:mixinextras-fabric:${mixinextras_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    // Create-Fly, compile-time only: lets compatibility/create mixins reference Create types directly
+    // (string @At targets are not enough when a handler signature needs one). Runtime presence is
+    // gated by the mixin plugin, so the mod still works without Create installed.
+    // JitPack 上的 GitHub 仓库构建产物（LyXith/create-fly-fly，ref pack-26.3-latest）；
+    // runClient 的运行期仍然由 runs/client/mods 里的 mod jar 提供，compileOnly 不进运行时。
+    compileOnly("com.github.LyXith:create-fly-fly:${create_fly_version}") {
+        transitive = false
+    }
+    implementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forgeconfigapiport_version}"
+    implementation "teamreborn:energy:${energy_version}"
+
+    compileOnly "dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:${sable_companion_version}"
+    compileOnly files("${rootProject.projectDir}/libs/sable-fabric-${sable_mod_version}.jar")
+    compileOnly "maven.modrinth:cc-tweaked:${computercraft_tweaked_version}"
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    compileOnly "org.jspecify:jspecify:1.0.0"
+
+    compileOnly "org.projectlombok:lombok:1.18.42"
+    annotationProcessor "org.projectlombok:lombok:1.18.42"
+    compileOnly "maven.modrinth:jei:${jei_version}"
+    compileOnly "maven.modrinth:natures-compass:${natures_compass_version}"
+    compileOnly "maven.modrinth:explorers-compass:${explorers_compass_version}"
+    compileOnly "maven.modrinth:sodium:${sodium_version}"
+}
+
+processResources {
+    def properties = [
+            version               : project.version,
+            mod_id                : mod_id,
+            mod_name              : mod_name,
+            mod_author            : mod_author,
+            description           : project.description,
+            license               : license,
+            java_version          : java_version,
+            minecraft_version     : minecraft_version,
+            fabric_loader_version : fabric_loader_version,
+            fabric_version        : fabric_version,
+            create_mod_version    : create_mod_version,
+            sable_mod_version_range: sable_mod_version_range,
+            energy_version        : energy_version
+    ]
+
+    filesMatching(['fabric.mod.json', '*.mixins.json']) { expand properties }
+    inputs.properties(properties)
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = java_version as int
+    options.compilerArgs.addAll(['-Xmaxerrs', '10000'])
+}
+
+jar {
+    from(rootProject.file('LICENSE.md'))
+}

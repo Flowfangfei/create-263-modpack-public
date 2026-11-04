@@ -1,0 +1,11 @@
+{
+  "type": "create_dragons_plus:ending",
+  "ingredients": [
+    "minecraft:apple"
+  ],
+  "results": [
+    {
+      "id": "minecraft:chorus_fruit"
+    }
+  ]
+}

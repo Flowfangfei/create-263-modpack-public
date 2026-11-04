@@ -1,0 +1,6 @@
+{
+  "parent": "fluidlogistics:item/rare_fox_package",
+  "textures": {
+    "2": "fluidlogistics:block/world_package/package/rare_fox"
+  }
+}

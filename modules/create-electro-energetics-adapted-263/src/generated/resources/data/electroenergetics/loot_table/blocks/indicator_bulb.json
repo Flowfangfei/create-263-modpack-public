@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "electroenergetics:indicator_bulb"
+        }
+      ],
+      "modifier": {
+        "add": false,
+        "condition": {
+          "blocks": "electroenergetics:indicator_bulb",
+          "type": "minecraft:match_block",
+          "state": {
+            "side": "2"
+          }
+        },
+        "count": 2.0,
+        "type": "minecraft:set_count"
+      },
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "electroenergetics:blocks/indicator_bulb"
+}

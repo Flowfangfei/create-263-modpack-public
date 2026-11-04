@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "electroenergetics:potentiometer",
+    "R": "minecraft:redstone_torch"
+  },
+  "pattern": [
+    "P",
+    "R"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:redstone_potentiometer"
+  }
+}

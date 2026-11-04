@@ -1,0 +1,4 @@
+@ParametersAreNonnullByDefault
+package plus.dragons.createenchantmentindustry.common.processing.enchanter.behaviour;
+
+import javax.annotation.ParametersAreNonnullByDefault;

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:blast_furnace",
+    "E": "simulated:engine_assembly",
+    "G": "create:iron_sheet"
+  },
+  "pattern": [
+    "G",
+    "E",
+    "B"
+  ],
+  "result": {
+    "id": "simulated:red_portable_engine"
+  }
+}

@@ -1,0 +1,84 @@
+/*
+ * Steam 'n' Rails
+ * Copyright (c) 2022-2025 The Railways Team
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package com.railwayteam.railways.content.custom_bogeys.blocks.base;
+
+import com.simibubi.create.content.trains.track.TrackMaterial.TrackType;
+
+import com.railwayteam.railways.content.custom_bogeys.blocks.base.be.CRBogeyBlockEntity;
+import com.railwayteam.railways.registry.CRBlockEntities;
+import com.railwayteam.railways.registry.CRTrackMaterials;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockItemRequirement;
+import com.simibubi.create.content.trains.bogey.AbstractBogeyBlock;
+import com.simibubi.create.content.trains.bogey.BogeySizes.BogeySize;
+import com.simibubi.create.content.trains.bogey.BogeyStyle;
+import com.simibubi.create.content.trains.track.TrackMaterial;
+import com.simibubi.create.foundation.block.IBE;
+import com.simibubi.create.foundation.block.ProperWaterloggedBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Supplier;
+
+public class CRBogeyBlock extends AbstractBogeyBlock<CRBogeyBlockEntity>
+	implements IBE<CRBogeyBlockEntity>, ProperWaterloggedBlock, SpecialBlockItemRequirement {
+
+	private final Supplier<BogeyStyle> defaultStyle;
+
+	protected CRBogeyBlock(Properties props, Supplier<BogeyStyle> defaultStyle, BogeySize size) {
+		super(props, size);
+		this.defaultStyle = defaultStyle;
+		registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false));
+	}
+	public TrackType getTrackType(BogeyStyle style) {
+		return CRTrackMaterials.CRTrackType.STANDARD;
+	}
+	public double getWheelPointSpacing() {
+		return 2;
+	}
+	public double getWheelRadius() {
+		return 6.5 / 16d;
+	}
+	public Vec3 getConnectorAnchorOffset() {
+		return new Vec3(0, 7 / 32f, 1);
+	}
+	public BogeyStyle getDefaultStyle() {
+		return defaultStyle.get();
+	}
+
+	@Override
+	public @NotNull ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
+		return Blocks.ANDESITE.asItem().getDefaultInstance();
+	}
+	public Class<CRBogeyBlockEntity> getBlockEntityClass() {
+		return CRBogeyBlockEntity.class;
+	}
+	public BlockEntityType<? extends CRBogeyBlockEntity> getBlockEntityType() {
+		return CRBlockEntities.BOGEY.get();
+	}
+}

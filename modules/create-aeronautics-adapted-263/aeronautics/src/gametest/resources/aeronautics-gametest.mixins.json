@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.eriksonn.aeronautics.gametest.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "GameTestBatchFactoryMixin"
+  ],
+  "client": [
+    "GameRendererAccessor",
+    "LevelRendererAccessor",
+    "SkullRenderProbe",
+    "PlungerLauncherItemModelProbe",
+    "PlungerRopeRenderProbe",
+    "PlungerWorldProjectionProbe"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

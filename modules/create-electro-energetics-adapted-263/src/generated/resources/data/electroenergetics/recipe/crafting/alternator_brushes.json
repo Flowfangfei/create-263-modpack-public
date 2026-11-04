@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:iron_bars",
+    "C": "electroenergetics:connector",
+    "M": "electroenergetics:commutator",
+    "S": "create:shaft"
+  },
+  "pattern": [
+    " C ",
+    "SMB",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:alternator_brushes"
+  }
+}

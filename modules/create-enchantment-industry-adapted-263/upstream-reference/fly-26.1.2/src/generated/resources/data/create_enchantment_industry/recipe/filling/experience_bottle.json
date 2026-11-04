@@ -1,0 +1,12 @@
+{
+  "type": "create:filling",
+  "fluid_ingredient": {
+    "type": "fluid_stack",
+    "amount": 810,
+    "fluid": "create_enchantment_industry:experience"
+  },
+  "ingredient": "minecraft:glass_bottle",
+  "result": {
+    "id": "minecraft:experience_bottle"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": "create:andesite_alloy",
+    "s": "create:shaft"
+  },
+  "pattern": [
+    "aaa",
+    "asa",
+    "aaa"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_enchantment_industry:mechanical_grindstone"
+  }
+}

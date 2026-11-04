@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-11-03T01:05:30+08:00",
+  "hotfix": "2026-11-03-ponder-flame",
+  "base_package": "v0.3.0-alpha.2 plus2026-11-02 railways/storage hotfix",
+  "crash_zip_sha256": "497f914496e636a38739cb37a16636c4284d5310effc25b5b02915d3437beec5",
+  "module": "aeronautics-adapted.jar",
+  "before_sha256": "1dc707039d91a8f6360f60b9b84d326745c2dfaab8efc4851dc00c2a7d9a4f01",
+  "after_sha256": "6152cafb153c212a7640317beb7fbe0f1bc8f07140302131fdc45ccc8db9fce8",
+  "changed_entries": {
+    "added": [],
+    "removed": [],
+    "changed": [
+      "dev/eriksonn/aeronautics/index/client/AeroRenderTypes.class"
+    ]
+  },
+  "same_probe_jar": true,
+  "probe_jar_sha256": "049271967e6dc719b014763405854cc01bcfd9965b7d48c71003bc931eb4c087",
+  "test_mod_delta": [
+    "aeronautics-adapted.jar"
+  ],
+  "baseline": {
+    "expected_failure_reproduced": true,
+    "exit_code": 4294967295,
+    "timed_out": false,
+    "scene": "aeronautics:envelope",
+    "last_completed_timeline_tick": 90
+  },
+  "candidate": {
+    "passed": true,
+    "exit_code": 0,
+    "timed_out": false,
+    "scenes": [
+      "aeronautics:envelope",
+      "aeronautics:hot_air_burner",
+      "aeronautics:steam_vent"
+    ],
+    "completed_scenes": 3,
+    "sample_count": 77,
+    "color_targets": {
+      "burnerFlame": 1,
+      "irisCompositeBurnerFlame": 1
+    },
+    "saved_and_returned_to_title": true
+  },
+  "installed": true,
+  "other_mod_jars_unchanged": 17,
+  "original_saves_accessed": false,
+  "worlds_modified": false,
+  "remote_modified": false,
+  "source_changes_committed": false,
+  "limitations": [
+    "Timeline samples use30-tick seeking plus actual rendered waits, not every-animation-frame verification.",
+    "Iris shader-pack path was not executed; shared pipeline declaration and both runtime target counts were checked.",
+    "Pre-existing create:fluid_max_capacity component warnings occur when loading some Ponder templates; they are outside this crash fix."
+  ]
+}

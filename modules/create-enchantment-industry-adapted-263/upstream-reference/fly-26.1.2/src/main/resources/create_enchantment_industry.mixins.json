@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "priority": 1100,
+  "package": "plus.dragons.createenchantmentindustry.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "ConnectivityHandlerMixin",
+    "CreateNBTProcessorsMixin",
+    "CrushingWheelControllerBlockEntityMixin",
+    "DeployerHandlerMixin",
+    "BlockMixin",
+    "FillingBySpoutMixin",
+    "FishingHookMixin",
+    "LightningBoltMixin",
+    "LivingEntityMixin",
+    "OpenEndFluidHandlerMixin",
+    "PlayerMixin",
+    "SmartBlockEntityMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

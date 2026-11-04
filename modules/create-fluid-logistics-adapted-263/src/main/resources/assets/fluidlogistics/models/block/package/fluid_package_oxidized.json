@@ -1,0 +1,7 @@
+{
+  "parent": "fluidlogistics:item/fluid_package_oxidized",
+  "textures": {
+    "0": "fluidlogistics:block/world_package/fluid_package_oxidized",
+    "particle": "fluidlogistics:block/world_package/fluid_package_oxidized"
+  }
+}

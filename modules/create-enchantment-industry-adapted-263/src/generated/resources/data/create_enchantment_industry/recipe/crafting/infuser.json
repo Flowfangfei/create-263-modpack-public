@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "apothic_enchanting"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "-": "create:brass_sheet",
+    "=": "create:nixie_tube",
+    "o": "create:spout"
+  },
+  "pattern": [
+    " - ",
+    " o ",
+    "==="
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_enchantment_industry:infuser"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "createoreexcavation:diamond_drill",
+  "result": {
+    "count": 1,
+    "id": "createoreexcavation:netherite_drill"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

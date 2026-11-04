@@ -1,0 +1,50 @@
+> 本目录是 Create263 Pack 的 26.3 适配源码。构建、依赖、验证范围与联合测试入口见 [docs/PORTING-26.3.md](docs/PORTING-26.3.md)。上游说明保留如下。
+
+# Create Aeronautics: Transmission & Linkage
+
+Adds universal joints, hydraulic links, and kinetic conversion bearings for Aeronautics structures.
+
+## Requirements
+
+A. Minecraft 1.21.1  
+B. NeoForge 21.1.226 or newer in the 21.1 line  
+C. Create 6.0.10 or newer  
+D. Sable 2.0.0 or newer  
+E. Simulated 1.3.0 or newer
+
+The mod targets Sable 2.x only. It does not include a Sable 1.x compatibility layer.
+
+## Build and verification
+
+Use JDK 21.
+
+```powershell
+.\gradlew.bat build --offline --no-daemon --console=plain
+```
+
+`check` also runs source-level compatibility and physics-control regression checks. The adjacent
+`aeronautics_structure_tool` project is intentionally not coupled to implementation classes; verify its
+compatibility with:
+
+```powershell
+.\gradlew.bat compileJava --offline --no-daemon --console=plain
+```
+
+Run that command from the `aeronautics_structure_tool` project directory.
+
+## Compatibility
+
+Blueprint and tool integrations depend on registry ids and persistent link references, not internal Java
+classes. The maintained contract is documented in
+[docs/architecture/compatibility-contract.md](docs/architecture/compatibility-contract.md).
+
+## Architecture
+
+The Sable constraint and assembly-move lifecycle is documented in
+[docs/architecture/sable-constraint-lifecycle.md](docs/architecture/sable-constraint-lifecycle.md).
+Ownership boundaries for the main runtime components are documented in
+[docs/architecture/component-ownership.md](docs/architecture/component-ownership.md).
+
+## License
+
+CC BY-NC 4.0. See [LICENSE](LICENSE).

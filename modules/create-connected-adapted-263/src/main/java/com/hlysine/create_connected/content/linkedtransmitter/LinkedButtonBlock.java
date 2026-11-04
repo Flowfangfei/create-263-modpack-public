@@ -1,0 +1,233 @@
+package com.hlysine.create_connected.content.linkedtransmitter;
+
+import com.hlysine.create_connected.registries.CCBlockEntityTypes;
+import com.hlysine.create_connected.registries.CCItems;
+import com.simibubi.create.AllSoundEvents;
+import com.simibubi.create.api.schematic.requirement.SpecialBlockItemRequirement;
+import com.simibubi.create.content.equipment.wrench.IWrenchable;
+import com.simibubi.create.content.schematics.requirement.ItemRequirement;
+import com.simibubi.create.foundation.block.IBE;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LinkedButtonBlock extends ButtonBlock implements IBE<LinkedTransmitterBlockEntity>, SpecialBlockItemRequirement, IWrenchable, LinkedTransmitterBlock {
+    public static BooleanProperty LOCKED = BlockStateProperties.LOCKED;
+
+    private final ButtonBlock base;
+    private final int pressDuration;
+
+    public LinkedButtonBlock(Properties pProperties, ButtonBlock base) {
+        this(pProperties, base, base.ticksToStayPressed);
+    }
+
+    private LinkedButtonBlock(Properties properties, ButtonBlock base, int pressDuration) {
+        super(base.type, pressDuration, properties);
+        this.base = base;
+        this.pressDuration = pressDuration;
+        registerDefaultState(defaultBlockState().setValue(LOCKED, false));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        super.createBlockStateDefinition(pBuilder.add(LOCKED));
+    }
+
+    @Override
+    public Block getBlock() {
+        return this;
+    }
+
+    @Override
+    public Block getBase() {
+        return base;
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state,
+                                        @NotNull BlockGetter level,
+                                        @NotNull BlockPos pos,
+                                        @NotNull CollisionContext context) {
+        return Shapes.or(getTransmitterShape(state), super.getShape(state, level, pos, context));
+    }
+
+    @Override
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootParams.@NotNull Builder builder) {
+        return base.defaultBlockState().getDrops(builder);
+    }
+
+    @Override
+    public @NotNull InteractionResult useWithoutItem(@NotNull BlockState state,
+                                                     @NotNull Level level,
+                                                     @NotNull BlockPos pos,
+                                                     @NotNull Player player,
+                                                     @NotNull BlockHitResult hit) {
+        if (player.isSpectator())
+            return InteractionResult.PASS;
+
+        if (isHittingBase(state, level, pos, hit)) {
+            if (!player.isShiftKeyDown())
+                return super.useWithoutItem(state, level, pos, player, hit);
+            return InteractionResult.CONSUME;
+        }
+        return LinkedTransmitterBlock.super.useTransmitter(state, level, pos, player);
+    }
+
+    @Override
+    public @NotNull InteractionResult useItemOn(@NotNull ItemStack stack,
+                                                    @NotNull BlockState state,
+                                                    @NotNull Level level,
+                                                    @NotNull BlockPos pos,
+                                                    @NotNull Player player,
+                                                    @NotNull InteractionHand hand,
+                                                    @NotNull BlockHitResult hitResult) {
+        return LinkedTransmitterBlock.super.useWax(stack, state, level, pos, player, hand, hitResult);
+    }
+
+    @Override
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel world, BlockPos pos, boolean isMoving) {
+        LinkedTransmitterRemoval.finish(world, pos, isMoving);
+        super.affectNeighborsAfterRemoval(state, world, pos, isMoving);
+    }
+
+    @Override
+    public InteractionResult onSneakWrenched(BlockState state, UseOnContext context) {
+        if (context.getPlayer() == null)
+            return InteractionResult.PASS;
+        if (context.getLevel().isClientSide())
+            return InteractionResult.SUCCESS;
+        InteractionResult result = onWrenched(state, context);
+        if (result != InteractionResult.SUCCESS)
+            return result;
+        return IWrenchable.super.onSneakWrenched(state, context);
+    }
+
+    @Override
+    public InteractionResult onWrenched(BlockState state, UseOnContext context) {
+        Player player = context.getPlayer();
+        if (player == null)
+            return InteractionResult.PASS;
+        if (context.getLevel().isClientSide())
+            return InteractionResult.SUCCESS;
+        withBlockEntityDo(context.getLevel(), context.getClickedPos(), be -> be.containsBase = false);
+        replaceWithBase(state, context.getLevel(), context.getClickedPos());
+        if (!context.getLevel().getBlockState(context.getClickedPos()).is(base)) {
+            withBlockEntityDo(context.getLevel(), context.getClickedPos(), be -> be.containsBase = true);
+            updateTransmittedSignal(context.getLevel(), context.getClickedPos());
+            return InteractionResult.FAIL;
+        }
+        if (!player.isCreative()) {
+            player.getInventory().placeItemBackInInventory(new ItemStack(CCItems.LINKED_TRANSMITTER.get()), net.minecraft.util.Prediction.PREDICTED);
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void replaceBase(BlockState baseState, Level world, BlockPos pos) {
+        if (world.isClientSide())
+            return;
+        if (!world.setBlockAndUpdate(pos, defaultBlockState()
+                .setValue(FACING, baseState.getValue(FACING))
+                .setValue(FACE, baseState.getValue(FACE))
+                .setValue(POWERED, baseState.getValue(POWERED))
+        ))
+            return;
+        AllSoundEvents.CONTROLLER_PUT.playOnServer(world, pos);
+        if (baseState.getValue(POWERED)) {
+            world.scheduleTick(pos, this, pressDuration);
+            updateTransmittedSignal(world, pos);
+        } else {
+            checkPressed(world.getBlockState(pos), world, pos);
+        }
+    }
+
+    public void replaceWithBase(BlockState state, Level world, BlockPos pos) {
+        if (world.isClientSide())
+            return;
+        withBlockEntityDo(world, pos, be -> be.transmit(0));
+        if (!world.setBlockAndUpdate(pos, base.defaultBlockState()
+                .setValue(FACING, state.getValue(FACING))
+                .setValue(FACE, state.getValue(FACE))
+                .setValue(POWERED, state.getValue(POWERED))))
+            return;
+        AllSoundEvents.CONTROLLER_TAKE.playOnServer(world, pos);
+        if (state.getValue(POWERED))
+            world.scheduleTick(pos, base, pressDuration);
+    }
+
+    @Override
+    protected void checkPressed(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+        super.checkPressed(state, level, pos);
+        updateTransmittedSignal(level, pos);
+    }
+
+    @Override
+    public void press(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @Nullable Player player) {
+        super.press(state, level, pos, player);
+        updateTransmittedSignal(level, pos);
+    }
+
+    public void updateTransmittedSignal(Level worldIn, BlockPos pos) {
+        if (worldIn.isClientSide())
+            return;
+
+        BlockState state = worldIn.getBlockState(pos);
+        int power = state.getSignal(worldIn, pos, state.getValue(FACING));
+
+        withBlockEntityDo(worldIn, pos, be -> be.transmit(power));
+    }
+
+    @Override
+    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader world, @NotNull BlockPos pos,
+                                                @NotNull BlockState state, boolean includeData,
+                                                @NotNull Player player) {
+        HitResult target = player.pick(player.blockInteractionRange(), 1, false);
+        if (isHittingBase(state, world, pos, target))
+            return base.getCloneItemStack(world, pos, state, includeData, player);
+        return new ItemStack(CCItems.LINKED_TRANSMITTER.get());
+    }
+
+    @Override
+    public ItemRequirement getRequiredItems(BlockState state, BlockEntity be) {
+        ArrayList<ItemStack> requiredItems = new ArrayList<>();
+        requiredItems.add(new ItemStack(base));
+        requiredItems.add(new ItemStack(CCItems.LINKED_TRANSMITTER.get()));
+        return new ItemRequirement(ItemRequirement.ItemUseType.CONSUME, requiredItems);
+    }
+
+    @Override
+    public Class<LinkedTransmitterBlockEntity> getBlockEntityClass() {
+        return LinkedTransmitterBlockEntity.class;
+    }
+
+    @Override
+    public BlockEntityType<? extends LinkedTransmitterBlockEntity> getBlockEntityType() {
+        return CCBlockEntityTypes.LINKED_TRANSMITTER.get();
+    }
+}

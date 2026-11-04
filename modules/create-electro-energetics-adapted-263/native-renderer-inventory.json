@@ -1,0 +1,29 @@
+{
+  "renderers": [
+    "src/neoforge/java/com/george_vi/electroenergetics/content/bulb/BulbBlockEntityRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/electric_fan/ElectricFanBlockEntityRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/electric_motor/ElectricMotorRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/electrical_panel/ElectricalPanelRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/electronic_components/resistor/ResistorRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/frequency_meter/FrequencyMeterRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/fuse/FuseHolderRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/gauge/ElectricGaugeRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/indicator_bulb/IndicatorBulbRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/potentiometer/PotentiometerRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/potentiometer/RedstonePotentiometerRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/railway_electrification/catenary/CatenaryHolderRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/railway_electrification/pantograph/PantographRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/railway_electrification/third_rail/RailContactShoeRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/resistive_heater/ResistiveHeaterRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/rotor/AlternatorBrushesRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/synchroscope/SynchroscopeRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/transmission_distribution/hv_switch/HVSwitchRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/variac/RedstoneVariacRenderer.java",
+    "src/neoforge/java/com/george_vi/electroenergetics/content/variac/VariacRenderer.java"
+  ],
+  "count": 20,
+  "buffer_bridge": "CEEPartialModels.Bufferer",
+  "geometry_bridge": "CEEPartialModels.GeometryCollector",
+  "world_events": "GameEvents.extractLevel / submitLevel",
+  "runtime_visual_validation": "pending"
+}

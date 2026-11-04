@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#electroenergetics:electric_motors",
+    "minecraft:lime_dye"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:lime_electric_motor"
+  }
+}

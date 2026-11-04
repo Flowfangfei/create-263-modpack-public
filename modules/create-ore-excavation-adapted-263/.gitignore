@@ -1,0 +1,6 @@
+/.gradle/
+/build/
+/.porting-reference/
+/NeoForge/.gradle/
+/NeoForge/build/
+/NeoForge/run/

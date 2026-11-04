@@ -1,0 +1,7 @@
+The compatibility classes under com.simibubi.create.compat.neoforge263 derive from
+NeoForge 26.2.0.75 (https://github.com/neoforged/NeoForge), under LGPL-2.1-only.
+Original copyright and license headers are retained in each source file.
+Changes for Minecraft 26.3: namespace relocation and imports adjusted to use
+Create's internal compatibility interfaces. These are not official NeoForge APIs.
+Corresponding modified Java sources are included in this archive under
+META-INF/compat-sources/. The complete LGPL-2.1 text is included alongside this notice.

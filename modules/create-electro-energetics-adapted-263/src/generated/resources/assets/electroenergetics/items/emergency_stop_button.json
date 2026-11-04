@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "electroenergetics:item/emergency_stop_button"
+  }
+}

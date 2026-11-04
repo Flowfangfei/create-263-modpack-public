@@ -1,0 +1,13 @@
+{
+  "type": "create:deploying",
+  "results": [
+    {
+      "count": 3,
+      "id": "aeronautics:pink_envelope"
+    }
+  ],
+  "ingredients": [
+    "minecraft:pink_wool",
+    "minecraft:stick"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-10-27T00:10:29+08:00",
+  "raw_staged_diff_check_exit_code": 2,
+  "format_warning_count": 621,
+  "categories": {
+    "trailing whitespace.": 536,
+    "new blank line at EOF.": 85
+  },
+  "review": "This change imports complete upstream source trees. Whitespace and EOF notices are retained rather than applying a repository-wide rewrite; fixed upstream license text is preserved verbatim. No other diff-check finding occurred.",
+  "merge_marker_check_with_only_these_style_checks_disabled": {
+    "exit_code": 0,
+    "passed": true
+  }
+}

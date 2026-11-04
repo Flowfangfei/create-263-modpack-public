@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+ext.componentLicenseFile = file('LICENSE.txt')
+apply from: '../../gradle/create263-addon.gradle'
+sourceSets.main.java {
+    exclude 'com/yision/fluidlogistics/data/**', 'com/yision/fluidlogistics/infrastructure/data/FluidLogisticsDatagen.java'
+    exclude 'com/yision/fluidlogistics/mixin/client/BasinCategoryMixin.java', 'com/yision/fluidlogistics/mixin/client/StockKeeperTransferHandlerMixin.java'
+    exclude 'com/yision/fluidlogistics/compat/jei/**', 'com/yision/fluidlogistics/compat/emi/**', 'com/yision/fluidlogistics/compat/jade/**', 'com/yision/fluidlogistics/compat/computercraft/**'
+}
+
+dependencies {
+    compileOnly files('../create-dragons-plus-adapted-263/build/libs/create-dragons-plus-26.3-1.11.9-26.3-adapted.1.jar')
+    compileOnly files('../create-enchantment-industry-adapted-263/build/libs/create-enchantment-industry-26.3-2.5.4b-26.3-adapted.1.jar')
+}
+
+// Upstream JSON snapshots are bundled; legacy generators are retained for future datagen migration.
+sourceSets { legacyDatagen { java.srcDir "src/main/java"; java.include "**/*Generator.java" } }
+sourceSets.main.java.exclude "**/*Generator.java"
+
+// Preserve notices for the explicitly credited upstream code retained in this module.
+tasks.named('jar') {
+    from('LICENSE-CDP.txt', 'LICENSE-GPL-3.0.txt', 'LICENSE-ELECTRO.txt',
+         'LICENSE-ADDITIONAL-LOGISTICS.txt', 'LICENSE-CREATE-FLUIDSTUFFS.txt', 'THIRD_PARTY_NOTICES.md')
+}

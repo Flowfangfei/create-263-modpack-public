@@ -1,0 +1,7 @@
+{
+  "parent": "electroenergetics:block/electric_motor/item",
+  "textures": {
+		"particle": "#casing",
+    "casing": "electroenergetics:block/electric_motor/brown"
+  }
+}

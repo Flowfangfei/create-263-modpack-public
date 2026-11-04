@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "create:andesite_casing",
+    "create:cogwheel",
+    "minecraft:redstone_torch",
+    "create:shaft"
+  ],
+  "result": {
+    "id": "simulated:directional_gearshift"
+  }
+}

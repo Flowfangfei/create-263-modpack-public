@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:yellow_wool",
+    "#minecraft:planks"
+  ],
+  "result": {
+    "count": 1,
+    "id": "createadditionallogistics:yellow_tall_seat"
+  }
+}

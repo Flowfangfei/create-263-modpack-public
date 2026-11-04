@@ -1,0 +1,7 @@
+{
+  "model": {
+    "type": "fluidlogistics:fluid_container",
+    "model": "fluidlogistics:item/fluid_package_oxidized",
+    "kind": "package"
+  }
+}

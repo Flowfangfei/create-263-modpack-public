@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "create:andesite_alloy",
+    "C": "electroenergetics:connector",
+    "S": "#c:plates/iron",
+    "c": "minecraft:coal_block"
+  },
+  "pattern": [
+    "ccc",
+    "CAC",
+    "ASA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:resistive_heater"
+  }
+}

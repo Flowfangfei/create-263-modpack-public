@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "create_connected:feature_enabled",
+      "tag": "create_connected:empty_fan_catalyst"
+    }
+  ],
+  "type": "create:filling",
+  "ingredients": [
+    "create_connected:empty_fan_catalyst",
+    {
+      "ingredient": "minecraft:water",
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "id": "create_connected:fan_splashing_catalyst"
+    }
+  ]
+}

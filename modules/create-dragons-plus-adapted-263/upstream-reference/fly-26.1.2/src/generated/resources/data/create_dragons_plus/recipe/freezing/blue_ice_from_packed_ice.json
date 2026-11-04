@@ -1,0 +1,11 @@
+{
+  "type": "create_dragons_plus:freezing",
+  "ingredients": [
+    "minecraft:packed_ice"
+  ],
+  "results": [
+    {
+      "id": "minecraft:blue_ice"
+    }
+  ]
+}

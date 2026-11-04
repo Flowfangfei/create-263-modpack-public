@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:never"
+    },
+    {
+      "type": "create_connected:feature_enabled",
+      "tag": "create_connected:empty_fan_catalyst"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "create_connected:fan_withering_catalyst"
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_connected:empty_fan_catalyst"
+  }
+}

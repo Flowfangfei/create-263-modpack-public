@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "create_dragons_plus:config_feature",
+      "feature": "create_dragons_plus:fluid/dye"
+    }
+  ],
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "ingredient": "create_dragons_plus:cyan_dye",
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:cyan_dye"
+    }
+  ]
+}

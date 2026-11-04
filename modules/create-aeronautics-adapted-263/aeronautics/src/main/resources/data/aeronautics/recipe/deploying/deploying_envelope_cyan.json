@@ -1,0 +1,13 @@
+{
+  "type": "create:deploying",
+  "results": [
+    {
+      "count": 3,
+      "id": "aeronautics:cyan_envelope"
+    }
+  ],
+  "ingredients": [
+    "minecraft:cyan_wool",
+    "minecraft:stick"
+  ]
+}

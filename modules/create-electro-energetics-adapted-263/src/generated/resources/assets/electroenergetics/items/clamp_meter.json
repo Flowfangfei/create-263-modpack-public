@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "electroenergetics:hand_tool",
+    "kind": "clamp_meter"
+  }
+}

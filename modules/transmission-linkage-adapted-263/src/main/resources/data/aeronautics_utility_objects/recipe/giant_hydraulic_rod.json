@@ -1,0 +1,27 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "B": "create:brass_sheet",
+    "C": "create:copper_sheet",
+    "D": "minecraft:dried_kelp",
+    "H": "create:honey_bucket",
+    "I": "create:andesite_alloy",
+    "M": "create:precision_mechanism",
+    "P": "create:mechanical_pump",
+    "S": "create:shaft"
+  },
+  "pattern": [
+    "CSC",
+    "BIB",
+    "BHB",
+    "BMB",
+    "DPD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "aeronautics_utility_objects:giant_hydraulic_rod"
+  },
+  "show_notification": false
+}

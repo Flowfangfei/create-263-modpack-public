@@ -1,0 +1,91 @@
+package dev.ryanhcode.offroad.index;
+
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
+import com.simibubi.create.AllMovementBehaviours;
+import com.simibubi.create.AllTags;
+import com.simibubi.create.content.contraptions.actors.roller.RollerBlockItem;
+import com.simibubi.create.foundation.data.BlockStateGen;
+import com.simibubi.create.foundation.data.SharedProperties;
+import dev.simulated_team.simulated.index.SimItems;
+import dev.simulated_team.simulated.registrate.SimulatedRegistrate;
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.ryanhcode.offroad.Offroad;
+import dev.ryanhcode.offroad.config.server.OffroadStress;
+import dev.ryanhcode.offroad.content.blocks.borehead_bearing.BoreheadBearingBlock;
+import dev.ryanhcode.offroad.content.blocks.rock_cutting_wheel.RockCuttingWheelActor;
+import dev.ryanhcode.offroad.content.blocks.rock_cutting_wheel.RockCuttingWheelBlock;
+import dev.ryanhcode.offroad.content.blocks.wheel_mount.WheelMountBlock;
+import dev.ryanhcode.offroad.content.components.TireLike;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+
+import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
+import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
+import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+
+public class OffroadBlocks {
+    private static final SimulatedRegistrate REGISTRATE = Offroad.getRegistrate();
+    public static final RockCuttingWheelActor ROCK_CUTTING_WHEEL_ACTOR = new RockCuttingWheelActor();
+
+    public static final BlockEntry<BoreheadBearingBlock> BOREHEAD_BEARING_BLOCK =
+            REGISTRATE.block("borehead_bearing", BoreheadBearingBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(p -> p.mapColor(MapColor.COLOR_GRAY)
+                            .sound(SoundType.NETHERITE_BLOCK)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion())
+                    .transform(pickaxeOnly())
+                    .properties(p -> p.mapColor(MapColor.COLOR_GRAY)
+                            .noOcclusion()
+                            .isRedstoneConductor((state, level, pos) -> false))
+                    .transform(pickaxeOnly())
+                    .transform(OffroadStress.setImpact(8))
+
+                    .item()
+                    .transform(customItemModel())
+                    .register();
+
+    public static final BlockEntry<RockCuttingWheelBlock> ROCK_CUTTER_BLOCK =
+            REGISTRATE.block("rockcutting_wheel", RockCuttingWheelBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(p -> p.mapColor(MapColor.COLOR_GRAY)
+                            .sound(SoundType.NETHERITE_BLOCK)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion())
+                    .transform(pickaxeOnly())
+                    .onRegister(block -> com.simibubi.create.api.behaviour.movement.MovementBehaviour.REGISTRY.register(block,ROCK_CUTTING_WHEEL_ACTOR))
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+
+                    .item()
+                    .properties(x -> x.component(OffroadDataComponents.TIRE, TireLike.ROCKCUTTING_WHEEL))
+                    .transform(customItemModel())
+                    .lang("Rock Cutting Wheel")
+                    .register();
+
+    public static final BlockEntry<WheelMountBlock> WHEEL_MOUNT =
+            REGISTRATE.block("wheel_mount", WheelMountBlock::new)
+                    .initialProperties(SharedProperties::stone)
+                    .properties(p -> p.mapColor(MapColor.COLOR_GRAY)
+                            .noOcclusion()
+                            .isRedstoneConductor((state, level, pos) -> false))
+                    .transform(axeOrPickaxe())
+
+                    .tag(AllTags.AllBlockTags.SAFE_NBT.tag)
+
+                    .transform(OffroadStress.setImpact(16.0))
+                    .item(RollerBlockItem::new)
+                    .transform(customItemModel())
+
+                    .register();
+
+    public static void init() {
+    }
+}

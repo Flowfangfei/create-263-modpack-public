@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "#c:dyes/lime",
+    "#simulated:nameplate_items"
+  ],
+  "result": {
+    "id": "simulated:lime_nameplate"
+  }
+}

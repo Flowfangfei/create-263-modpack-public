@@ -1,0 +1,31 @@
+{
+  "checks": [
+    {
+      "id": "liquid-fuel",
+      "flag": "create263.runtimeProbe",
+      "result": "three-addons-probe-result.json"
+    },
+    {
+      "id": "ore-excavation",
+      "flag": "createoreexcavation.runRuntimeChecks",
+      "result": "ore-excavation-runtime-checks.json",
+      "reload_result": "ore-excavation-reload-checks.json",
+      "reload_properties": {
+        "createoreexcavation.runtimeCheckMode": "reload"
+      }
+    },
+    {
+      "id": "transmission-linkage",
+      "flag": "transmissionLinkage.runtimeProbe",
+      "result": "transmission-linkage-probe.json",
+      "reload_properties": {
+        "transmissionLinkage.probeReload": "true"
+      }
+    },
+    {
+      "id": "five-addons",
+      "flag": "create263.fiveAddonsProbe",
+      "result": "five-addons-probe-result.json"
+    }
+  ]
+}

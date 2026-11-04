@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "version": "0.3.0-alpha.2",
+  "repository": {
+    "defaultBranchRef": {
+      "name": "main"
+    },
+    "isPrivate": true,
+    "nameWithOwner": "Flowfangfei/create-263-modpack"
+  },
+  "release": {
+    "html_url": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.2",
+    "tag_name": "v0.3.0-alpha.2",
+    "prerelease": true,
+    "draft": false,
+    "published_at": "2026-10-28T06:03:05Z"
+  },
+  "verified_at": "2026-10-28T14:04:40+08:00",
+  "source_commit": "35cb63c63412f2bef62f6fd37afe77977235fbc6",
+  "source_tree": "fe52ae5ae0cdfa5b4829864f38f2f471916f56b1",
+  "source_modules": 15,
+  "canonical_module_files": 53365,
+  "runtime_jars": 18,
+  "pull_request": "https://github.com/Flowfangfei/create-263-modpack/pull/3",
+  "assets": [
+    {
+      "name": "Create263-Pack-v0.3.0-alpha.2-installer.zip",
+      "size": 57720580,
+      "digest": "sha256:135e92e6decd2f1e0cca2eedce03f9fa3ddad5404b05c4d31f1da8685b06e967",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Flowfangfei/create-263-modpack/releases/download/v0.3.0-alpha.2/Create263-Pack-v0.3.0-alpha.2-installer.zip"
+    },
+    {
+      "name": "Create263-Pack-v0.3.0-alpha.2-sources.zip",
+      "size": 101453024,
+      "digest": "sha256:4077af6f2edd922329a6178f702ac2e2fecc0e4ef4b44f650574cc80b5f870c4",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Flowfangfei/create-263-modpack/releases/download/v0.3.0-alpha.2/Create263-Pack-v0.3.0-alpha.2-sources.zip"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "size": 218,
+      "digest": "sha256:dcba0178e37327715ffc004a185a0efbdac5d461a456cf918febef8de228fef1",
+      "state": "uploaded",
+      "browser_download_url": "https://github.com/Flowfangfei/create-263-modpack/releases/download/v0.3.0-alpha.2/SHA256SUMS.txt"
+    }
+  ],
+  "redownload_verified": [
+    "Create263-Pack-v0.3.0-alpha.2-installer.zip",
+    "SHA256SUMS.txt"
+  ],
+  "alpha1_assets_and_tag_unchanged": true,
+  "restricted_assets_uploaded": false,
+  "worlds_uploaded": false,
+  "ai_records_uploaded": false,
+  "all_requested_features_verified": false,
+  "validation": "../../docs/VALIDATION.md"
+}

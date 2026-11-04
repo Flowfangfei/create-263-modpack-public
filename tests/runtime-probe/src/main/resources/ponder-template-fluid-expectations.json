@@ -1,0 +1,279 @@
+{
+  "fixtures": [
+    {
+      "template": "create_dragons_plus:fragile_fluid_tank",
+      "position": [
+        0,
+        1,
+        0
+      ],
+      "be_id": "create_dragons_plus:fragile_fluid_tank",
+      "field_path": [
+        "Tanks",
+        0,
+        "TankContent"
+      ],
+      "fluid": "minecraft:lava",
+      "amount": 1000,
+      "saved_field_path": [
+        "Tanks",
+        0,
+        "Fluid"
+      ]
+    },
+    {
+      "template": "create_dragons_plus:fragile_fluid_tank",
+      "position": [
+        1,
+        1,
+        0
+      ],
+      "be_id": "create_dragons_plus:fragile_fluid_tank",
+      "field_path": [
+        "Tanks",
+        0,
+        "TankContent"
+      ],
+      "fluid": "minecraft:lava",
+      "amount": 1000,
+      "saved_field_path": [
+        "Tanks",
+        0,
+        "Fluid"
+      ]
+    },
+    {
+      "template": "create_dragons_plus:fragile_fluid_tank",
+      "position": [
+        2,
+        1,
+        0
+      ],
+      "be_id": "create_dragons_plus:fragile_fluid_tank",
+      "field_path": [
+        "Tanks",
+        0,
+        "TankContent"
+      ],
+      "fluid": "create:potion",
+      "amount": 1000,
+      "expected_components": {
+        "create:potion_fluid_bottle_type": "regular",
+        "minecraft:potion_contents": {
+          "potion": "minecraft:strong_harming"
+        }
+      },
+      "saved_field_path": [
+        "Tanks",
+        0,
+        "Fluid"
+      ]
+    },
+    {
+      "template": "create_enchantment_industry:automate_classic_blaze_enchanter",
+      "position": [
+        2,
+        1,
+        2
+      ],
+      "be_id": "create_enchantment_industry:classic_blaze_enchanter",
+      "field_path": [
+        "Tanks",
+        0,
+        "TankContent"
+      ],
+      "fluid": "create_enchantment_industry:experience",
+      "amount": 4000
+    },
+    {
+      "template": "create_enchantment_industry:automate_enchanter",
+      "position": [
+        2,
+        1,
+        2
+      ],
+      "be_id": "create_enchantment_industry:blaze_enchanter",
+      "field_path": [
+        "Tanks",
+        0,
+        "TankContent"
+      ],
+      "fluid": "create_enchantment_industry:experience",
+      "amount": 4000
+    },
+    {
+      "template": "create_enchantment_industry:automate_forger",
+      "position": [
+        2,
+        1,
+        2
+      ],
+      "be_id": "create_enchantment_industry:blaze_forger",
+      "field_path": [
+        "Tanks",
+        0,
+        "TankContent"
+      ],
+      "fluid": "create_enchantment_industry:experience",
+      "amount": 4000
+    },
+    {
+      "template": "create_enchantment_industry:experience/basic",
+      "position": [
+        9,
+        3,
+        9
+      ],
+      "be_id": "create:fluid_tank",
+      "field_path": [
+        "TankContent"
+      ],
+      "fluid": "create_enchantment_industry:experience",
+      "amount": 60088
+    },
+    {
+      "template": "createdieselgenerators:burner",
+      "position": [
+        2,
+        1,
+        4
+      ],
+      "be_id": "create:fluid_tank",
+      "field_path": [
+        "TankContent"
+      ],
+      "fluid": "createdieselgenerators:gasoline",
+      "amount": 3472
+    },
+    {
+      "template": "createdieselgenerators:chemical_turret",
+      "position": [
+        2,
+        1,
+        4
+      ],
+      "be_id": "create:fluid_tank",
+      "field_path": [
+        "TankContent"
+      ],
+      "fluid": "create:potion",
+      "amount": 5250,
+      "potion": "minecraft:strong_harming",
+      "bottle": "LINGERING"
+    },
+    {
+      "template": "createoreexcavation:drilling_machine",
+      "position": [
+        6,
+        1,
+        7
+      ],
+      "be_id": "create:fluid_tank",
+      "field_path": [
+        "TankContent"
+      ],
+      "fluid": "minecraft:lava",
+      "amount": 5000
+    },
+    {
+      "template": "createoreexcavation:vein_finder",
+      "position": [
+        6,
+        1,
+        7
+      ],
+      "be_id": "create:fluid_tank",
+      "field_path": [
+        "TankContent"
+      ],
+      "fluid": "minecraft:lava",
+      "amount": 5000
+    },
+    {
+      "template": "fluidlogistics:redstone_fluid_valve/redstone_fluid_valve",
+      "position": [
+        3,
+        1,
+        3
+      ],
+      "be_id": "create:fluid_tank",
+      "field_path": [
+        "TankContent"
+      ],
+      "fluid": "create:honey",
+      "amount": 14000
+    }
+  ],
+  "sources": {
+    "create_dragons_plus:fragile_fluid_tank": {
+      "jar": "dragons-plus-adapted.jar",
+      "jar_sha256": "ad01a72dc6a796facdf1a7a00cccf60a97c3e52f6cea614e63f5f4a0f8eb1f86",
+      "resource": "assets/create_dragons_plus/ponder/fragile_fluid_tank.nbt",
+      "resource_sha256": "2b31e95352b8fde3d3ed64a0f1c238cf75f7384ff3389d3436309d325fe3281e",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "create_enchantment_industry:automate_classic_blaze_enchanter": {
+      "jar": "enchantment-industry-adapted.jar",
+      "jar_sha256": "dd655c9ba807d61ec6814833f969974e0eade973ef8b87972fa3467fcf0078c4",
+      "resource": "assets/create_enchantment_industry/ponder/automate_classic_blaze_enchanter.nbt",
+      "resource_sha256": "0890f37413f84ef3f6060621c237da8dc2485842e1d64e7f510d9a0259fc2254",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "create_enchantment_industry:automate_enchanter": {
+      "jar": "enchantment-industry-adapted.jar",
+      "jar_sha256": "dd655c9ba807d61ec6814833f969974e0eade973ef8b87972fa3467fcf0078c4",
+      "resource": "assets/create_enchantment_industry/ponder/automate_enchanter.nbt",
+      "resource_sha256": "e77502ac342e7338cf0900cdbe2adef409067b59857782afeb3e223b43a07728",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "create_enchantment_industry:automate_forger": {
+      "jar": "enchantment-industry-adapted.jar",
+      "jar_sha256": "dd655c9ba807d61ec6814833f969974e0eade973ef8b87972fa3467fcf0078c4",
+      "resource": "assets/create_enchantment_industry/ponder/automate_forger.nbt",
+      "resource_sha256": "a6e5438dfde92ee1f600a50c81fe49250aa5e87b1da8e6f57df437a2c8c89342",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "create_enchantment_industry:experience/basic": {
+      "jar": "enchantment-industry-adapted.jar",
+      "jar_sha256": "dd655c9ba807d61ec6814833f969974e0eade973ef8b87972fa3467fcf0078c4",
+      "resource": "assets/create_enchantment_industry/ponder/experience/basic.nbt",
+      "resource_sha256": "4ca20a1b80f16c2dc71b2074d4654b85c10407b978ea5370282762dc4b00b157",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "createdieselgenerators:burner": {
+      "jar": "diesel-adapted.jar",
+      "jar_sha256": "fc3f531a10119d8ec9d0a53615332944a49c1659f76a70e56d029d0e17c1a277",
+      "resource": "assets/createdieselgenerators/ponder/burner.nbt",
+      "resource_sha256": "dea35ea2e07350ec223c55581c52402905446dc54362472b41ec53d623c52e16",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "createdieselgenerators:chemical_turret": {
+      "jar": "diesel-adapted.jar",
+      "jar_sha256": "fc3f531a10119d8ec9d0a53615332944a49c1659f76a70e56d029d0e17c1a277",
+      "resource": "assets/createdieselgenerators/ponder/chemical_turret.nbt",
+      "resource_sha256": "84bafcb6b4226b5be48af57dfeb28fc1d43208098dda420ed7f178ae6bfdfefb",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "createoreexcavation:drilling_machine": {
+      "jar": "ore-excavation-adapted.jar",
+      "jar_sha256": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+      "resource": "assets/createoreexcavation/ponder/drilling_machine.nbt",
+      "resource_sha256": "af1f5a0d8b6371953505b28afc83cabf5a5bc6e682ba18d52a56274b9d816a2c",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "createoreexcavation:vein_finder": {
+      "jar": "ore-excavation-adapted.jar",
+      "jar_sha256": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+      "resource": "assets/createoreexcavation/ponder/vein_finder.nbt",
+      "resource_sha256": "af1f5a0d8b6371953505b28afc83cabf5a5bc6e682ba18d52a56274b9d816a2c",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    },
+    "fluidlogistics:redstone_fluid_valve/redstone_fluid_valve": {
+      "jar": "fluid-logistics-adapted.jar",
+      "jar_sha256": "7e9e44e016f3a9408469584202c957bef2a435cc0575597b8ec38c94de5c26b0",
+      "resource": "assets/fluidlogistics/ponder/redstone_fluid_valve/redstone_fluid_valve.nbt",
+      "resource_sha256": "f8744241fc1e90865f72b7ac1985c09db36399406767f3f65a9b1a1e3a582a65",
+      "resource_hash_scope": "raw gzip-compressed NBT entry bytes; expected_components preserves the original compound as a JSON object"
+    }
+  }
+}

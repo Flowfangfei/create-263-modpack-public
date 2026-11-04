@@ -1,0 +1,58 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": "create:iron_sheet",
+  "transitional_item": {
+    "id": "simulated:incomplete_engine_assembly"
+  },
+  "loops": 8,
+  "sequence": [
+    {
+      "type": "create:cutting",
+      "processing_time": 50,
+      "results": [
+        {
+          "id": "simulated:incomplete_engine_assembly"
+        }
+      ],
+      "ingredients": [
+        "simulated:incomplete_engine_assembly"
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "results": [
+        {
+          "id": "simulated:incomplete_engine_assembly"
+        }
+      ],
+      "ingredients": [
+        "simulated:incomplete_engine_assembly"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "chance": 50.0,
+      "id": "simulated:engine_assembly"
+    },
+    {
+      "chance": 16.0,
+      "id": "create:iron_sheet"
+    },
+    {
+      "chance": 15.0,
+      "id": "minecraft:iron_nugget"
+    },
+    {
+      "chance": 10.0,
+      "id": "create:industrial_iron_block"
+    },
+    {
+      "chance": 8.0,
+      "id": "minecraft:iron_bars"
+    },
+    {
+      "id": "minecraft:iron_helmet"
+    }
+  ]
+}

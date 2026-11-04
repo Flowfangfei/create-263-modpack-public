@@ -1,0 +1,49 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+apply from: '../../gradle/create263-addon.gradle'
+neoFormRuntime { version = '2.0.31' }
+neoForge { accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg') }
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.blamejared.com/' }
+    maven { url = 'https://maven.fallenbreath.me/releases/' }
+}
+sourceSets.main.java.srcDir 'src/integration/sable/java'
+sourceSets.main.resources.srcDir 'src/integration/sable/resources'
+dependencies {
+    compileOnly 'org.jetbrains:annotations:26.1.0'
+    compileOnly 'mezz.jei:jei-26.3-neoforge:31.3.0.16'
+    jarJar(implementation('me.fallenbreath:conditional-mixin-neoforge:0.6.4'))
+    compileOnly files('../sable-adapted-263/build/libs/sable-neoforge-26.3-3.0.0-adapted.1.jar',
+        '../create-aeronautics-adapted-263/simulated/build/libs/simulated-neoforge-26.3-1.3.0-adapted.1.jar')
+}
+processResources { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from('LICENSE.txt', 'LICENSE-GPL-3.0.txt', 'LICENSE-CREATE.txt', 'LICENSE-PONDER.txt', 'LICENSING.txt')
+}
+sourcesJar { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
+
+// JEI is absent from the unified runtime; its full upstream integration stays in source.
+sourceSets.main.java.exclude '**/integration/jei/**'
+tasks.withType(JavaCompile).configureEach { options.compilerArgs += ['-Xmaxerrs', '2000'] }
+sourceSets.main.java.exclude '**/mixin/minecraft/IngredientValueMixin.java', '**/mixin/util/RunDataMixinCondition.java'
+
+sourceSets.main.java.exclude '**/data/CDPData.java', '**/data/internal/CDPRecipeProvider.java',
+    '**/data/recipe/VanillaRecipeBuilders.java', '**/data/recipe/ShapedRecipeBuilder.java',
+    '**/data/recipe/ShapelessRecipeBuilder.java', '**/data/recipe/SingleItemRecipeBuilder.java',
+    '**/data/recipe/CookingRecipeBuilder.java', '**/data/recipe/BaseShapelessRecipeBuilder.java',
+    '**/data/recipe/BaseSingleItemRecipeBuilder.java', '**/data/recipe/integration/**',
+    '**/integration/simulated/data/internal/CDPSERecipeProvider.java', '**/mixin/neoforge/ExistingFileHelperAccessor.java'
+
+// Preserve upstream Ponder behavior tests with the same real Minecraft/Create APIs.
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junit_version}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junit_version}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:${junit_platform_version}"
+}
+sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
+sourceSets.test.runtimeClasspath += sourceSets.main.compileClasspath
+tasks.withType(Test).configureEach { useJUnitPlatform() }

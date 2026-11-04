@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "fluidlogistics:item/redstone_fluid_valve"
+  }
+}

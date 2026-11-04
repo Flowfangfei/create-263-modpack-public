@@ -1,0 +1,87 @@
+// Shared compile-time platform for the three add-ons. Apply after java-library and ModDev plugins.
+version = mod_version
+group = mod_group_id
+base { archivesName = findProperty('artifact_id') ?: mod_id }
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+    withSourcesJar()
+}
+neoForge {
+    version = project.neo_version
+    mods { "${mod_id}" { sourceSet(sourceSets.main) } }
+}
+def packRoot = project.findProperty('create263PackRoot') ?: file('../..')
+def createApi = new File(packRoot, 'modules/steam-n-rails-263/tooling/create-adapted/libs')
+def createLibraries = [
+    'create-26.3-1.31-recovered.1.jar',
+    'ponder-neoforge-1.0.100046-adapted-fork-early+mc26.3.jar',
+    'catnip-neoforge-1.0.100046-adapted-fork-early+mc26.3.jar',
+    'flywheel-neoforge-26.3-1.0.6.jar',
+    'Registrate-MC1.21-1.3.0+67-compile.jar',
+    'create-adapted-compile-compat.jar'
+].collect { new File(createApi, it) }
+def registrateInput = createLibraries.find { it.name.startsWith('Registrate-') }
+def registrateOutput = layout.buildDirectory.file('compat/Registrate-26.3-addon-compile.jar')
+def prepareAddonRegistrate = tasks.register('prepareAddonRegistrateCompileJar', Exec) {
+    inputs.file registrateInput
+    inputs.file new File(packRoot, 'scripts/patch_registrate_signatures.py')
+    outputs.file registrateOutput
+    commandLine (project.findProperty('python') ?: 'python'), '-X', 'utf8', '-B',
+        new File(packRoot, 'scripts/patch_registrate_signatures.py').absolutePath,
+        registrateInput.absolutePath, registrateOutput.get().asFile.absolutePath
+}
+dependencies {
+    compileOnly files(createLibraries.findAll { it != registrateInput })
+    compileOnly files(registrateOutput).builtBy(prepareAddonRegistrate)
+}
+tasks.register('verifyCreateApis') {
+    inputs.files(createLibraries)
+    doLast {
+        createLibraries.each { if (!it.isFile()) throw new GradleException("Missing source-built Create API: ${it}") }
+    }
+}
+tasks.withType(JavaCompile).configureEach {
+    dependsOn 'verifyCreateApis', 'prepareAddonRegistrateCompileJar'
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xmaxerrs', '500']
+}
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    if (file('src/main/templates').isDirectory()) srcDir 'src/main/templates'
+}
+tasks.withType(ProcessResources).configureEach {
+    def keys = ['minecraft_version','minecraft_version_range','neo_version','neo_version_range',
+        'loader_version_range','create_version_range','mod_id','mod_name','mod_license','mod_version',
+        'mod_authors','mod_description','sable_version_range','simulated_version_range','pack_format_number']
+    def values = keys.findAll { project.hasProperty(it) }.collectEntries { [(it):project.property(it)] }
+    values.file = [jarVersion:mod_version]
+    inputs.properties(values)
+    filesMatching(['META-INF/neoforge.mods.toml','pack.mcmeta']) { expand values + [project:project] }
+}
+tasks.withType(Jar).configureEach {
+    def licenseFile = project.findProperty('componentLicenseFile') ?: file('LICENSE')
+    from(licenseFile) { into 'META-INF'; rename { "LICENSE_${mod_id}" } }
+}
+wrapper { gradleVersion = '9.5.0'; distributionType = Wrapper.DistributionType.BIN }
+
+// Export resolved real compiler inputs for module-local javac diagnostics.
+// Gradle remains the authoritative build and the only dependency/cache writer.
+tasks.register('exportPortCompileInputs') {
+    dependsOn 'createMinecraftArtifacts', 'verifyCreateApis', 'prepareAddonRegistrateCompileJar'
+    doLast {
+        def compiler = tasks.named('compileJava', JavaCompile).get()
+        def target = layout.buildDirectory.file('port-compile-inputs.json').get().asFile
+        target.parentFile.mkdirs()
+        def data = [schema:2, module:projectDir.name,
+            sourceRoots:sourceSets.main.java.srcDirs.collect { it.absolutePath },
+            sourceIncludes:sourceSets.main.java.includes.toList(),
+            sourceExcludes:sourceSets.main.java.excludes.toList(),
+            sources:compiler.source.files.findAll { it.isFile() }.collect { it.absolutePath }.sort(),
+            classpath:compiler.classpath.files.collect { it.absolutePath },
+            compilerArgs:compiler.options.compilerArgs,
+            encoding:compiler.options.encoding ?: 'UTF-8',
+            generatedAt:java.time.OffsetDateTime.now().toString()]
+        target.setText(groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(data)) + '\n', 'UTF-8')
+        logger.lifecycle('Real port compiler inputs: ' + target)
+    }
+}

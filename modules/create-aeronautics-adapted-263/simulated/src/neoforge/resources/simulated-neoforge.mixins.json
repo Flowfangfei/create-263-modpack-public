@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "dev.simulated_team.simulated.neoforge.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "minVersion": "0.8",
+  "client": [
+    "diagram.VisualizationManagerImplMixin"
+  ],
+  "mixins": [
+    "harvesters.BlockBreakingTileEntityMixin",
+    "harvesters.SableHarvesterMixin",
+    "harvesters.SawTileEntityMixin",
+    "multiloader.CommonRedstoneBlockMixin",
+    "self_mixins.DiagramEntityMixin",
+    "self_mixins.HoneyGlueEntityMixin",
+    "multiloader.RedstoneWireConnectionMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

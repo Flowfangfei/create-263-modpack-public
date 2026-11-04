@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-11-02T17:33:35+08:00",
+  "base_release": "v0.3.0-alpha.2",
+  "status": "passed",
+  "minecraft": "26.3",
+  "neoforge": "26.3.0.22-beta",
+  "java": 25,
+  "direct_mod_jars": 18,
+  "fixes": {
+    "railways-adapted.jar": {
+      "sha256": "fe096f6e4eb05f4287c890f229dde00635fdc838039dea52f120ef27bb54f1aa",
+      "changed_entries": [
+        "com/railwayteam/railways/content/conductor/vent/VentBlock.class"
+      ]
+    },
+    "storage-adapted.jar": {
+      "sha256": "ad68e51ff9eec458d1c27e3eb562f8bc8a6a3285fb9bd3fed3fc58494d874efc",
+      "changed_entries": [
+        "net/fxnt/fxntstorage/config/ConfigManager.class"
+      ]
+    }
+  },
+  "create": {
+    "phase": "candidate",
+    "timed_out": false,
+    "exit_code": 0,
+    "client_directory": "runtime/three-addons-20261029-005603-489197/client-172656-571647",
+    "railways_sha256": "fe096f6e4eb05f4287c890f229dde00635fdc838039dea52f120ef27bb54f1aa",
+    "probe_sha256": "08bd18a731fb17d1d7f7981930027dd8c5dec25b1a69c374ddd23fe8cb6aa647",
+    "storage_sha256": "ad68e51ff9eec458d1c27e3eb562f8bc8a6a3285fb9bd3fed3fc58494d874efc",
+    "probe": {
+      "saved_fixture_checks_before_any_reinitialization": 0,
+      "fixture_vent_count": 94,
+      "fixture_block_count": 96,
+      "face_checks": 1657,
+      "six_directions_and_missing_block_entity": true,
+      "vanilla_solid_face_culling_preserved": true,
+      "matrix_positions_in_compiled_sections": 90,
+      "watched_fixture_sections_before_update": 8,
+      "rebuilt_fixture_sections": 8,
+      "two_pass_face_checks": 3314,
+      "chunk_mesh_rebuild_and_render_ticks": 200,
+      "render_checks_passed": true,
+      "fixture_save_flush_completed": true,
+      "saved_and_returned_to_title": true,
+      "passed": true
+    },
+    "original_assertion_reproduced": false,
+    "log": "runtime/three-addons-20261029-005603-489197/candidate-client.log",
+    "passed": true
+  },
+  "reload": {
+    "phase": "reload",
+    "timed_out": false,
+    "exit_code": 0,
+    "client_directory": "runtime/three-addons-20261029-005603-489197/reload-seed-172907-745845/client",
+    "railways_sha256": "fe096f6e4eb05f4287c890f229dde00635fdc838039dea52f120ef27bb54f1aa",
+    "probe_sha256": "08bd18a731fb17d1d7f7981930027dd8c5dec25b1a69c374ddd23fe8cb6aa647",
+    "storage_sha256": "ad68e51ff9eec458d1c27e3eb562f8bc8a6a3285fb9bd3fed3fc58494d874efc",
+    "probe": {
+      "saved_fixture_checks_before_any_reinitialization": 270,
+      "fixture_vent_count": 94,
+      "fixture_block_count": 96,
+      "face_checks": 1657,
+      "six_directions_and_missing_block_entity": true,
+      "vanilla_solid_face_culling_preserved": true,
+      "matrix_positions_in_compiled_sections": 90,
+      "watched_fixture_sections_before_update": 8,
+      "rebuilt_fixture_sections": 8,
+      "two_pass_face_checks": 3314,
+      "chunk_mesh_rebuild_and_render_ticks": 200,
+      "render_checks_passed": true,
+      "fixture_save_flush_completed": true,
+      "saved_and_returned_to_title": true,
+      "passed": true
+    },
+    "original_assertion_reproduced": false,
+    "log": "runtime/three-addons-20261029-005603-489197/reload-client.log",
+    "passed": true
+  },
+  "instance_audit": "manifests/instance-audits/2026-11-02-alpha2.json",
+  "original_hmcl_worlds_accessed": false,
+  "hmcl_instance_modified": false,
+  "remote_release_updated": false,
+  "test_probe_distributed": false,
+  "paths_relative_to": "create-263-modpack source project root"
+}

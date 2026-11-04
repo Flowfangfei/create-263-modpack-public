@@ -1,0 +1,22 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "create_dragons_plus:config_feature",
+      "feature": "create_dragons_plus:fluid/dye"
+    }
+  ],
+  "type": "create:mixing",
+  "fluid_ingredients": [
+    {
+      "type": "fluid_stack",
+      "amount": 20250,
+      "fluid": "create_dragons_plus:light_blue_dye"
+    }
+  ],
+  "heat_requirement": "heated",
+  "results": [
+    {
+      "id": "minecraft:light_blue_dye"
+    }
+  ]
+}

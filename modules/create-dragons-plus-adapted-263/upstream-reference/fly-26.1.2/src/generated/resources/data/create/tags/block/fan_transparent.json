@@ -1,0 +1,8 @@
+{
+  "values": [
+    "minecraft:dragon_head",
+    "minecraft:dragon_wall_head",
+    "minecraft:sand",
+    "#create_dragons_plus:fan_processing_catalysts/sanding"
+  ]
+}

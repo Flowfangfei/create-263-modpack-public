@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fxntstorage:backpack_upgrade_enabled",
+      "upgrade": "fxntstorage:backpack_torchdeployer_upgrade"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "backpack",
+  "key": {
+    "B": "fxntstorage:backpack_blank_upgrade",
+    "C": "create:cogwheel",
+    "I": "create:iron_sheet",
+    "R": "create:redstone_link",
+    "X": "minecraft:torch"
+  },
+  "pattern": [
+    " R ",
+    "IBI",
+    "CXC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:backpack_torchdeployer_upgrade"
+  }
+}

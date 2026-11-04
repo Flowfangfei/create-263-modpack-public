@@ -1,0 +1,28 @@
+{
+  "actual_mc_relocations": {
+    "net.minecraft.client.renderer.RenderType": "net.minecraft.client.renderer.rendertype.RenderType"
+  },
+  "missing_or_ambiguous": {
+    "net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition": [],
+    "net.minecraft.world.level.storage.loot.providers.number.ConstantValue": [
+      "net.minecraft.world.level.storage.loot.providers.number.floats.ConstantValue",
+      "net.minecraft.world.level.storage.loot.providers.number.ints.ConstantValue"
+    ],
+    "net.minecraft.client.gui.GuiGraphics": [],
+    "net.minecraft.client.gui.LayeredDraw": [],
+    "net.minecraft.client.renderer.LightTexture": [],
+    "net.minecraft.world.entity.MobSpawnType": [],
+    "net.minecraft.client.renderer.ItemBlockRenderTypes": [],
+    "net.minecraft.client.resources.model.ModelIdentifier": [],
+    "net.minecraft.client.renderer.ItemInHandRenderer": [],
+    "net.minecraft.world.ItemInteractionResult": [],
+    "net.minecraft.world.InteractionResultHolder": [],
+    "net.minecraft.world.level.block.state.properties.DirectionProperty": [],
+    "net.minecraft.client.renderer.MultiBufferSource": [],
+    "net.minecraft.world.item.UseAnim": [],
+    "net.minecraft.client.renderer.entity.ItemRenderer": [],
+    "net.minecraft.client.resources.model.BakedModel": [],
+    "net.minecraft.MethodsReturnNonnullByDefault": [],
+    "net.minecraft.advancements.predicates.ContextAwarePredicate": []
+  }
+}

@@ -1,0 +1,253 @@
+package net.fxnt.fxntstorage.simple_storage;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
+import com.simibubi.create.content.contraptions.behaviour.MovementContext;
+import com.simibubi.create.content.contraptions.render.ContraptionMatrices;
+import net.createmod.catnip.api.client.gui.AbstractSimiScreen;
+import net.fxnt.fxntstorage.compat.sable.SableCompat;
+import net.fxnt.fxntstorage.util.Util;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.createmod.catnip.impl.client.render.MultiBufferSource;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+
+import static net.fxnt.fxntstorage.util.RendererHelper.*;
+
+public class SimpleStorageBoxEntityRenderer implements BlockEntityRenderer<SimpleStorageBoxEntity, net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState> {
+
+    protected final BlockEntityRendererProvider.Context context;
+
+    public SimpleStorageBoxEntityRenderer(BlockEntityRendererProvider.Context context) {
+        this.context = context;
+    }
+
+    public static void renderFromContraptionContext(MovementContext context, ContraptionMatrices matrices, MultiBufferSource buffer) {
+        BlockState state = context.state;
+        CompoundTag tag = context.blockEntityData;
+        if (tag == null || state == null) return;
+
+        boolean hasVoidUpgrade = tag.getBoolean("VoidUpgrade").orElse(false);
+        boolean hasCompUpgrade = tag.getBoolean("CompactingUpgrade").orElse(false);
+
+        int amount = tag.getInt("StoredAmount").orElse(0);
+        int totalSpace = tag.getInt("MaxItemCapacity").orElse(0);
+        int percentUsed = (int) Math.round(((double) amount / totalSpace) * 100);
+
+        String line1 = Util.formatNumber(amount);
+        String line2 = hasVoidUpgrade
+                ? Component.translatable("container.fxntstorage.void_mode").getString()
+                : Component.translatable("container.fxntstorage.percent_used", percentUsed).getString();
+
+        Direction side = state.getValue(HorizontalDirectionalBlock.FACING);
+
+        PoseStack poseStack = matrices.getModelViewProjection();
+
+        poseStack.pushPose();
+        poseStack.translate(context.localPos.getX() + 0.5f, context.localPos.getY() + 0.5f, context.localPos.getZ() + 0.5f);
+        poseStack.rotate(Axis.YP.rotationDegrees(-side.toYRot()));
+        poseStack.translate(0f, 0f, 0.5f - 0.95f / 16f);
+
+        Minecraft mc = Minecraft.getInstance();
+        LocalPlayer player = mc.player;
+        if (player == null) {
+            poseStack.popPose();
+            return;
+        }
+
+        double distance = context.position != null
+                ? Math.sqrt(player.distanceToSqr(context.position))
+                : Math.sqrt(player.distanceToSqr(context.contraption.entity.toGlobalVector(Vec3.atCenterOf(context.localPos), 1f)));
+
+        if (distance >= getMaxDistance()) {
+            poseStack.popPose();
+            return;
+        }
+
+        net.minecraft.client.renderer.item.ItemModelResolver itemRenderer = mc.getItemModelResolver();
+        int color = getColorForDistance(distance);
+
+        BlockPos lightPos = context.contraption.entity.blockPosition().offset(context.localPos).relative(side);
+        int envLight = net.minecraft.util.LightCoordsUtil.getLightCoords(context.world, lightPos);
+        int textLight = emissiveLight(envLight);
+        int itemLight = emissiveItemLight(envLight);
+
+        ItemStack filterItem = ItemStack.EMPTY;
+        if (tag.contains("FilterItem")) {
+            filterItem = tag.getCompound("FilterItem").orElse(new CompoundTag()).isEmpty()
+                    ? ItemStack.EMPTY
+                    : net.fxnt.fxntstorage.util.RendererHelper.parseStack(context.contraption.entity.level().registryAccess(), tag.getCompound("FilterItem").orElse(new CompoundTag()));
+        }
+
+        if (hasCompUpgrade) {
+            CompactingChain chain = null;
+            if (!filterItem.isEmpty() && mc.level != null) {
+                if (CompactingRecipeHelper.isEmpty()) {
+                    CompactingRecipeHelper.rebuild();
+                }
+                chain = CompactingRecipeHelper.buildChain(mc.level, filterItem.getItem());
+            }
+            if (chain != null) {
+                int selected = Math.min(tag.getInt("CompactingSelectedTier").orElse(0), chain.tiers() - 1);
+                String displayCount = getCountForSlot(chain, selected, amount);
+                renderLine(displayCount, -1f, poseStack, buffer, color, textLight);
+                renderLine(line2, -4f, poseStack, buffer, color, textLight);
+                renderPips(chain.tiers(), selected, poseStack, buffer, textLight - 32);
+                renderItem(itemRenderer, chain.itemForSlot(selected), poseStack, buffer, itemLight, ItemStack.EMPTY);
+            } else {
+                renderLine(line1, -1f, poseStack, buffer, color, textLight);
+                renderLine(line2, -4f, poseStack, buffer, color, textLight);
+                if (!filterItem.isEmpty()) {
+                    renderItem(itemRenderer, filterItem, poseStack, buffer, itemLight, ItemStack.EMPTY);
+                }
+            }
+        } else {
+            renderLine(line1, -1f, poseStack, buffer, color, textLight);
+            renderLine(line2, -4f, poseStack, buffer, color, textLight);
+
+            if (!filterItem.isEmpty()) {
+                renderItem(itemRenderer, filterItem, poseStack, buffer, itemLight, ItemStack.EMPTY);
+            }
+        }
+
+        poseStack.popPose();
+    }
+
+    public void collect(SimpleStorageBoxEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
+        Minecraft mc = Minecraft.getInstance();
+        Screen currentScreen = mc.gui.screen();
+        boolean isPonderScene = currentScreen instanceof AbstractSimiScreen;
+        boolean inSubLevel = SableCompat.isInPlotGrid(blockEntity);
+
+        Player player = mc.player;
+        if (player == null) return;
+
+        Level level = blockEntity.getLevel();
+        if (level == null) return;
+
+        int amount = blockEntity.getStoredAmount();
+        int totalSpace = blockEntity.getMaxItemCapacity();
+        int percentUsed = (int) Math.round(((double) amount / totalSpace) * 100);
+
+        String line1 = Util.formatNumber(amount);
+        String line2 = blockEntity.hasVoidUpgrade()
+                ? Component.translatable("container.fxntstorage.void_mode").getString()
+                : Component.translatable("container.fxntstorage.percent_used", percentUsed).getString();
+
+        float distance = (float) Math.sqrt(blockEntity.getBlockPos().distToCenterSqr(player.position()));
+
+        if (distance > getMaxDistance() && !isPonderScene && !inSubLevel) return;
+        if (isPonderScene || inSubLevel) distance = 5f;
+
+        BlockState blockState = blockEntity.getBlockState();
+        Direction side = blockState.getValue(HorizontalDirectionalBlock.FACING);
+
+        poseStack.pushPose();
+        poseStack.translate(0.5f, 0.5f, 0.5f);
+        poseStack.rotate(Axis.YP.rotationDegrees(-side.toYRot()));
+        poseStack.translate(0f, 0f, 0.5f - 0.95f / 16f);
+
+        int color = getColorForDistance(distance);
+        int envLight = net.minecraft.util.LightCoordsUtil.getLightCoords(level, blockEntity.getBlockPos());
+        int textLight = emissiveLight(envLight);
+        int itemLight = emissiveItemLight(envLight);
+
+        if (blockEntity.compactingUpgrade) {
+            ItemStack displayItem;
+            String displayCount;
+
+            if (blockEntity.compactingChain != null) {
+                CompactingChain chain = blockEntity.compactingChain;
+                int selected = Math.min(blockEntity.compactingSelectedTier, chain.tiers() - 1);
+                displayItem = chain.itemForSlot(selected);
+                displayCount = getCountForSlot(chain, selected, amount);
+                renderPips(chain.tiers(), selected, poseStack, buffer, textLight - 32);
+            } else {
+                displayItem = blockEntity.getFilterItem();
+                displayCount = line1;
+            }
+
+            renderLine(displayCount, -1.4f, poseStack, buffer, color, textLight);
+            renderLine(line2, -4.1f, poseStack, buffer, color, textLight);
+            renderItem(Minecraft.getInstance().getItemModelResolver(), displayItem, poseStack, buffer, itemLight, ItemStack.EMPTY);
+        } else {
+            renderLine(line1, -1.4f, poseStack, buffer, color, textLight);
+            renderLine(line2, -4.1f, poseStack, buffer, color, textLight);
+
+            ItemStack filterItem = blockEntity.getFilterItem();
+            if (!filterItem.isEmpty()) {
+                renderItem(Minecraft.getInstance().getItemModelResolver(), filterItem, poseStack, buffer, itemLight, ItemStack.EMPTY);
+            }
+        }
+
+        poseStack.popPose();
+    }
+
+    private static void renderPips(int tiers, int selected, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+        Font font = Minecraft.getInstance().font;
+        String pip = "■";
+        int pipPx = font.width(pip);
+        int gapPx = 3;
+        float totalPx = tiers * pipPx + (tiers - 1) * gapPx;
+
+        float scale = 0.55f / 64f;
+
+        poseStack.pushPose();
+        poseStack.translate(0f, 0.4f / 16f, 0f);
+        poseStack.scale(scale, -scale, 1f);
+
+        float x = -totalPx / 2f;
+        for (int i = 0; i < tiers; i++) {
+            int pipColor = i == selected ? 0xFFFFFF : 0x444444;
+            ((net.fxnt.fxntstorage.client.StorageRenderBuffers.GeometryCollector)buffer).text(poseStack,pip,x,0,pipColor|0xff000000,packedLight);
+            x += pipPx + gapPx;
+        }
+        poseStack.popPose();
+    }
+
+    private static String getCountForSlot(CompactingChain chain, int slotIdx, int t0Stored) {
+        if (chain.tiers() == 2) {
+            return slotIdx == 0 ? Util.formatNumber(chain.t1Count(t0Stored)) : Util.formatNumber(t0Stored);
+        }
+        return switch (slotIdx) {
+            case 0 -> Util.formatNumber(chain.t2Count(t0Stored));
+            case 1 -> Util.formatNumber(chain.t1Count(t0Stored));
+            default -> Util.formatNumber(t0Stored);
+        };
+    }
+
+
+    private static final class NativeState extends net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState {
+        SimpleStorageBoxEntity blockEntity; float partialTicks;
+    }
+    @Override public net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState createRenderState() { return new NativeState(); }
+    @Override public void extractRenderState(SimpleStorageBoxEntity be, net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState state,
+            float pt, net.minecraft.world.phys.Vec3 camera, net.minecraft.client.renderer.feature.ModelFeatureRenderer.CrumblingOverlay overlay) {
+        net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState.extractBase(be,state,overlay);
+        var nativeState=(NativeState)state; nativeState.blockEntity=be; nativeState.partialTicks=pt;
+    }
+    @Override public void submit(net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState state, PoseStack pose,
+            net.minecraft.client.renderer.SubmitNodeCollector collector, net.minecraft.client.renderer.state.level.CameraRenderState camera) {
+        var nativeState=(NativeState)state;
+        if(nativeState.blockEntity==null || nativeState.blockEntity.isRemoved()) return;
+        var geometry=new net.fxnt.fxntstorage.client.StorageRenderBuffers.GeometryCollector(collector);
+        collect(nativeState.blockEntity,nativeState.partialTicks,pose,geometry,state.lightCoords,net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY);
+        geometry.submit();
+        
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:netherrack",
+    {
+      "id": "#c:storage_blocks/coal",
+      "required": false
+    }
+  ]
+}

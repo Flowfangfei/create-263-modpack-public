@@ -1,0 +1,175 @@
+/*
+ * Copyright (C) 2025  DragonsPlus
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package plus.dragons.createenchantmentindustry.common.kinetics.grindstone;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
+import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.util.Mth;
+import net.minecraft.world.inventory.AnvilMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
+import plus.dragons.createenchantmentindustry.common.item.CEIItemData;
+import plus.dragons.createenchantmentindustry.common.registry.CEIRecipes;
+import plus.dragons.createenchantmentindustry.util.CEIFluidUnits;
+
+public class GrindstoneHelper {
+    public static boolean canItemBeGrinded(ItemStack top, ItemStack bottom) {
+        return !computeResult(top, bottom).isEmpty();
+    }
+
+    public static Optional<Result> grindItem(Level level, ItemStack top, ItemStack bottom) {
+        ItemStack output = computeResult(top, bottom);
+        if (output.isEmpty())
+            return Optional.empty();
+        int experience = getGrindingExperience(level, top, bottom);
+        ItemStack remainingTop = consumeOne(top);
+        ItemStack remainingBottom = consumeOne(bottom);
+        return Optional.of(new Result(remainingTop, remainingBottom, output, experience));
+    }
+
+    private static ItemStack consumeOne(ItemStack input) {
+        if (input.isEmpty())
+            return ItemStack.EMPTY;
+        ItemStack remaining = input.copy();
+        remaining.shrink(1);
+        return remaining;
+    }
+
+    private static int getGrindingExperience(Level level, ItemStack top, ItemStack bottom) {
+        int experience = 0;
+        experience += getExperienceFromItem(top);
+        experience += getExperienceFromItem(bottom);
+        if (experience > 0) {
+            int average = Mth.ceil(experience / 2.0);
+            return average + level.getRandom().nextInt(average);
+        } else {
+            return 0;
+        }
+    }
+
+    public static int getExperienceFromItem(ItemStack stack) {
+        int result = 0;
+        Map<Holder<Enchantment>, Integer> enchantments = CEIItemData.getEnchantments(stack);
+        for (var entry : enchantments.entrySet()) {
+            Holder<Enchantment> enchantment = entry.getKey();
+            int level = entry.getValue();
+            if (!enchantment.is(EnchantmentTags.CURSE)) {
+                result += enchantment.value().getMinCost(level);
+            }
+        }
+        return result;
+    }
+
+    public static int getExperienceFromGrindingRecipe(Level level, ItemStack stack) {
+        if (!(level instanceof ServerLevel serverLevel))
+            return 0;
+        var input = new SingleRecipeInput(stack);
+        var grinding = serverLevel.recipeAccess().getRecipeFor(CEIRecipes.GRINDING.getType(), input, level);
+        if (grinding.isEmpty()) return 0;
+        var f = grinding.get().value().getFluidResults();
+        if (f.isEmpty()) return 0;
+        return Math.toIntExact(CEIFluidUnits.toMillibuckets(f.get(0).getAmount()));
+    }
+
+    private static ItemStack computeResult(ItemStack top, ItemStack bottom) {
+        boolean topEmpty = top.isEmpty();
+        boolean bottomEmpty = bottom.isEmpty();
+        if (topEmpty && bottomEmpty) {
+            return ItemStack.EMPTY;
+        } else if (top.getCount() <= 1 && bottom.getCount() <= 1) {
+            if (topEmpty || bottomEmpty) {
+                ItemStack input = topEmpty ? bottom : top;
+                return CEIItemData.getEnchantments(input).isEmpty()
+                        ? ItemStack.EMPTY
+                        : removeNonCursesFrom(input.copy());
+            } else {
+                return mergeItems(top, bottom);
+            }
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    private static ItemStack mergeItems(ItemStack top, ItemStack bottom) {
+        if (!top.is(bottom.getItem())) {
+            return ItemStack.EMPTY;
+        } else {
+            int maxDamage = Math.max(top.getMaxDamage(), bottom.getMaxDamage());
+            int topDurability = top.getMaxDamage() - top.getDamageValue();
+            int bottomDurability = bottom.getMaxDamage() - bottom.getDamageValue();
+            int l = topDurability + bottomDurability + maxDamage * 5 / 100;
+            int count = 1;
+            if (!top.isDamageableItem()) {
+                if (top.getMaxStackSize() < 2 || !ItemStack.matches(top, bottom)) {
+                    return ItemStack.EMPTY;
+                }
+
+                count = 2;
+            }
+
+            ItemStack result = top.copy();
+            result.setCount(count);
+            if (result.isDamageableItem()) {
+                result.setDamageValue(Math.max(maxDamage - l, 0));
+                if (!bottom.isDamageableItem())
+                    result.setDamageValue(top.getDamageValue());
+            }
+
+            mergeEnchantsFrom(result, bottom);
+            return removeNonCursesFrom(result);
+        }
+    }
+
+    private static void mergeEnchantsFrom(ItemStack top, ItemStack bottom) {
+        Map<Holder<Enchantment>, Integer> topEnchantments = new LinkedHashMap<>(CEIItemData.getEnchantments(top));
+        for (var entry : CEIItemData.getEnchantments(bottom).entrySet()) {
+            Holder<Enchantment> enchantment = entry.getKey();
+            if (!enchantment.is(EnchantmentTags.CURSE) || !topEnchantments.containsKey(enchantment))
+                topEnchantments.merge(enchantment, entry.getValue(), Math::max);
+        }
+        CEIItemData.setEnchantments(top, topEnchantments);
+    }
+
+    public static ItemStack removeNonCursesFrom(ItemStack input) {
+        Map<Holder<Enchantment>, Integer> enchantments = new LinkedHashMap<>(CEIItemData.getEnchantments(input));
+        enchantments.keySet().removeIf(enchantment -> !enchantment.is(EnchantmentTags.CURSE));
+        CEIItemData.setEnchantments(input, enchantments);
+        if (input.is(Items.ENCHANTED_BOOK) && enchantments.isEmpty()) {
+            input = CEIItemData.transmuteCopy(input, Items.BOOK);
+        }
+
+        int repairCost = 0;
+
+        for (int j = 0; j < enchantments.size(); j++) {
+            repairCost = AnvilMenu.calculateIncreasedRepairCost(repairCost);
+        }
+
+        CEIItemData.setRepairCost(input, repairCost);
+        return input;
+    }
+
+    public record Result(ItemStack top, ItemStack bottom, ItemStack output, int experience) {}
+}

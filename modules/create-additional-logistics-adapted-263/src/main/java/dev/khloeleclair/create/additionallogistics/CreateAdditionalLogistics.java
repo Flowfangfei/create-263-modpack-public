@@ -1,0 +1,129 @@
+package dev.khloeleclair.create.additionallogistics;
+
+import com.mojang.logging.LogUtils;
+import com.simibubi.create.content.contraptions.actors.seat.SeatBlock;
+import com.simibubi.create.content.contraptions.actors.seat.SeatEntity;
+import com.simibubi.create.content.logistics.stockTicker.StockTickerInteractionHandler;
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.item.ItemDescription;
+import com.simibubi.create.foundation.item.KineticStats;
+import com.simibubi.create.foundation.item.TooltipModifier;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import dev.khloeleclair.create.additionallogistics.common.Config;
+import dev.khloeleclair.create.additionallogistics.common.content.kinetics.lazy.base.AbstractLowEntityKineticBlockEntity;
+import dev.khloeleclair.create.additionallogistics.common.registries.*;
+import dev.khloeleclair.create.additionallogistics.common.utilities.CurrencyUtilities;
+import dev.khloeleclair.create.additionallogistics.common.utilities.RecipeHelper;
+import dev.khloeleclair.create.additionallogistics.compat.computercraft.CALComputerCraftProxy;
+import net.createmod.catnip.api.client.lang.FontHelper;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.phys.AABB;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+
+// The value here should match an entry in the META-INF/neoforge.mods.toml file
+@Mod(CreateAdditionalLogistics.MODID)
+public class CreateAdditionalLogistics {
+
+    public static final String MODID = "createadditionallogistics";
+    public static final Logger LOGGER = LogUtils.getLogger();
+
+    @Nullable
+    private static MinecraftServer server;
+
+    // Registrate
+    public static final NonNullSupplier<CreateRegistrate> REGISTRATE = NonNullSupplier.lazy(() -> CreateRegistrate.create(MODID)
+            .setTooltipModifierFactory(item ->
+                    new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
+                            .andThen(TooltipModifier.mapNull(KineticStats.create(item)))
+            )
+    );
+
+    public static Identifier asResource(String path) {
+        return Identifier.fromNamespaceAndPath(MODID, path);
+    }
+
+    @Nullable
+    public static MinecraftServer getServer() {
+        return server;
+    }
+
+
+    public CreateAdditionalLogistics(IEventBus modEventBus, ModContainer modContainer) {
+
+        // Register things.
+        REGISTRATE.get().registerEventListeners(modEventBus);
+
+        CurrencyUtilities.init();
+
+        CALTags.init();
+        CALBlocks.register();
+        CALItems.register();
+        CALMenuTypes.register();
+        CALEntityTypes.register();
+        CALBlockEntityTypes.register();
+        CALStress.register();
+        // Client model initialization lives in the client-only mod entry point.
+
+        CALComputerCraftProxy.register();
+
+        CALDataComponents.register(modEventBus);
+        CALDataMaps.register(modEventBus);
+
+        modEventBus.addListener(CALPackets::register);
+
+        // The fixed upstream generated assets are packaged; legacyDatagen preserves the original generation workflow.
+
+        NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.addListener(CurrencyUtilities::onDataMapUpdated);
+
+        NeoForge.EVENT_BUS.addListener(AbstractLowEntityKineticBlockEntity::onTick);
+
+        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
+        Config.register(modContainer);
+    }
+
+    @SubscribeEvent
+    private void onServerStart(ServerStartingEvent event) {
+        server = event.getServer();
+    }
+
+    @SubscribeEvent
+    private void onServerStopped(ServerStoppedEvent event) {
+        server = null;
+    }
+
+    @SubscribeEvent
+    private void onRightClick(PlayerInteractEvent.RightClickBlock event) {
+        if (! Config.Common.protectStockKeeperSeats.get())
+            return;
+
+        final var pos = event.getPos();
+        final var level = event.getLevel();
+
+        if (level.getBlockState(pos).getBlock() instanceof SeatBlock) {
+            var seats = level.getEntitiesOfClass(SeatEntity.class, new AABB(pos));
+            if (!seats.isEmpty()) {
+                var passengers = seats.getFirst().getPassengers();
+                if (! passengers.isEmpty()) {
+                    var passenger = passengers.getFirst();
+                    var ticker = StockTickerInteractionHandler.getStockTickerPosition(passenger);
+                    if (ticker != null)
+                        event.setCanceled(true);
+                }
+            }
+        }
+    }
+
+
+}

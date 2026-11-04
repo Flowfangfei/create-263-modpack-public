@@ -1,0 +1,204 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
+    id 'java-library'
+    id 'maven-publish'
+    id 'me.modmuss50.mod-publish-plugin' version '2.1.1'
+    id 'com.diffplug.spotless' version '8.9.0'
+    id 'idea'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = "${mod_artifact_id}-${minecraft_version}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(java_version as int)
+    withSourcesJar()
+}
+
+sourceSets {
+    main {
+        resources.srcDir 'src/generated/resources'
+    }
+}
+
+loom {
+    splitEnvironmentSourceSets()
+    accessWidenerPath = file('src/main/resources/create_enchantment_industry.accesswidener')
+
+    mods {
+        create_enchantment_industry {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+
+    runs {
+        client {
+            client()
+            name 'Create: Enchantment Industry Fly Client'
+        }
+        server {
+            server()
+            name 'Create: Enchantment Industry Fly Server'
+            programArg '--nogui'
+        }
+        datagen {
+            inherit client
+            name 'Create: Enchantment Industry Fly Data Generation'
+            vmArg '-Dfabric-api.datagen'
+            vmArg "-Dfabric-api.datagen.output-dir=${file('src/generated/resources').absolutePath}"
+            vmArg "-Dfabric-api.datagen.modid=${mod_id}"
+            runDir 'build/datagen'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+    maven {
+        name = 'DragonsPlus'
+        url = 'https://maven.dragons.plus/releases'
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter {
+            includeGroup 'maven.modrinth'
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${loader_version}"
+    api "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    api("maven.modrinth:create-fly:${create_fly_version}") { transitive = false }
+    api("plus.dragons.createdragonsplus:create-dragons-plus-fly-${minecraft_version}:${create_dragons_plus_version}") {
+        transitive = false
+    }
+
+    clientCompileOnly "maven.modrinth:jei:${jei_version}"
+    clientRuntimeOnly "maven.modrinth:jei:${jei_version}"
+
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
+processResources {
+    def replaceProperties = [
+            version                     : project.version,
+            minecraft_version           : minecraft_version,
+            java_version                : java_version,
+            loader_version              : loader_version,
+            fabric_api_version          : fabric_api_version,
+            create_version_range        : create_version_range,
+            create_dragons_plus_version : create_dragons_plus_version,
+            jei_version                 : jei_version,
+            mod_id                      : mod_id,
+            mod_name                    : mod_name,
+            mod_license                 : mod_license,
+            mod_authors                 : mod_authors,
+            mod_description             : mod_description,
+            mod_github                  : mod_github,
+    ]
+    inputs.properties replaceProperties
+    filesMatching('fabric.mod.json') {
+        expand replaceProperties
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = java_version as int
+}
+
+tasks.withType(Jar).configureEach {
+    from 'LICENSE.txt'
+    exclude '.cache'
+    exclude 'assets/create_enchantment_industry/lang/builtin/**'
+}
+
+spotless {
+    java {
+        target 'src/main/java/**/*.java', 'src/client/java/**/*.java'
+        endWithNewline()
+        leadingTabsToSpaces()
+        removeUnusedImports()
+        toggleOffOn()
+        importOrder()
+        eclipse().configFile 'codeformat/formatter-config.xml'
+        licenseHeaderFile 'codeformat/HEADER.txt'
+    }
+}
+
+tasks.named('build').configure {
+    dependsOn tasks.named('spotlessCheck')
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifactId = "${mod_artifact_id}-${minecraft_version}"
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = 'DragonsPlus'
+            url = 'https://maven.dragons.plus/releases'
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}
+
+publishMods {
+    file = jar.archiveFile
+    additionalFiles.from sourcesJar.archiveFile
+    changelog = providers.fileContents(layout.projectDirectory.file('CHANGELOG.md')).asText
+    version = mod_version
+    type = me.modmuss50.mpp.ReleaseType.of(mod_release_channel)
+    displayName = "CEI ${mod_version} for Create Fly ${create_fly_version}"
+    modLoaders.add('fabric')
+    dryRun = providers.environmentVariable('MOD_PUBLISH_DRY_RUN').map { it.toBoolean() }.orElse(false)
+
+    curseforge {
+        projectId = '688768'
+        accessToken = providers.environmentVariable('CURSEFORGE_TOKEN')
+        minecraftVersions.add(minecraft_version)
+        javaVersions.add(JavaVersion.VERSION_25)
+        client = true
+        server = true
+        requires('fabric-api', 'create-fly', 'create-dragons-plus')
+        optional('jei')
+    }
+
+    modrinth {
+        projectId = 'JWGBpFUP'
+        accessToken = providers.environmentVariable('MODRINTH_TOKEN')
+        minecraftVersions.add(minecraft_version)
+        environment = CLIENT_AND_SERVER
+        requires('fabric-api', 'create-fly', 'create-dragons-plus')
+        optional('jei')
+    }
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

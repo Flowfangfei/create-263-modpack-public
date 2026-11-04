@@ -1,0 +1,155 @@
+/*
+ * Copyright (C) 2025  DragonsPlus
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package plus.dragons.createenchantmentindustry.common.processing.enchanter;
+
+import com.google.common.collect.Lists;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Stream;
+import javax.annotation.Nullable;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.random.WeightedRandom;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import plus.dragons.createenchantmentindustry.common.fluids.experience.ExperienceHelper;
+import plus.dragons.createenchantmentindustry.common.processing.EnchantmentProcessingRules;
+import plus.dragons.createenchantmentindustry.config.CEIConfig;
+
+public class CEIEnchantmentHelper {
+    @Nullable
+    public static Function<Enchantment, Integer> alternativeMaxLevel;
+
+    public static int getEnchantmentCost(Holder<Enchantment> enchantment, int level) {
+        int cost = ExperienceHelper.getExperienceForNextLevel(enchantment.value().getMinCost(level));
+        if (level == 1)
+            return cost;
+        return cost + getEnchantmentCost(enchantment, level - 1);
+    }
+
+    public static int getEnchantmentCost(Map<Holder<Enchantment>, Integer> enchantments) {
+        return enchantments.entrySet().stream()
+                .mapToInt(entry -> getEnchantmentCost(entry.getKey(), entry.getValue()))
+                .sum();
+    }
+
+    public static int getAdjustedLevel(ItemStack stack, int level) {
+        if (stack.isEmpty() || level <= 0)
+            return 0;
+        var enchantable = stack.get(DataComponents.ENCHANTABLE);
+        int value = enchantable == null ? 0 : enchantable.value();
+        if (value > 0)
+            level += 1 + value / 4;
+        float f = 0.15F;
+        level = Mth.clamp(Math.round(level + level * f), 1, Integer.MAX_VALUE);
+        return level;
+    }
+
+    /** Compatibility equivalent of the enchanting-table primary-item predicate. */
+    public static boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
+        if (stack.is(Items.BOOK))
+            return true;
+        if (stack.getItem() instanceof EnchantingTemplateItem)
+            return false;
+        return enchantment.value().isPrimaryItem(stack);
+    }
+
+    /** Compatibility equivalent of the general enchantment-support predicate. */
+    public static boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        if (stack.is(Items.ENCHANTED_BOOK))
+            return true;
+        return enchantment.value().canEnchant(stack);
+    }
+
+    /**
+     * Compatibility alias retained for consumers compiled against the initial 1.21.11 Fly port.
+     */
+    @Deprecated(forRemoval = false)
+    public static boolean canApplyAtEnchantingTable(Holder<Enchantment> enchantment, ItemStack stack) {
+        return isPrimaryItemFor(stack, enchantment);
+    }
+
+    public static List<EnchantmentInstance> getAvailableEnchantmentResults(int level, Stream<Holder<Enchantment>> possibleEnchantments, boolean special) {
+        List<EnchantmentInstance> list = Lists.newArrayList();
+        possibleEnchantments.forEach(enchantment -> {
+            int maxLevel = maxLevel(enchantment);
+            if (special)
+                maxLevel += EnchantmentProcessingRules.blazeEnchanterLevelExtension(enchantment);
+            for (int i = maxLevel; i >= enchantment.value().getMinLevel(); i--) {
+                if (level >= enchantment.value().getMinCost(i) && level <= enchantment.value().getMaxCost(i)) {
+                    list.add(new EnchantmentInstance(enchantment, i));
+                    break;
+                }
+            }
+        });
+        return list;
+    }
+
+    public static List<EnchantmentInstance> getAvailablePenaltyCurseResults(Stream<Holder<Enchantment>> possibleEnchantments, int maxPenaltyLevel) {
+        List<EnchantmentInstance> list = Lists.newArrayList();
+        if (maxPenaltyLevel <= 0)
+            return list;
+        possibleEnchantments.forEach(enchantment -> {
+            int level = Math.min(maxLevel(enchantment), maxPenaltyLevel);
+            if (level >= enchantment.value().getMinLevel())
+                list.add(new EnchantmentInstance(enchantment, level));
+        });
+        return list;
+    }
+
+    public static List<EnchantmentInstance> selectEnchantments(RandomSource random, int adjustedLevel, List<EnchantmentInstance> available, boolean special) {
+        available = Lists.newArrayList(available);
+        List<EnchantmentInstance> list = Lists.newArrayList();
+        WeightedRandom.getRandomItem(random, available, EnchantmentInstance::weight).ifPresent(list::add);
+        while (random.nextInt(50) <= adjustedLevel) {
+            if (!list.isEmpty())
+                if (special && CEIConfig.enchantments().ignoreEnchantmentCompatibility.get()) {
+                    available.removeIf(instance -> instance.enchantment().equals(list.getLast().enchantment()));
+                } else {
+                    EnchantmentHelper.filterCompatibleEnchantments(available, list.get(list.size() - 1));
+                }
+            if (available.isEmpty())
+                break;
+            WeightedRandom.getRandomItem(random, available, EnchantmentInstance::weight).ifPresent(list::add);
+            adjustedLevel /= 2;
+        }
+        return list;
+    }
+
+    public static int maxLevel(Holder<Enchantment> enchantment) {
+        if (alternativeMaxLevel == null) return enchantment.value().getMaxLevel();
+        return alternativeMaxLevel.apply(enchantment.value());
+    }
+
+    public static int anvilCost(Holder<Enchantment> enchantment) {
+        return enchantment.value().getAnvilCost();
+    }
+
+    @Deprecated(forRemoval = false)
+    public static int levelExtension(Holder<Enchantment> enchantment) {
+        // Legacy ABI entry point. New code should call the machine-specific rule helpers directly.
+        return EnchantmentProcessingRules.blazeForgerLevelExtension(enchantment);
+    }
+}

@@ -1,0 +1,111 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft"
+      },
+      "when": {
+        "OR": [
+          {
+            "negative": "false"
+          },
+          {
+            "positive": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft/connection"
+      },
+      "when": {
+        "axis": "z",
+        "negative": "true",
+        "positive": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft/connection",
+        "y": 90
+      },
+      "when": {
+        "axis": "x",
+        "negative": "true",
+        "positive": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft/connection",
+        "x": 90
+      },
+      "when": {
+        "axis": "y",
+        "negative": "true",
+        "positive": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft_down"
+      },
+      "when": {
+        "axis": "y",
+        "negative": "true",
+        "positive": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft_up"
+      },
+      "when": {
+        "axis": "y",
+        "negative": "false",
+        "positive": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft_north"
+      },
+      "when": {
+        "axis": "z",
+        "negative": "true",
+        "positive": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft_south"
+      },
+      "when": {
+        "axis": "z",
+        "negative": "false",
+        "positive": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft_west"
+      },
+      "when": {
+        "axis": "x",
+        "negative": "true",
+        "positive": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "createadditionallogistics:block/lazy_shaft_east"
+      },
+      "when": {
+        "axis": "x",
+        "negative": "false",
+        "positive": "true"
+      }
+    }
+  ]
+}

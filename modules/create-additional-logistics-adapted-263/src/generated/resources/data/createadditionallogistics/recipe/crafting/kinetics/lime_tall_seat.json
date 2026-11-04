@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:lime_wool",
+    "#minecraft:planks"
+  ],
+  "result": {
+    "count": 1,
+    "id": "createadditionallogistics:lime_tall_seat"
+  }
+}

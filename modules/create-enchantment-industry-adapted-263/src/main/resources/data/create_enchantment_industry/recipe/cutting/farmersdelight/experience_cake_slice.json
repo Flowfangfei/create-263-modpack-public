@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    "create_enchantment_industry:experience_cake"
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 4,
+        "id": "create_enchantment_industry:experience_cake_slice"
+      }
+    }
+  ],
+  "tool": "#c:tools/knife"
+}

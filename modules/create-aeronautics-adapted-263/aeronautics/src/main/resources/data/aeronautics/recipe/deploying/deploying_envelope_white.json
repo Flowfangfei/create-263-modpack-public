@@ -1,0 +1,13 @@
+{
+  "type": "create:deploying",
+  "results": [
+    {
+      "count": 3,
+      "id": "aeronautics:white_envelope"
+    }
+  ],
+  "ingredients": [
+    "minecraft:white_wool",
+    "minecraft:stick"
+  ]
+}

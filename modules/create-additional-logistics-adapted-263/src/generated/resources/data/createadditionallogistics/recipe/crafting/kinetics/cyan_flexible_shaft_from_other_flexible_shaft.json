@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:dyes/cyan",
+    "#createadditionallogistics:flexible_shafts"
+  ],
+  "result": {
+    "count": 1,
+    "id": "createadditionallogistics:cyan_flexible_shaft"
+  }
+}

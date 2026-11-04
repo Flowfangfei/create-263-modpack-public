@@ -1,0 +1,335 @@
+package net.fxnt.fxntstorage.util;
+
+import com.mojang.blaze3d.platform.InputConstants;
+import com.simibubi.create.AllSpecialTextures;
+import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
+import com.simibubi.create.content.contraptions.ContraptionHandler;
+import com.simibubi.create.content.contraptions.ContraptionHandlerClient;
+import net.createmod.catnip.api.client.outliner.Outliner;
+import net.fxnt.fxntstorage.FXNTStorage;
+import net.fxnt.fxntstorage.backpack.client.menu.BackpackMenu;
+import net.fxnt.fxntstorage.backpack.inventory.BackpackContainer;
+import net.fxnt.fxntstorage.backpack.inventory.BackpackSlotLayout;
+import net.fxnt.fxntstorage.backpack.upgrade.UpgradeHelper;
+import net.fxnt.fxntstorage.backpack.upgrade.UpgradeType;
+import net.fxnt.fxntstorage.backpack.upgrade.jetpack.JetpackManager;
+import net.fxnt.fxntstorage.backpack.upgrade.jukebox.ClientJukeboxHandler;
+import net.fxnt.fxntstorage.backpack.util.BackpackHelper;
+import net.fxnt.fxntstorage.config.ClientSettings;
+import net.fxnt.fxntstorage.config.ConfigManager;
+import net.fxnt.fxntstorage.container.ISortableStorageBox;
+import net.fxnt.fxntstorage.controller.StorageControllerHighlight;
+import net.fxnt.fxntstorage.init.ModTabs;
+import net.fxnt.fxntstorage.network.packet.CompactingTierScrollPacket;
+import net.fxnt.fxntstorage.network.packet.PickBlockUpgradePacket;
+import net.fxnt.fxntstorage.network.packet.PlayerInputPacket;
+import net.fxnt.fxntstorage.network.packet.SortInventoryPacket;
+import net.fxnt.fxntstorage.reserve_storage.ReserveStorageBoxMenu;
+import net.fxnt.fxntstorage.simple_storage.CompactingChain;
+import net.fxnt.fxntstorage.simple_storage.CompactingRecipeHelper;
+import net.fxnt.fxntstorage.simple_storage.SimpleStorageBox;
+import net.fxnt.fxntstorage.simple_storage.SimpleStorageBoxEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
+import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.event.TagsUpdatedEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
+
+import java.lang.ref.WeakReference;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
+@EventBusSubscriber(modid = FXNTStorage.MOD_ID, value = Dist.CLIENT)
+public class ClientEventHandler {
+    private static double lastForwardImpulse = -99;
+    private static double lastLeftImpulse = -99;
+
+    @SubscribeEvent
+    public static void onTagsUpdated(TagsUpdatedEvent.ClientPacketReceived event) {
+        Minecraft mc = Minecraft.getInstance();
+        LocalPlayer player = mc.player;
+        if (player == null) return; // Initial join. The tab is built when the creative screen first opens
+
+        ModTabs.CREATIVE_MODE_TAB.get().buildContents(new CreativeModeTab.ItemDisplayParameters(
+                player.connection.enabledFeatures(),
+                player.canUseGameMasterBlocks() && mc.options.operatorItemsTab().get(),
+                player.level().registryAccess()));
+    }
+
+    private record SlotRange(int start, int end) {
+    }
+
+    private static SlotRange getSlotRange(int slotId, int slotCount) {
+        if (slotId < slotCount) return new SlotRange(0, slotCount);
+        if (slotId < slotCount + 27) return new SlotRange(slotCount, slotCount + 27);
+        return new SlotRange(slotCount + 27, slotCount + 36);
+    }
+
+    private static SlotRange getSlotRange(int slotId) {
+        int slotCount = ReserveStorageBoxMenu.TOTAL_CONTAINER_SLOTS;
+        if (slotId < slotCount) return new SlotRange(0, ReserveStorageBoxMenu.STORAGE_SLOT_COUNT);
+        if (slotId < slotCount + 27) return new SlotRange(slotCount, slotCount + 27);
+        return new SlotRange(slotCount + 27, slotCount + 36);
+    }
+
+    @SubscribeEvent
+    public static void onMovementInputUpdate(MovementInputUpdateEvent event) {
+        Vec2 movement = event.getInput().getMoveVector();
+        float forwardImpulse = movement.y;
+        float leftImpulse = movement.x;
+
+        Player player = event.getEntity();
+
+        if (forwardImpulse != lastForwardImpulse || leftImpulse != lastLeftImpulse) {
+            lastForwardImpulse = forwardImpulse;
+            lastLeftImpulse = leftImpulse;
+
+            if (!BackpackHelper.isWearingBackpack(player)) return;
+            ItemStack backpack = BackpackHelper.getEquippedBackpackStack(player);
+            if (!UpgradeHelper.hasActiveUpgrade(
+                    BackpackContainer.Cache.getOrCreateWornBackpack(player, backpack).getItemHandler(),
+                    UpgradeType.FLIGHT)) return;
+
+            net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new PlayerInputPacket(forwardImpulse, -leftImpulse));
+            JetpackManager.getJetpackHandler(player).processPlayerInputPacket(forwardImpulse, -leftImpulse);
+        }
+    }
+
+    /* PickBlockMixin */
+    @SubscribeEvent
+    public static void onMiddleClickBlock(InputEvent.MouseButton.Pre event) {
+        if (event.getButton() != 2) return; // Only continue if MIDDLE button was clicked
+
+        Minecraft mc = Minecraft.getInstance();
+        Player player = mc.player;
+        if (player == null || player.isCreative() || player.isSpectator() || !player.level().isClientSide() ||
+                !player.isAlive() || player.isSleeping() || player.isDeadOrDying() || event.getAction() != InputConstants.PRESS)
+            return;
+
+        if (mc.gui.screen() != null) return; // If player has a screen/menu open, return
+        if (!BackpackHelper.isWearingBackpack(player)) return;
+
+        HitResult hitResult = mc.hitResult;
+        if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
+            BlockPos blockPos = ((BlockHitResult) hitResult).getBlockPos();
+            BlockState state = player.level().getBlockState(blockPos);
+            ItemStack stack = state.getCloneItemStack(player.level(), blockPos, true);
+
+            if (!stack.isEmpty()) {
+                net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new PickBlockUpgradePacket(stack));
+            } else {
+                FXNTStorage.LOGGER.debug("No valid clone item for block: {}", state.getBlock());
+            }
+        }
+
+    }
+
+    /* BackpackMenu sort */
+    @SubscribeEvent
+    public static void onMiddleClickSort(InputEvent.MouseButton.Pre event) {
+        if (event.getButton() != 2) return; // Only continue if MIDDLE button was clicked
+
+        Minecraft mc = Minecraft.getInstance();
+        Player player = mc.player;
+
+        if (player == null || player.isSpectator() || !player.level().isClientSide() || !player.isAlive() || player.isSleeping() || player.isDeadOrDying())
+            return;
+
+        if (event.getAction() == InputConstants.PRESS &&
+                (player.containerMenu instanceof BackpackMenu
+                        || player.containerMenu instanceof ISortableStorageBox
+                        || player.containerMenu instanceof ReserveStorageBoxMenu)) {
+            event.setCanceled(true); // Prevent any further processing (might yield undesired results)
+
+            final Screen screen = mc.gui.screen();
+            if (!(screen instanceof final AbstractContainerScreen<?> containerScreen && !(screen instanceof CreativeModeInventoryScreen)))
+                return;
+
+            Slot slot = containerScreen.getHoveredSlot();
+            if (slot == null) return;
+
+            // InventorySorter "overrides" for Backpack and StorageBox
+            if (player.containerMenu instanceof BackpackMenu menu) {
+                BackpackSlotLayout layout = BackpackSlotLayout.createLayout();
+                BackpackSlotLayout.SortRange sortRange = layout.getSortRangeForSlot(slot.index);
+
+                if (!sortRange.isValid()) return;
+
+                net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new SortInventoryPacket(
+                        Util.INV_TYPE_BACKPACK,
+                        sortRange.getStartIndex(),
+                        sortRange.getEndIndex(),
+                        menu.getSortOrder()
+                ));
+            }
+            if (player.containerMenu instanceof ISortableStorageBox menu) {
+                SlotRange range = getSlotRange(slot.index, menu.getContainerSize());
+                net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new SortInventoryPacket(
+                        Util.INV_TYPE_STORAGE_BOX,
+                        range.start,
+                        range.end,
+                        menu.getSortOrder())
+                );
+            }
+            if (player.containerMenu instanceof ReserveStorageBoxMenu menu) {
+                if (slot.isFake()) return;
+                SlotRange range = getSlotRange(slot.index);
+                net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(new SortInventoryPacket(
+                        Util.INV_TYPE_STORAGE_BOX,
+                        range.start,
+                        range.end,
+                        menu.getSortOrder())
+                );
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
+        if (event.getScrollDeltaY() == 0) return;
+        if (!net.minecraft.client.Minecraft.getInstance().hasControlDown()) return;
+
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.gui.screen() != null || mc.level == null) return;
+
+        int delta = event.getScrollDeltaY() > 0 ? -1 : 1;
+
+        // Static block entity case
+        if (mc.hitResult instanceof BlockHitResult blockHit && blockHit.getType() == HitResult.Type.BLOCK) {
+            BlockPos pos = blockHit.getBlockPos();
+            var state = mc.level.getBlockState(pos);
+            if (state.getBlock() instanceof SimpleStorageBox) {
+                Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
+                if (blockHit.getDirection() == facing
+                        && mc.level.getBlockEntity(pos) instanceof SimpleStorageBoxEntity be
+                        && be.compactingUpgrade && be.compactingChain != null) {
+                    int newTier = Math.floorMod(be.compactingSelectedTier + delta, be.compactingChain.tiers());
+                    be.compactingSelectedTier = newTier;
+                    net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(CompactingTierScrollPacket.forBlock(pos, newTier));
+                    event.setCanceled(true);
+                    return;
+                }
+            }
+        }
+
+        // Mounted (contraption) case
+        if (tryScrollMountedCompactingTier(mc, delta)) {
+            event.setCanceled(true);
+        }
+    }
+
+    private static boolean tryScrollMountedCompactingTier(Minecraft mc, int delta) {
+        if (mc.player == null || mc.level == null) return false;
+        var rayInputs = ContraptionHandlerClient.getRayInputs(mc.player);
+        Vec3 origin = rayInputs.getFirst();
+        Vec3 target = rayInputs.getSecond();
+        AABB aabb = new AABB(origin, target).inflate(16);
+
+        var contraptionsMap = ContraptionHandler.loadedContraptions.get(mc.level);
+
+        Collection<WeakReference<AbstractContraptionEntity>> contraptions = contraptionsMap.values();
+        for (WeakReference<AbstractContraptionEntity> ref : contraptions) {
+            AbstractContraptionEntity contraptionEntity = ref.get();
+            if (contraptionEntity == null) continue;
+            if (!contraptionEntity.getBoundingBox().intersects(aabb)) continue;
+
+            BlockHitResult rayResult = ContraptionHandlerClient.rayTraceContraption(origin, target, contraptionEntity);
+            if (rayResult == null) continue;
+
+            BlockPos localPos = rayResult.getBlockPos();
+            var blockInfo = contraptionEntity.getContraption().getBlocks().get(localPos);
+            if (blockInfo == null || !(blockInfo.state().getBlock() instanceof SimpleStorageBox)) continue;
+
+            Direction facing = blockInfo.state().getValue(HorizontalDirectionalBlock.FACING);
+            if (rayResult.getDirection() != facing) continue;
+
+            CompoundTag tag = blockInfo.nbt();
+            if (tag == null || !tag.getBoolean("CompactingUpgrade").orElse(false)) continue;
+
+            ItemStack filterItem = tag.contains("FilterItem")
+                    ? RendererHelper.parseStack(mc.level.registryAccess(), tag.getCompound("FilterItem").orElse(new CompoundTag()))
+                    : ItemStack.EMPTY;
+            if (filterItem.isEmpty()) continue;
+
+            if (CompactingRecipeHelper.isEmpty()) {
+                CompactingRecipeHelper.rebuild();
+            }
+            CompactingChain chain = CompactingRecipeHelper.buildChain(mc.level, filterItem.getItem());
+            if (chain == null) continue;
+
+            int newTier = Math.floorMod(tag.getInt("CompactingSelectedTier").orElse(0) + delta, chain.tiers());
+            tag.putInt("CompactingSelectedTier", newTier);
+            net.createmod.catnip.api.client.network.ClientNetworkHelper.INSTANCE.sendToServer(CompactingTierScrollPacket.forMounted(localPos, newTier, contraptionEntity.getId()));
+            return true;
+        }
+        return false;
+    }
+
+    @SubscribeEvent
+    public static void onServerJoin(ClientPlayerNetworkEvent.LoggingIn event) {
+        LocalPlayer player = Minecraft.getInstance().player;
+
+        ConfigManager.ClientConfig.sendClientSettings();
+        ClientJukeboxHandler.init();
+        if (player != null)
+            JetpackManager.addPlayer(player);
+        StorageControllerHighlight.removeAll();
+    }
+
+    @SubscribeEvent
+    public static void onServerLeave(ClientPlayerNetworkEvent.LoggingOut event) {
+        LocalPlayer player = event.getPlayer();
+        LocalPlayer localPlayer = Minecraft.getInstance().player;
+
+        if (player != null && localPlayer != null && player.getUUID().equals(localPlayer.getUUID())) {
+            ClientSettings.remove(player.getUUID());
+            ClientJukeboxHandler.stopAllMusic();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onClientRespawn(ClientPlayerNetworkEvent.Clone event) {
+        JetpackManager.addPlayer(event.getNewPlayer());
+        KeybindHandler.resetFlyKeyState();
+    }
+
+    @SubscribeEvent
+    public static void onRenderLevel(net.neoforged.neoforge.client.event.RenderLevelStageEvent.AfterTranslucentBlocks event) {
+
+        Map<BlockPos, Set<BlockPos>> highlights = StorageControllerHighlight.getAll();
+        if (highlights.isEmpty()) return;
+
+        highlights.forEach(ClientEventHandler::renderConnectedBoxes);
+    }
+
+    private static void renderConnectedBoxes(BlockPos controllerPos, Set<BlockPos> components) {
+        Outliner outliner = Outliner.getInstance();
+        Object slot = "network_cluster_" + controllerPos.asLong();
+
+        outliner.showCluster(slot, components)
+                .colored(0xddc166)
+                .withFaceTextures(AllSpecialTextures.GLUE, AllSpecialTextures.HIGHLIGHT_CHECKERED)
+                .disableLineNormals()
+                .lineWidth(1 / 24f);
+    }
+}

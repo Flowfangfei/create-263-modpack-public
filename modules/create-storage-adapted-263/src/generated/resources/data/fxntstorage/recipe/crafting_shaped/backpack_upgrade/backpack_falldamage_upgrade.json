@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fxntstorage:backpack_upgrade_enabled",
+      "upgrade": "fxntstorage:backpack_falldamage_upgrade"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "backpack",
+  "key": {
+    "B": "fxntstorage:backpack_blank_upgrade",
+    "I": "create:iron_sheet",
+    "P": "create:propeller",
+    "S": "create:white_sail",
+    "X": "minecraft:cobweb",
+    "Y": "create:copper_diving_boots"
+  },
+  "pattern": [
+    "PSP",
+    "IBI",
+    "XYX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:backpack_falldamage_upgrade"
+  }
+}

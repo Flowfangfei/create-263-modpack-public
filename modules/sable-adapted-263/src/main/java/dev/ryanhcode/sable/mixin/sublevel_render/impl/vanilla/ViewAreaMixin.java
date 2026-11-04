@@ -1,0 +1,37 @@
+package dev.ryanhcode.sable.mixin.sublevel_render.impl.vanilla;
+
+import dev.ryanhcode.sable.api.sublevel.SubLevelContainer;
+import dev.ryanhcode.sable.mixinterface.plot.SubLevelContainerHolder;
+import dev.ryanhcode.sable.sublevel.ClientSubLevel;
+import dev.ryanhcode.sable.sublevel.plot.LevelPlot;
+import dev.ryanhcode.sable.sublevel.render.SubLevelRenderData;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.extract.LevelExtractor;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+/**
+ * Makes view area calls redirect to data renderers
+ */
+// mc26.3: ViewArea#setDirty moved to LevelExtractor#setSectionDirty.
+@Mixin(LevelExtractor.class)
+public class ViewAreaMixin {
+
+    @Inject(method = "setSectionDirty(IIIZ)V", at = @At("HEAD"), cancellable = true)
+    private void sable$setDirty(final int x, final int y, final int z, final boolean playerChanged, final CallbackInfo ci) {
+        final SubLevelContainer plotContainer = ((SubLevelContainerHolder) Minecraft.getInstance().level).sable$getPlotContainer();
+        final LevelPlot plot = plotContainer.getPlot(x, z);
+
+        if (plot != null) {
+            // Null until the sub-level's render data exists (vanilla's section dispatcher
+            // may not be built yet); dirty marking resumes on its own once it does.
+            final SubLevelRenderData renderData = ((ClientSubLevel) plot.getSubLevel()).getRenderData();
+            if (renderData != null) {
+                renderData.setDirty(x, y, z, playerChanged);
+            }
+            ci.cancel();
+        }
+    }
+}

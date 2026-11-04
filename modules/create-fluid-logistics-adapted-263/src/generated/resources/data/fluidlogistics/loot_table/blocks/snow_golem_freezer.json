@@ -1,0 +1,107 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:survives_explosion"
+              },
+              {
+                "blocks": "fluidlogistics:snow_golem_freezer",
+                "type": "minecraft:match_block",
+                "state": {
+                  "blaze": "none"
+                }
+              }
+            ]
+          },
+          "name": "fluidlogistics:empty_snow_golem_freezer"
+        },
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:survives_explosion"
+              },
+              {
+                "blocks": "fluidlogistics:snow_golem_freezer",
+                "type": "minecraft:match_block",
+                "state": {
+                  "blaze": "smouldering"
+                }
+              }
+            ]
+          },
+          "name": "fluidlogistics:snow_golem_freezer"
+        },
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:survives_explosion"
+              },
+              {
+                "blocks": "fluidlogistics:snow_golem_freezer",
+                "type": "minecraft:match_block",
+                "state": {
+                  "blaze": "fading"
+                }
+              }
+            ]
+          },
+          "name": "fluidlogistics:snow_golem_freezer"
+        },
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:survives_explosion"
+              },
+              {
+                "blocks": "fluidlogistics:snow_golem_freezer",
+                "type": "minecraft:match_block",
+                "state": {
+                  "blaze": "kindled"
+                }
+              }
+            ]
+          },
+          "name": "fluidlogistics:snow_golem_freezer"
+        },
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:survives_explosion"
+              },
+              {
+                "blocks": "fluidlogistics:snow_golem_freezer",
+                "type": "minecraft:match_block",
+                "state": {
+                  "blaze": "seething"
+                }
+              }
+            ]
+          },
+          "name": "fluidlogistics:snow_golem_freezer"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "fluidlogistics:blocks/snow_golem_freezer"
+}

@@ -1,0 +1,220 @@
+{
+  "verified_at": "2026-10-25T13:21:49+08:00",
+  "candidate_version": "0.2.0-alpha.1",
+  "direct_runtime_mods": 12,
+  "fresh_server": {
+    "phase": "create",
+    "startup_ready": true,
+    "exit_code": 0,
+    "vanilla_time_success": true,
+    "completed": true,
+    "datapack_reload_requested": true,
+    "reports": {
+      "ore-excavation": {
+        "mode": "initial",
+        "fixture_drill": "72 -58 8",
+        "fixture_extractor": "88 -58 8",
+        "rotation_source": "controlled Kinetic interface; live motor network requires separate playtest",
+        "vein_recipes": 15,
+        "drilling_recipes": 14,
+        "extracting_recipes": 1,
+        "native_transactions_and_nbt": true,
+        "drill_production_ticks": 162,
+        "extractor_production_ticks": 17,
+        "multiblock_item_placement_and_production": true,
+        "native_multiblock_capabilities": true,
+        "block_entity_value_io_roundtrip": true,
+        "atlas_component_and_menu": true,
+        "sample_drill_backtank_cycle": true,
+        "status": "passed"
+      },
+      "liquid-fuel": {
+        "world_reloaded": false,
+        "pipe_source_remaining_mb": 4831,
+        "pipe_burner_remaining_mb": 1000,
+        "pump_speed": 64.0,
+        "pipe_burner_heat": "KINDLED",
+        "phase": "create-complete",
+        "passed_checks": [
+          "liquid/data-map-positive-values-and-legacy-priority",
+          "liquid/native-transactions-commit-abort-and-nested-abort",
+          "liquid/all-sided-native-block-capability",
+          "liquid/bucket-simulation-consumption-remainder-and-overflow",
+          "liquid/diesel-canister-container-components-and-remainder",
+          "liquid/ordinary-burner-heating-and-consumption",
+          "liquid/superheating-and-no-ordinary-downgrade",
+          "liquid/creative-capacity-and-insufficient-residue",
+          "liquid/solid-fuel-fallback",
+          "liquid/NBT-fluid-components-heat-and-empty-read",
+          "liquid/creative-motor-cogwheel-pump-pipe-burner",
+          "liquid/data-map-and-legacy-removal-after-reload"
+        ],
+        "passed": true
+      },
+      "transmission-linkage": {
+        "startedAt": "2026-10-25T12:59:02.305143300+08:00",
+        "fixtureOrigin": "128, -60, 8",
+        "hydraulicNbtRoundTrip": true,
+        "hydraulicControlSign": true,
+        "universalJointLinkNbt": true,
+        "kineticConverterAndRegulatorPlaced": true,
+        "visibleFixedHydraulicHead": "128,-60,8",
+        "visibleMobileHydraulicWorldAnchor": "132,-60,8",
+        "visibleFixedBrassHinge": "160,-60,8",
+        "visibleMobileRegularHingeWorldAnchor": "164,-60,8",
+        "visibleUniversalJoints": "144,-60,8;148,-60,8",
+        "constraintCreated": true,
+        "mobilePlotPosition": "20481032, 128, 20481032",
+        "mobileSubLevelId": "d968bfdb-1ba5-4f5c-8f64-2c826069a884",
+        "hingeRotaryAndLimitedConstraints": true,
+        "assemblyMoveReferences": true,
+        "constraintRemoved": true,
+        "passed": true,
+        "completedTicks": 340,
+        "completedAt": "2026-10-25T12:59:22.403785300+08:00",
+        "reloadRequired": true
+      }
+    },
+    "log": "runtime/three-addons-20261025-125828-018989/create-server.log",
+    "passed": true
+  },
+  "server_reload": {
+    "phase": "reload",
+    "startup_ready": true,
+    "exit_code": 0,
+    "vanilla_time_success": true,
+    "completed": true,
+    "datapack_reload_requested": false,
+    "reports": {
+      "transmission-linkage": {
+        "startedAt": "2026-10-25T12:59:57.677598400+08:00",
+        "fixtureOrigin": "128, -60, 8",
+        "diskReload": true,
+        "constraintCreated": true,
+        "mobilePlotPosition": "20481032, 128, 20489224",
+        "mobileSubLevelId": "c51a916c-4e72-41c4-af0d-f95530a717ff",
+        "passed": true,
+        "completedTicks": 180,
+        "completedAt": "2026-10-25T13:00:02.675362300+08:00",
+        "reloadRequired": false
+      },
+      "liquid-fuel": {
+        "world_reloaded": true,
+        "pipe_source_remaining_mb": 4830,
+        "pipe_burner_remaining_mb": 1000,
+        "pump_speed": 64.0,
+        "pipe_burner_heat": "KINDLED",
+        "passed": true,
+        "phase": "reload-complete",
+        "passed_checks": [
+          "liquid/actual-world-save-and-reload",
+          "liquid/data-map-positive-values-and-legacy-priority",
+          "liquid/native-transactions-commit-abort-and-nested-abort",
+          "liquid/all-sided-native-block-capability",
+          "liquid/bucket-simulation-consumption-remainder-and-overflow",
+          "liquid/diesel-canister-container-components-and-remainder",
+          "liquid/ordinary-burner-heating-and-consumption",
+          "liquid/superheating-and-no-ordinary-downgrade",
+          "liquid/creative-capacity-and-insufficient-residue",
+          "liquid/solid-fuel-fallback",
+          "liquid/NBT-fluid-components-heat-and-empty-read",
+          "liquid/creative-motor-cogwheel-pump-pipe-burner"
+        ]
+      },
+      "ore-excavation": {
+        "mode": "reload",
+        "fixture_drill": "72 -58 8",
+        "fixture_extractor": "88 -58 8",
+        "rotation_source": "two native Create creative motors and ordinary server world ticks",
+        "inventory_fluid_machine_and_chunk_attachment_restart": true,
+        "real_create_network_ticks": 220,
+        "real_create_input_rpm": 128,
+        "real_create_recipe_stress": 256,
+        "iron_items_after_real_network": 2,
+        "water_mb_after_real_network": 16000,
+        "real_create_network_and_additional_production": true,
+        "status": "passed"
+      }
+    },
+    "log": "runtime/three-addons-20261025-125828-018989/reload-server.log",
+    "passed": true
+  },
+  "client_world_save_ponder_and_settings": {
+    "exit_code": 0,
+    "probe": {
+      "all_twelve_mods_loaded": true,
+      "renderers": {
+        "UniversalJointBlockEntity@0, -60, 0": "com.enxv.aerouniversaljoint.content.UniversalJointRenderer",
+        "UniversalJointBlockEntity@2, -60, 0": "com.enxv.aerouniversaljoint.content.UniversalJointRenderer",
+        "HydraulicRegulatorBlockEntity@4, -60, 0": "com.enxv.aerouniversaljoint.content.HydraulicRegulatorRenderer",
+        "DampingStressBearingBlockEntity@6, -60, 0": "com.enxv.aerouniversaljoint.content.DampingStressBearingRenderer",
+        "BlazeBurnerBlockEntity@8, -60, 8": "com.simibubi.create.content.processing.burner.BlazeBurnerRenderer",
+        "DrillBlockEntity@72, -58, 8": "com.tom.createores.client.DrillRenderer",
+        "ExtractorBlockEntity@88, -58, 8": "com.tom.createores.client.DrillRenderer"
+      },
+      "world_loaded": true,
+      "hydraulic_rod_ponder_scene_ids": [
+        "aeronautics_utility_objects:hydraulic_rod_properties",
+        "aeronautics_utility_objects:hydraulic_rod_settings"
+      ],
+      "hydraulic_rod_properties_render_frames": 115,
+      "hydraulic_rod_properties_visible_elements": [
+        "TextWindowElement",
+        "WorldSectionElementImpl",
+        "HydraulicRodElement"
+      ],
+      "hydraulic_rod_properties_rendered": true,
+      "hydraulic_rod_settings_render_frames": 120,
+      "hydraulic_rod_settings_visible_elements": [
+        "WorldSectionElementImpl",
+        "HydraulicRodElement",
+        "HydraulicSettingsOverlayElement",
+        "TextWindowElement"
+      ],
+      "hydraulic_rod_settings_rendered": true,
+      "ponder_ui_rendered": true,
+      "hydraulic_settings_screen_render_frames": 89,
+      "hydraulic_settings_screen_rendered": true,
+      "saved_and_returned_to_title": true,
+      "passed": true
+    },
+    "client_directory": "runtime/three-addons-20261025-125828-018989/client-131720-538526",
+    "log": "runtime/three-addons-20261025-125828-018989/client-131720-538526.log",
+    "passed": true
+  },
+  "jar_manifest": "manifests/runtime-binaries.json",
+  "client_only_changes_after_server_test": {
+    "server_test_sha256": "e3070ad378ae07605a9bc2684ea944c61668ec39c1d8fed831aba6bed05c675e",
+    "client_test_sha256": "b8ec3ca958338a3a8ef26fd5444ed4bd9068f6109ad16845cf52754cc2e6c6c7",
+    "changed_entries": [
+      "com/enxv/aerouniversaljoint/client/DampingStressBearingScreen.class",
+      "com/enxv/aerouniversaljoint/client/HydraulicConnectionHeadSettingsRenderer.class",
+      "com/enxv/aerouniversaljoint/client/UniversalJointScreen.class",
+      "com/enxv/aerouniversaljoint/content/ponder/HydraulicRodScenes.class",
+      "com/enxv/aerouniversaljoint/content/ponder/HydraulicSettingsOverlayElement.class"
+    ],
+    "all_other_runtime_entries_identical": true
+  },
+  "ore_empty_ingredients_warnings": 0,
+  "screenshots_reviewed_locally": true,
+  "windows_powershell_installer": {
+    "passed": true,
+    "pack": "artifacts/installer-validation-final-v0.2.0-alpha.1/Create263-Pack-v0.2.0-alpha.1-HMCL.zip",
+    "pack_sha256": "5061a637f9e4fb27cc3495fdaac2af376a1f8d75476cb0436410db995de34d59",
+    "all_twelve_jar_entry_contents_match_tested_runtime": true,
+    "contains_worlds": false
+  },
+  "previous_release_validation": "manifests/validation-summary-v0.1.0-alpha.1.json",
+  "remaining_scope": [
+    "JEI/KubeJS/CC/JourneyMap integrations excluded from current runtime",
+    "complex linkage loops, load curves, long-duration physics and multiplayer",
+    "complete Connected/Diesel/train/wireless gameplay regression",
+    "exact hot-burn time across disk restart not asserted; fluid/components/creative disk restart is verified",
+    "all hydraulic slider network edits not exercised"
+  ],
+  "final_gui_screenshot_review": {
+    "settings_labels_and_values_visible": true,
+    "ponder_caption_inside_1066x600_gui2": true,
+    "directory": "runtime/three-addons-20261025-125828-018989/client-131720-538526/screenshots"
+  }
+}

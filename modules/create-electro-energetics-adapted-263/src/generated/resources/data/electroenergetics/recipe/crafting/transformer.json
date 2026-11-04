@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": "electroenergetics:double_connector",
+    "O": "electroenergetics:transformer_oil_bucket",
+    "T": "electroenergetics:transformer_core_lamination",
+    "W": "electroenergetics:copper_wire_spool"
+  },
+  "pattern": [
+    "C C",
+    "WOW",
+    "T T"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:transformer"
+  }
+}

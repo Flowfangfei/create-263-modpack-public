@@ -1,0 +1,56 @@
+package com.yision.fluidlogistics.content.logistics.filter.attribute;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
+import com.yision.fluidlogistics.api.packager.PackageResourceTypes;
+
+import net.createmod.catnip.api.data.Pair;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import com.simibubi.create.compat.neoforge263.fluids.capability.IFluidHandlerItem;
+
+public class FluidAttributeHelper {
+	public static List<FluidStack> extractFluids(ItemStack stack, Level level) {
+		List<FluidStack> result = new ArrayList<>();
+		Set<FluidStackKey> seen = new HashSet<>();
+
+		addIfNew(result, seen, PackageResourceTypes.getFluid(stack));
+
+		IFluidHandlerItem handler = com.yision.fluidlogistics.foundation.capability.LegacyCapabilityAccess.fluid(stack);
+		if (handler != null) {
+			for (int i = 0; i < handler.getTanks(); i++) {
+				FluidStack fluid = handler.getFluidInTank(i);
+				addIfNew(result, seen, fluid);
+			}
+		}
+
+		if (result.isEmpty() && GenericItemEmptying.canItemBeEmptied(level, stack)) {
+			Pair<FluidStack, ItemStack> emptied = GenericItemEmptying.emptyItem(level, stack, true);
+			addIfNew(result, seen, emptied.getFirst());
+		}
+
+		return result;
+	}
+
+	private static void addIfNew(List<FluidStack> result, Set<FluidStackKey> seen, FluidStack fluid) {
+		if (fluid.isEmpty())
+			return;
+		FluidStackKey key = new FluidStackKey(fluid);
+		if (seen.add(key))
+			result.add(fluid);
+	}
+
+	record FluidStackKey(net.minecraft.world.level.material.Fluid fluid,
+		net.minecraft.core.component.DataComponentPatch components) {
+		FluidStackKey(FluidStack stack) {
+			this(stack.getFluid(), stack.getComponentsPatch());
+		}
+	}
+}

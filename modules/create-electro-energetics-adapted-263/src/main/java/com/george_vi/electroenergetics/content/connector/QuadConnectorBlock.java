@@ -1,0 +1,102 @@
+package com.george_vi.electroenergetics.content.connector;
+
+import com.george_vi.electroenergetics.CEENodeConfigurations;
+import com.george_vi.electroenergetics.CEEShapes;
+import com.george_vi.electroenergetics.CEESimulatedDevices;
+import com.george_vi.electroenergetics.foundation.ProperOilAndWaterloggedBlock;
+import com.george_vi.electroenergetics.foundation.base.SimpleElectricalDeviceBlock;
+import com.george_vi.electroenergetics.devices.device.SimulatedDeviceType;
+import com.zurrtum.create.content.equipment.wrench.IWrenchable;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
+
+public class QuadConnectorBlock extends SimpleElectricalDeviceBlock<ConnectorDevice> implements IWrenchable, ProperOilAndWaterloggedBlock {
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
+    public static final EnumProperty<ProperOilAndWaterloggedBlock.LoggedState> LOGGED_STATE = ProperOilAndWaterloggedBlock.LOGGED_STATE;
+
+    public QuadConnectorBlock(Properties properties) {
+        super(properties);
+        registerDefaultState(defaultBlockState().setValue(LOGGED_STATE, ProperOilAndWaterloggedBlock.LoggedState.DRY));
+    }
+
+    @Override
+    public SimulatedDeviceType<ConnectorDevice> getDevice() {
+        return CEESimulatedDevices.CONNECTOR.get();
+    }
+
+    @Override
+    public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, LOGGED_STATE);
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return withWater(super.getStateForPlacement(context).setValue(FACING, context.getClickedFace()), context);
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return CEEShapes.QUAD_CONNECTOR.get(state.getValue(FACING));
+    }
+
+    @Override
+    protected BlockState updateShape(BlockState state, net.minecraft.world.level.LevelReader level, net.minecraft.world.level.ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, net.minecraft.util.RandomSource random) {
+        updateWater(level, ticks, state, pos);
+        return super.updateShape(state, level, ticks, pos, direction, neighborPos, neighborState, random);
+    }
+
+    @Override
+    protected FluidState getFluidState(BlockState state) {
+        return fluidState(state);
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
+    @Override
+    public Map<Integer, Vec3> getNodePositions(Level level, BlockPos pos, BlockState state) {
+        return CEENodeConfigurations.QUAD_CONNECTOR.getNodes(state.getValue(FACING));
+    }
+
+    @Override
+    public Vec3 getNodePosition(Level level, BlockPos pos, BlockState state, int id) {
+        return CEENodeConfigurations.QUAD_CONNECTOR.getNodePos(state.getValue(FACING), id);
+    }
+
+    @Override
+    protected @NotNull VoxelShape getOcclusionShape(BlockState state) {
+        return Shapes.empty();
+    }
+
+    @Override
+    public boolean canSelfConnect(Level level, BlockPos pos, BlockState state, int id1, int id2) {
+        return true;
+    }
+}

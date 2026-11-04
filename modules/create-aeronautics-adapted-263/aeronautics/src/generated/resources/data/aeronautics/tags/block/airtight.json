@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#aeronautics:envelope",
+    {
+      "id": "#minecraft:wool",
+      "required": false
+    }
+  ]
+}

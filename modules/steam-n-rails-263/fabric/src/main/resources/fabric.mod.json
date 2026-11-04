@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "railways",
+  "version": "${version}",
+  "name": "Create: Steam 'n' Rails",
+  "description": "Create: Steam 'n' Rails port for Create Fly 26.2",
+  "authors": [
+    "R2bEEaton"
+  ],
+  "contact": {
+    "sources": "https://github.com/cat4blep/Create-Steam-n-Rails-Fly"
+  },
+  "license": ["LGPL v3"],
+  "icon": "assets/railways/icon.png",
+  "environment": "*",
+  "accessWidener": "railways.accesswidener",
+  "entrypoints": {
+    "main": [
+      "com.railwayteam.railways.fabric.RailwaysImpl"
+    ],
+    "create_plugin": [
+      "com.railwayteam.railways.fabric.RailwaysCreateRegisterPlugin"
+    ],
+    "client": [
+      "com.railwayteam.railways.fabric.RailwaysClientImpl"
+    ],
+    "jei_mod_plugin": [
+      "com.railwayteam.railways.compat.jei.RailwaysJeiClient"
+    ],
+    "fabric-datagen": [
+      "com.railwayteam.railways.fabric.RailwaysDataFabric"
+    ]
+  },
+  "mixins": [
+    "railways.mixins.json",
+    "railways-common.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${minecraft_dependency_version}",
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "create": "${create_fabric_version_range}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "Modrinth": "https://modrinth.com/mod/steam-n-rails-fly",
+        "CurseForge": "https://curseforge.com/minecraft/mc-mods/steam-n-rails-fly"
+      }
+    }
+  }
+}

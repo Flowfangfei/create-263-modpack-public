@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "backpack",
+  "key": {
+    "C": "create:industrial_iron_block",
+    "L": "minecraft:leather",
+    "S": "minecraft:string",
+    "V": "create:item_vault"
+  },
+  "pattern": [
+    "SCS",
+    "LVL",
+    "CCC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:backpack"
+  }
+}

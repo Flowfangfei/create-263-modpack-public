@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "storage_box",
+  "ingredients": [
+    "fxntstorage:backpack_blank_upgrade",
+    "minecraft:flint_and_steel"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:storage_box_void_upgrade"
+  }
+}

@@ -1,0 +1,33 @@
+package com.forsteri.createliquidfuel.eventhandlers;
+
+//import com.forsteri.createliquidfuel.core.DrainableFuelLoader;
+
+import com.forsteri.createliquidfuel.core.IHasStomach;
+import com.forsteri.createliquidfuel.core.LiquidFuels;
+import com.simibubi.create.AllBlockEntityTypes;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
+
+public class ModEventHandler {
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.Fluid.BLOCK,
+                AllBlockEntityTypes.HEATER.get(),
+                (blockEntity, side) -> ((IHasStomach)blockEntity).getCapability()
+        );
+    }
+
+    @SubscribeEvent
+    public static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
+        event.register(LiquidFuels.DATA_MAP);
+    }
+
+    @SubscribeEvent
+    public static void commonSetup(FMLCommonSetupEvent event){
+        //event.enqueueWork(DrainableFuelLoader::load);
+    }
+}

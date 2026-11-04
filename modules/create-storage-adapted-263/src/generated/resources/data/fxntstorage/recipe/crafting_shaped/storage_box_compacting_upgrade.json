@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "storage_box",
+  "key": {
+    "B": "fxntstorage:backpack_blank_upgrade",
+    "I": "create:iron_sheet",
+    "P": "minecraft:piston"
+  },
+  "pattern": [
+    " P ",
+    "IBI",
+    " P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:storage_box_compacting_upgrade"
+  }
+}

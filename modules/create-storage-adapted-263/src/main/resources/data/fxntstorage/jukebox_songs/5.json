@@ -1,0 +1,14 @@
+{
+  "song": "minecraft:5",
+  "player_only": false,
+  "effects": [
+    {
+      "effect": "minecraft:night_vision",
+      "amplifier": 0
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0
+    }
+  ]
+}

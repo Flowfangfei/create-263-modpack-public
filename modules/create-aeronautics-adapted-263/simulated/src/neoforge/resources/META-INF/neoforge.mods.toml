@@ -1,0 +1,40 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="Read LICENSE.md: MIT code, reserved assets"
+[[mods]]
+modId="simulated"
+version="1.3.0-adapted.1"
+displayName="Create Simulated - local adaptation"
+description="Local NeoForge/Create Adapted migration under validation."
+[[mixins]]
+config="simulated.mixins.json"
+[[mixins]]
+config="simulated-fabric.mixins.json"
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
+[[dependencies.simulated]]
+modId="minecraft"
+type="required"
+versionRange="[26.3,26.4)"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.simulated]]
+modId="neoforge"
+type="required"
+versionRange="[26.3.0.22-beta,26.4)"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.simulated]]
+modId="create"
+type="required"
+versionRange="[6.0.11-adapted-1.31-recovered.1]"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.simulated]]
+modId="sable"
+type="required"
+versionRange="[3.0.0-adapted.1]"
+ordering="AFTER"
+side="BOTH"
+[[mixins]]
+config="simulated-neoforge.mixins.json"

@@ -1,0 +1,68 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+apply from: '../../gradle/create263-addon.gradle'
+neoForge { accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg') }
+repositories {
+    maven { url = 'https://maven.theillusivec4.top/' }
+    maven { url = 'https://maven.blamejared.com/' }
+    maven { url = 'https://maven.terraformersmc.com/' }
+    maven { url = 'https://maven.shedaniel.me/' }
+    maven { url = 'https://maven.architectury.dev/' }
+    maven { url = 'https://cursemaven.com' }
+    maven { url = 'https://api.modrinth.com/maven' }
+}
+dependencies {
+    compileOnly files('../sable-adapted-263/build/libs/sable-neoforge-26.3-3.0.0-adapted.1.jar')
+    // Historical optional APIs are compile-only references, never shipped or runtime dependencies.
+    compileOnly('top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api') { transitive = false }
+    compileOnly('curse.maven:architectury-api-419699:5786327') { transitive = false }
+    compileOnly('curse.maven:construction-sticks-1156098:8287281') { transitive = false }
+    compileOnly('curse.maven:thirst-was-reclaimed-884742:8391910') { transitive = false }
+}
+
+// 371 unchanged generated assets and all 44 static blockstates are verified in tooling/generated-resource-coverage.json.
+sourceSets { legacyDatagen { java.srcDir "src/legacyDatagen/java" } }
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/DataGenerators.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/ModBackpackRecipeProvider.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/ModBlockTagProvider.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/ModCuriosDataProvider.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/ModItemTagProvider.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/ShapedBackpackRecipeBuilder.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/helper/ModBlockstateHelper.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/helper/ModLootTableHelper.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/helper/ModModelHelper.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/datagen/helper/ModRecipeHelper.java"
+
+// Upstream integrations whose platform API is not in the current 26.3 runtime remain complete but inactive.
+sourceSets { optionalIntegrations { java { srcDir "src/main/java"
+    include "net/fxnt/fxntstorage/mixin/REIDefaultClientPluginMixin.java"
+    include "net/fxnt/fxntstorage/compat/rei/**"
+    include "net/fxnt/fxntstorage/compat/jei/**"
+    include "net/fxnt/fxntstorage/compat/emi/**"
+    include "net/fxnt/fxntstorage/compat/everycomp/**"
+    include "net/fxnt/fxntstorage/compat/JadeCompat.java"
+    include "net/fxnt/fxntstorage/mixin/EMIVanillaPluginMixin.java"
+} } }
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/compat/emi/**"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/compat/everycomp/**"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/compat/JadeCompat.java"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/mixin/EMIVanillaPluginMixin.java"
+dependencies {
+    optionalIntegrationsCompileOnly('dev.emi:emi-neoforge:1.1.24+1.21.1') { transitive = false }
+    optionalIntegrationsCompileOnly('curse.maven:every-compat-628539:7929148') { transitive = false }
+    optionalIntegrationsCompileOnly('curse.maven:selene-499980:7943878') { transitive = false }
+    optionalIntegrationsCompileOnly('maven.modrinth:jade:15.10.6+neoforge') { transitive = false }
+}
+
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/compat/jei/**"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/compat/rei/**"
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/mixin/REIDefaultClientPluginMixin.java"
+dependencies {
+    optionalIntegrationsCompileOnly('mezz.jei:jei-26.3-neoforge:31.3.0.16') { transitive = false }
+    optionalIntegrationsCompileOnly('me.shedaniel:RoughlyEnoughItems-neoforge:26.3.823') { transitive = false }
+}
+
+// Dedicated Storage codecs own large counts; vanilla item codecs remain unchanged.
+sourceSets.main.java.exclude "net/fxnt/fxntstorage/mixin/ItemStackMixin.java"

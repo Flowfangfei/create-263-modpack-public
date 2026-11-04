@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "create_dragons_plus",
+  "version": "${version}",
+  "name": "Create: Dragons Plus",
+  "description": "Library mod for DragonsPlusMinecraft Create addons.",
+  "authors": [
+    "DragonsPlus"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/create-dragons-plus",
+    "sources": "https://github.com/MarbleGateKeeper/CreateDragonsPlus-Fly",
+    "issues": "https://github.com/MarbleGateKeeper/CreateDragonsPlus-Fly/issues"
+  },
+  "license": "LGPL-3.0-or-later",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "plus.dragons.createdragonsplus.CreateDragonsPlus"
+    ],
+    "client": [
+      "plus.dragons.createdragonsplus.client.CreateDragonsPlusClient"
+    ],
+    "fabric-datagen": [
+      "plus.dragons.createdragonsplus.data.CreateDragonsPlusDataGenerator"
+    ],
+    "jei_mod_plugin": [
+      "plus.dragons.createdragonsplus.client.compat.jei.CreateDragonsPlusJeiPlugin"
+    ],
+    "create_plugin": [
+      "plus.dragons.createdragonsplus.registry.CreateDragonsPlusCreatePlugin"
+    ]
+  },
+  "accessWidener": "create_dragons_plus.accesswidener",
+  "mixins": [
+    "create_dragons_plus.mixins.json",
+    {
+      "config": "create_dragons_plus.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "minecraft": "${minecraft_version}",
+    "java": ">=25",
+    "create": "${create_version_range}"
+  },
+  "suggests": {
+    "jei": "${jei_version}"
+  }
+}

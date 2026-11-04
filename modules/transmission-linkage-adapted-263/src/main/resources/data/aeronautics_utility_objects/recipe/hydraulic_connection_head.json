@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "b": "create:brass_casing",
+    "c": "create:chute",
+    "i": "create:iron_sheet",
+    "p": "create:precision_mechanism"
+  },
+  "pattern": [
+    " c ",
+    "ipi",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "aeronautics_utility_objects:hydraulic_connection_head"
+  }
+}

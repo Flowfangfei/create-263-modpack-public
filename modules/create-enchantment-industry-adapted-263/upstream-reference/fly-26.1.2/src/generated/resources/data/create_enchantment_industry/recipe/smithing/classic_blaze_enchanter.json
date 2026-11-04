@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "create_enchantment_industry:blazes_enchanting_handbook",
+  "base": "create:blaze_burner",
+  "result": {
+    "id": "create_enchantment_industry:classic_blaze_enchanter"
+  },
+  "template": "create_dragons_plus:blaze_upgrade_smithing_template"
+}

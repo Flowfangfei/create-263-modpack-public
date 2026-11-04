@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": "electroenergetics:connector",
+    "I": "#c:ingots/copper"
+  },
+  "pattern": [
+    "C",
+    "I",
+    "I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:ground_rod"
+  }
+}

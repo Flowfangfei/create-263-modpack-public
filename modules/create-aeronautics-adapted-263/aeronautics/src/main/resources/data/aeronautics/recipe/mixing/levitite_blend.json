@@ -1,0 +1,22 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    "aeronautics:end_stone_powder",
+    "aeronautics:end_stone_powder",
+    "aeronautics:end_stone_powder",
+    "aeronautics:end_stone_powder",
+    "create:zinc_nugget",
+    "create:zinc_nugget",
+    {
+      "ingredient": "#c:water",
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "amount": 500,
+      "id": "aeronautics:levitite_blend"
+    }
+  ]
+}

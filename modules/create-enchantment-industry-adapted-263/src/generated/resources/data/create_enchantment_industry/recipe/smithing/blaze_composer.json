@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "apotheosis"
+    }
+  ],
+  "type": "minecraft:smithing_transform",
+  "addition": "create_enchantment_industry:affix_augmentor",
+  "base": "create:blaze_burner",
+  "result": {
+    "count": 1,
+    "id": "create_enchantment_industry:blaze_composer"
+  },
+  "template": "create_dragons_plus:blaze_upgrade_smithing_template"
+}

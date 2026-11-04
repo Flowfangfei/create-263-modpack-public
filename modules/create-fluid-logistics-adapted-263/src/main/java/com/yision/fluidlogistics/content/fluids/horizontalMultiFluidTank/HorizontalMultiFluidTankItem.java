@@ -1,0 +1,150 @@
+package com.yision.fluidlogistics.content.fluids.horizontalMultiFluidTank;
+
+import com.simibubi.create.api.connectivity.ConnectivityHandler;
+import com.simibubi.create.content.equipment.symmetryWand.SymmetryWandItem;
+import com.simibubi.create.foundation.block.IBE;
+import com.yision.fluidlogistics.registry.AllBlockEntities;
+
+import net.createmod.catnip.api.math.VecHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+
+import net.neoforged.neoforge.fluids.FluidStack;
+
+public class HorizontalMultiFluidTankItem extends BlockItem {
+
+	public HorizontalMultiFluidTankItem(Block block, Properties properties) {
+		super(block, properties);
+	}
+
+	@Override
+	public InteractionResult place(BlockPlaceContext ctx) {
+		sanitizeTankData(ctx.getItemInHand(), ctx.getLevel());
+		InteractionResult initialResult = super.place(ctx);
+		if (!initialResult.consumesAction())
+			return initialResult;
+		tryMultiPlace(ctx);
+		return initialResult;
+	}
+
+	private boolean sanitizeTankData(ItemStack itemStack, Level level) {
+		MinecraftServer minecraftserver = level.getServer();
+		if (minecraftserver == null)
+			return false;
+		var blockEntityData = itemStack.get(DataComponents.BLOCK_ENTITY_DATA);
+		if (blockEntityData != null) {
+			CompoundTag nbt = blockEntityData.copyTagWithoutId();
+			nbt.remove("Luminosity");
+			nbt.remove("Size");
+			nbt.remove("Height");
+			nbt.remove("Controller");
+			nbt.remove("LastKnownPos");
+			if (nbt.contains("TankContent")) {
+				FluidStack fluid = com.yision.fluidlogistics.foundation.FluidLogisticsNbt.fluid(minecraftserver.registryAccess(),
+					nbt.getCompoundOrEmpty("TankContent"));
+				if (!fluid.isEmpty()) {
+					fluid.setAmount(
+						Math.min(HorizontalMultiFluidTankBlockEntity.getCapacityMultiplier(), fluid.getAmount()));
+					nbt.put("TankContent", com.yision.fluidlogistics.foundation.FluidLogisticsNbt.save(fluid, minecraftserver.registryAccess()));
+				}
+			}
+			
+			itemStack.set(DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.item.component.TypedEntityData.of(((IBE<?>)this.getBlock()).getBlockEntityType(), nbt));
+		}
+		return blockEntityData != null;
+	}
+
+	private void tryMultiPlace(BlockPlaceContext ctx) {
+		Player player = ctx.getPlayer();
+		if (player == null)
+			return;
+		if (player.isShiftKeyDown())
+			return;
+		Direction face = ctx.getClickedFace();
+		if (!face.getAxis().isHorizontal())
+			return;
+		ItemStack stack = ctx.getItemInHand();
+		Level world = ctx.getLevel();
+		BlockPos pos = ctx.getClickedPos();
+		BlockPos placedOnPos = pos.relative(face.getOpposite());
+		BlockState placedOnState = world.getBlockState(placedOnPos);
+
+		if (!HorizontalMultiFluidTankBlock.isVessel(placedOnState))
+			return;
+		if (SymmetryWandItem.presentInHotbar(player))
+			return;
+
+		HorizontalMultiFluidTankBlockEntity tankAt = ConnectivityHandler.partAt(
+			AllBlockEntities.HORIZONTAL_MULTI_FLUID_TANK.get(), world, placedOnPos);
+		if (tankAt == null)
+			return;
+		HorizontalMultiFluidTankBlockEntity controllerBE = tankAt.getControllerBE();
+		if (controllerBE == null)
+			return;
+
+		int width = controllerBE.getWidth();
+		if (width == 1)
+			return;
+
+		int tanksToPlace = 0;
+		Axis vesselAxis = placedOnState.getOptionalValue(HorizontalMultiFluidTankBlock.AXIS).orElse(null);
+		if (vesselAxis == null)
+			return;
+		if (face.getAxis() != vesselAxis)
+			return;
+
+		Direction vesselFacing = Direction.fromAxisAndDirection(vesselAxis, Direction.AxisDirection.POSITIVE);
+		BlockPos startPos = face == vesselFacing.getOpposite()
+			? controllerBE.getBlockPos().relative(vesselFacing.getOpposite())
+			: controllerBE.getBlockPos().relative(vesselFacing, controllerBE.getHeight());
+
+		if (VecHelper.getCoordinate(startPos, vesselAxis) != VecHelper.getCoordinate(pos, vesselAxis))
+			return;
+
+		for (int xOffset = 0; xOffset < width; xOffset++) {
+			for (int zOffset = 0; zOffset < width; zOffset++) {
+				BlockPos offsetPos = vesselAxis == Axis.X
+					? startPos.offset(0, xOffset, zOffset)
+					: startPos.offset(xOffset, zOffset, 0);
+				BlockState blockState = world.getBlockState(offsetPos);
+				if (HorizontalMultiFluidTankBlock.isVessel(blockState))
+					continue;
+				if (!blockState.canBeReplaced())
+					return;
+				tanksToPlace++;
+			}
+		}
+
+		if (!player.isCreative() && stack.getCount() < tanksToPlace)
+			return;
+
+		for (int xOffset = 0; xOffset < width; xOffset++) {
+			for (int zOffset = 0; zOffset < width; zOffset++) {
+				BlockPos offsetPos = vesselAxis == Axis.X
+					? startPos.offset(0, xOffset, zOffset)
+					: startPos.offset(xOffset, zOffset, 0);
+				BlockState blockState = world.getBlockState(offsetPos);
+				if (HorizontalMultiFluidTankBlock.isVessel(blockState))
+					continue;
+				BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);
+				player.getPersistentData().putBoolean("SilenceVesselSound", true);
+				super.place(context);
+				player.getPersistentData().remove("SilenceVesselSound");
+			}
+		}
+	}
+}

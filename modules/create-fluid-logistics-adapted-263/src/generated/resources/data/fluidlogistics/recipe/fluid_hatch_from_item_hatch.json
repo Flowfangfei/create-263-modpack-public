@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fluidlogistics:fluid_hatch_advertised"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "create:item_hatch",
+    "#c:ingots/copper"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fluidlogistics:fluid_hatch"
+  }
+}

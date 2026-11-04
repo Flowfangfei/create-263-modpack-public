@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "electroenergetics-gametest",
+  "version": "1.0.0",
+  "name": "Create Electro Energetics Game Tests",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-gametest": [
+      "com.george_vi.electroenergetics.simulation.infrastructure.CEEWorldGameTests",
+      "com.george_vi.electroenergetics.simulation.infrastructure.CEEPlatformGameTests"
+    ],
+    "fabric-client-gametest": [
+      "com.george_vi.electroenergetics.gametest.ClientRenderingGameTest"
+    ]
+  }
+}

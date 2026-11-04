@@ -1,0 +1,12 @@
+{
+  "type": "create_enchantment_industry:grinding",
+  "ingredients": [
+    "create:experience_nugget"
+  ],
+  "results": [
+    {
+      "amount": 3,
+      "id": "create_enchantment_industry:experience"
+    }
+  ]
+}

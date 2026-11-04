@@ -1,0 +1,74 @@
+package net.fxnt.fxntstorage.compat.jei;
+
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.gui.handlers.IGuiContainerHandler;
+import mezz.jei.api.helpers.IStackHelper;
+import mezz.jei.api.recipe.transfer.IRecipeTransferHandlerHelper;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
+import mezz.jei.api.registration.IRecipeTransferRegistration;
+import mezz.jei.api.runtime.IJeiRuntime;
+import net.fxnt.fxntstorage.FXNTStorage;
+import net.fxnt.fxntstorage.backpack.client.menu.BackpackScreen;
+import net.fxnt.fxntstorage.backpack.upgrade.UpgradeType;
+import net.fxnt.fxntstorage.container.StorageBoxScreen;
+import net.fxnt.fxntstorage.reserve_storage.ReserveStorageBoxScreen;
+import net.minecraft.client.renderer.Rect2i;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
+
+@JeiPlugin
+@SuppressWarnings("unused")
+@ParametersAreNonnullByDefault
+public class JEICompat implements IModPlugin {
+
+    @Override
+    public @NotNull Identifier getPluginUid() {
+        return Identifier.fromNamespaceAndPath(FXNTStorage.MOD_ID, "jei_compat");
+    }
+
+    @Override
+    public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+        List<ItemStack> disabled = UpgradeType.disabledStacks();
+        if (!disabled.isEmpty())
+            jeiRuntime.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, disabled);
+    }
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addGuiContainerHandler(StorageBoxScreen.class, new IGuiContainerHandler<>() {
+            @NotNull
+            @Override
+            public List<Rect2i> getGuiExtraAreas(StorageBoxScreen screen) {
+                return screen.getExclusionZones();
+            }
+        });
+
+        registration.addGuiContainerHandler(BackpackScreen.class, new IGuiContainerHandler<>() {
+            @NotNull
+            @Override
+            public List<Rect2i> getGuiExtraAreas(BackpackScreen screen) {
+                return screen.getExclusionZones();
+            }
+        });
+
+        registration.addGhostIngredientHandler(BackpackScreen.class, new JEIGhostIngredientHandler());
+        registration.addGhostIngredientHandler(ReserveStorageBoxScreen.class, new JEIReserveStorageGhostHandler());
+    }
+
+    @Override
+    public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+        IRecipeTransferHandlerHelper transferHelper = registration.getTransferHelper();
+        IStackHelper stackHelper = registration.getJeiHelpers().getStackHelper();
+
+        registration.addRecipeTransferHandler(new JEICraftingTransferHandler(transferHelper, stackHelper), RecipeTypes.CRAFTING);
+        registration.addRecipeTransferHandler(new JEIBackpackCraftingTransferHandler(transferHelper, stackHelper), RecipeTypes.CRAFTING);
+        registration.addRecipeTransferHandler(new JEIStonecuttingTransferHandler(transferHelper, stackHelper), RecipeTypes.STONECUTTING);
+    }
+}

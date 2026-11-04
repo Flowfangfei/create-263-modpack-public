@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fluidlogistics:feature_enabled",
+      "feature": "fluidlogistics:fluid_packager"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "create:cardboard_block",
+    "C": "#c:ingots/copper",
+    "G": "#c:glass_blocks",
+    "R": "#c:dusts/redstone"
+  },
+  "pattern": [
+    "GCG",
+    "CAC",
+    "RCR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fluidlogistics:fluid_packager"
+  }
+}

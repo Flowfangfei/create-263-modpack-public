@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "create_dragons_plus:config_feature",
+      "feature": "create_dragons_plus:fluid/dye"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "arts_and_crafts"
+    }
+  ],
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "ingredient": "create_dragons_plus:arts_and_crafts_bleached_dye",
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "id": "arts_and_crafts:bleachdew"
+    }
+  ]
+}

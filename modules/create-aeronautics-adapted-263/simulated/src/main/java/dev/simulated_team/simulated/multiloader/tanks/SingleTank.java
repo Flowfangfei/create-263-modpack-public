@@ -1,0 +1,131 @@
+package dev.simulated_team.simulated.multiloader.tanks;
+
+import dev.simulated_team.simulated.service.SimFluidService;
+import net.minecraft.nbt.CompoundTag;
+import com.mojang.datafixers.util.Pair;
+import org.jetbrains.annotations.Nullable;
+
+/**
+ * A loader-independent container for tank information to be wrapped by fabric and forge specific implementations
+ */
+public class SingleTank {
+    public long amount;
+    public final long capacity;
+    public CFluidType type = CFluidType.BLANK;
+
+    public SingleTank(final int capacity) {
+        this.capacity = SimFluidService.INSTANCE.mbToLoaderUnits(capacity);
+    }
+
+    /** Actual recipient for insertion; docking connectors route to their peer. */
+    @Nullable public SingleTank insertionTarget() { return this; }
+    public void onContentsChanged() {}
+
+    // helper methods
+    public static long calculateInsert(final SingleTank tank, final CFluidType insertedType, final long maxAmount) {
+        if (maxAmount <= 0 || insertedType.isBlank()) return 0;
+        if (insertedType.equals(tank.type) || tank.type.isBlank()) {
+            return Math.max(0, Math.min(maxAmount, tank.capacity - tank.amount));
+        }
+
+        return 0;
+    }
+
+    public static void applyInsert(final SingleTank tank, final CFluidType insertedType, final long insertedAmount) {
+        if (insertedAmount <= 0 || insertedType.isBlank()) return;
+        tank.type = insertedType;
+        tank.amount += insertedAmount;
+    }
+
+    public static long calculateExtract(final SingleTank tank, final CFluidType extractedType, final long maxAmount) {
+        if (maxAmount <= 0 || extractedType.isBlank()) return 0;
+        if (extractedType.equals(tank.type)) {
+            return Math.min(maxAmount, tank.amount);
+        }
+        return 0;
+    }
+
+    public static void applyExtract(final SingleTank tank, final long extractedAmount) {
+        if (extractedAmount <= 0) return;
+        tank.amount -= extractedAmount;
+        if (tank.amount == 0) {
+            tank.type = CFluidType.BLANK;
+        }
+    }
+
+    /**
+     * Performs an insertion of a fluid
+     * @param insertedType The type of fluid
+     * @param maxAmount    The amount attempted to insert
+     * @param simulate     Whether this action shouldn't be applied - always false on fabric, which uses snapshots and rollback
+     * @param beforeApply  Used for fabric transaction snapshotting
+     * @return The amount actually inserted
+     */
+    public long insert(final CFluidType insertedType, final long maxAmount, final boolean simulate, @Nullable final Runnable beforeApply) {
+        final SingleTank target = insertionTarget();
+        if (target == null) return 0;
+        final long v = calculateInsert(target, insertedType, maxAmount);
+        if (!simulate && v > 0) {
+            if (beforeApply != null)
+                beforeApply.run();
+            applyInsert(target, insertedType, v);
+            if (beforeApply == null) target.onContentsChanged();
+        }
+        return v;
+    }
+
+    public final long insert(final CFluidType insertedType, final long maxAmount, final boolean simulate) {
+        return this.insert(insertedType, maxAmount, simulate, null);
+    }
+
+    /**
+     * Performs an extraction of a fluid
+     * @param extractedType The type of fluid
+     * @param maxAmount     The amount attempted to extract
+     * @param simulate      Whether this action shouldn't be applied - always false on fabric, which uses snapshots and rollback
+     * @param beforeApply  Used for fabric transaction snapshotting
+     * @return The amount actually extracted
+     */
+    public long extract(final CFluidType extractedType, final long maxAmount, final boolean simulate, @Nullable final Runnable beforeApply) {
+        final long v = calculateExtract(this, extractedType, maxAmount);
+        if (!simulate && v > 0) {
+            if (beforeApply != null)
+                beforeApply.run();
+            applyExtract(this, v);
+            if (beforeApply == null) onContentsChanged();
+        }
+        return v;
+    }
+
+    public final long extract(final CFluidType insertedType, final long maxAmount, final boolean simulate) {
+        return this.extract(insertedType, maxAmount, simulate, null);
+    }
+
+    public void read(final CompoundTag tag) {
+        this.amount = Math.clamp(tag.getLongOr("Amount", 0), 0, capacity);
+        this.type = CFluidType.read(tag.getCompoundOrEmpty("Variant"));
+        if (this.amount == 0 || this.type.isBlank()) { this.amount = 0; this.type = CFluidType.BLANK; }
+    }
+
+    public CompoundTag write() {
+        final CompoundTag tag = new CompoundTag();
+        tag.putLong("Amount", this.amount);
+        tag.put("Variant", this.type.write());
+        return tag;
+    }
+
+    /**
+     * @return Type and amount of fluid to be snapshotted for fabrics fluid API
+     */
+    public Pair<CFluidType, Long> createSnapshot() {
+        return Pair.of(this.type, this.amount);
+    }
+
+    /**
+     * Reads type and amount of fluid to be restored from for fabrics fluid API
+     */
+    public void readSnapshot(final CFluidType type, final long amount) {
+        this.type = type;
+        this.amount = amount;
+    }
+}

@@ -1,0 +1,236 @@
+package com.george_vi.electroenergetics.events;
+
+import com.george_vi.electroenergetics.*;
+import com.george_vi.electroenergetics.client.ClientNodeData;
+import com.george_vi.electroenergetics.client.ElectricPropertiesOverlay;
+import com.george_vi.electroenergetics.client.WireEffects;
+import com.george_vi.electroenergetics.client.WireRenderer;
+import com.george_vi.electroenergetics.commands.CEECommands;
+import com.george_vi.electroenergetics.config.CEEConfigs;
+import com.george_vi.electroenergetics.content.accumulator.AccumulatorBlock;
+import com.george_vi.electroenergetics.content.converter.ConverterBlockEntity;
+import com.george_vi.electroenergetics.content.electrical_panel.ElectricalPanelBlock;
+import com.george_vi.electroenergetics.content.electrical_panel.ElectricalPanelClientTicker;
+import com.george_vi.electroenergetics.content.fuse.BlownFuseTracker;
+import com.george_vi.electroenergetics.content.fuse.FuseBlockItem;
+import com.george_vi.electroenergetics.content.linemans_stick.LinemansStickClientHandler;
+import com.george_vi.electroenergetics.content.linemans_stick.LinemansStickItem;
+import com.george_vi.electroenergetics.content.railway_electrification.gauges.ClientTrainGaugeData;
+import com.george_vi.electroenergetics.content.railway_electrification.sound_effects.ElectricTrainSounds;
+import com.george_vi.electroenergetics.content.wire.WireSync;
+import com.george_vi.electroenergetics.content.wire.interaction.InteractDetachedNodePacket;
+import com.george_vi.electroenergetics.content.wire.interaction.OutlinesOnWireRenderer;
+import com.george_vi.electroenergetics.content.wire.interaction.WireInteractionBehaviour;
+import com.george_vi.electroenergetics.content.wire.interaction.WireInteractionHandler;
+import com.george_vi.electroenergetics.content.wire_spool.ChangeLengthWireInteractionBehaviour;
+import com.george_vi.electroenergetics.content.wire_spool.WireApplyingBehaviour;
+import com.george_vi.electroenergetics.content.wire_spool.WireSparkEffectTicker;
+import com.george_vi.electroenergetics.devices.device.DevicesSavedData;
+import com.george_vi.electroenergetics.foundation.CEEHoldInteractionHandler;
+import com.george_vi.electroenergetics.foundation.CEELang;
+import com.george_vi.electroenergetics.foundation.nodes.InWorldNode;
+import com.george_vi.electroenergetics.simulation.infrastructure.InWorldNodeData;
+import com.george_vi.electroenergetics.simulation.infrastructure.InfrastructureSavedData;
+import com.simibubi.create.AllSoundEvents;
+import net.createmod.catnip.platform.CatnipServices;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+
+import java.util.Objects;
+import java.util.Optional;
+
+@EventBusSubscriber(modid = CreateElectroEnergetics.ID)
+public class GameEvents {
+
+
+
+
+
+
+
+
+
+
+
+    @SubscribeEvent
+    public static void serverTickEvent(ServerTickEvent.Post event) {
+        if (ModEvents.changedConfigs.getAndSet(false))
+            for (ServerLevel level : event.getServer().getAllLevels()) {
+                InfrastructureSavedData sd = InfrastructureSavedData.load(level);
+                sd.wireSimulationState.onReloadConfigs();
+            }
+    }
+
+    @SubscribeEvent
+    public static void serverLevelTickEvent(LevelTickEvent.Post event) {
+        if (event.getLevel() instanceof ServerLevel level) {
+            InfrastructureSavedData sd = InfrastructureSavedData.load(level);
+            sd.tick();
+
+            // It's not done through EntityEvent.EnteringSection, because other mods may position the entity multiple
+            // times a tick.
+            // e.g. Sitting in a seat on a sable contraption causes it to teleport twice a tick between the plot
+            // location and the normal location, causing WireSync to send a ton of wire update packets and flickering.
+            for (ServerPlayer player : level.players()) {
+                Vec3 pos = player.position();
+                sd.wireSync.handlePlayerEnterNewSection(player,
+                        ChunkPos.pack(Mth.floor(pos.x) >> 4, Mth.floor(pos.z) >> 4));
+            }
+
+            BlownFuseTracker.tick();
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        ConverterBlockEntity.registerCapabilities(event);
+    }
+
+    @SubscribeEvent
+    public static void enterDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player))
+            return;
+        InfrastructureSavedData sd = InfrastructureSavedData.load((ServerLevel) player.level());
+        WireSync wireSync = sd.wireSync;
+        wireSync.unloadForPlayer(player);
+        wireSync.handlePlayerEnterNewSection(player, ChunkPos.pack(player.blockPosition()));
+    }
+
+    @SubscribeEvent
+    public static void login(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player))
+            return;
+        InfrastructureSavedData sd = InfrastructureSavedData.load((ServerLevel) player.level());
+        WireSync wireSync = sd.wireSync;
+        wireSync.unloadForPlayer(player);
+        wireSync.handlePlayerEnterNewSection(player, ChunkPos.pack(player.blockPosition()));
+    }
+
+    @SubscribeEvent
+    public static void tick(EntityTickEvent.Pre event) {
+        if (!(event.getEntity() instanceof Player player))
+            return;
+        LinemansStickItem.tickPlayerRange(player);
+    }
+
+
+
+
+    @SubscribeEvent
+    public static void playerInteractOnBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getHand() != InteractionHand.MAIN_HAND)
+            return;
+
+        ItemStack stack = event.getItemStack();
+        if (event.getLevel() instanceof ServerLevel level) {
+            BlockPos pos = event.getPos();
+            // Node label renaming functionality:
+            if (!stack.is(CEETags.NODE_RENAME_ITEM))
+                return;
+
+            InWorldNode hoveredNode = InWorldNode.closestNode(level, event.getHitVec().getLocation(), 1.5f, event.getPos());
+            BlockState hoveredBlockState = level.getBlockState(pos);
+
+            if (stack.is(CEETags.PANEL_ATTACHMENT_RENAME_ITEM) && hoveredBlockState.getBlock() instanceof ElectricalPanelBlock)
+                return;
+
+            if (hoveredNode == null)
+                hoveredNode = InWorldNode.closestNode(level, pos, hoveredBlockState, 1.5f, event.getHitVec().getLocation());
+
+            if (hoveredNode == null)
+                return;
+
+            InfrastructureSavedData sd = InfrastructureSavedData.load(level);
+
+            InWorldNodeData nodeData = sd.getNodeData(hoveredNode);
+            if (nodeData == null)
+                return;
+
+            String prevLabel = nodeData.label;
+            nodeData.label = Optional.ofNullable(stack.get(DataComponents.CUSTOM_NAME))
+                    .map(Component::getString)
+                    .orElse(null);
+
+            sd.wireSync.handleNodeLabelRename(nodeData);
+
+            if (!Objects.equals(prevLabel, nodeData.label))
+                if (nodeData.label == null)
+                    AllSoundEvents.CLIPBOARD_ERASE.playOnServer(level, hoveredNode.sourcePos());
+                else
+                    AllSoundEvents.CLIPBOARD_CHECKMARK.playOnServer(level, hoveredNode.sourcePos());
+
+            event.setCancellationResult(InteractionResult.SUCCESS);
+            event.setCanceled(true);
+            return;
+        }
+
+        ClientGameEvents.playerInteractOnBlock(event);
+    }
+
+    @SubscribeEvent
+    public static void registerCommands(RegisterCommandsEvent event) {
+        CEECommands.register(event.getDispatcher());
+    }
+
+    @SubscribeEvent
+    public static void addToElectricGraph(AddToElectricGraphEvent event) {
+        InfrastructureSavedData sd = event.sd;
+        if (sd.wireSimulationState.rebuild)
+            sd.wireSimulationState.rebuild();
+
+        sd.catenaryModule.buildCircuit(event.builder);
+        sd.wireElectrocutionModule.buildCircuit(event.builder);
+        WireSparkEffectTicker.preTick(event.level);
+    }
+
+    @SubscribeEvent
+    public static void finishElectricSimulation(FinishElectricSimulationEvent event) {
+        InfrastructureSavedData sd = event.sd;
+        sd.wireElectrocutionModule.finishSimulation(event.results);
+        sd.catenaryModule.finishSimulation(event.results);
+        WireSparkEffectTicker.postTick(event.level, event.results);
+    }
+
+    @SubscribeEvent
+    public static void spawnMob(MobSpawnEvent.SpawnPlacementCheck event) {
+        if (!CEEConfigs.server().bulbsPreventMobSpawns.get() ||
+                event.getSpawnType() != EntitySpawnReason.NATURAL ||
+                event.getResult() == MobSpawnEvent.SpawnPlacementCheck.Result.FAIL)
+            return;
+        DevicesSavedData sd = DevicesSavedData.load(event.getLevel().getLevel());
+        if (sd.getDevices(CEESimulatedDeviceFeatureTypes.SPAWN_PREVENTING.get()).stream()
+                .anyMatch(d -> d.pos.distSqr(event.getPos()) <= 400))
+            event.setResult(MobSpawnEvent.SpawnPlacementCheck.Result.FAIL);
+    }
+
+
+
+
+
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#electroenergetics:dyed_electrical_panels"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:electrical_panel"
+  }
+}

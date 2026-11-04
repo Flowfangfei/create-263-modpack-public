@@ -1,0 +1,33 @@
+{
+  "parent": "simulated:convoluted_circumvolutions",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "location": {
+          "type": "minecraft:match_block",
+          "blocks": "simulated:gimbal_sensor"
+        }
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.simulated.the_definition_of_up.desc"
+    },
+    "icon": {
+      "id": "simulated:gimbal_sensor"
+    },
+    "title": {
+      "translate": "advancement.simulated.the_definition_of_up"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

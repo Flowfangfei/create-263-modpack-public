@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "create:brass_casing",
+    "create:shaft",
+    "create:cogwheel",
+    "create:electron_tube"
+  ],
+  "result": {
+    "id": "simulated:analog_transmission"
+  }
+}

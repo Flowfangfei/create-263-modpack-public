@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": "electroenergetics:transformer_oil_bucket",
+    "P": "create:precision_mechanism",
+    "T": "electroenergetics:transformer_core",
+    "W": "electroenergetics:copper_wire_spool"
+  },
+  "pattern": [
+    " P ",
+    "WTW",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:voltage_regulator"
+  }
+}

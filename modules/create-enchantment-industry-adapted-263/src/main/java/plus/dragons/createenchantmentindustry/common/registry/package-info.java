@@ -1,0 +1,4 @@
+@ParametersAreNonnullByDefault
+package plus.dragons.createenchantmentindustry.common.registry;
+
+import javax.annotation.ParametersAreNonnullByDefault;

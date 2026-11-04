@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:dyes/light_gray",
+    "#createadditionallogistics:flexible_shafts"
+  ],
+  "result": {
+    "count": 1,
+    "id": "createadditionallogistics:light_gray_flexible_shaft"
+  }
+}

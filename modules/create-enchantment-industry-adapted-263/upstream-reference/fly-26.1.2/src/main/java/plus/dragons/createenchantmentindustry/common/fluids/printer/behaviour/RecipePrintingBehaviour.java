@@ -1,0 +1,116 @@
+/*
+ * Copyright (C) 2025  DragonsPlus
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package plus.dragons.createenchantmentindustry.common.fluids.printer.behaviour;
+
+import com.zurrtum.create.infrastructure.fluids.FluidStack;
+import java.util.List;
+import java.util.Optional;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+import plus.dragons.createenchantmentindustry.common.fluids.printer.PrinterBlockEntity;
+import plus.dragons.createenchantmentindustry.common.fluids.printer.PrintingInput;
+import plus.dragons.createenchantmentindustry.common.fluids.printer.PrintingRecipe;
+import plus.dragons.createenchantmentindustry.common.registry.CEIRecipes;
+import plus.dragons.createenchantmentindustry.config.CEIConfig;
+import plus.dragons.createenchantmentindustry.util.CEILang;
+
+public class RecipePrintingBehaviour implements PrintingBehaviour {
+    public static final RecipePrintingBehaviour EMPTY = new RecipePrintingBehaviour(ItemStack.EMPTY);
+    private final ItemStack template;
+    private @Nullable PrintingRecipe lastRecipe;
+
+    public RecipePrintingBehaviour(ItemStack template) {
+        this.template = template;
+    }
+
+    private Optional<PrintingRecipe> findRecipe(Level level, ItemStack stack, FluidStack fluidStack) {
+        var input = new PrintingInput(stack, template, fluidStack);
+        if (!(level instanceof ServerLevel serverLevel)) {
+            lastRecipe = null;
+            return Optional.empty();
+        }
+        // Always query the current RecipeAccess. Keeping a matching recipe as a fast path would retain a recipe
+        // object from the previous RecipeManager after /reload.
+        var recipe = serverLevel.recipeAccess()
+                .getRecipeFor(CEIRecipes.PRINTING.getType(), input, level)
+                .map(RecipeHolder::value);
+        if (recipe.isPresent()) {
+            lastRecipe = recipe.get();
+            return recipe;
+        }
+        lastRecipe = null;
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean isValid() {
+        return !template.isEmpty();
+    }
+
+    @Override
+    public int getRequiredItemCount(Level level, ItemStack stack) {
+        return findRecipe(level, stack, FluidStack.EMPTY).isPresent() ? 1 : 0;
+    }
+
+    @Override
+    public int getRequiredFluidAmount(Level level, ItemStack stack, FluidStack fluidStack) {
+        return findRecipe(level, stack, fluidStack)
+                .map(recipe -> recipe.getFluidIngredients().get(0).amount())
+                .orElse(0);
+    }
+
+    @Override
+    public ItemStack getResult(Level level, ItemStack stack, FluidStack fluidStack) {
+        return findRecipe(level, stack, fluidStack)
+                .map(recipe -> recipe.getRollableResults().getFirst().create())
+                .orElse(ItemStack.EMPTY);
+    }
+
+    @Override
+    public void onFinished(Level level, BlockPos pos, PrinterBlockEntity printer) {
+        if (lastRecipe != null)
+            lastRecipe.playSound(level, pos.below(), SoundSource.BLOCKS);
+    }
+
+    @Override
+    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        if (template.isEmpty())
+            return false;
+        CEILang.translate("gui.goggles.printing.template").forGoggles(tooltip);
+        CEILang.item(template).style(ChatFormatting.GRAY).forGoggles(tooltip, 1);
+        if (lastRecipe != null) {
+            var cost = lastRecipe.getFluidIngredients().get(0).amount();
+            CEILang.translate("gui.goggles.printing.cost",
+                    CEILang.number(cost)
+                            .add(CEILang.translateCreate("generic.unit.millibuckets"))
+                            .style(cost <= CEIConfig.fluids().printerFluidCapacity.get()
+                                    ? ChatFormatting.GREEN
+                                    : ChatFormatting.RED))
+                    .forGoggles(tooltip, 1);
+        }
+        return true;
+    }
+}

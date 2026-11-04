@@ -1,0 +1,26 @@
+{
+  "parent": "electroenergetics:root",
+  "criteria": {
+    "0": {
+      "trigger": "electroenergetics:connect_wires_builtin"
+    }
+  },
+  "display": {
+    "description": {
+      "color": "#DBA213",
+      "translate": "advancement.electroenergetics.connect_wires.desc"
+    },
+    "icon": {
+      "id": "electroenergetics:wire_spool"
+    },
+    "title": {
+      "translate": "advancement.electroenergetics.connect_wires"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

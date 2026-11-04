@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": "create:clipboard",
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone"
+  },
+  "pattern": [
+    " I ",
+    "ICI",
+    "RIR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "createadditionallogistics:package_editor"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "electroenergetics:block/hanging_insulator/base",
+  "textures": {
+		"particle": "#0",
+	"0": "electroenergetics:block/hanging_insulator/red"
+  }
+}

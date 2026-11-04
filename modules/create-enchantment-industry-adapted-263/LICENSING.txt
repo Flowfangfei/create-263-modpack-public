@@ -1,0 +1,4 @@
+Create Enchantment Industry source files retain their original copyright headers.
+The module is licensed under LGPL-3.0-or-later (LICENSE.txt, with the incorporated GPL-3.0 text in LICENSE-GPL-3.0.txt).
+The source annotations in CEIAdvancements, PrinterBehaviour, ClassicBlazeEnchanterVisual and CEIGenerateEntriesProvider identify sections from Create under MIT, Copyright (c) 2019 simibubi; see LICENSE-CREATE.txt.
+These notices accompany the corresponding source code in this source repository. No blanket license replaces the per-file notices.

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "storage_box",
+  "key": {
+    "C": "create:weathered_iron_block",
+    "D": "create:display_board",
+    "V": "create:item_vault"
+  },
+  "pattern": [
+    "CCC",
+    "CVC",
+    "CDC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:weathered_storage_box"
+  }
+}

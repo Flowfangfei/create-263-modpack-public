@@ -1,0 +1,631 @@
+# Changelog
+
+## 1.3.8 - 2026-10-07
+
+## Bug Fixes
+- Fixed spear tags failing to load when mods such as Vanilla Backport are not installed. (#91)
+
+---
+
+## 1.3.7 - 2026-10-07
+
+## Bug Fixes
+- Fixed packagers connected to a Storage Controller or Storage Interface rejecting packages when inserting into a Compacting Simple Storage Box. (#90)
+- Fixed items getting stuck at a nearly full Compacting Simple Storage Box in a storage network instead of moving on to the next box.
+- Fixed overflow items spilling into empty Simple Storage Boxes when a matching box was full and had a Void upgrade. The extra items are now voided as expected.
+- Fixed the Compacting upgrade not accepting the same item from a different mod (e.g. Create's copper nuggets in a box of vanilla copper nuggets).
+- Fixed Create funnels and chutes on a Storage Interface or Filtered Storage Interface still sending items into the network for a few seconds after being disconnected, and being slow to notice filter changes.
+- Fixed a Filtered Storage Interface set to skip empty storage still filling empty Simple Storage Boxes.
+- Fixed some mods that work with Storage Networks putting the wrong item into a Compacting Simple Storage Box.
+- Fixed spears not moving to the tool slots in a backpack when shift-clicked from the player inventory.
+
+---
+
+## 1.3.6 - 2026-10-06
+
+## Bug Fixes
+- Fixed filtered Simple Storage and Storage Boxes on contraptions not being preferred over other storage.
+- Fixed packagers connected to a Simple Storage Box with a Compacting update refusing higher tier items (e.g. iron ingots/blocks). (#89)
+- Fixed a disconnect when clicking a Backpack, Storage Box, Simple Storage Box, or Reserve Storage Box block while in spectator mode.
+- Fixed the Thirst Upgrade having no crafting recipe.
+- Fixed Music Disc 5 not giving its Jukebox Upgrade buffs.
+- Fixed the server's `mineOresOnly` config option turning off the Ore Mining Upgrade entirely.
+- The Ore Mining Upgrade's vein preview now uses the `fxntstorage:ore_mining_block` tag, so modded ores added to the tag can be previewed.
+- Fixed the handle on the backpack model so it no longer floats.
+
+## Changes
+- Added Jetpack Modifiers, allowing players to customize the jetpack with different flight, fuel, and utility options.
+  - Elytra Boost now requires the Firework Rocket modifier
+  - The `elytraBoostEnabled`, `elytraBoostMultiplier` and `elytraBoostSpeedMultiplier` server config options have been removed.
+- Backpack models and textures can now be fully customized with resource packs. See the wiki's resource pack guide. (#88)
+- Modpacks can now disable backpack upgrades by adding them to the `fxntstorage:disabled_backpack_upgrades` item tag. Disabled upgrades:
+  - Can't be crafted, and are hidden from JEI/EMI/REI and the creative tab.
+  - Can't be installed, and any existing upgrades stop working but can still be removed.
+- The Jetpack's `ALTERNATE` hover mode now works just like creative flight. (#87)
+- Added Poplar variants of the Simple Storage Box and Storage Trim when 'VanillaBackport' 1.2.x is present.
+- 'VanillaBackport' compatibility can now support either 1.1.x or 1.2.x.
+- Existing Simple Storage Boxes now keep their contents if 'VanillaBackport' is removed or downgraded.
+
+---
+
+## 1.3.5 - 2026-09-20
+
+## Bug Fixes
+- Fixed the Compacting upgrade not compacting items whose recipe uses a common item tag. (#83)
+- Fixed the Simple Storage Box tooltip from showing the incorrect number of Capacity upgrades installed. 
+- Fixed the tooltip of the stored item in the Simple Storage Box screen being offset a few pixels.
+- Fixed the Magnet and Feeder upgrades keeping a Create filter item when the upgrade was removed. The filter is now returned to the inventory, or dropped if there is no room.
+- Deactivating the Jukebox upgrade no longer ejects the music disc into the inventory.
+- Fixed the JEI/EMI/REI item list dropping to the bottom half of the screen when an upgrade panel was expanded.
+- Fixed an issue with the Feeder upgrade deleting bowl/bottle after consuming food when inventory is full.
+- Fixed an NPE when using the Compacting upgrade wheel menu while changing worlds.
+
+## Changes
+- Added new **Void Upgrade** for backpacks that voids items from item storage slots (must match filter).
+  - Supports three modes: Always, Slot Overflow, or Backpack Overflow  
+- Added new **Thirst Upgrade** for backpacks for compatibility with 'Thirst Was Reclaimed' mod that will automatically drink stored items when thirsty. (#84)
+  - Supports minimum purity settings and item filters.
+  - `thirst_level` added to config settings to control when the upgrade drinks.
+- Create Smart Observers can now detect items being transferred through a Passer or Smart Passer Block.
+- Updated Chinese (Simplified) translation (`zh_cn`) and added Chinese (Traditional) translation (`zh_tw`) - Thanks @SkyEye-FAST (#81)
+- Backpacks now show installed upgrades as a row of icons at the top of the Jade tooltip.
+  - Upgrade, filter and other working slots no longer show as part of the tooltip's inventory contents.
+- Minor update to Feeder and Torch Deployer upgrade item textures.
+
+---
+
+## 1.3.4 - 2026-08-19
+
+## Changes
+- Updated the Feeder upgrade display message
+
+---
+
+## 1.3.3 - 2026-08-09
+
+## Changes
+- Added Chinese (Simplified) translation (`zh_cn`) - Thanks @VoidCat
+
+---
+
+## 1.3.2 - 2026-07-21
+
+## Bug Fixes
+- Fixed a race condition that could cause the game to crash when the ConstructionSticks mod is present. (#74)
+- Fixed upgrades not returning their contents when swapped out. Jukebox music discs, Crafting items, and Portable Workshop contents are now returned to the inventory (or dropped if inventory is full).
+- Fixed issue when removing one backpack upgrade, incorrectly triggers the removal effects of other upgrades.
+- Fixed held items being dropped when clicking backpack upgrade tabs or buttons.
+- Fixed the Feeder and Magnet upgrade filter slots sometimes requiring multiple clicks to set a filter.
+- Fixed right-click dragging over the Feeder and Magnet upgrade filter slots setting a filter instead of clearing it.
+- Fixed a typo in the Crafting upgrade tooltip.
+
+---
+
+## 1.3.1 - 2026-07-08
+
+## Changes
+### Simple Storage Box
+- Void and Compacting upgrades now have dedicated upgrade slots, allowing both to be installed simultaneously. (#69)
+- Void mode is now indicated by a purple status light and display text instead of rendering the Void Upgrade item on the block.
+- Added Jade tooltip information showing installed Void and Compacting upgrades.
+- Added optional Create-style connected textures for Simple Storage Boxes and matching Storage Trims. (#62)
+  - Configurable via client setting **Off**, **Boxes only**, or **Boxes and Trim**. Also applies to modded wood variants added through EveryCompat integration.
+### Reserve Barrel
+- Added support for Void mode. Use a wrench on the front display to toggle voiding of excess items once storage is full.
+- Improved compatibility with the Create Packager.
+### Backpack
+- Added a keybind (default `G`) to activate/deactivate the Jetpack upgrade without opening the backpack.
+- Added a configurable Jetpack hover mode (client setting **Jetpack Hover Mode**: Original / Alternate). (#67)
+  - **Original** (default) keeps the existing behavior, maintaining a fixed hover altitude.
+  - **Alternate** allows free ascent (jump) and descent (sneak) while hovering (similar to Creative mode movement), up to the jetpack's maximum flight ceiling. Releasing both keys maintains the current altitude.
+### Smart Passer Block
+- Added an alternate recipe for upgrading an existing Passer Block into a Smart Passer Block. (#72)
+
+## Bug Fixes
+- Fixed a backpack item duplication issue where items removed through the GUI could reappear after placing and breaking the backpack. (#71)
+- Fixed backpack custom names growing each time the backpack was placed and broken when using name-decorating mods (such as Apotheosis).
+- Long custom names are now truncated to prevent overlapping other GUI elements or extending beyond the menu.
+- Fixed the Simple Storage Box tooltip displaying incorrect contents when a Compacting Upgrade was installed.
+- Fixed mounted Simple Storage Boxes not inserting all matching items from the inventory when the front display was double-clicked.
+- Fixed mounted Simple Storage Boxes with both the Void and Compacting upgrades failing to void matching items once full, both during contraption automation (such as drills) and when using the front display manually.
+- Fixed an issue where only some crafting ingredients would transfer to the crafting grid if matching ingredients were present in the Workshop upgrade output slot.
+- Fixed the delay when rapidly crafting items using the Crafting upgrade.
+- Improved stack selection when quick-crafting from the Crafting upgrade, now prioritizing existing stacks, followed by backpack slots, and finally player inventory slots. 
+- Fixed the Torch Deployer upgrade reading the incorrect light value, causing it to almost never place torches.
+
+---
+
+## 1.3.0 - 2026-06-20
+
+## New Features
+### Storage
+- **Reserve Barrel** – Stores items, keeping configured amounts in reserve, useful for tree farms or drills.
+### Jukebox Upgrade
+- **Phantom Ward** – Play Music Disc 13 to keep phantoms away - they'll abort their dive attack within 3 blocks of a protected player.
+### Simple Storage Box
+- **Compacting Upgrade** – New upgrade for the Simple Storage Box that compresses items into higher tiers. 
+  - Use Ctrl + Scroll (or compacting wheel keybind [Tab]) to select the displayed item.
+  - Check out the in-game Simple Storage Box ponder to see the Compacting Upgrade in action!
+### Backpack Upgrades
+- **Crafting Upgrade** – Craft items right from your backpack!
+- **Portable Workshop Upgrade** – A mini workshop you can take anywhere! Supports deploying, pressing, and polishing recipes, powered by air pressure (configurable RPM).
+
+## Changes
+- Backpacks can now be used on Create contraptions - including all inventory, tool slots, and upgrades.
+  - Player-only upgrades (all except Magnet, Jukebox, Crafting, and Portable Workshop) will show a dark red overlay when installed in a contraption-mounted backpack.
+- Jade support for Simple Storage Boxes, displaying max item capacity and number of capacity upgrades.
+- Backpack upgrade panels now open one at a time - opening a new one closes the last.
+- The Jetpack Upgrade now costs fewer resources to craft.
+
+## Bug Fixes
+- Fixed the Simple Storage Controller wrongly denying items when set to deny filling empty storage. (#68)
+- Storage Boxes and Simple Storage Boxes are no longer destroyed when hit by a Mace's Wind Burst - the storage box now drops properly. (#66)
+- Fixed Simple Storage Boxes occasionally creating extra "phantom" packages when used with the Create Packager. (#61)
+- Fixed an item-duplication/corruption bug when inserting into a Simple Storage Box via the Create Packager.
+- Fixed backpacks duplicating items when assembled and disassembled on a contraption. (#60/#65)
+- Fixed a crash that happens when the optional Curios mod was not installed. (#59)
+- Fixed the Jukebox upgrade continuing to play music after swapping out the disc.
+- Fixed Jukebox Upgrade note particles so they now appear more randomly.
+- Fixed backpack data from other mods being lost when placing the backpack as a block. (#57)
+- Fixed Storage Boxes losing their custom name when broken and picked back up.
+- Fixed Storage Boxes and Backpacks not showing custom name in menus when placed on a Create contraption.
+- Storage Boxes and Simple Storage Boxes can now only be accessed from the front display when mounted on a contraption.
+- Adjusted item and text rendering on Storage Boxes and Simple Storage Boxes when shaders are installed.
+- Fixed log spam when optional Vanilla Backport mod is not installed.
+- Fixed the ore mining upgrade preview showing all vein blocks even when the server doesn't allow mining them.
+- Fixed several places where text wasn't translatable.
+
+---
+
+## 1.2.7 - 2026-04-25
+
+## Changes
+- Improved compatibility with Create Aeronautics — all components now function correctly on simulated contraptions.
+- Improved hit-side detection for Storage Boxes and Simple Storage Boxes to prevent loading chunks unnecessarily, reducing lag spikes and temporary freezes.
+
+## Bug Fixes
+- Fixed a duplication issue with Create filters on Smart Passers, Filtered Storage Interfaces, and Storage Boxes when disassembling simulated contraptions.
+- Fixed an interaction issue with Storage and Simple Storage Boxes that prevented item extraction while part of a simulated contraption.
+- Fixed rendering issues affecting Storage and Simple Storage Boxes when used on simulated contraptions.
+
+---
+
+## 1.2.6 - 2026-04-22
+
+## Changes
+- Storage Boxes and Simple Storage Boxes will now always drop with contents intact when destroyed by an explosion, and are immune to any additional explosions.
+
+## Bug Fixes
+- Fixed Feeder upgrade attempting to insert food remainder items (e.g. bowls, bottles) into slots other than item slots.
+- Fixed item duplication when removing a Create filter from the Feeder or Magnet upgrade filter slot.
+- Fixed Storage Box and Simple Storage Box not opening the GUI when sneaking with an empty main hand and a placeable item in the off-hand.
+- Fixed Storage Box filter not being saved when the box is broken. [NeoForge]
+- Fixed Simple Storage Box not setting its filter when the first item is inserted via automation.
+- Fixed List/Attribute/Package filters being destroyed when breaking a Smart Passer or Filtered Storage Interface.
+- Fixed Ore Mining upgrade suppressing XP drops from blocks. (#55)
+- Fixed Ore Mining upgrade preview persisting when the player switches to a non-tool item while holding the preview key.
+- Fixed EMI incorrectly reporting backpack ingredients as unavailable when opening the crafting table GUI, due to a stale client-side container cache.
+- Fixed the bow/crossbow appearing to charge when the backpack is out of arrows. [NeoForge]
+- Fixed a rare issue where disconnecting mid-draw could cause the next bow shot to silently consume an arrow from the backpack.
+
+---
+
+## 1.2.5 - 2026-04-12
+
+## Bug Fixes
+- Fixed the Jetpack hover keybind applying flight logic even when no backpack or upgrade was equipped. (#51)
+- Fixed a crash when v1.3.0+ of the Construction Stick mod is present. (#52) [NeoForge]
+- Fixed a crash when opening Create GUIs while wearing a backpack in a Curios back slot. (#53)
+- Fixed ForgeCaps being removed when sorting inventory items in Storage Box and Backpack menus. (#54) [Forge]
+- Fixed Storage Boxes mounted on contraptions briefly showing the wrong fill level after dismounting.
+- Fixed Storage Boxes on moving contraptions not updating their visual state (fill level / void indicator).
+- Fixed the scrollbar on Storage Box and Backpack menus not fully scrolling to the bottom.
+- Fixed render distance config for Storage Boxes and Simple Storage Boxes not updating until game restart.
+- Fixed Jetpack hover mode persisting when the upgrade was removed or disabled mid-flight.
+- Fixed Jetpack sometimes not restoring gravity correctly when upgrade was unequipped or deactivated.
+- Fixed unnecessary movement packets being sent to the server when no Jetpack upgrade is equipped.
+- Fixed Ore Mining keybind activating without a valid backpack or upgrade.
+- Fixed Ore Mining upgrade preview triggering when player is not holding an appropriate mining tool.
+- Fixed void upgrades not activating correctly when storage was full.
+- Fixed rare item loss issue with Create Packager integration with Create: Storage items.
+- Fixed item sorting not syncing correctly with container inventories.
+- Fixed the Feeder upgrade feeding Suspicious Stew to the player with both beneficial and harmful effects.
+- Music discs now move correctly when quick-moving between upgrade panel and inventory.
+- Music disc slot no longer appears empty on panel first open.
+- Backpack note particles now appear in the correct position when worn on the player.
+- Fixed Every Compat (Wood Good) textures failing to generate with newer Moonlight versions (v2.29.26+).
+- Fixed log warnings about missing mixin classes when optional mods are not installed.
+- Fixed an issue where the Carry On mod did not blacklist Create: Storage blocks from being picked up. [NeoForge]
+- Fixed goggle overlay on Simple Storage Boxes to only show when looking at the front display.
+
+## Changes
+- Added a tooltip to the filtered item on the Simple Storage Box UI.
+- Improved compatibility with the Configured mod (Refill upgrade blacklist config now works correctly).
+- Construction Stick now fully supports placing blocks directly from the item section of a worn backpack.
+- Removed an unused debug keybind (F10).
+- Improved Storage Box tick performance (fewer checks each tick).
+- Improved sorting system and reduced duplicate logic code behind the scenes.
+- Simple Storage Boxes mounted on contraptions now show the custom name in the UI (if one is set).
+- Cleaned up various internal systems for better maintainability.
+- General UI and rendering cleanup.
+
+---
+
+## 1.2.4 - 2026-03-29
+
+## Bug Fixes
+- Fixed the Jetpack Upgrade activating when seated, such as seats on trains, which would display the air overlay and consume fuel.
+- Fixed issue with multiple Packagers with Stock Links connected to the same Storage Network being treated as separate inventories, which caused duplicate items to appear in the Stock Keeper.
+- Fixed duplicate recipes for Simple Spruce Storage Box and Spruce Storage Trim.
+- Fixed multiple issues with backpacks not correctly persisting or syncing their inventory when accessed via item capabilities (e.g. Building Gadgets 2), which lead to items not being removed, duplicated, or reverted after certain actions. (#49)
+- Fixed the Ore Mining Upgrade not correctly applying tool behavior per block, causing tools like the Portable Drill from Create Stuff & Additions to not consume fuel or water when vein mining. (#49)
+- Fixed the Jetpack Upgrade failing to activate after returning from The End, where the air overlay would display and fuel would deplete but no flight occurred.
+
+---
+
+## 1.2.3 - 2026-03-23
+
+## Bug Fixes
+- Fixed an issue where Simple Storage Boxes from the EveryComp (Wood Good) mod didn’t react properly to lighting, causing the front text to appear unlit.
+- Fixed a crash that could occur when opening the Creative inventory with EveryComp (Wood Good) mod installed.
+- Fixed item counts in backpacks appearing behind the durability bar.
+- Fixed backpack upgrades not keeping custom names when upgrading to a higher tier.
+- Fixed a crash that could happen when syncing backpacks with very large inventories. (#47)
+- Fixed the Feeder Upgrade not updating its settings correctly in real time.
+- Fixed an issue where backpacks wouldn’t quick-move between the hotbar and inventory, if one was already equipped.
+
+---
+
+## 1.2.2 - 2026-03-19
+
+## Bug Fixes
+- Fixed an issue where the Ore Mining Upgrade would break all ore blocks even when the keybind was not held.
+- Fixed an “Invalid player data” error when connecting to a server with outdated player data. (#45)
+
+---
+
+## 1.2.1 - 2026-03-09
+
+## Bug Fixes
+- Fixed server crash related to client-side class loading. (#44)
+
+---
+
+## 1.2.0 - 2026-03-08
+
+> **Note:** This is the final feature update supporting Minecraft 1.20.1, aligning with the Create mod team’s support lifecycle.
+
+> **⚠ Warning:** The backpack system has been significantly rewritten in this release. **Please back up your world before updating.**
+> Backpack data structures have changed and worlds without a backup may experience data loss on existing backpacks.
+
+## New Features
+- **Backpack Jukebox Upgrade**
+  - Adds a functional jukebox to your backpack.
+  - Provides configurable buffs while music is playing (range and toggle options available).
+  - Supports muting without stopping playback or disabling buffs.
+- **Backpack Mechanical Heart Upgrade**
+  - Grants bonus health while the backpack is worn.
+  - Bonus heart amount is configurable (default: **+5 hearts**).
+- **Simple Storage Filtered Interface**
+  - Variant of the Storage Interface with a built-in Create filter slot.
+  - Useful for controlling which items pass through when interacting with vanilla automation components.
+  - Supports configurable scope: **filtered items only**, or **filtered items + empty storage**.
+
+## Changes
+### **Backpack Upgrade Panels**
+Backpack upgrades now use dedicated UI panels within the backpack screen for upgrade settings.
+All per-upgrade options previously scattered across different menus are now accessible on a per-backpack basis.
+
+- **Magnet Upgrade**
+  - Added configurable filters (supports Create list / attribute / package filters).
+  - Option to ignore items processed by an Encased Fan moved to the panel UI.
+- **Tool Swap Upgrade**
+  - Added option to prioritize swords over axes as the primary weapon.
+  - Silk Touch preference moved to the panel UI.
+- **Jetpack Upgrade**
+  - Hover bobbing toggle moved to the panel UI.
+  - HUD airtime overlay toggle moved to the panel UI.
+- **Ore Mining Upgrade**
+  - Added toggle for ore vein preview highlighting.
+  - Added option to restrict mining to ores only.
+- **Feeder Upgrade**
+  - Added configurable filters (supports Create list / attribute / package filters).
+  - Chorus Fruit feeding toggle moved to the panel UI.
+  - Activation message toggle moved to the panel UI.
+
+#### **Storage Network Changes**
+- Storage Controllers can now lock or unlock empty Storage Boxes on a per-network basis.
+- Storage networks can now be visually highlighted to show all connected storage *(Right-click a Storage Controller with a wrench)*.
+- Filter item render distance on Storage and Simple Storage Boxes now uses Create’s configuration settings.
+
+#### **Other Changes**
+- Moved many configuration options from Common to Server settings.
+- Passer Blocks can now connect to Package Ports (Frog and Post).
+- Updated recipe for the Ore Mining Upgrade.
+- Flight Upgrade renamed to Jetpack Upgrade.
+- Migrated player settings where possible following internal persistent data restructuring.
+- Optimized the Storage Network search algorithm for improved performance.
+
+## Bug Fixes
+- Fixed Storage and Simple Storage Boxes rendering incorrectly in the Block Rotation menu.
+- Fixed lighting issues on Storage and Simple Storage Boxes.
+- Fixed Smart Passer deleting items when transferring exact amounts (#37).
+- Fixed item swap issue when swapping between backpack and offhand / hotbar slots (#40).
+- Fixed crash when Forbidden and Arcanus mod present (including ATM10) (#42)
+- Fixed Magnet Upgrade picking up items when backpack had no free slots.
+- Fixed Magnet Upgrade sometimes picking up items processed by an Encased Fan despite configuration.
+- Fixed potential server crash when double-clicking a Storage Controller.
+- Fixed potential endless loop in Storage Network searches.
+- Fixed possible NPE with custom names on Storage Boxes.
+- Fixed incorrect text appearing in some Ponder scenes.
+- Fixed Simple Storage Box filter not updating correctly when mounted on a contraption.
+- Fixed Storage Boxes ignoring the Filter Item while Void Mode is enabled.
+- Fixed missing sound when equipping a Backpack from the ground. [NeoForge]
+
+---
+
+## 1.1.7 - 2025-11-29
+
+## Bug Fixes
+- Fixed an issue where quickly right-clicking between multiple Storage or Simple Storage Boxes could be incorrectly detected as a double click.
+- Fixed log spam caused by using the Magnet Upgrade in a backpack that had been placed in the world. (#35)
+- Fixed an issue where certain menus would close while the player was still within interaction range. [Forge]
+- Fixed an issue where the Magnet Upgrade’s range would not update when modified via the config screen.
+
+---
+## 1.1.6 - 2025-11-10
+## Changes
+- Added Goggle overlay for Simple Storage Boxes (configurable), displaying the vanilla tooltip for items with:
+  - Enchantments (enchanted books, armor)
+  - Potion data (potions, tipped arrows)
+  - Trim data (trimmed armor)
+
+## Bug Fixes
+- Fixed lighting issues affecting rendered filter items on Storage Boxes and Simple Storage Boxes.
+- Fixed storage networks ignoring NBT/Data Components when inserting items (such as potions and enchanted books) (#33)
+
+---
+## 1.1.5 - 2025-11-05
+## Changes
+- **Create 6.0.7+ Support**
+  - Updated to support Create 6.0.7 and later.
+  - Create 6.0.7 is now the minimum supported version.
+- **Storage**
+  - Added a new tag: `symmetry_wand_blacklist`
+    - items with this tag will be ignored by Create's Wand of Symmetry when placing blocks
+  - Storage Boxes, Simple Storage Boxes, Backpacks, Create Toolboxes and Vanilla Shulker Boxes have been added to this tag 
+- **Optional Dependency**
+  - Every Compat (Wood Good): Added support for Simple Storage Boxes and Storage Trims when additional wood type are available via other mods (i.e. Biomes O' Plenty, Ecologics, etc.) (#30)
+
+## Bug Fixes
+- Fixed items disappearing from backpacks when placed with Wand of Symmetry in hotbar (symmetry_wand_blacklist). (#29)
+- Fixed right-clicking a Storage Controller’s front face with a wrench incorrectly adding it to the storage network
+- Fixed double-clicking with an empty hand on a Storage Box now correctly respects filters
+- Fixed Simple Storage Box display count not updating when items are inserted via a storage network
+- Fixed Storage Network inserting items into empty Simple Storage Boxes that had a filter set. (#32)
+- Fixed double-click with an empty hand on a Storage Controller now correctly transfers matching items from inventory to the network
+- Fixed crash when a contraption is unmounted while a Simple Storage Box screen is open
+- Fixed issue with Storage Box transferring all items from player inventory on double click [Forge]
+- Fixed issue where double-clicking on a Storage Box, Simple Storage box or Storage Controller would not register in a multiplayer server
+- Fixed rendering issue where Simple Storage Boxes mounted on contraptions did not display the Void Upgrade icon
+- Fixed issue where remaining Jetpack fuel was still displayed while jumping after fuel was depleted
+- Fixed Simple Storage Box filter icon not updating on contraptions while the menu was open
+- Fixed Simple Storage Box tooltip displaying void upgrade item twice [Forge]
+- Fixed Simple Storage Boxes not saving their inventory when dropped [Forge] 
+
+---
+## 1.1.4 - 2025-10-11
+## Changes
+- **Feeder Upgrade**
+  - Added `feederHealthThreshold` and `feederHungerLevel` config options for more control over when to auto-feed.
+  - No longer feeds player an Ominous Bottle. [NeoForge]
+- **Refill Upgrade**
+  - Now only refills placeable block items. 
+  - Added a new tag: `refill_blacklist` — items with this tag will be ignored by the Refill Upgrade.
+  - Added a new config option to blacklist blocks, with support for wildcards to blacklist entire namespaces (i.e. minecraft:*)
+
+## Bug Fixes
+- Fixed an issue where backpack upgrades did not recognize the Right Ctrl key when toggling.
+- Fixed the Void Upgrade being extracted from the Simple Storage Box by automation (hopper, chutes, funnels, etc.).
+- Fixed an issue where the Simple Storage Box would not update its status.
+- Fixed block items being placed in front of a Simple Storage Box when inserting them.
+- Fixed server crash related to client-side class loading. [Forge]
+- Fixed a server disconnection issue when Feeder Upgrade attempted to auto-feed player Chorus Fruit. [Forge]
+
+---
+## 1.1.3 - 2025-10-05
+## Changes
+- Updated Elytra boost system to allow configurable boost speed multiplier.
+- Moved the following configuration options to the “Flight Upgrade” category *(Note: existing settings will not migrate)*
+  - elytraBoostEnabled, elytraBoostMultiplier, jetpackMiningPenalty
+
+## Bug Fixes
+- Fixed Storage Box not correctly applying filter when using list or attribute filters.
+- Fixed remaining air persisting after landing instead of fading out.
+- Fixed item duplication when Backpack, Storage Box or Simple Storage Box GUI is open and block is destroyed or not in range of player. (#23)
+- Fixed memory leak within `StorageBoxMountedStorage` and `SimpleStorageBoxMountedStorage`. (#24)
+- Fixed player incorrectly taking falling damage when jumping just before landing with an equipped Backpack flight upgrade.
+- Fixed Crafter injecting items into Simple Storage Box upgrade slots. (#25) [NeoForge]
+- Fixed `BackpackHelper` to work correctly when multiple Curios "back" slots are present. (#26) — Thanks @MoePus
+- Fixed potential server lag caused by excessive block updates from Simple Storage Boxes.
+- Fixed an issue where players would rise upward after teleporting while hovering with the Backpack Flight upgrade.
+
+---
+## 1.1.2 - 2025-09-09
+## Changes
+- **Backpack Integration**
+  - Bows, Crossbows, and Potato Cannons can now use projectiles (arrows & food) stored in an equipped backpack *(configurable)*.
+  - The Create Toolbox can now check equipped backpack contents when returning items *(configurable)*.
+  - JEI/EMI/REI recipe transfer can now pull ingredients from an equipped backpack when crafting with the 2×2 inventory grid.
+- **Backpack Upgrades**
+  - The Magnet Upgrade now visually pulls items toward the player *(when worn)* or toward the backpack *(when placed in the world)*.
+  - The Flight Upgrade has been completely re-written to improve responsiveness.
+  - The mining penalty while flying with the Flight Upgrade can now be disabled *(configurable)*.
+- **Compatibility**
+  - Added compatibility with the Construction Wand/Sticks mod for Backpacks *(when not worn)*, Storage Boxes, and Simple Storage Boxes (#12).
+- **Item Sorting**: 
+  - Items with a custom name are now sorted after items with the default name.
+
+## Bug Fixes
+- Fixed Storage Box display not updating correctly when used on a contraption.
+- Potato Cannon now moves into item storage of backpack when quick-moved.
+- Quick-moving non-stackable items (potions, enchanted books, music discs) now correctly stacks in backpacks.
+- Fixed Void Upgrade in Simple Storage Boxes incorrectly filling all available slots. (#11)
+- Fixed Chutes and Smart Chutes not transferring items into Storage Controllers and Storage Interfaces after a world reload. [NeoForge]
+- Fixed crash when querying slot limits on a Storage Network. (#13) [NeoForge]
+- Further fixes to the Flight Upgrade to improve desynchronization issues. (#14)
+- Fixed duplication bug when upgrading backpacks of the same tier using recipe viewers’ "max craft" function. (#15)
+- Fixed random crash when Storage Boxes are mounted on contraptions. (#16) — Thanks @MoePus
+- Fixed automation not respecting Storage Box filters.
+- Fixed flight upgrade thrust sound to play correctly when launching from the ground.
+- Fixed particles when using the flight upgrade in lava.
+- Fixed duplication bug when using a Passer Block with a Simple Storage Box. (#17)
+- Fixed crafting grid ingredient placement — now correctly respects symmetrical recipes.
+- Fixed server lag caused by excessive block updates from Storage Boxes. (#18)
+- Fixed internal data structure of Simple Storage Boxes — existing boxes will migrate automatically on first load.
+- Fixed Void Upgrade in Simple Storage Boxes incorrectly stacking above 1 in the void slot.
+- Fixed rendering of text and filter items on Storage and Simple Storage Boxes when mounted on contraptions.
+- Fixed void icon rendering backwards on Simple Storage Boxes.
+- Fixed network protocol error when interacting with Storage Boxes and Simple Storage Boxes in spectator mode.
+- Fixed log spam when interacting with a Simple Storage Box mounted to a contraption with no filter set (#19). [NeoForge]
+- Fixed issue sending server packet from server with a Simple Storage Box mounted to a contraption (#20). [NeoForge] — Thanks @MoePus
+- Various other minor fixes and general code cleanup.
+
+---
+## 1.1.1 - 2025-07-27
+## Bug Fixes
+
+- Fixed issue where the Backpack Flight upgrade would behave erratically after player respawn following a death.
+- Fixed game crash when a packager attempts to unpack items into a disconnected Storage Interface. (#8) - Thanks @mbegenau
+- Fixed issue where Passer blocks were not transferring items into or out of vanilla composters.
+- Fixed issue where quick-moving tools from the first player inventory slot would incorrectly place them into item storage.
+- Resolved missing item tags when quick-moving items into the backpack tool storage. [NeoForge]
+- Fixed right-click behaviour on backpack slots; now moves either half the max stack size or half the slot count, whichever is smaller.
+- Fixed issue where mining a Shulker Box with Ore Mining Upgrade enabled would cause it to lose its contents.
+- Fixed an issue where block placement sounds would not play when placing blocks on any side of Storage Boxes, Simple Storage Boxes, or Storage Controllers.
+- Fixed game crash when using the Backpack Pickblock Upgrade on a Metal Girder Encased Shaft. [NeoForge]
+
+---
+## 1.1.0 - 2025-07-18
+## New Features
+- **Backpack Upgrades:**
+  - **Ore Mining Upgrade** - Mine an entire cluster of ore at once. Hold the modifier keybind to mine any connected blocks (up to 64) of the same type (configurable).
+  - **Torch Deployer Upgrade** - Load up your backpack with Torches and never stumble in the dark again! Automatically places a torch from the backpack if the local light level is too low (configurable).
+  
+## Changes
+- **Jetpack Upgrade:** Added configuration option to enable/disable the bobbing effect when hovering.
+- **Recipe Viewers:** Better integration with JEI/EMI/REI.
+  - Crafting recipes can now pull items direct from the equipped backpack as well as player inventory.
+- **Storage Network Rewrite:** Significant internal refactor to improve compatibility with other mods. (#6)
+  - New configuration setting allows control over whether empty Simple Storage Boxes can accept new items when part of a Storage Network.
+
+## Bug Fixes
+- Added missing blocks to #breakable_with_any_tool tag.
+- Fixed missing recipes for Cardboard and Weathered Iron Storage Boxes. [Forge]
+- Fixed Packager not respecting void mode on Cardboard and Weathered Iron boxes.
+- Fixed Pale Oak Simple Storage Box not functioning correctly with Packagers.
+- Fixed Storage Box and Simple Storage Box tooltip numbers incorrectly rendering when Backpack screen open.
+- Fixed Backpack stack multiplier incorrectly being applied before placing as a block in the world. (#4) [NeoForge]
+- Fixed crash when quick moving a deactivated Backpack upgrade to the player inventory. [NeoForge]
+- Fixed duplication bug when unequipping disabled Backpack upgrades. [Forge]
+- Fixed desynchronization issue when using Jetpack upgrade with high network latency. (#5)
+- Fixed Storage Box not sorting when mounted to a contraption. [Forge]
+- Fixed game crash when connecting a Passer to a vanilla chest. (#7) [NeoForge]
+- Fixed duplication bug when using a Passer with a Packager to extract packages.
+- Various other minor bug fixes and general code cleanup.
+
+---
+## 1.0.4 — 2025-06-15
+## Bug Fixes
+- Fixed game crash when game window resized while Backpack screen is open. (#3) [Forge]
+
+## Changes
+- Improved Feeder upgrade logic for detecting harmful food effects.
+- Feeder upgrade no longer feeds Chorus Fruit to the player by default (configurable).
+
+---
+## 1.0.3 — 2025-06-12
+## Bug Fixes
+- Feeder upgrade now properly evaluates harmful food effects [NeoForge]
+- Fixed items not stacking to the maximum capacity of a Simple Storage Box with a Storage Network. [NeoForge]
+- Fixed game crash on launch if KubeJS was present (#2) [NeoForge]
+
+---
+## 1.0.2 — 2025-06-07
+## Bug Fixes
+- Fixed NBT error when opening a Backpack from player inventory [NeoForge]
+
+---
+## 1.0.1 — 2025-06-07 / 2025-06-12
+## Bug Fixes
+- Fixed missing keybind descriptions in language file. [NeoForge]
+- Fixed items not being saved to the Backpack unless first placed as a block. [Forge]
+- Fixed items not stacking to the maximum capacity of a Simple Storage Box with a Storage Network. [Forge]
+
+---
+## 1.0.0 — 2025-05-09 / 2025-05-19
+## Changes
+- **Create 6.0:**
+  - Support added for Create 6.0.3+.
+  - New Storage Box variants: Cardboard and Weathered Iron.
+- **Ponder Scenes:** Updated to support new Ponder API.
+- **Packager Support:**
+  - Can be attached to Backpacks, Storage Boxes, Simple Storage Boxes, Storage Controllers and Storage Interfaces to pack/unpack packages.
+  - Attach a Stock Link to connect a Storage Network to a logistics network.
+- **Optional Dependency:**
+  - Vanilla Backport: Support added for Pale Oak Simple Storage Box and Pale Oak Trim when mod present.
+
+## Known Issues
+- When a Storage Network has multiple Packagers with Stock Links attached, the Stock Keeper will display incorrect
+  inventory totals for the network. ([Create#7554](https://github.com/Creators-of-Create/Create/issues/7554))
+- If a threshold switch is attached to a Storage Network component (Storage Controller/Interface), incorrect values
+  are displayed for Items/Stacks. ([Create#7688](https://github.com/Creators-of-Create/Create/issues/7688))
+
+---
+## 0.22 — 2025-03-21
+## New Features
+- **GUI Overlay for Backtanks:** Displays remaining air time while flying (configurable).
+- **New Ponder Scenes:** Added for most items in Create: Storage to aid understanding.
+- **"Elytra Boost" Added:**
+  - Hold "jump" while gliding with an Elytra and the Flight upgrade equipped, or toggle with "hover."
+  - Boosting consumes backtank air at a faster rate (configurable).
+- **Feeder Upgrade Notification:** Displays a message when the Feeder upgrade feeds an item to the player (configurable).
+- **Sortable Storage:** Middle-click to sort items in Backpacks, Storage Boxes, and Simple Storage Boxes. The order is customizable.
+
+## Changes
+- **Backpack Enhancements:**
+  - Item stacking modified for Backpack tiers: now stacks up to 2x, 4x, 8x, 16x, or 32x the max item stack.
+  - Backpacks can now be equipped in the chest slot or back slot (if Curios is installed).
+  - Feeder upgrade avoids feeding items with negative effects (e.g., hunger or poison).
+- **Flight Upgrade:** Adjusted for smoother, more natural momentum.
+- **Tool Swap Upgrade:**
+  - Now configurable to prioritize Silk Touch and specific blocks.
+- **Smart Passer:** Now react to redstone signals to stop passing items.
+- **Simple Storage Box:** Can now be used/interacted with on contraptions for bulk storage.
+- **Storage Box Enhancements:**
+  - No longer requires a dedicated slot for voiding items in void mode.
+  - Indicator light turns purple when void mode is active.
+  - Refined player interactions with Storage Boxes and Simple Storage Boxes.
+  - Can now be used/interacted with on contraptions for bulk storage.
+- **Storage Controller:** Lights up when at least one Simple Storage Box is connected to the network.
+- **Tooltip Enhancements:** Now have a more "Create" aesthetic.
+- **Recipe Tweaks:** Minor adjustments and balance improvements.
+
+## Bug Fixes
+- **Simple Storage Box:** Items on the display no longer render backwards.
+- **Storage Interface:** Properly disconnects from the storage network when removed.
+- **Feeder Upgrade:** Stores leftover items in Backpack (or drops if no space) after consumption (e.g., Honey Bottles, "bowl" foods).
+- **Flight Upgrade:**
+  - No longer deactivates when other players join the server.
+  - Displays bubble particles instead of clouds while "flying" underwater.
+  - Projectiles (e.g., arrows, eggs, potions) now fire at the correct angle when flying.
+- **Tool Swap Upgrade:** No longer infinitely swaps when multiple tools of the same type are present in the backpack.
+- **Visual Fixes:**
+  - Backpack particles now correctly display to other players on multiplayer servers.
+  - Backpacks render only if equipped and visible on multiplayer servers.
+- **Other Fixes:**
+  - Gravity behaves correctly when wearing a Backpack underwater.
+
+---
+## 0.20 — 2025-02-01
+- _Initial migration from Fabric release_.

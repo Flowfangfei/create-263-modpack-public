@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "k": "minecraft:dried_kelp",
+    "p": "minecraft:paper",
+    "w": "electroenergetics:insulated_wire"
+  },
+  "pattern": [
+    "pwp",
+    "wkw",
+    "pwp"
+  ],
+  "result": {
+    "count": 4,
+    "id": "electroenergetics:heavily_insulated_wire"
+  }
+}

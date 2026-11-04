@@ -1,0 +1,309 @@
+package com.george_vi.electroenergetics;
+
+import com.george_vi.electroenergetics.config.CEEConfigs;
+import com.george_vi.electroenergetics.registry.DeferredRegister;
+import com.george_vi.electroenergetics.registry.RegistryEntry;
+import com.george_vi.electroenergetics.simulation.WireType;
+
+import net.minecraft.world.item.DyeColor;
+
+public class CEEWireTypes {
+
+    private static final DeferredRegister<WireType> WIRE_TYPES =
+            DeferredRegister.create(CEERegistries.WIRE_TYPE, CreateElectroEnergetics.ID);
+
+    public static final RegistryEntry<WireType, WireType> COPPER =
+            WIRE_TYPES.register(
+                    "copper",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl("block/copper_wire_segment"))
+                                    .resistance(
+                                            CEEConfigs.server().resistanceValues.wireResistance
+                                                    ::get)
+                                    .droppedTag(CEETags.COPPER_WIRE)
+                                    .spoolItem(CEEItems.COPPER_WIRE_SPOOL::get)
+                                    .maxTemperature(() -> 5000)
+                                    .maxLength(CEEConfigs.server().maxWireLength::get)
+                                    .build());
+
+    @SuppressWarnings("unchecked")
+    public static final RegistryEntry<WireType, WireType>[] COLORED_WIRES =
+            new RegistryEntry[DyeColor.values().length];
+
+    public static final RegistryEntry<WireType, WireType> STANDARD =
+            WIRE_TYPES.register(
+                    "standard",
+                    () ->
+                            new WireType.Builder(CreateElectroEnergetics.rl("block/wire_segment"))
+                                    .resistance(
+                                            CEEConfigs.server().resistanceValues.wireResistance
+                                                    ::get)
+                                    .droppedItem(CEEItems.INSULATED_WIRE)
+                                    .spoolItem(CEEItems.WIRE_SPOOL::get)
+                                    .maxInsulationVoltage(
+                                            CEEConfigs.server().voltageValues.wireMaxVoltage::get)
+                                    .maxTemperature(() -> 3540)
+                                    .replaceOnOverheated(COPPER)
+                                    .insulationResistance(330_000)
+                                    .maxLength(CEEConfigs.server().maxWireLength::get)
+                                    .dyeable(COLORED_WIRES)
+                                    .build());
+
+    public static final RegistryEntry<WireType, WireType> DUPLEX =
+            WIRE_TYPES.register(
+                    "duplex",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl("block/duplex_wire_segment"))
+                                    .resistance(() -> 1e+11d)
+                                    .maxLength(CEEConfigs.server().maxBundledWireLength::get)
+                                    .decorative()
+                                    .build());
+
+    public static final RegistryEntry<WireType, WireType> BUNDLE_CONDUCTOR =
+            WIRE_TYPES.register(
+                    "bundle_conductor",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl("block/duplex_wire_segment"))
+                                    .resistance(
+                                            CEEConfigs.server().resistanceValues.wireResistance
+                                                    ::get)
+                                    .droppedItem(CEEItems.INSULATED_WIRE)
+                                    .spoolItem(CEEItems.DUPLEX_WIRE_SPOOL::get)
+                                    .maxInsulationVoltage(
+                                            CEEConfigs.server().voltageValues.wireMaxVoltage::get)
+                                    .maxTemperature(() -> Double.MAX_VALUE)
+                                    .maxLength(() -> Integer.MAX_VALUE)
+                                    .invulnerable()
+                                    .build());
+
+    @SuppressWarnings("unchecked")
+    public static final RegistryEntry<WireType, WireType>[] COLORED_HEAVILY_INSULATED_WIRES =
+            new RegistryEntry[DyeColor.values().length];
+
+    public static final RegistryEntry<WireType, WireType> HEAVILY_INSULATED =
+            WIRE_TYPES.register(
+                    "heavily_insulated",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl(
+                                                    "block/heavily_insulated_wire_segment"))
+                                    .resistance(
+                                            CEEConfigs.server().resistanceValues.wireResistance
+                                                    ::get)
+                                    .droppedItem(CEEItems.HEAVILY_INSULATED_WIRE)
+                                    .spoolItem(CEEItems.HEAVILY_INSULATED_WIRE_SPOOL::get)
+                                    .maxInsulationVoltage(
+                                            CEEConfigs.server()
+                                                            .voltageValues
+                                                            .heavilyInsulatedWireMaxVoltage
+                                                    ::get)
+                                    .maxTemperature(() -> 5000)
+                                    .replaceOnOverheated(COPPER)
+                                    .insulationResistance(660_000)
+                                    .maxLength(
+                                            CEEConfigs.server().maxHeavilyInsulatedWireLength::get)
+                                    .sag(0.7f)
+                                    .thickness(3 / 16f)
+                                    .dyeable(COLORED_HEAVILY_INSULATED_WIRES)
+                                    .build());
+
+    public static final RegistryEntry<WireType, WireType> CREATIVE =
+            WIRE_TYPES.register(
+                    "creative",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl(
+                                                    "block/creative_wire_segment"))
+                                    .resistance(() -> 0.00001d)
+                                    .spoolItem(CEEItems.CREATIVE_WIRE_SPOOL::get)
+                                    .maxInsulationVoltage(() -> 1e+11d)
+                                    .maxTemperature(() -> 1e+11d)
+                                    .insulationResistance(1e+11d)
+                                    .maxLength(CEEConfigs.server().maxWireLength::get)
+                                    .build());
+
+    public static final RegistryEntry<WireType, WireType> IRON =
+            WIRE_TYPES.register(
+                    "iron",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl("block/iron_wire_segment"))
+                                    .resistance(
+                                            CEEConfigs.server().resistanceValues.ironWireResistance
+                                                    ::get)
+                                    .droppedItem(CEEItems.IRON_WIRE_STRAND)
+                                    .spoolItem(CEEItems.IRON_WIRE_SPOOL::get)
+                                    .maxTemperature(() -> 6000)
+                                    .maxLength(CEEConfigs.server().maxWireLength::get)
+                                    .build());
+
+    public static final RegistryEntry<WireType, WireType> IRON_BUS =
+            WIRE_TYPES.register(
+                    "iron_bus",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl("block/iron_bus_segment"))
+                                    .resistance(
+                                            CEEConfigs.server().resistanceValues.ironWireResistance
+                                                    ::get)
+                                    .droppedTag(CEETags.IRON_BUS_COMPONENT)
+                                    .spoolItem(CEEItems.IRON_BUS_SPOOL::get)
+                                    .maxTemperature(() -> 10000)
+                                    .maxLength(CEEConfigs.server().maxBusWireLength::get)
+                                    .sag(0f)
+                                    .thickness(2 / 16f)
+                                    .build());
+
+    @SuppressWarnings("unchecked")
+    public static final RegistryEntry<WireType, WireType>[] COLORED_GLASS_INSULATOR =
+            new RegistryEntry[DyeColor.values().length];
+
+    public static final RegistryEntry<WireType, WireType> GLASS_INSULATOR =
+            WIRE_TYPES.register(
+                    "glass_insulator",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl(
+                                                    "block/hanging_insulator/base"))
+                                    .resistance(() -> 1e+11d)
+                                    .endPointItem(
+                                            CreateElectroEnergetics.rl(
+                                                    "block/hanging_insulator/chain"))
+                                    .droppedItem(CEEItems.GLASS_INSULATOR_SEGMENT)
+                                    .spoolItem(CEEItems.GLASS_INSULATOR_SPOOL::get)
+                                    .maxLength(CEEConfigs.server().maxBusWireLength::get)
+                                    .maxInsulationVoltage(() -> Double.MAX_VALUE)
+                                    .decorative()
+                                    .sag(0.1f)
+                                    .thickness(4 / 16f)
+                                    .renderType(WireType.WireRenderType.TRANSLUCENT_NOT_SCALED)
+                                    .dyeable(COLORED_GLASS_INSULATOR)
+                                    .build());
+
+    public static final RegistryEntry<WireType, WireType> IRON_RAIL =
+            WIRE_TYPES.register(
+                    "iron_rail",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl("block/iron_rail_segment"))
+                                    .resistance(
+                                            CEEConfigs.server().resistanceValues.ironRailResistance
+                                                    ::get)
+                                    .droppedTag(CEETags.IRON_RAIL_COMPONENT)
+                                    .spoolItem(CEEItems.IRON_RAIL_SPOOL::get)
+                                    .maxTemperature(() -> 15000)
+                                    .maxLength(CEEConfigs.server().maxBusWireLength::get)
+                                    .sag(0f)
+                                    .thickness(4 / 16f)
+                                    .build());
+
+    public static final RegistryEntry<WireType, WireType> ELECTRUM =
+            WIRE_TYPES.register(
+                    "electrum",
+                    () ->
+                            new WireType.Builder(
+                                            CreateElectroEnergetics.rl(
+                                                    "block/electrum_wire_segment"))
+                                    .resistance(
+                                            CEEConfigs.server()
+                                                            .resistanceValues
+                                                            .electrumWireResistance
+                                                    ::get)
+                                    .droppedTag(CEETags.ELECTRUM_WIRE)
+                                    .spoolItem(CEEItems.ELECTRUM_WIRE_SPOOL::get)
+                                    .maxTemperature(() -> 3540)
+                                    .maxLength(CEEConfigs.server().maxWireLength::get)
+                                    .build());
+
+    static {
+        for (DyeColor color : DyeColor.values()) {
+            COLORED_WIRES[color.ordinal()] =
+                    WIRE_TYPES.register(
+                            "colored_" + color.getSerializedName(),
+                            () ->
+                                    new WireType.Builder(
+                                                    CreateElectroEnergetics.rl(
+                                                            "block/colored_wire/"
+                                                                    + color.getSerializedName()))
+                                            .resistance(
+                                                    CEEConfigs.server()
+                                                                    .resistanceValues
+                                                                    .wireResistance
+                                                            ::get)
+                                            .droppedItem(CEEItems.INSULATED_WIRE)
+                                            .spoolItem(CEEItems.WIRE_SPOOL::get)
+                                            .maxInsulationVoltage(
+                                                    CEEConfigs.server().voltageValues.wireMaxVoltage
+                                                            ::get)
+                                            .maxTemperature(() -> 3540)
+                                            .replaceOnOverheated(COPPER)
+                                            .insulationResistance(330_000)
+                                            .maxLength(CEEConfigs.server().maxWireLength::get)
+                                            .dyeable(COLORED_WIRES, color)
+                                            .build());
+
+            COLORED_HEAVILY_INSULATED_WIRES[color.ordinal()] =
+                    WIRE_TYPES.register(
+                            color.getSerializedName() + "_heavily_insulated",
+                            () ->
+                                    new WireType.Builder(
+                                                    CreateElectroEnergetics.rl(
+                                                            "block/colored_heavily_insulated_wire/"
+                                                                    + color.getSerializedName()))
+                                            .resistance(
+                                                    CEEConfigs.server()
+                                                                    .resistanceValues
+                                                                    .wireResistance
+                                                            ::get)
+                                            .droppedItem(CEEItems.HEAVILY_INSULATED_WIRE)
+                                            .spoolItem(CEEItems.HEAVILY_INSULATED_WIRE_SPOOL::get)
+                                            .maxInsulationVoltage(
+                                                    CEEConfigs.server()
+                                                                    .voltageValues
+                                                                    .heavilyInsulatedWireMaxVoltage
+                                                            ::get)
+                                            .maxTemperature(() -> 5000)
+                                            .replaceOnOverheated(COPPER)
+                                            .insulationResistance(660_000)
+                                            .maxLength(
+                                                    CEEConfigs.server()
+                                                                    .maxHeavilyInsulatedWireLength
+                                                            ::get)
+                                            .sag(0.7f)
+                                            .thickness(3 / 16f)
+                                            .dyeable(COLORED_HEAVILY_INSULATED_WIRES, color)
+                                            .build());
+
+            COLORED_GLASS_INSULATOR[color.ordinal()] =
+                    WIRE_TYPES.register(
+                            color.getSerializedName() + "_hanging_insulator",
+                            () ->
+                                    new WireType.Builder(
+                                                    CreateElectroEnergetics.rl(
+                                                            "block/hanging_insulator/"
+                                                                    + color.getSerializedName()))
+                                            .resistance(() -> 1e+11d)
+                                            .endPointItem(
+                                                    CreateElectroEnergetics.rl(
+                                                            "block/hanging_insulator/chain"))
+                                            .droppedItem(CEEItems.GLASS_INSULATOR_SEGMENT)
+                                            .spoolItem(CEEItems.GLASS_INSULATOR_SPOOL::get)
+                                            .maxLength(CEEConfigs.server().maxBusWireLength::get)
+                                            .maxInsulationVoltage(() -> Double.MAX_VALUE)
+                                            .decorative()
+                                            .sag(0.1f)
+                                            .thickness(4 / 16f)
+                                            .renderType(
+                                                    WireType.WireRenderType.TRANSLUCENT_NOT_SCALED)
+                                            .dyeable(COLORED_GLASS_INSULATOR)
+                                            .build());
+        }
+    }
+
+    public static void register() {
+        WIRE_TYPES.register();
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fluidlogistics:feature_enabled",
+      "feature": "fluidlogistics:copper_basin"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "create:andesite_alloy",
+    "C": "#c:ingots/copper"
+  },
+  "pattern": [
+    "C C",
+    "A A",
+    "CAC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fluidlogistics:copper_basin"
+  }
+}

@@ -1,0 +1,2819 @@
+{
+  "schema": 1,
+  "representation": "Git index blobs (canonical line endings)",
+  "module": "sable-adapted-263",
+  "files": {
+    "modules/sable-adapted-263/.gitignore": {
+      "sha256": "f496ff17c4e49ad468aa20ac54bc936759f6e13100519111b6d1fe8c247d42c1",
+      "bytes": 153
+    },
+    "modules/sable-adapted-263/LICENSE.md": {
+      "sha256": "80ee7a573d585da44a6b993274071240470d2645922fff9f37910418b34fb836",
+      "bytes": 5747
+    },
+    "modules/sable-adapted-263/README.md": {
+      "sha256": "8527f23e64d2933bb7f6387cac2a9703432b5fd6d01e923ce22785b89b666b12",
+      "bytes": 359
+    },
+    "modules/sable-adapted-263/build.gradle": {
+      "sha256": "cdcdf6cf622464782379a7a90e8b17a569860f35aa9bf540ca7464f3e196296d",
+      "bytes": 5076
+    },
+    "modules/sable-adapted-263/gradle.properties": {
+      "sha256": "c55904a65797724b5ebeaca683ae9057f0d49991c933ea4d0720ac3eb552a139",
+      "bytes": 677
+    },
+    "modules/sable-adapted-263/gradle/gradle-daemon-jvm.properties": {
+      "sha256": "b87ef0e24f96e381e526539301a6d0d13d7b7b3cd8ce43cfaacc6d039fa631f1",
+      "bytes": 241
+    },
+    "modules/sable-adapted-263/gradle/wrapper/gradle-wrapper.jar": {
+      "sha256": "238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5",
+      "bytes": 47623
+    },
+    "modules/sable-adapted-263/gradle/wrapper/gradle-wrapper.properties": {
+      "sha256": "c67b97cdfe41822dbc8dc4614460f4ae0d2eef937d873f4b9011e892b1875c0d",
+      "bytes": 281
+    },
+    "modules/sable-adapted-263/gradlew": {
+      "sha256": "29a9328a6540b118095a2407abd56f4ccac65782748e55a95a0cc2dc350287ff",
+      "bytes": 8625
+    },
+    "modules/sable-adapted-263/gradlew.bat": {
+      "sha256": "31ec098bd961c460b62875950c3eff5c8213bcb0bbde38d769b88512877fd21f",
+      "bytes": 4776
+    },
+    "modules/sable-adapted-263/settings.gradle": {
+      "sha256": "549fd782da719ce85d0928d8c3569ddba43ba9f964099e191792c6b33d8d60bc",
+      "bytes": 170
+    },
+    "modules/sable-adapted-263/src/main/hexpat/sblvlr.hexpat": {
+      "sha256": "fcfd59786258a77f682bdaad30cc3e38782bae42942f1da0fe560306868f19ee",
+      "bytes": 2157
+    },
+    "modules/sable-adapted-263/src/main/hexpat/sblvls.hexpat": {
+      "sha256": "b1a2b15944d9e52c8c2a84a12103fb6277c6cb9ab8153b00590f493604ce6f01",
+      "bytes": 2187
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/ActiveSableCompanion.java": {
+      "sha256": "a44ee3f6e0527288c4ccbb346db69669572b57ffe5d61674f81e6716ada29b0d",
+      "bytes": 21977
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/Sable.java": {
+      "sha256": "69b1221d541f08bf09963f32b8e11e6a8487d43ee0967731102a1bb3f86708d2",
+      "bytes": 5237
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/SableClient.java": {
+      "sha256": "defb8fabea04d83a750232644b5d86402247d9ed5a7e8b0efbdab9056e4d17d7",
+      "bytes": 858
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/SableClientConfig.java": {
+      "sha256": "6f1d8fdabf07dd34f0c5ab682085a0259f45fe1e83ed5bf38fe1ca7ac46e4396",
+      "bytes": 5478
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/SableCommonEvents.java": {
+      "sha256": "61e850034c4b10fbe78145635d333a7df0fe47bd0ad5244460d3dd5cc41c4361",
+      "bytes": 5197
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/SableConfig.java": {
+      "sha256": "91ba9c0202db804d8e0886e939c911c745b6674f99740012304268aae2d66c10",
+      "bytes": 5064
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/SableServerConfig.java": {
+      "sha256": "58398c43a803df685ec4a6203bd52e2d7a6c626a7353c2369d2d079cf641e025",
+      "bytes": 683
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/annotation/MixinModVersionConstraint.java": {
+      "sha256": "8cbc7c9ef8db3ef036a99d3be2de3ae1c4054300794a307ffaa78cb4f7918cd0",
+      "bytes": 378
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/SubLevelAssemblyHelper.java": {
+      "sha256": "5567b340ab8ed9d1bbfbce5d523f71a4d6abd87614328d793f070b92c3adcf40",
+      "bytes": 32596
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/SubLevelEntityScope.java": {
+      "sha256": "9abd80c198a5c7c98ee6d9e18f888537b4fa43118b332966751307885ab43400",
+      "bytes": 2404
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/SubLevelHelper.java": {
+      "sha256": "f9b1b0608bdddd0ac9d7d1513d2a4385ed45fa8d105e60dcbb59b5a8e26ff70b",
+      "bytes": 13606
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/BlockEntitySubLevelActor.java": {
+      "sha256": "668a5260f8372d2efa490bc1c257ce183937a51ed271578e645d2b681f45156c",
+      "bytes": 2319
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/BlockEntitySubLevelReactionWheel.java": {
+      "sha256": "9a500ef29d579f1edbf03a79b7d760fa860b3e171f9e704306eb9a7cd0aac1d3",
+      "bytes": 1160
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/BlockSubLevelAssemblyListener.java": {
+      "sha256": "a4fa44b77a4fc38564003b7325a9a3528bdc6285d1e0d5582a7534cc0179c809",
+      "bytes": 1703
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/BlockSubLevelCollisionShape.java": {
+      "sha256": "de63f77e1a34b878d759f4734bcb36ce0562b27c933be17094f1ad3f5c9aa5c5",
+      "bytes": 843
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/BlockSubLevelCustomCenterOfMass.java": {
+      "sha256": "57f693dcb5b5fded1c7b95ebe8197aef1cbfabad0d14cdb02138be8333bf1024",
+      "bytes": 806
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/BlockSubLevelDynamicCollider.java": {
+      "sha256": "65595e17ac89b83a26d822a918aeebba983015b30a9b5348dffa4f1326017d98",
+      "bytes": 412
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/BlockSubLevelLiftProvider.java": {
+      "sha256": "e7b5c386d71638f382215cd6295923175ef006fb6e815cd592f33f9a0012940e",
+      "bytes": 9234
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/BlockWithSubLevelCollisionCallback.java": {
+      "sha256": "fd0d5fd52ec23fc8111e56633790527dc3c1a7fa07088ee71c22ecce6739a585",
+      "bytes": 1642
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/propeller/BlockEntityPropeller.java": {
+      "sha256": "d116f92aa456edc256ec452fbe1c2673259874ce932625b58e4e9545938e4c2a",
+      "bytes": 2278
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/block/propeller/BlockEntitySubLevelPropellerActor.java": {
+      "sha256": "8f338d4b14df0e385a87bfdbd8b31e936e9e5e4bf4cb1fa82cb4fdb11399e94f",
+      "bytes": 1735
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/client/SubLevelBlockEntityRenderRegistry.java": {
+      "sha256": "0fa593d0595056551227c510133e4af16f4728dd8c63b5ba12177a387ab47754",
+      "bytes": 1774
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/command/SableCommandHelper.java": {
+      "sha256": "12ea23bc0222ab1e33b9b4e3c0917da4f38eee448f092090315d19328b5d0e17",
+      "bytes": 8131
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/command/SubLevelArgumentType.java": {
+      "sha256": "3c83ab0b90b37cf8376279601a874f726d41fb08a9f1019e0b7ad111a122f18c",
+      "bytes": 13266
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/entity/EntitySubLevelUtil.java": {
+      "sha256": "8fff8102adb12c3b61c21530ea0e3433f98dbd070c0f4fb030531f4e003cb1b4",
+      "bytes": 4173
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/event/SablePostPhysicsTickEvent.java": {
+      "sha256": "82306aa728e7f83f5d82f24f91ec5a5e522d9b145a3f7f6af35d38e3c6d9ce1b",
+      "bytes": 881
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/event/SablePrePhysicsTickEvent.java": {
+      "sha256": "b4d72591a12d0fa1103b51da658caba03fa37f3450ae1e27eb20de3282e7a8b0",
+      "bytes": 889
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/event/SableSubLevelContainerReadyEvent.java": {
+      "sha256": "8a6dcce93826cbc841b44488fcdd8f9fa1c7ffc0de9e2864978e6597b1a2a4c9",
+      "bytes": 589
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/math/LevelReusedVectors.java": {
+      "sha256": "88f331bee4fed0fd348f226287413f5ee98d2ecae985fea6ec0dde5a86f56b2d",
+      "bytes": 4973
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/math/OrientedBoundingBox3d.java": {
+      "sha256": "c78ecd16b389215b901cbbce01083d82f818c20d7513406c25c13047f7d92829",
+      "bytes": 12372
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/particle/ParticleSubLevelKickable.java": {
+      "sha256": "0f85598fe0e823f9ebff5d3bdbeb83403868ce74dbe7575766e56bd8fde6275e",
+      "bytes": 667
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/PhysicsPipeline.java": {
+      "sha256": "7b5eea88aa7e7d5f34a5bbbae2b4b1c201d4277752b421e2a342607e4af49012",
+      "bytes": 8833
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/PhysicsPipelineBody.java": {
+      "sha256": "2c1d12fee9cd45edb313075d6f3cf710ea3eeacbe0f0d47905c566be498ca242",
+      "bytes": 542
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/PhysicsPipelineProvider.java": {
+      "sha256": "9f4df9b52744bec659190eeef9a3a59ac2e209e54d29bbe6795052748587f9e2",
+      "bytes": 1607
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/callback/BlockSubLevelCollisionCallback.java": {
+      "sha256": "341710cd509e2ae8144ddecbadadaf6d38e52d745fd16befac5ea9075df166c2",
+      "bytes": 2452
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/collider/SableCollisionContext.java": {
+      "sha256": "a3a3f77a2dd50e421058812aef7d407d481a3134d6bc1a0410ff43298af1726f",
+      "bytes": 504
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/collider/VoxelColliderData.java": {
+      "sha256": "405209b15e3a2a58ffd1292c70307cd305b7e4e7bf4bc2bb9efe433776bc1db0",
+      "bytes": 504
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/ConstraintJointAxis.java": {
+      "sha256": "181088d3ba8596d9faf1c467ea405b0f4bc3ba035b2cd0445e3681deaa50b2fc",
+      "bytes": 497
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/FixedConstraintConfiguration.java": {
+      "sha256": "17adf73c47239bfd47fcf785ad44a6796240b9f993c1f8681cc0747fd39a18a9",
+      "bytes": 1118
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/FixedConstraintHandle.java": {
+      "sha256": "09f8feea4eb763b6008f1cb3730f8b8942c960582a9593218e43372c04bb59a7",
+      "bytes": 189
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/FreeConstraintConfiguration.java": {
+      "sha256": "f1f6ff07ba3612122f6ed957006b999997e7b5ec6a45bfd0cc5c475eb5fff99c",
+      "bytes": 1100
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/FreeConstraintHandle.java": {
+      "sha256": "14c4efb2845c01c4d194ea4f3bd64e17752e1af3754304171ed8f79ac44d2a45",
+      "bytes": 187
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/GenericConstraintConfiguration.java": {
+      "sha256": "9fe8cf0cea924bf5bde2d9557ce9dac53ea7fb79cccc5848ec6a60b6a8ccaa58",
+      "bytes": 1745
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/GenericConstraintHandle.java": {
+      "sha256": "4a6b4932509ec0b845b0f8eff41b009dcda0c061c2309755ae4b113a4cb85f2f",
+      "bytes": 1268
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/PhysicsConstraintConfiguration.java": {
+      "sha256": "e689c69ab35e0e1423965a2cd8eeaa511f7f8a3834048e64927ae0e0d5dc8773",
+      "bytes": 2405
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/PhysicsConstraintHandle.java": {
+      "sha256": "4b7e7ac10a6f71c816658724af85b79fa86a3e72b66cabbb516f255b15223584",
+      "bytes": 1498
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/RotaryConstraintConfiguration.java": {
+      "sha256": "ddee4d73384ac7bdf49850acb6d7af7ccd9223888ae262bbe33c58c4ec48a448",
+      "bytes": 1611
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/constraint/RotaryConstraintHandle.java": {
+      "sha256": "1563cfe294a97a9bb6feeb6bcf96597f56ba491ec6f46103ba9871a8ece8c8e0",
+      "bytes": 916
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/force/ForceGroup.java": {
+      "sha256": "bf070e52e21ee22859086744e23632139d580580ef6f08cdfc4bff3593c805aa",
+      "bytes": 639
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/force/ForceGroups.java": {
+      "sha256": "e8171ccb69305a912b905736d63173ea22d9b3cae07d66f45bdc79c17414bb59",
+      "bytes": 2611
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/force/ForceTotal.java": {
+      "sha256": "c62bc2e42fb69604c3c76e7a5598b18a764d6f9a9539bf0efa97768766805524",
+      "bytes": 4904
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/force/QueuedForceGroup.java": {
+      "sha256": "de0c003ac40de5a6e2d589ab657d8a0a700c76009d64cc25a3991575f3133a85",
+      "bytes": 1513
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/handle/RigidBodyHandle.java": {
+      "sha256": "ab1423239276e32ab4da04a2d106b7f96c38657c8ff0c72c20ce8fa3c13aab99",
+      "bytes": 7638
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/mass/MassData.java": {
+      "sha256": "8f170550a9d0ed449c74a153be8d586361654fdc6ba6eb1748bd4169c51c8726",
+      "bytes": 1567
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/mass/MassTracker.java": {
+      "sha256": "1ac9e75d6b78fd48f097186c5259b206fd17fcf853acaef9c02bad725a0e7202",
+      "bytes": 9723
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/mass/MergedMassTracker.java": {
+      "sha256": "7f237f86c9f059bedafdc48d2aea583164cd174d297d7d6237cb9557db4053b2",
+      "bytes": 6716
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/object/ArbitraryPhysicsObject.java": {
+      "sha256": "cb5bd06d0de68c57fdc495cad9f0afd2d425f1caa8ec63d7d604924489d5abc8",
+      "bytes": 1338
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/object/box/BoxHandle.java": {
+      "sha256": "c856b9e36a5d61d71328bdb3ccb38a4fa216845d2eb47f98a7d0f4e90f89d412",
+      "bytes": 630
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/object/box/BoxPhysicsObject.java": {
+      "sha256": "33d888e05bd811616c3187cc865883fa726e7f8631268ed863bf1f5887673a5a",
+      "bytes": 4976
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/object/rope/RopeHandle.java": {
+      "sha256": "92d82cb3992c4e2a5a12dc7bc8d616bfd48d53f2481b2821505685126e90e332",
+      "bytes": 1255
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/physics/object/rope/RopePhysicsObject.java": {
+      "sha256": "41bc841f3f14c81cecdd0f29ef03e9c650b18f71a9140db668828d628576e275",
+      "bytes": 5795
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/schematic/SubLevelSchematicSerializationContext.java": {
+      "sha256": "b25ceed9ef67ec9e637384cc8f816d9844203ff0c0b0fe00532dc286d7986443",
+      "bytes": 2994
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/ClientSubLevelContainer.java": {
+      "sha256": "0d099f5259cf16ef6fd3a22de939726b148e482bfe835fe444f2e79351f32087",
+      "bytes": 3642
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/KinematicContraption.java": {
+      "sha256": "9817ef99d3a91b047417e4626bc53dcc9347ad8c2a621365f9fbb5b7676ceff9",
+      "bytes": 1655
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/ServerSubLevelContainer.java": {
+      "sha256": "51891c786a1e9fde6ba818f12f4fd6b3f8524f1f64705f6bf2bd80d3f33ba942",
+      "bytes": 11836
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/SubLevelContainer.java": {
+      "sha256": "285aea314f3417f396db1c95634abf8fcd7e2c429f4b176d1c6f9080451839ce",
+      "bytes": 18722
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/SubLevelObserver.java": {
+      "sha256": "8e11a4ea832dace0a93d86123b3cc81f0647a50254dc7988781d1fe5424f4b9c",
+      "bytes": 956
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/SubLevelTicketLoadingSystem.java": {
+      "sha256": "93fb2683c48c5c067a9eef655df6f9683f10630e0cfb44688b8e62a4d11dfcf1",
+      "bytes": 1822
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/SubLevelTrackingPlugin.java": {
+      "sha256": "45ae6a3489cbd38834b241d4f9308d79c27d7dd1242aad1cbb6b68ea1bdd836c",
+      "bytes": 819
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/ticket/SubLevelLoadingTicket.java": {
+      "sha256": "805797970c14fc2f7da1afd9c7657fa1018a4d46a0cdb8fb3f500c0da264340f",
+      "bytes": 1229
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/ticket/SubLevelLoadingTicketType.java": {
+      "sha256": "c568b27e988da74ba8315b12eda4fc5248de6a5ffc67b6853707012e97e9ad09",
+      "bytes": 1162
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/api/sublevel/ticket/SubLevelTicketInfo.java": {
+      "sha256": "9aacd8fbd3d8c9bd061cb788221a32b4298b771a56e6bdc34db10a36f2305b91",
+      "bytes": 1085
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/client/rope/BaseRope.java": {
+      "sha256": "0c89e8921d1e7a88e941a605c4da4ede5cd753ecd5670c4f2b16ddae3570b31d",
+      "bytes": 6326
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/client/rope/RopeManager.java": {
+      "sha256": "dce57ec55a9523b0cfeaa1ca97a94a13304bdd6cbad534c28669e94941ec9815",
+      "bytes": 5020
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/SableAssembleCommands.java": {
+      "sha256": "69fa1083bd1addc6135416a7e18eb6cd6c9fa16c3e477532fb85022557041a7c",
+      "bytes": 22200
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/SableCommand.java": {
+      "sha256": "e3dc66df936bb7199302a4ed782fd8611f892ceed917ecb942f7cb79f26085ba",
+      "bytes": 11580
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/SableConfigCommands.java": {
+      "sha256": "829b79c1c3d60499c960fb6034e34d512f206a69fa35562c50b8eda0a96517d1",
+      "bytes": 6241
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/SableJointCommands.java": {
+      "sha256": "38310c6e1700bc371a7ca45d61560cc0f78f2c701fa169818e422f64e9faf55f",
+      "bytes": 4435
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/SablePhysicsCommands.java": {
+      "sha256": "7ed34c7cfd18d4463a7ab07a3cddb2867efe80c8643b6c0bfdc6b217543f9c13",
+      "bytes": 14878
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/SableSpawnCommands.java": {
+      "sha256": "625100c99ba608965bf9a16ffb21409a65bf4b5991afc0e80e51aba0b110e7bc",
+      "bytes": 25310
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/SableStorageCommands.java": {
+      "sha256": "04035873491c7ecf1ae39050498892b00eb9343efde5b77b70caa407c5985249",
+      "bytes": 10028
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/SableSubLevelCommands.java": {
+      "sha256": "ddec5c57d5903f0cff5bfd0c9a8f10b123e4c5d74c7377f80cacc7d704e96d64",
+      "bytes": 9431
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/Vec3ArgumentAbsolute.java": {
+      "sha256": "5d6bfe04144d4fb841756b03cfcd407914093d9c5aa660fd193bc14f8ae61cbd",
+      "bytes": 3922
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/SubLevelSelector.java": {
+      "sha256": "cfa6b2c277fe82ce288039d11b3c41eb01d7a2fe8c92702ade6d9834f5903607",
+      "bytes": 5806
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/SubLevelSelectorModifierType.java": {
+      "sha256": "ea03d818d16c777b0c5a6624624d953e635dfe9c24a48a4e94b557d5080ae19d",
+      "bytes": 3698
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/SubLevelSelectorModifiers.java": {
+      "sha256": "325009115dc3312967b766283cad66bac162adf361a6eb58feb0b60964039c6f",
+      "bytes": 10338
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/SubLevelSelectorType.java": {
+      "sha256": "82a0aeb404cb6587c509d597f0cd7b3af8d850e6d16a9137b427cb96b9e5796d",
+      "bytes": 1496
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/modifier_type/SubLevelDoubleFilter.java": {
+      "sha256": "70ffc40f7512f899e9cb5290f8a63102db0381680ee0717fa0cb6ec9c48c0018",
+      "bytes": 1931
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/modifier_type/SubLevelDoubleRangeFilter.java": {
+      "sha256": "667134a1f0e0d008f22ee74a7af3c8204ead504b803702a1b08418e77c83f45a",
+      "bytes": 2617
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/modifier_type/SubLevelLimitFilter.java": {
+      "sha256": "58744a7e7bfcd169aa3a02dea2ff54749e5a50b45ff1e0112958af5bbbc11254",
+      "bytes": 904
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/modifier_type/SubLevelNameFilter.java": {
+      "sha256": "60cbdfcb86037e09e1dfc76901f3dd6e7e06ea9a8e33461afa3330393f1e5f80",
+      "bytes": 1060
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/argument/modifier_type/SubLevelSortModifier.java": {
+      "sha256": "9f7ee26672cdb386ad68bab99b582825168be426aa3789af545ccae1bc616998",
+      "bytes": 1449
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/command/data_accessor/SubLevelDataAccessor.java": {
+      "sha256": "ca81a18e451894e08c5397b5f9951ebdfcd33cb6f2a28fbd75dd31f380bbfdc4",
+      "bytes": 2887
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/compatibility/LightEngineCompat.java": {
+      "sha256": "bce1f1483f471483b4ec85bace8a842b1148bd382443cedca87077da003490c7",
+      "bytes": 1388
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/compatibility/entityculling/EntityCullingCompat.java": {
+      "sha256": "e361e82bca0dd117efe0ca7dcc95aa418725fa3be6ba248cde41fdc6a7f185a2",
+      "bytes": 3728
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/config/SubLevelSettingsScreen.java": {
+      "sha256": "4b8c046d047253d77c3c918f513c1eb2924af256525709ea78d4f90fa0b6956b",
+      "bytes": 2079
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/ResourceReloadDelegate.java": {
+      "sha256": "57445af7b4fb6d130e8e3339f84d2a42087414abc52a9c1e9a4bfc766a7a375d",
+      "bytes": 1078
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/SableFabric.java": {
+      "sha256": "5da30c8418028a4516ee4a5ae2852c9cd1991f52c625b68e27d8e7a6898baa86",
+      "bytes": 3973
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/client/SableFabricClient.java": {
+      "sha256": "df67e990632c725e5e382e6f6c95670b0a168f3cc23b3b161ade8b9e9f1eb0f3",
+      "bytes": 3661
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/event/FabricSablePostPhysicsTickEvent.java": {
+      "sha256": "0b2469e489e64c623fe00e9e82a8670330bc1a9b63a8ec8d12090a60ea2a3cf3",
+      "bytes": 968
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/event/FabricSablePrePhysicsTickEvent.java": {
+      "sha256": "7a5ca69bdcfa3ee46950334a8d1a2bb1dacbb82e9069337e50df064b12fada5a",
+      "bytes": 948
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/event/FabricSableSubLevelContainerReadyEvent.java": {
+      "sha256": "6be1fd4ceb1ed6bc6e2e23223a07c3a76228e1807c53877e535d40b54e4debf1",
+      "bytes": 754
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/assembly/LevelChunkMixin.java": {
+      "sha256": "ad1e03977e1b14edc45040b6dc947650cd1776e7cec3292da234abcf417f77af",
+      "bytes": 1172
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/assembly/LevelMixin.java": {
+      "sha256": "6842dd9edfd66799bd56bd869c65b9f6bad4f5f835235f1c0137149dfa37c790",
+      "bytes": 603
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/block_outline_render/LevelRendererMixin.java": {
+      "sha256": "53ecc7b1837f65c2b74b2b9f59b05a23a4382732b44a2cb5f030d9c982c62698",
+      "bytes": 3732
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/camera_rotation/CameraMixin.java": {
+      "sha256": "8caafd1793b21f29932573b3f9e8971bb6ddbd300b9639c4cc56498b1b1fa5bb",
+      "bytes": 3148
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/compatibility/sodiumextras/EmbyToolsMixin.java": {
+      "sha256": "bf5d027738771ea08b4a3ba32ff484ced84c7007b577362533cb4fd1c6d50ad8",
+      "bytes": 843
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/compatibility/zume/ModernZumeMixin.java": {
+      "sha256": "57d1e32cb61844698a9122ced606fe5e6600b30270dfc7fdaf9d5afd678f7118",
+      "bytes": 1524
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/dynamic_directional_shading/SectionCompilerMixin.java": {
+      "sha256": "ab08645edf0fe7e2e77f0bcbcf95fecbff76d7e21c34c379b9ca7a9a174f90de",
+      "bytes": 2078
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/entities_stick_sublevels/effects/LivingEntityMixin.java": {
+      "sha256": "492cd380dd2795f299345b4882d19dacc790d6966d35e07ffa4eae126a71a595",
+      "bytes": 1138
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixin/sound/MovingSoundInstanceDelegateMixin.java": {
+      "sha256": "f7f3c45542d341bb9adfe1bfb73a6018c106653cf23738d338cd8482546cd56a",
+      "bytes": 865
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/mixinterface/LevelExtension.java": {
+      "sha256": "c9ef4cd5f56e9db7de4c02a7581e43567ff5190af6f1f73133493aa2401b11db",
+      "bytes": 174
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/network/FabricSablePacketContext.java": {
+      "sha256": "3b898a629ad875bbfc752a0c2287901be7892e502de42d28fabc6b57a7b2432c",
+      "bytes": 366
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/platform/SableAssemblyPlatformImpl.java": {
+      "sha256": "7c034eda09debb549490fc5bc6d1812049e33589c33d35e68be29326f4ca3459",
+      "bytes": 511
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/platform/SableChunkEventPlatformImpl.java": {
+      "sha256": "4a74d56d42d84909328a64cc85981bb52cd661c45408dc4f127d9c8a00391109",
+      "bytes": 1110
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/platform/SableEventPlatformImpl.java": {
+      "sha256": "a9914e8bdd9d42efe964f13a08b167f7ab5d04067d8f830408d648ebf8fba7bf",
+      "bytes": 1153
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/platform/SableEventPublishPlatformImpl.java": {
+      "sha256": "06b2c4392175628d3a63405a8a8b34741ba870bed182efb3514a7ef6451d6b01",
+      "bytes": 1965
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/platform/SableLoaderPlatformImpl.java": {
+      "sha256": "b2cf7f1fa884093d0bf387a17640612ef0f22ff08ff99773aed2b922449ccf4d",
+      "bytes": 680
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/platform/SablePlatformImpl.java": {
+      "sha256": "d7f216a542812a7af3a68e9256aa4396dfd635a10b3d49104c8a31b87dde6981",
+      "bytes": 732
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/platform/SablePlotPlatformImpl.java": {
+      "sha256": "a49eedc9f0f3f639ea5b299f9dfcb66af2dac9f97f540b87dfba944fd1917ae1",
+      "bytes": 1049
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/fabric/platform/SableSubLevelRenderPlatformImpl.java": {
+      "sha256": "72db0ec70a5e9680c8c6b5376358b9a51ec35185b89e11994e947679516f7c8d",
+      "bytes": 414
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/index/SableAttributes.java": {
+      "sha256": "8f9d67f6bf5afadf3d68ccc01c72c8469031217ea44427e3740f3157b4fb710b",
+      "bytes": 1884
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/index/SableTags.java": {
+      "sha256": "2e60b733395d7c7365c3495ceba7739537c5f803b7a31294fd9786d85f22c076",
+      "bytes": 1538
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/index/SableTicketTypes.java": {
+      "sha256": "08b86edf0c607db0fdb4d38814c281d6ddf04931a1cec69c0baeb06ed4fb5bb0",
+      "bytes": 514
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/index/SableToasts.java": {
+      "sha256": "68af590c5bf92aa93888916b7fe94967be0d94a63530c2f7776baebce0f74ef6",
+      "bytes": 456
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/AbstractSableMixinPlugin.java": {
+      "sha256": "62d8ba48933e80b6c7a178f1e6f681621c89ea0f44f0f91f47ff5b22183effef",
+      "bytes": 6721
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/assembly/AbstractFurnaceBlockEntityMixin.java": {
+      "sha256": "7661f21dab7333527aaa0f973fa0828b295ad46ab84a0528bd41ffade02601f2",
+      "bytes": 1306
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/block_decal_render/LevelExtractorMixin.java": {
+      "sha256": "2cea0c8139f6d50438de1833ff51902db1ac34ca38449875daacfc86968deb0b",
+      "bytes": 1039
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/block_decal_render/LevelRendererMixin.java": {
+      "sha256": "1dbdd796391c1d149d6209121aaed41cae6fbf8210fdea45e163a71a652e0ab0",
+      "bytes": 4692
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/block_decal_render/ServerLevelMixin.java": {
+      "sha256": "93995c7db5c0b72716caa26efc6022963ba664e63c5d9177d5ca2bd1d4cea5ed",
+      "bytes": 754
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/block_placement/BlockPlaceContextMixin.java": {
+      "sha256": "9b9379d065128b10ce714734ef0af5cd67be7f60c512c4ced6c29a3bbea2dca0",
+      "bytes": 6926
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/block_placement/EntityGetterMixin.java": {
+      "sha256": "749ad696b7beddd4cf5d47217c10e5762e73780a6208cc1a8220e0e4e771fec8",
+      "bytes": 1543
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/block_placement/UseOnContextMixin.java": {
+      "sha256": "98633e92fe547309f4c3c181d3c8f1cd467cf228d56b6f49210f859eefbd16f0",
+      "bytes": 2236
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/block_properties/BlockStateMixin.java": {
+      "sha256": "2fe29d16004db5d2dbca6daf1683300545188bb49faae6dfe52623b764f4089b",
+      "bytes": 2531
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/camera/camera_rotation/CompassItemPropertyFunctionMixin.java": {
+      "sha256": "c92965f2c847884aad6e421a0ac5756adac8add7f138fb867c1d2c7caa7d987d",
+      "bytes": 2251
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/camera/camera_rotation/EntityMixin.java": {
+      "sha256": "2467c685c4e1bc1750a0612ea0b56d117797c76fc731445c83ef233b89b09034",
+      "bytes": 1933
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/camera/camera_zoom/CameraMixin.java": {
+      "sha256": "2310621969088e0f7a9912515f43ab03c72811e83d902b06a7bc3a9bc2c01365",
+      "bytes": 8264
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/camera/camera_zoom/MouseHandlerMixin.java": {
+      "sha256": "62c4e80744ba5a62b838c778cdaf6c0e438ff68af3bca4aaab2490e1a7a363bf",
+      "bytes": 1729
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/camera/new_camera_types/CameraTypeMixin.java": {
+      "sha256": "fbbffa6d83e3519f5ba52c362b623092eff99d1b7664bcdc70efdfcb1679bac0",
+      "bytes": 2208
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/camera/new_camera_types/GameRendererMixin.java": {
+      "sha256": "fc20dc58556235705034a3bd154f4982be9b5e5326f389852c3e66267f87ec77",
+      "bytes": 1764
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/camera/new_camera_types/MinecraftMixin.java": {
+      "sha256": "31467825e78d1ae943cb7cef56e0d3dbbd0f33bf24c929c280ec057c89809bce",
+      "bytes": 4131
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/chunk_container_replacement/LevelChunkSectionMixin.java": {
+      "sha256": "0f23a328543572fb5d2ab0d3665a78f465bf1cb9152b900d8b98b69720f23628",
+      "bytes": 237
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/climbing_sub_levels/LivingEntityMixin.java": {
+      "sha256": "488a78914c3f2b7401c6f50b0853d969c42cedd28576c26bb9e74b0068add7b2",
+      "bytes": 3409
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/clip_overwrite/BlockGetterMixin.java": {
+      "sha256": "d6b6a9ada3ee3855aba533ca7f221f69cb58b16ca7d08e735500de2bfb209700",
+      "bytes": 7858
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/clip_overwrite/ClientLevelMixin.java": {
+      "sha256": "7b905770dbf69c305fccc261882a91376697bac6afff6d410bf7e18354ef5012",
+      "bytes": 1326
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/clip_overwrite/ClipContextMixin.java": {
+      "sha256": "edaa62886f83a0bf6fcae149184cca921d3224fc74eabd2ddf16818ca0b98f8e",
+      "bytes": 1858
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/clip_overwrite/EntityMixin.java": {
+      "sha256": "68f613fd99fcc368b3a831eaf02fe98083f1576a8de89541ed5712e1aa9040b4",
+      "bytes": 693
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/clip_overwrite/GameRendererMixin.java": {
+      "sha256": "5026fe957340a02ca59d9405f8baf3b1ae630c9e125ba6a652e0a7bf2355128c",
+      "bytes": 1207
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/clip_overwrite/HitResultMixin.java": {
+      "sha256": "ff5be7a46010d2f38f4f4ec67c1486ac22d7199d65772739195f3d39bd0cfd72",
+      "bytes": 796
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/clip_overwrite/LocalPlayerMixin.java": {
+      "sha256": "174156aee85bf0fd99ef74b0ed1072e89d24cd96d392abcfe8dfb448d9986754",
+      "bytes": 2263
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/command/ArgumentTypeInfosMixin.java": {
+      "sha256": "eaf53b61077931c94500225de4594acefb1af6892a4574d5cdd1571829964518",
+      "bytes": 1601
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/command/DataCommandsMixin.java": {
+      "sha256": "8e7b3a8b5df25d9056be90ee3c4706bd48b4f60b8d5b91d02ebc18918812463c",
+      "bytes": 1465
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/command/ExecuteCommandMixin.java": {
+      "sha256": "d00420931d9fbdc33d4f696921e6ad23d8ed11c127a119ab3ccd64c04ef837b0",
+      "bytes": 6666
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/AABBOutlineMixin.java": {
+      "sha256": "100e05abd918f4b1818fc0868e5247f0690c7744f3c37292aa3d632ef073c299",
+      "bytes": 1466
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/BlockClusterOutlineMixin.java": {
+      "sha256": "e86e0071d605b8c507579a3578e83e2d073342ce1429540cf4dd8f31dfbe3b4e",
+      "bytes": 1588
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/BlockEntityConfigurationPacketMixin.java": {
+      "sha256": "244dc245a23f34caef332e5736134b0bd2c0f8eadd2d7508be97f2224a71aa13",
+      "bytes": 1609
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/ChainConveyorRendererMixin.java": {
+      "sha256": "fc594c8f0a5821e25d3965a06b8753a2823f744b34d75cdbb4580484e16e1146",
+      "bytes": 2799
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/GhostBlockRendererMixin.java": {
+      "sha256": "9250828a249c66f8a05193dafce0a1a43edb09c9df1849992d02c1eaf01f3e23",
+      "bytes": 3510
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/ItemOutlineMixin.java": {
+      "sha256": "b40fa830f868d69bd009e4bb96354b09039a6e4150d9abb011c6e03b4a1b1f06",
+      "bytes": 1350
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/LineOutlineMixin.java": {
+      "sha256": "4fed036ce77bfef455c8c7c18396b609d8fd8ef8b26114ba3862585eba0ae273",
+      "bytes": 1680
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/LinkBlockEntityRendererMixin.java": {
+      "sha256": "6481635e49b27577524b3f38a6e18c7c7e6eec8cca64e0fa4176ea36b45f6d11",
+      "bytes": 2595
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/RedstoneLinkNetworkHandlerMixin.java": {
+      "sha256": "f624e584e06164b07c200585bbc1308005cf537b2aa86567c31ff4d3090ec106",
+      "bytes": 3616
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/SuperGlueRemovalPacketMixin.java": {
+      "sha256": "66ca6cf9448266463d488bd9e1efaff41e091853ef2ff4bdfded539e9bedd751",
+      "bytes": 1049
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/SuperGlueSelectionHandlerMixin.java": {
+      "sha256": "4229461b4e73f113b35afefbc77dfe0c14e79261bbb24a65d3d3c5a29517abe0",
+      "bytes": 3524
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/TransparentGhostBlockRendererMixin.java": {
+      "sha256": "0161ec281c08e56eb06ce1253bf7230857920eeec306ade09b9895cfd2f5120c",
+      "bytes": 3059
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/create/ValueBoxMixin.java": {
+      "sha256": "623fd9f65b72f1e0426b0c2c505612597655ae5bb01cba67df328b372a3060f2",
+      "bytes": 3400
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/etched/StopListeningSoundMixin.java": {
+      "sha256": "52d0aa417161a91dfee3212d22c38fbe11a246f2a192ea5c9deab53a891b14af",
+      "bytes": 774
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/scalablelux/BlockStarLightEngineMixin.java": {
+      "sha256": "a5942d8e9eafbe588f315fa70b230824881a145dd8854092e5e7644485446dea",
+      "bytes": 1951
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/scalablelux/StarLightEngineMixin.java": {
+      "sha256": "4d8ca8c7f47d5260fa7ec2bc4fe1f7facb83f0e9eb0ddf523f8c95ffb6670337",
+      "bytes": 3100
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/compatibility/scalablelux/StarLightInterfaceMixin.java": {
+      "sha256": "3cfef888c872bb0604527d8e86c3a4647103ea83b09e6d65605722bd24b0782e",
+      "bytes": 2835
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/conduit/ConduitBlockEntityMixin.java": {
+      "sha256": "ed01f4ff2de698f107776ec74559089737dd75384f0c9435be445d54f03d5f30",
+      "bytes": 1021
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/death_message/CombatTrackerMixin.java": {
+      "sha256": "602c4155fc592ca3bb727bd3ed99f5709458f6df2679705525a2cd34062471c9",
+      "bytes": 1681
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/death_message/EntityMixin.java": {
+      "sha256": "9bfb916cd71d2f7fa9806e060ffed110112d247705c581f5e6276375205fad2a",
+      "bytes": 908
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/debug_render/DebugRendererMixin.java": {
+      "sha256": "e90050a0ad2c22196fcdfa9ab9e7fe586d9018c06c158a43bf0c5e92e78ff12d",
+      "bytes": 2186
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/debug_render/DebugScreenOverlayMixin.java": {
+      "sha256": "a90a39acb2ece0e5573ffb944f7b190cb707c799c3dae2c1fd28e0e5c8a7c21f",
+      "bytes": 1468
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/debug_render/SubLevelBoundsRendererMixin.java": {
+      "sha256": "c54d4a6d84a9391fcc54245b7d2f682d4d6dbcca7eb5e5fd581f6a60620900e3",
+      "bytes": 5750
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/enchanting_table/EnchantingTableBlockEntityMixin.java": {
+      "sha256": "0cf1612dee24d374ddfedfd526777bfe7b1b3434083135f2fbd4f24be92a6c3d",
+      "bytes": 1671
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/arrows_hit_blocks/AbstractArrowMixin.java": {
+      "sha256": "b2724e8fbfe12dbdf972508a38484c045b45ca24ff860fbb37a9726ca5fb4a65",
+      "bytes": 5185
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_in_blocks/EntityMixin.java": {
+      "sha256": "73753068d04016a4393f1311931c8dd07f50405434f8c2c0be37d0f6bd6ba02e",
+      "bytes": 4444
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/ClientPacketListenerMixin.java": {
+      "sha256": "2d636f0ac9a920d98e401dc246ddebb132d3736989ba4244f56c44de5be0bc7a",
+      "bytes": 10631
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/EntityHitboxDebugRendererMixin.java": {
+      "sha256": "01efc6ea98ec4243d34815a6032173b7d0c09814ce166d8a58c839a08c32f0a8",
+      "bytes": 8609
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/EntityMixin.java": {
+      "sha256": "c888a771345d54a45d506ecb7e08c53eb4366e71db86d3f301b460d814be540b",
+      "bytes": 3717
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/LivingEntityMixin.java": {
+      "sha256": "aa372df293ad46b1b9c13cf5e4afed7ad9d52ec194c7deb60d546a963486a5a2",
+      "bytes": 7869
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/ServerEntityMixin.java": {
+      "sha256": "9f8f971fedd9eee6e635611f3d11d32e7aa44c6d714db5e4ebf9b24d5dc243f4",
+      "bytes": 4128
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/effects/EntityMixin.java": {
+      "sha256": "b5181eb935f551d3d122e419c7eaaf153b8ff14100ff313d35ee5dcaa3712cfa",
+      "bytes": 6965
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/effects/LivingEntityMixin.java": {
+      "sha256": "4a83c99a8e4ed8c4733062550f725fbc20687e949689461d9f55a351ed746c7d",
+      "bytes": 1241
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/effects/LocalPlayerMixin.java": {
+      "sha256": "d06fcc8bec9258094dfd0435947283ef7da06da3d2964131bc4ade22495b69c2",
+      "bytes": 1343
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/packet_mixin/ClientboundEntityPositionSyncPacketMixin.java": {
+      "sha256": "08b97d9d2de850d21f7308d2910026a7644ef6d04ff82a4c98b922cbc613a070",
+      "bytes": 2367
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/packet_mixin/ClientboundMoveEntityPacketPosMixin.java": {
+      "sha256": "ce8fb291abdbad540a7daeb2fe6d75c004786964771b8711f72df5b374a8dcde",
+      "bytes": 1811
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/packet_mixin/ClientboundMoveEntityPacketPosRotMixin.java": {
+      "sha256": "0111be7f9d130a6d81a4a7028923975d645042fbd95455e29bb2c0a10b947ba1",
+      "bytes": 1817
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/packet_mixin/ClientboundTeleportEntityPacketMixin.java": {
+      "sha256": "1b5f6334f6964346a8df2e32d686d94844849a487f5f55074ea4d7407086156f",
+      "bytes": 2281
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/player/LocalPlayerMixin.java": {
+      "sha256": "e587fe4d5bd7fdd5783aedbc4186d3b10178484f2d5d7db836d625c92ed4561f",
+      "bytes": 2069
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/player/RemotePlayerMixin.java": {
+      "sha256": "af99a5d5fed5b3a5160e177eadcfb9178309c1d2d3222f42113f64a30a90c34b",
+      "bytes": 945
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/player/ServerGamePacketListenerImplMixin.java": {
+      "sha256": "69bcddddde48aac79d3f595a7e962ac4e775c62763fe244f120803b66492b66a",
+      "bytes": 2091
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/player/ServerPlayerMixin.java": {
+      "sha256": "70bd3a3f908992c8106d6dbdae9b0a52ecdcf93baebdd91ee478b88dd2045b35",
+      "bytes": 4386
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_stick_sublevels/player/ServerboundMovePlayerPacketMixin.java": {
+      "sha256": "d6ddb4908f7b133ced3fceca3d38657cbac3fce94e69d6ce19d4a9eccbf7a82f",
+      "bytes": 2187
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entities_turn_with_sub_levels/GameRendererMixin.java": {
+      "sha256": "0d19ee945cb493ad4b06a4b70314f7b9a51c874fcb5cd40634e7e35a05425517",
+      "bytes": 3451
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_aabb_lookup/ClientLevelMixin.java": {
+      "sha256": "7193d3cc674a3027b9017d3b545ed633ef87f3a18f6c059b1a2997e0126e721d",
+      "bytes": 961
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_aabb_lookup/LevelsMixin.java": {
+      "sha256": "fd766ac6816f5822e5975f37901d9899d7b7b9bae779cb394a939ba88394ad31",
+      "bytes": 1099
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_aabb_lookup/ServerLevelMixin.java": {
+      "sha256": "3c58e4a917802b70b1cb3f37eab60925a776e2df53ec18854d1a6206838cb137",
+      "bytes": 1210
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_ai/EatBlockGoalMixin.java": {
+      "sha256": "583fbdad43f988e47fa636babbbc3b56efba773dedaf17de4e582a6c1b766c30",
+      "bytes": 1190
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_collision/CollisionContextMixin.java": {
+      "sha256": "75b4ce188e377bc27cc25ba63e7c12a95a84ad91cc71baa05d3f4a0695d013e3",
+      "bytes": 795
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_collision/EntityMixin.java": {
+      "sha256": "9ae62d136927015e6d6f211d7162662d7a337e1d0239bc88bb746831965dc3e6",
+      "bytes": 730
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_collision/LevelReaderMixin.java": {
+      "sha256": "d28709053664392cd5daa73f89d09a195e778815b99c26277793de2f99dfd068",
+      "bytes": 1620
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_interaction/ProjectileUtilMixin.java": {
+      "sha256": "5e84c57fae67e089e7a9d401bfb9f893e27028aa4ef028af0abff8d3ee7247df",
+      "bytes": 10894
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_kicking/BlockMixin.java": {
+      "sha256": "3336703622393cfa88489e954cb50c3be3748172ca7fa1be607f2d21f7212152",
+      "bytes": 2364
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_kicking/ServerLevelMixin.java": {
+      "sha256": "fcdbe9fb79cb8c24f45ce47d339e8290a4847ef8f61357d2cf4c7c216fe4fe1a",
+      "bytes": 1107
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_leashing/LeashableMixin.java": {
+      "sha256": "f3ffb7bcbf76e1dec0ae91839b4767ba81d6d8ef45c203c9af89210681fd818c",
+      "bytes": 2505
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_pathfinding/FlyNodeEvaluatorMixin.java": {
+      "sha256": "98134f9eb778f73a9b56d67bdf67bdaa46749711e7392c6705e6cb31cc02af70",
+      "bytes": 4451
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_pathfinding/GroundPathNavigationMixin.java": {
+      "sha256": "7d78cc5568f1d76b2de7627b16cf4f15e3b9e34b0ae6f39719a6166a1c7a8139",
+      "bytes": 1425
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_pathfinding/PathMixin.java": {
+      "sha256": "7b31e47d2128db952fe330805500a6daedab0923da82e6634f862e6a12d66799",
+      "bytes": 2643
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_pathfinding/PathNavigationMixin.java": {
+      "sha256": "4994011e9b7ba5c51ed3c7e5c350a469778828f7148a3861a9cded31dbd4b89a",
+      "bytes": 4805
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_pathfinding/PathfindingContextMixin.java": {
+      "sha256": "15df9d93424113071b58cb46699f9f8691b8022240e4f0fabb8879dc65cdbe6c",
+      "bytes": 1289
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_pathfinding/RandomPosMixin.java": {
+      "sha256": "9e0d60ff2e3abf01f6825ea542210df50045c083ae665359ba23cad27d0d5df1",
+      "bytes": 1937
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_pathfinding/WalkNodeEvaluatorMixin.java": {
+      "sha256": "5994aae930976013b76a6f8ee5a55549987030d13bbe00803eb47c1b118fd848",
+      "bytes": 5268
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rendering/EntityRendererMixin.java": {
+      "sha256": "59fb1fc58d1046bdb3d92f099599c5c950ab168d7265777faf9e6bf19fecb29c",
+      "bytes": 8211
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/BlockMixin.java": {
+      "sha256": "f0dfd6ee34e59cc03ede22fbce63802ba75c985ea081f428fc273b12b30cba88",
+      "bytes": 1379
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/ClientPacketListenerMixin.java": {
+      "sha256": "2de719660716186de70c087c215286e038193bcdbf12b14fdf0e536ceeb1de4e",
+      "bytes": 1442
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/EntityMixin.java": {
+      "sha256": "e04fa3ebcdec1fc2614f876e8d7dd206fae7aaadaeebac2a7f6d79b08b795582",
+      "bytes": 6106
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/EntityRenderDispatcherMixin.java": {
+      "sha256": "6d648e871ab355f8016cd28b56f2b4e0859d603da7a0c2592c58faa1306eace3",
+      "bytes": 7379
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/EntityRenderStateMixin.java": {
+      "sha256": "66f847367e3389a0cefcd5dacf7cad4e5d48d71a831b5efe0cb7cd4535536e9f",
+      "bytes": 1330
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/LevelRendererMixin.java": {
+      "sha256": "8ac1a5c3235ee1fe128ec8e63a7278be07ab861601cf665f9d756d7ba970305d",
+      "bytes": 2427
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/LivingEntityMixin.java": {
+      "sha256": "c3dac53997d90d0e3f359e4c79ea47901dce25cc02b501c806eb858c39b891e5",
+      "bytes": 3904
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/LocalPlayerMixin.java": {
+      "sha256": "5d2fa7fe9a0991669b9d8917cbf8dd72ba0490c62a0b798c91a412c326cf8cff",
+      "bytes": 5378
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/PlayerMixin.java": {
+      "sha256": "328898433758773a43a68060afad3ec8b2e15cac57700bb180cb68c78491337e",
+      "bytes": 4051
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_rotations_and_riding/ServerPlayerMixin.java": {
+      "sha256": "a9ae3f3f530ae34fde2431c35f7d3afab1ec44df1c13aa95aa39f920a9947582",
+      "bytes": 2683
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/AbstractMinecartMixin.java": {
+      "sha256": "d43127f417bd2cc949f7b6bb030db01313bc4f9865af57c15c2376c949f49808",
+      "bytes": 1745
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/CameraMixin.java": {
+      "sha256": "fc925270177938383fec78641be0e12668b97d9aaa0e7089bc4b9d339de90baa",
+      "bytes": 3534
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/EntityMixin.java": {
+      "sha256": "3d49d5333505610a860affcc812c2dfd6508229bde1dc4c728b6131a8b1d0ca3",
+      "bytes": 18242
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/ItemEntityMixin.java": {
+      "sha256": "23473ae30d934da8bd1d7c765a0de960b4d484dd1fbb823c9a4a00aa3847d0a4",
+      "bytes": 1142
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/LevelMixin.java": {
+      "sha256": "dd557e2d71915d950465c1bec339ccbe8c457ecf8acff6a79a201b1f681fbf1a",
+      "bytes": 850
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/LivingEntityMixin.java": {
+      "sha256": "95326386e00fe2a53be59c404204b9f620867491539f871496e79203fca0b55d",
+      "bytes": 6462
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/PlayerMixin.java": {
+      "sha256": "1463b2b887124321bc617d32a2e77b5a78bb0dc25752d3e5ba0b2ebeb1683bca",
+      "bytes": 5940
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/ServerGamePacketListenerImplMixin.java": {
+      "sha256": "b0dd61b03cb8a3146aa20e034ba9bb799cfb48a975bd8a62d805f4760fcf8eae",
+      "bytes": 1078
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_swimming/CameraMixin.java": {
+      "sha256": "64a53cc325def1e4b34803db8e0130059e68d49ba3afe40785dcd21c34b6ea24",
+      "bytes": 4106
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_swimming/EntityFluidInteractionMixin.java": {
+      "sha256": "763abba7a3bb40ebd3110208737e531c7a9db2b167d9d878c87827d18c1c3e54",
+      "bytes": 4240
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_swimming/EntityMixin.java": {
+      "sha256": "56192a4e4485f2d4229461538109f4046569f94627959aa172918b9cace01f18",
+      "bytes": 1127
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_swimming/LivingEntityMixin.java": {
+      "sha256": "19387fd5c9efc2472061f7f162f493f9c8e2fc5e435fcc2ea8b99bd71e3b02a3",
+      "bytes": 1308
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_swimming/PlayerMixin.java": {
+      "sha256": "0bfb107656ac07b5f03a874560ff21677a1afae8788c0b3f619cd38c06608e65",
+      "bytes": 898
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_tracking/TrackedEntityMixin.java": {
+      "sha256": "a6a8644687cecb922585eacddb4ed58f82d5e90365c1fbb848de31ac30b387dc",
+      "bytes": 1049
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_unloading/PersistentEntitySectionManagerMixin.java": {
+      "sha256": "32adf330ec4dd3245e932f629f0132ada5c578bc9f1488537c9d8c7d91c0ea24",
+      "bytes": 2016
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/falling_block/FallingBlockEntityMixin.java": {
+      "sha256": "99c220791eb99e7cf80fd03af13f59d60876d3e46cd798415d61459beb38bf12",
+      "bytes": 1501
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/parrot/ParrotMixin.java": {
+      "sha256": "0cbb51e14ce8607094bd32ee08870e46c5d2874c644f6d9d20b9d3022f34d370",
+      "bytes": 1199
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/projectile/ProjectileMixin.java": {
+      "sha256": "a69f1abcb1ebfc199eed70c38447ec4b69aee3b24da3bac2e254a235da8b8bfe",
+      "bytes": 2590
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/server_entities_tick/ChunkMapMixin.java": {
+      "sha256": "aad90bfd5c89951868c024d6e2d770a8dfa16e25ebcf373d584695b903e7f1de",
+      "bytes": 1398
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/server_entities_tick/ServerLevelMixin.java": {
+      "sha256": "31525c5a39eea73a6526fe9bc9a44a729d47af0bb73e572e646ed0c2d62bafc8",
+      "bytes": 1313
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/sublevels_block_sky/SubLevelsBlockSkyMixin.java": {
+      "sha256": "1955b426c136727dbf699bfe86bc796cd276f4fef1214b6a476455487aceb898",
+      "bytes": 1409
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/tamed_teleport/TamableAnimalMixin.java": {
+      "sha256": "d46ff5508103dc91cb9ff8c52b5c37d866eab26c042bdb98e1437167011c9e1f",
+      "bytes": 2307
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/teleport_players/ServerPlayerMixin.java": {
+      "sha256": "229f337d61b5b4370836bd931009f568702996516f08465188cb982c9f395b79",
+      "bytes": 1729
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/tnt_jumps/PrimedTntMixin.java": {
+      "sha256": "6009fc922267cf3072c68c6af83be0bf7d170aacdcb431e8bec2b75ca36b1417",
+      "bytes": 1356
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/trident/ThrownTridentMixin.java": {
+      "sha256": "11e2b595a04cad8e65bbf32d00402ac8712ae5a62f0053ec469a508f3402772a",
+      "bytes": 1191
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/explosion/ExplosionMixin.java": {
+      "sha256": "60eff935a2cdd8fbf9c9b902f907457e5d2a468c88452e33ccf65792d2caba8d",
+      "bytes": 7086
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/explosion/ServerLevelMixin.java": {
+      "sha256": "46c1de08de465281db7ea5100eb22dbc8f0476417f87fedde8892a9d888b05bd",
+      "bytes": 2288
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/extension/EntityMixin.java": {
+      "sha256": "a6b0aae5d9983f94541f510f6788564b5ce3b8f53385a7ccc4a87dd984fca47d",
+      "bytes": 982
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/fluids_on_sub_levels/FlowingFluidMixin.java": {
+      "sha256": "d740d0af752aed42fd4f33501975ad02fc7c07e91e47e0b72f495ed3d19464be",
+      "bytes": 2037
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/game_test/GameTestInfoMixin.java": {
+      "sha256": "db0f5d13b479a81acbf4a0c0e5a3a4e22635b8aa05ce9e127a434c34a31468fc",
+      "bytes": 1491
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/game_test/StructureUtilsMixin.java": {
+      "sha256": "e0c648aea90185aa16764178bab8e880ddbab78fa046695d92fdc1593c521777",
+      "bytes": 1235
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/game_test/TestCommandMixin.java": {
+      "sha256": "8fd8dc307dfc0c0a1c98d4773ab2a8b61c95be29e0a329132a9ea09e653547ef",
+      "bytes": 1346
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/impact/BeehiveBlockMixin.java": {
+      "sha256": "39c1db604cd50cf56c3e79fcb098ac5913f6ed587aaefbed7aa75cf0027790c4",
+      "bytes": 607
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/impact/BellBlockMixin.java": {
+      "sha256": "3953ddf98e10aa8a4b913d5daf402996271c66f58ea05478a20044fa8df169fe",
+      "bytes": 592
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/impact/TntBlockMixin.java": {
+      "sha256": "adbaefbd883d3bfb192e5955be160582fd658813d6b060af6c824773e0b62940",
+      "bytes": 787
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/interaction_distance/AttackRangeMixin.java": {
+      "sha256": "310f96a143815f52d38effce044204bcfc5acfc50c69ba1a0d75f41049b1448d",
+      "bytes": 2517
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/interaction_distance/EntityMixin.java": {
+      "sha256": "57c06b95e0ad1d1502aac6357793b4f4f89e9323c4e751dc3e689abc35202941",
+      "bytes": 1700
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/interaction_distance/PlayerMixin.java": {
+      "sha256": "4113d2e2047f5b0513cbda3191843729cdd3fa1a3e0720baea771cd7635b749a",
+      "bytes": 2663
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/level_accelerator/ServerChunkCacheAccessor.java": {
+      "sha256": "2d8fe9d749c415d9645939a8a62a5922f1f9e95a46a7d39437c92aef1a845c51",
+      "bytes": 400
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/loaded_chunk_debug/BlockUpdatePacketMixin.java": {
+      "sha256": "ddf865516b7ff93e480250dba9a55a00d2c166c814084357fc176bf85f770598",
+      "bytes": 1610
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/loaded_chunk_debug/ClientChunkCacheStorageAccessor.java": {
+      "sha256": "5915b40599ca3bcda43e3cb39d774645c42b9b389c3e38718f23dd3c9e392440",
+      "bytes": 470
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/loaded_chunk_debug/LevelChunkMixin.java": {
+      "sha256": "3e37b6471daa20597884003479f9bbaa14385e2170e1090a4f2a181b345c1358",
+      "bytes": 636
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/options/OptionsScreenMixin.java": {
+      "sha256": "f3a2f367017e51a98a2ba2f14aa99eeb0cae94c58a4dbe9f9cf5741eeb8a6385",
+      "bytes": 1862
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/BlockMarkerMixin.java": {
+      "sha256": "947e7720fa4aeb975adff1f8ccd631a69f77a64d504f907a6c2faaf40272fdfa",
+      "bytes": 501
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/ClientLevelMixin.java": {
+      "sha256": "995b27cc8accafeb4a769413537a50ac7d756e21da10afd9896e8147018d1972",
+      "bytes": 4813
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/FlameParticleMixin.java": {
+      "sha256": "b520a8a12a57bf5a68e3ffa3467b4a2cc52358dfe013d2642dd985f81185f8c0",
+      "bytes": 2001
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/ParticleEngineMixin.java": {
+      "sha256": "c8f5d925dfd448453a302928b02dfd962381e07fe736a172ff5c83ad6950dec2",
+      "bytes": 704
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/ParticleGroupMixin.java": {
+      "sha256": "924160d63776826bba28e6ecf324ecc7cada65a0b3856cab884261d3ecd7e96e",
+      "bytes": 954
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/ParticleMixin.java": {
+      "sha256": "4f4839624936269e680a253df45902c139f702c4ffa02bf516c69bb8fc8e8ac4",
+      "bytes": 24796
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/ServerLevelMixin.java": {
+      "sha256": "f8f6ca430ce481fd3a1e090a20c874a68f70dd190bb85b67c3618ee398835766",
+      "bytes": 1045
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/SuspendedParticleMixin.java": {
+      "sha256": "fb518a608ab3e29411fa54c9fba446231ea05fc36ec7943b959fc55249a8cdef",
+      "bytes": 1275
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/particle/TerrainParticleMixin.java": {
+      "sha256": "b9cd6ea64edefd6bb422d39dafd4b1046c52c5d2e04b9d0dc2ad55ff2a223fba",
+      "bytes": 2291
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/physics/ServerLevelMixin.java": {
+      "sha256": "b680c02c0e3671e76f0762bf6701ec08a7d5cffed26d2ef6dada03e9eb7d8946",
+      "bytes": 615
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/player_freezing/LocalPlayerMixin.java": {
+      "sha256": "0de744dca469da93a89dcb206995d9efdfa70725c1c00a291543d8acdfaf3043",
+      "bytes": 1912
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/player_freezing/PlayerListMixin.java": {
+      "sha256": "da2c7d1afe3e8394a42e965cd7387eefb7f5c7a772d52deb254fd300b4d1df06",
+      "bytes": 1960
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/player_freezing/PlayerMixin.java": {
+      "sha256": "86f423e7f6f82a96d829dc38fbe0d7471027b3ccb8815a94ba2873b25aa18303",
+      "bytes": 3482
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/player_freezing/ServerPlayerMixin.java": {
+      "sha256": "d487d8e7e69996d3087f4afff6f6b80d9c92b6d719794c38cdae07e753c94dd6",
+      "bytes": 1756
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/player_standup/PlayerMixin.java": {
+      "sha256": "370c262d0185eceb992cf259c59ab019f93df606fe7fc02fe2dbd4ea5e2deeca",
+      "bytes": 1419
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/ChunkMapMixin.java": {
+      "sha256": "3c186479a656aa7fcdf0b747eb791eb1282a5399c3cc4d7730ce04b03f6dcea0",
+      "bytes": 4045
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/ClientChunkCacheMixin.java": {
+      "sha256": "6dc538eecf89f6377c9518c79644d07c129db2784f439a0e8b488f00be6d6a35",
+      "bytes": 5389
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/ClientLevelMixin.java": {
+      "sha256": "66672084ee714b790eb17f2ecd5d6eca379ca0f70033dd14d073da5cc84215f9",
+      "bytes": 2046
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/LevelChunkMixin.java": {
+      "sha256": "f28cb0abd86593f35f91efd5869f46ff1f268f6fc46b4a48e5a3eeb22b6d527b",
+      "bytes": 9807
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/LevelMixin.java": {
+      "sha256": "c4073e31ecdb719ae70351c05a8eb951bb3d696e3fc8b4dc6151956b0e20a21a",
+      "bytes": 2369
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/LevelsMixin.java": {
+      "sha256": "e7431d4a933a8fd0524efd9acff1113b38a0aaad6ea5bc279dde05f54418757b",
+      "bytes": 2203
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/MinecraftMixin.java": {
+      "sha256": "bc28286f39d67126582d2de8af4a8eace483af7c72acd139e9cf45fc1b28a705",
+      "bytes": 1762
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/PlayerListMixin.java": {
+      "sha256": "b2fc0cfe928bf60ebf868571727024a3005145cb11acb18f554fdccedd082f01",
+      "bytes": 1668
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/ServerChunkCacheMixin.java": {
+      "sha256": "f148a4b750b5e7a1cd3c2de262428fd63e6132b063f78d755d4f57146fb28a95",
+      "bytes": 8551
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/ServerLevelMixin.java": {
+      "sha256": "f92d811abc4f72131a09e8beeaf30ed8057569ab71365eef5e73caf7bcd3471e",
+      "bytes": 6246
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/container/ClientLevelMixin.java": {
+      "sha256": "c2cc94df894a5f38f551247ae39042c1e0e0d5247dc5fe84a4096c755ab2f856",
+      "bytes": 2718
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/container/ServerLevelMixin.java": {
+      "sha256": "9699078b219696618478e4484543c303cd7a3ea3c4ad0784e5e3c6b19f656713",
+      "bytes": 2718
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/lighting/BlockAndLightGetterMixin.java": {
+      "sha256": "1d2c069cddd89cb22725a258922efdf0defc6a8c67b4c7675b5b9f2e4b9ef5dd",
+      "bytes": 2325
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/lighting/BlockAndTintGetterMixin.java": {
+      "sha256": "4a3ac0a752561d74e532eb6166c0cf20852a70119d4b78e5419b214068496eb0",
+      "bytes": 2546
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/lighting/ClientPacketListenerMixin.java": {
+      "sha256": "4d4db28c7854947f6a8a2740db69a80c2b800daaac0c9223f52b9d405b61cdad",
+      "bytes": 1468
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/lighting/LevelChunkMixin.java": {
+      "sha256": "39355bc5a911881a1b67fabf8b670aaf7313bc5634e18f466e459e0bcb035fce",
+      "bytes": 1534
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/lighting/RenderChunkRegionMixin.java": {
+      "sha256": "e1020b35eb5c17df6fdb28df15f6b9ec6c1bf3c3edcfec2afd74ab355ca71915",
+      "bytes": 809
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/serialization/ChunkMapMixin.java": {
+      "sha256": "1f5b2b118aa19d5be3422b8ff7f435a63b0decfa646069d741993a888bd8ca01",
+      "bytes": 2928
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/plot/serialization/LevelChunkTicksMixin.java": {
+      "sha256": "b0a75c32e831d02e279c94aff371f5fdf2abe1d0f2d1d57d09b2d0fca2c32101",
+      "bytes": 1125
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/portal/EntityMixin.java": {
+      "sha256": "4cd37bff5ec323676fd6e85a10ea46d418626066a60af1961d799481f7e100f2",
+      "bytes": 1537
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/portal/NetherPortalBlockMixin.java": {
+      "sha256": "25a9bbf0e360738088c30ff283829d002bb65d164d9739f2530f08efc9726430",
+      "bytes": 1602
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/prevent_freezing/BiomeMixin.java": {
+      "sha256": "658bcad1c9707bce5d3545dc89074e89f64014e3bd5e6f4c8ba897da7dc04446",
+      "bytes": 2244
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/prevent_overgrowth/VineBlockMixin.java": {
+      "sha256": "800b4f0d6ca824a281baf5b66ceda0220f5329ddc1f34329a6ed225075728177",
+      "bytes": 1419
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/punching/ItemInvoker.java": {
+      "sha256": "06e8854e17f78c12a76aa50b6f138ca985c1093a50b8c639e92b75af59f18674",
+      "bytes": 616
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/punching/MinecraftMixin.java": {
+      "sha256": "a8c39a9c5bccec59fe36c631a475e6e4a91236a821db8158d1ae3707d6df9e2c",
+      "bytes": 2955
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/punching/MultiPlayerGameModeMixin.java": {
+      "sha256": "f2fcf8aa37a38e25359e5f0494367fcc7854db4ba967fdb131377e962dae1a66",
+      "bytes": 4345
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/recoil/ProjectileDispenseBehaviorMixin.java": {
+      "sha256": "6cb5f69a370659761fa67e428646301131f214c90512d922b04e36e4277f55e7",
+      "bytes": 1960
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/respawn_point/ServerPlayerMixin.java": {
+      "sha256": "6222be7286e8c487b235f24abf286e6513898fecf2c88a4bc941e67e8f7b88ae",
+      "bytes": 7815
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/respawn_point/sleeping/LivingEntityMixin.java": {
+      "sha256": "d39cdbd34ee3e324c86e825dcf1c78bc6bbf5baa071eb6cfbf235015684ca7cd",
+      "bytes": 1705
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/respawn_point/sleeping/ServerPlayerMixin.java": {
+      "sha256": "2f193fdef4a71fd80275dcad4308224ebcef2480369c9793f232b7be0043c9a1",
+      "bytes": 1329
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sculk_vibrations/EuclideanGameEventListenerRegistryMixin.java": {
+      "sha256": "92bc89851f588f712bca8a16af016baa2f1e446b0c26a9d48e25a238ba4f1afa",
+      "bytes": 1198
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sculk_vibrations/GameEventDispatcherMixin.java": {
+      "sha256": "912f40961fbf9e93469a5fdc07679fa4c1606b5cf7b5c02b5e94dfce28a351cd",
+      "bytes": 3682
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sculk_vibrations/VibrationSystemListenerMixin.java": {
+      "sha256": "16b762c0cb4ec64cdfd203b6ff0175d0f079ed18d4d20455a16169cdc99a83e8",
+      "bytes": 2385
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sculk_vibrations/VibrationSystemTickerMixin.java": {
+      "sha256": "63acb068f619d56587069b521c34caca0e9b39e2e38301100a25bff491043a5a",
+      "bytes": 2129
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sign_interaction/SignBlockEntityMixin.java": {
+      "sha256": "c8a64129cb4e3cdf589bbf773dba896cf9276d18dfc21004906bd5acaf3da9f6",
+      "bytes": 2625
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/stop_lightning/ServerLevelMixin.java": {
+      "sha256": "2f7076dc24ce83f97aa9543b1b0f4205c5c4eba630b58376298fe2aaf012eac9",
+      "bytes": 2212
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/stop_rain/LevelRenderMixin.java": {
+      "sha256": "560a13c6490addb6c38d701df23f5a516c8eb5a4aeac0337607fce6e7213e35e",
+      "bytes": 3412
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/AltModelBlockRendererImplMixin.java": {
+      "sha256": "65014d978ae7c1977cc175b4a7da3d44b5e96cdb122e65e5d4d893ba9cfe67cb",
+      "bytes": 1572
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/BlockEntityRenderDispatcherMixin.java": {
+      "sha256": "dca1bc0ba79d6f46e0d8e558ef91c240ad2915fef2a2d2b6adc7beb4354b451a",
+      "bytes": 1472
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/LevelRendererMixin.java": {
+      "sha256": "321db26f2062e646b88fa3fc093936c57e5704d07567ed0a4e7aa2b5d5de577e",
+      "bytes": 1442
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/MovingBlockFeatureRendererMixin.java": {
+      "sha256": "7c0b639d1da09e96dfd064d21793cf3c41363e2d028863bc22eed73f03e08d81",
+      "bytes": 1549
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/RenderSectionMixin.java": {
+      "sha256": "15b3e6adc4ff02e9f7a0387bf5dcb9c6dd1839bb17f092e16dd9ae9434978c97",
+      "bytes": 4527
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/block_entity_render/LevelExtractorMixin.java": {
+      "sha256": "a896c535a7d985d0586c836424c703eef4b8a30e63a16a1f3202a0821ff40ea3",
+      "bytes": 8807
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/block_entity_render/LevelRendererMixin.java": {
+      "sha256": "f84ce0173ec89d27d1e29f78258c91cf5bbb02619e01cf3eea944ed052c7069e",
+      "bytes": 3636
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/dynamic_lighting/BlockLightEngineMixin.java": {
+      "sha256": "2de122bca597ea7bb48b075d15ca2de38a8e5f3f30206d7e42171e1623ca2422",
+      "bytes": 1103
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/dynamic_lighting/LevelLightEngineMixin.java": {
+      "sha256": "c19d5d5c0f5d944ee0070d6b6a805518101e639d169936f782e77c16a6377837",
+      "bytes": 960
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/dynamic_lighting/LightEngineMixin.java": {
+      "sha256": "5d3547a5fc6dc259bc880834b1c458e2985029f89ed410db26cfa34f945fb0b5",
+      "bytes": 1154
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/impl/sodium/SodiumWorldRendererMixin.java": {
+      "sha256": "cd3c81e7f8ebb5760775075082fa20236d7472cc49c01f7b58ab88f1213194db",
+      "bytes": 10832
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/impl/vanilla/ChunkSectionsToRenderMixin.java": {
+      "sha256": "341ddfd64b23557a342ff95ee71cf701deee772a9588410a7338855f30f1fe5d",
+      "bytes": 2850
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/impl/vanilla/CompileTaskMixin.java": {
+      "sha256": "1ca20bfd195ed7c39c8171709501f48417c76a571950b57fd993b817d000e138",
+      "bytes": 2594
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/impl/vanilla/LevelRendererMixin.java": {
+      "sha256": "524177efbab6448193f41da68020a22351e0034d8f8c5d90036795fbb7ef2a42",
+      "bytes": 19302
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/impl/vanilla/ResortTransparencyTaskMixin.java": {
+      "sha256": "cf6e47da4aaa83715a189eed40002dc4fd4bcdb5c174e27673bae5bb09b82918",
+      "bytes": 2870
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_render/impl/vanilla/ViewAreaMixin.java": {
+      "sha256": "d432d65b8afdddd36541629592ad82156298655fd0cbf1beb47163453f641cca",
+      "bytes": 1731
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_sounds/AbstractSoundInstanceMixin.java": {
+      "sha256": "87374c257009d92037c38a0454fd8c15f15be0f4aca2c06a088e7d8312e022ad",
+      "bytes": 756
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_sounds/ChannelAccessor.java": {
+      "sha256": "03789739c1f2435b8aae591456c6daa9752daae9dc9ffee3e391462aabf6eb94",
+      "bytes": 280
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_sounds/ClientLevelMixin.java": {
+      "sha256": "9f712fb304ac748618189819bbbfcfa0091e0fc6a8d19b15cb9903b2622ee25f",
+      "bytes": 886
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_sounds/LevelSoundMixin.java": {
+      "sha256": "ca9671d25f554319d01c12ae8147dadbc5921d948a5a043955c234d753cc21eb",
+      "bytes": 2522
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/sublevel_sounds/SoundEngineMixin.java": {
+      "sha256": "c35f94015b5723cfba99b596e27b6eacf5c6cb566d21c889c04707a6886acd61",
+      "bytes": 3257
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/toast/IntegratedServerMixin.java": {
+      "sha256": "c40430d7a81a87f1824836fb4ef686f1347f01bc0a0747ad6bef10e389e4ee4b",
+      "bytes": 2488
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/tracking_points/EntityMixin.java": {
+      "sha256": "41ff93bfb3912b5c70a7c35cc227e4c90dcb1ade9f50038d877e3d17641c17bf",
+      "bytes": 2175
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/tracking_points/ServerPlayerMixin.java": {
+      "sha256": "2359975cd01a0ea377fec73127665be7a876197256ef209672fd11c18edf169d",
+      "bytes": 1189
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/udp/ConnectionMixin.java": {
+      "sha256": "63be8a1899a702c306f0aac88f753a184f36c772f4813401af030881a50e1240",
+      "bytes": 5390
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/udp/MinecraftServerMixin.java": {
+      "sha256": "530a370da997eec22eade56165bf6306cc3446f5ae83cfaf367583975ee662f4",
+      "bytes": 1106
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/udp/PlayerListMixin.java": {
+      "sha256": "25124cdfcc3cf62bff6df01b2e53cd2af9406eb51d4cd77b69472c70ca895cc6",
+      "bytes": 1587
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/udp/ServerConnectionListenerMixin.java": {
+      "sha256": "e7f1f7c28954331c688b188cb7f790d0b5e285e81ebd11bf224a4ee09b2123a9",
+      "bytes": 5722
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/voxel_shape_iteration/BitSetDiscreteVoxelShapeAccessor.java": {
+      "sha256": "b9d69da30fe937b0a33266681bcc87c778ccf0a0584eea58d2572b53119d8401",
+      "bytes": 687
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/voxel_shape_iteration/DiscreteVoxelShapeAccessor.java": {
+      "sha256": "9a728ece4bc6ead1dca4ab4e9a3eaa7a2a78dcd3769ecb342586a47b76382301",
+      "bytes": 395
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/voxel_shape_iteration/VoxelShapeMixin.java": {
+      "sha256": "1cf91ccdf7566d97d5c0b4beaf972ab7de2aeace171c7081771b31dcec1ae19c",
+      "bytes": 2110
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/water_occlusion/CameraMixin.java": {
+      "sha256": "a39dd0453c457c5e1cf052c4b706eb154c73b67089f98f6287921f7fc53b34ed",
+      "bytes": 2003
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/water_occlusion/ClientLevelMixin.java": {
+      "sha256": "72edd37ec3c8911efe80d42e45731ff20b17adaf0d1eaa1adf4382fe4345c0ec",
+      "bytes": 1283
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/water_occlusion/EntityMixin.java": {
+      "sha256": "eb919eaa262c3b39849424aacd1410c78ec53f1af821cf3556ee59cd8c57107b",
+      "bytes": 3364
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/water_occlusion/FogRendererMixin.java": {
+      "sha256": "3818c0e94eae159376c912090c4d74ca7528d82b31cd33117cbc7b5b5637a937",
+      "bytes": 1259
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/water_occlusion/GameRendererMixin.java": {
+      "sha256": "e03e3443d6ea79aa9db49d9fa71164c860b9628acc633874508e1982ac80d835",
+      "bytes": 697
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/water_occlusion/ServerLevelMixin.java": {
+      "sha256": "e1b52ce9b682c0cdc9de74b14cfaf9cde8c81e1af610e149d1ba816791d8062d",
+      "bytes": 1277
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/water_occlusion/WaterFluidMixin.java": {
+      "sha256": "11df6796f2a70e108102cf851bbdfda21bd375b047b403fda93bbae674d0c847",
+      "bytes": 1419
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/world_border/ClientLevelMixin.java": {
+      "sha256": "43ea0cb31b2133602059963b53a7f2b25544b6c6a2e647a3ab371cf2d139fac3",
+      "bytes": 805
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/world_border/LevelMixin.java": {
+      "sha256": "a447bc7c6be35561c12f44863e464251309f3ebe9d44a1edb54f716e5796a30b",
+      "bytes": 795
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/world_border/ServerLevelMixin.java": {
+      "sha256": "d7bf3a2081726ab8973e53ac93e681cb53347e4b75773711db0d2bb3b56cecd8",
+      "bytes": 936
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/world_border/WorldBorderMixin.java": {
+      "sha256": "4f2cdf9e139245c102529a8f2567276e404d92b13af437e1b0f590f3f5b329f8",
+      "bytes": 2636
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/CanFallAtleastHelper.java": {
+      "sha256": "fb30fb524115a4c493fb46989704d346226440780511aab9b875983ac074956d",
+      "bytes": 4181
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/block_outline_render/SubLevelCamera.java": {
+      "sha256": "0507a22035c5ac77df559f64ac3337dd1562d02f92f87d4931fec9c534ed8922",
+      "bytes": 3376
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/block_placement/BlockPlacementEntityHelper.java": {
+      "sha256": "6d39e9a60e019cdcf3a03dfb6f6bcf76dcba092a8d40107eda0c74e72fd259d6",
+      "bytes": 5423
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/camera/camera_rotation/EntitySubLevelRotationHelper.java": {
+      "sha256": "50b3662446e145ef4b389e41e04b824d1be1e287f7626e9a91903d80b6642789",
+      "bytes": 3542
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/camera/new_camera_types/SableCameraTypes.java": {
+      "sha256": "9214f2b0e22140fb7bddf2618413c1630d38821585387c601b7d0df9921018dd",
+      "bytes": 364
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/compatibility/create/SubLevelOutlinePose.java": {
+      "sha256": "787c9c70a381bc295ca3d42bec1ba9c5d62567d10a3ca9eeb0e6bd98bba456f4",
+      "bytes": 5920
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/compatibility/shouldersurfing/SablePerspectives.java": {
+      "sha256": "5aa27459d2cfbca9d21f8957f373b3c67e5897b925d42a0aefbbba39a2928a81",
+      "bytes": 445
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/entity/entity_collision/TheFasterEntityCollisionContext.java": {
+      "sha256": "7399caae587f3ec6721411e07be9fad4bf3cd8c4d1a8f1c366b94a5874022730",
+      "bytes": 1759
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/entity/entity_rendering/shadows/SubLevelEntityShadowRenderer.java": {
+      "sha256": "5e7067b87820256da0d19d4e71edcf592cd407c473162e6044601f5e6b1d7e8b",
+      "bytes": 11487
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/entity/entity_riding_sub_level_vehicle/EntityRidingSubLevelVehicleHelper.java": {
+      "sha256": "54be2c447607468102955dee2c79aa8bbbe4c3673eaab2bcc8bf5a43196ab49e",
+      "bytes": 1158
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/entity/entity_swimming/SubLevelFluidHelper.java": {
+      "sha256": "eb590b5a529e876e37054dce74cfb6572ff4d01011885a45e657603253409812",
+      "bytes": 10615
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/entity/sublevels_block_sky/SubLevelsBlockSkyMixinHelper.java": {
+      "sha256": "cf87fa579b6c50c9c03e53abc4f0b3c41f38fbf5b08f4bb77ce1cee2dce0e7a3",
+      "bytes": 1117
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/loaded_chunk_debug/SableChunkDebugRenderer.java": {
+      "sha256": "6096814c4134a0612c52b690827a90df1c0ea9512c3627bac928468118f13877",
+      "bytes": 4453
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/sublevel_render/vanilla/SubLevelSectionSortHelper.java": {
+      "sha256": "80a8cd4a92c661e70b6f64fdce46a9791b4c8e50ab48d1a01d038f7042b4b9d6",
+      "bytes": 2074
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/sublevel_render/vanilla/VanillaSubLevelBlockEntityRenderer.java": {
+      "sha256": "e73334cb3ebda41f31aaab522cc1898020a7a37ea6f1f2f1067548f10684b85b",
+      "bytes": 1623
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/voxel_shape_iteration/FastVoxelShapeIterator.java": {
+      "sha256": "25feffb32cd79f94a2abcdbac9d3d8475454e2cec2ecb59edd61a70b80479892",
+      "bytes": 4016
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinhelpers/voxel_shape_iteration/LongArrayDiscreteVoxelShape.java": {
+      "sha256": "82332bb7e8a9fbeee8a5278f8ccbb12207b8b9d8062abd4e86dde83eae9ad30a",
+      "bytes": 4739
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/BlockEntityRenderDispatcherExtension.java": {
+      "sha256": "a9331f9d0e8c36813269ec869455e03fd2ab44f60165464e1e3935f8e01f5181",
+      "bytes": 237
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/EntityExtension.java": {
+      "sha256": "3296d193203893feca1ffed00a02547d33d7d15bdfc80390bb57ae1a39080d03",
+      "bytes": 203
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/block_properties/BlockStateExtension.java": {
+      "sha256": "3ffd4d1a968a04d98c4fb67bf61d45b4a67ec372df137a9fb596a2a438e0c730",
+      "bytes": 671
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/camera/camera_zoom/CameraZoomExtension.java": {
+      "sha256": "695a0bf5b04f9b5ee58d2c3c936e91eba5f2ed34cad48df78f2290bf7ec80b4f",
+      "bytes": 191
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/clip_overwrite/ClipContextExtension.java": {
+      "sha256": "d7ee02b8ed1e695d1e6503f18f9dbf1eb61d4f2765c532fa836226acbeeea2f5",
+      "bytes": 699
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/clip_overwrite/LevelPoseProviderExtension.java": {
+      "sha256": "30ecc5ae94610ac34d99ba45b432f317a3a4c1970acc42b30aaf1d88797beeeb",
+      "bytes": 396
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/dynamic_directional_shading/ModelBlockRendererCacheExtension.java": {
+      "sha256": "8807c08274c93f7fcad601ebe00d3d4cb43e9a77bfa6e6f0de514b38e57f344c",
+      "bytes": 213
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entities_stick_sublevels/EntityStickExtension.java": {
+      "sha256": "4e74859020b8a453ca1463a086b0d432f0bd52d02aeb4c5301faba5d6b26fde4",
+      "bytes": 356
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entities_stick_sublevels/LivingEntityStickExtension.java": {
+      "sha256": "a9a5d51e6e75b6a273c12be4d74b40a1b950c206bd9ee691607da3b07582c30c",
+      "bytes": 281
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entities_stick_sublevels/packet_mixin/PacketActuallyInSubLevelExtension.java": {
+      "sha256": "e0f9545065255c1cf469456e8fd7cb6c8fa7d465599aa12fe85c06669b61b5e1",
+      "bytes": 252
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entities_stick_sublevels/player/ServerboundMovePlayerPacketExtension.java": {
+      "sha256": "56b71b64fa9abb9c93f1562b63bf1fee81b70114d7c573d4438f330949ac5bb3",
+      "bytes": 233
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entity_collision/EntityExtension.java": {
+      "sha256": "74553a5c347942eda2cf489b68cdd7d9c8c3dc54cc61440adcca4935847fbd4b",
+      "bytes": 268
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entity_rotations_and_riding/EntityTransformationExtension.java": {
+      "sha256": "72126cde8f09b616d351aa8bb9f3419de55c6221c0a8dbd1aa52473ab1fa0e71",
+      "bytes": 478
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entity_sublevel_collision/EntityMovementExtension.java": {
+      "sha256": "1deee039ae55524f32436480c8b4e5b924d5dcedba54b8eb8414f728b4b7ec00",
+      "bytes": 943
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entity_sublevel_collision/LevelExtension.java": {
+      "sha256": "fda79adee2deea9801713228ee67d885cb639f88b94f3660acc6ec832f6e573f",
+      "bytes": 215
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/entity_sublevel_collision/LivingEntityMovementExtension.java": {
+      "sha256": "10672f7166b6e624ae9ea2f99a8f00c83a4a9d91acd6a7e0079d3f0589ac3c3d",
+      "bytes": 197
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/entity/pathfinding/PathExtension.java": {
+      "sha256": "51ff6c965444a53e70676f1ee4718542db7b5fbbcd714db8ba236d1913a8092b",
+      "bytes": 197
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/loaded_chunk_debug/DebugChunkProviderAttachments.java": {
+      "sha256": "00a165826fa6cb470054ef37be94d3ef9ddc6fa89b1792711b980af018d1e855",
+      "bytes": 244
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/loaded_chunk_debug/DebugLevelChunkExtension.java": {
+      "sha256": "bf9f5b1ede01ee58e46445666b5ca551e39bfbead655b50c8f83e3dd807449aa",
+      "bytes": 171
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/particle/ParticleExtension.java": {
+      "sha256": "6ecc069034d1199c0b87d5d934d323870ae96e674de69503b5413ad29901a93e",
+      "bytes": 435
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/physics/ServerLevelSceneExtension.java": {
+      "sha256": "7ab2b29855c41228856da2bdf16cb0204e6f414f086bf209fc65fdbddcba3d74",
+      "bytes": 173
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/player_freezing/PlayerFreezeExtension.java": {
+      "sha256": "82cbae2ab483eedc98e759d3d78c791be911ac6bf7cca37825504f492de9a9d0",
+      "bytes": 437
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/plot/SubLevelContainerHolder.java": {
+      "sha256": "a349454448e20e17804b6dd90a7e52cc7707c9d9c272233b644d65f3cdeb614c",
+      "bytes": 392
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/plot/serialization/ChunkAccessExtension.java": {
+      "sha256": "5d1582f8f201bf81aca2f2926ac1caf054501fe9bd10e46ec7b03ff40476560d",
+      "bytes": 457
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/plot/serialization/LevelChunkTicksExtension.java": {
+      "sha256": "97cb304ca1ad2a79b4d874ac5fec2cb2fd208e9e8e7a923d03ec8eb482e8c54d",
+      "bytes": 216
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/respawn_point/ServerPlayerRespawnExtension.java": {
+      "sha256": "2b170e091e331d0a3b1ec42d4c8507305ac7501516ddec683739f62d1a31ad1d",
+      "bytes": 451
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/sublevel_render/BlockEntityTransformsHolder.java": {
+      "sha256": "c0cc336ce67b3d054c79bd9521995f09c53d60c487183de69fa34c45a7e12aa5",
+      "bytes": 1199
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/sublevel_render/SubLevelBlockEntityRenderExtension.java": {
+      "sha256": "c2670a80cfc71c89101680110846e2b9fd64c2985a9c5550e7c0cb9d2b0d5f8c",
+      "bytes": 376
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/sublevel_render/fancy/ProgramExtension.java": {
+      "sha256": "a4e64fda8de27474f89a0dd9c5c5c316826bf975f543a811b8e45202c78327c8",
+      "bytes": 134
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/sublevel_render/vanilla/RenderSectionExtension.java": {
+      "sha256": "8fccb4550d5267f001be3455e836b072f798bbc7b6aeec1e652e804f3d212d95",
+      "bytes": 421
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/toast/SableToastableServer.java": {
+      "sha256": "5d328138c7fca6833f414a239bd56c1814fbf5a12e759f0b802bbcb6f7a9b033",
+      "bytes": 500
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/udp/ConnectionExtension.java": {
+      "sha256": "b948265a7b69a562e7778c94a8813c1ab777a3abbc81bde8a1dc69b0152123c0",
+      "bytes": 213
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/udp/ServerConnectionListenerExtension.java": {
+      "sha256": "05cd933c8f0248e50bac10cb9529b64bcf6a692d9c500e94da6e2b328268289a",
+      "bytes": 335
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/voxel_shape_iteration/FastVoxelShapeIterable.java": {
+      "sha256": "2e66d2c70749c590da1178e7f4566ae03c8006bc028e1a11aee54f9b52d2df83",
+      "bytes": 308
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/water_occlusion/CameraWaterOcclusionExtension.java": {
+      "sha256": "e2535028225e310be4c5802d03e5193778b4f9c0ac4a9f36bfcec10db9eb4d7c",
+      "bytes": 234
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/water_occlusion/WaterOcclusionContainerHolder.java": {
+      "sha256": "295cf5a87249919702f9becf7abc8edfce50444b64b82d0b66223fcaecb01eed",
+      "bytes": 255
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixinterface/world_border/WorldBorderExtension.java": {
+      "sha256": "47591cd0d866ea82c71c3ecbb84ff65faf177989e6423944d5fbcb011a0d0577",
+      "bytes": 177
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/client/ClientSableInterpolationState.java": {
+      "sha256": "c2e41971f5c71af8eb6031b3e95cd40560e679edef971781dc19258a0c2ad702",
+      "bytes": 4907
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/client/ClientSubLevelPunchHelper.java": {
+      "sha256": "318a4b88d41c23269f5b1c7e4b6cf7036e4cc12739d80c67911dfef4a0c962a3",
+      "bytes": 3312
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/client/SableClientNetworkEventLoop.java": {
+      "sha256": "9544766735f1291435f7c3f14ec48196ae8372b6167a81001d2fdfceaf1a73f9",
+      "bytes": 1087
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/client/SubLevelSnapshotInterpolator.java": {
+      "sha256": "fdcf766ab2b4fff13a83f9ee5c28f48d531295810492a4d7e26b5504d93d6ad0",
+      "bytes": 4741
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/ClientboundSableSnapshotDualPacket.java": {
+      "sha256": "b150bed2ab38ad43feac8864cea5a8a5cab17a52596873f4ea1bd59bea76a294",
+      "bytes": 5144
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/ClientboundSableSnapshotInfoDualPacket.java": {
+      "sha256": "81491c692bb88ac1442e096917897cec1f427e8b2f159e03b3857872a1f0fb82",
+      "bytes": 2685
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/PacketReceiveMode.java": {
+      "sha256": "0cadd7fc0e49351a5df1aa813589f401c25d6f0bfaaefd1b6b55d714693df501",
+      "bytes": 110
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundChangeBoundsSubLevelPacket.java": {
+      "sha256": "d99fdabf51857f7937c6ae58b59dc432153071b20a7094c915a8af9e9a709664",
+      "bytes": 2838
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundChangeSubLevelNamePacket.java": {
+      "sha256": "eac0f28496fe564ac4be3fc7cc068be2c2eaa779bd88a38d1b8887135ddb2056",
+      "bytes": 1952
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundEnterGizmoPacket.java": {
+      "sha256": "e1e83e6992ee37045ac328b5379d2f4ad42adf0b9ea728c35b055e7531a515d4",
+      "bytes": 1445
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundFinalizeSubLevelPacket.java": {
+      "sha256": "906e851dc97e5a6aa31d5bfaf9178495d23d8427ecf445a6373e007e1abc6972",
+      "bytes": 2260
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundFloatingBlockMaterialPacket.java": {
+      "sha256": "8ed85d920b5d4781e03afc02593d645ef23e8cc9c4a2d9b7015b1f0ec12b22d7",
+      "bytes": 1538
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundFreezePlayerPacket.java": {
+      "sha256": "d90f9c07ae2290c0451a5ff1548c5d9db909a0d1e60a51f24643e696d5e209f6",
+      "bytes": 1799
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundPhysicsPropertyPacket.java": {
+      "sha256": "aff54a3428badbc9c5b5e9c0e9fe03ef3b536c9cbc1686ef85b05e581ac65535",
+      "bytes": 1438
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundRecentlySplitSubLevelPacket.java": {
+      "sha256": "66bcb7d52adbc3f5610ee7754805283ccdd9eac94ede196096bed7423a096f19",
+      "bytes": 2404
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundRopeSyncPacket.java": {
+      "sha256": "c2116e3101de4e88786ad9086d50a65d00a1ad84b6b96a9116bd26654232d7e0",
+      "bytes": 2725
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundSableUDPActivationPacket.java": {
+      "sha256": "7af9d7b7adf907ae6c8f7833d4ea011a772dd734a974c2bb29043c58d33484ed",
+      "bytes": 3035
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundStartTrackingSubLevelPacket.java": {
+      "sha256": "f355a49cc0e7c64119154bf995c9c7ffb4f6d725a3a8d5978c444299f0cd27af",
+      "bytes": 4149
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundStopMovingSubLevelPacket.java": {
+      "sha256": "8253d842c56e8441462cfc4e7c7e439d7c677b1a30ebdb075fbba075939a94ab",
+      "bytes": 2318
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ClientboundStopTrackingSubLevelPacket.java": {
+      "sha256": "08cb3136ad3292c6d46e62518882d92ecfcbe989b414d78033691115952335e6",
+      "bytes": 2250
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ServerboundGizmoMoveSubLevelPacket.java": {
+      "sha256": "3b3c3eacce05f960a3af312e39af724691e99e5aeb8f272d8c2c064dbbe3cef0",
+      "bytes": 2759
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ServerboundPunchSubLevelPacket.java": {
+      "sha256": "241a418c3541c99de72fd6820bff96b831fc125ade8a6603c4533b0fccb9fbd9",
+      "bytes": 11102
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/tcp/ServerboundRemoveRopePacket.java": {
+      "sha256": "688588cd5bfc32987c6b10b6251ef8f5d4795a5ef8154475ce2941cd3dd367f4",
+      "bytes": 2231
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/udp/SableUDPAuthenticationPacket.java": {
+      "sha256": "0f8447921dfdf83442e813c20a127917323d065c446276dad6173d5a3bbecd58",
+      "bytes": 1151
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/udp/SableUDPClientboundKeepAlivePacket.java": {
+      "sha256": "416fb12a510c4ba82d99f20ff5dca314bce90c12cd49d0ee9c1059a5cc90ccee",
+      "bytes": 2039
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/udp/SableUDPEchoPacket.java": {
+      "sha256": "04c7f736a7fe259b75aafa6be63c305fd773386f1cb8beaca5519f5dc20df37d",
+      "bytes": 951
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/packets/udp/SableUDPServerboundAlivePacket.java": {
+      "sha256": "ece3981c6964fa99516e7aa31606db83d144680e17e875c588159806163c6405",
+      "bytes": 1061
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/tcp/SablePacketContext.java": {
+      "sha256": "c03ba0c50c99626a18be777d0e731e0f01750ae801c398e1e095e9b8eff15eed",
+      "bytes": 831
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/tcp/SablePacketSink.java": {
+      "sha256": "7589eb32db0d8bdaf3732338dd33578c69bf4777faf86d1243994787d72615c6",
+      "bytes": 2004
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/tcp/SableTCPPacket.java": {
+      "sha256": "f6059929d8e5ba6d6ef11e6b2b7b399b07454b6ddba0c98580cd571920b6e58b",
+      "bytes": 226
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/tcp/SableTCPPackets.java": {
+      "sha256": "15341848f62e86115591ba2d1c8c177f07fa28ec7c39609ff4ffc9b36875bc5c",
+      "bytes": 3583
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/AddressedSableUDPPacket.java": {
+      "sha256": "6ec8d02bec92a0850860e28de02983bb574e79e7bab2889ea1f4c5136772274e",
+      "bytes": 297
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/SableUDPAuthenticationState.java": {
+      "sha256": "7d40fcea7b030ce393c4387937aee3943e0a087c5d08313c7384279d2580499f",
+      "bytes": 2159
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/SableUDPPacket.java": {
+      "sha256": "cd452c8abd56fa1b0c863195f086dfbaa783768df56b84039853ba2d70146eb3",
+      "bytes": 2125
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/SableUDPPacketDecoder.java": {
+      "sha256": "9da6fe1f90f580fa7f3238f05a72f81c5400b5dcfcdd934652f6e16319045056",
+      "bytes": 2342
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/SableUDPPacketEncoder.java": {
+      "sha256": "250037b93098b0020359af77b13883ee801b17bfaa78af753cf8c9f7b9b0dcb9",
+      "bytes": 1275
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/SableUDPPacketType.java": {
+      "sha256": "52313a948b55854c75281dc1dc254bd66d572e21275a7ce268912e5d50f6fd7a",
+      "bytes": 1600
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/SableUDPServer.java": {
+      "sha256": "f0df980098e5eb2cff8b838e3fab4a609434b041d4b23957cabfbc2ce2eb4c3e",
+      "bytes": 10195
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/handler/SableUDPChannelHandlerClient.java": {
+      "sha256": "1e9dffdf9b7b63c53bc84e46bc4a7303c8687ef0f5f871e3cbe5b0df125863c7",
+      "bytes": 1876
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/network/udp/handler/SableUDPChannelHandlerServer.java": {
+      "sha256": "937e6910b6f9a3068e504c0d8eada70420d27d3c99aebd505c36bc3696f77d44",
+      "bytes": 1686
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/ReactionWheelManager.java": {
+      "sha256": "728f655aa9cbe314591c7ec511e75db4cb799bef6f5295408b0d70572d2f7d0b",
+      "bytes": 3178
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/callback/BeehiveBlockCallback.java": {
+      "sha256": "5a5706a56a2b27e00c65c4e1d726b21ae3549aa1e47c0eec406242b7d4cfc8bf",
+      "bytes": 1584
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/callback/BellBlockCallback.java": {
+      "sha256": "4a90b6fa6bd913150f6060d90d2f43fee39360f91265ee66fcccf9c49f1c67ac",
+      "bytes": 1636
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/callback/ExplosiveBlockCallback.java": {
+      "sha256": "c312ddf778e2cd492b9a63297bec6c98c3bfe4c3b586374954716accb4fb3fc3",
+      "bytes": 1293
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/callback/FragileBlockCallback.java": {
+      "sha256": "92266ce2c50536797d6ce096c202d11f69cef594c571c55fdb275ea238740694",
+      "bytes": 2826
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/chunk/VoxelNeighborhoodState.java": {
+      "sha256": "add9001bc8e4edae386ef14910b8c3e75a8f1823c71fc97839d0666fde79d941",
+      "bytes": 5312
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/FloatingBlockMaterialDataHandler.java": {
+      "sha256": "6def2abbf1a5b9f4be79579e1f4f127351c92a0b02f7f4304ec305561ed56e54",
+      "bytes": 1960
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/PhysicsConfigData.java": {
+      "sha256": "60f819ddbe95782467b0de3bc2a29bc7a091bd00dfeb0300ab80a854a7ee1b66",
+      "bytes": 857
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/block_properties/BlockStateConditionSet.java": {
+      "sha256": "bc297e986494b1ce92b0931f3e2f687a1a0f3021b2c400a68c6c3e3949f7a94a",
+      "bytes": 2638
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/block_properties/PhysicsBlockPropertiesDefinition.java": {
+      "sha256": "8c1f041872f2783c7f51a4924442250a44390b076f56c514fd28463fca4ab287",
+      "bytes": 2244
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/block_properties/PhysicsBlockPropertiesDefinitionLoader.java": {
+      "sha256": "5c28a03d6d33304e47105ba492ebaf32b601aeea27119a868f2a93ba93dee59e",
+      "bytes": 5777
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/block_properties/PhysicsBlockPropertyHelper.java": {
+      "sha256": "8f72833a66ba90a845738e8f9ccb08103be73ff2d5dd5c45918478a29b99d401",
+      "bytes": 3845
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/block_properties/PhysicsBlockPropertyTypes.java": {
+      "sha256": "faf565b06d4d044032f35812ea3d97528f6f30155a28a208e1897b8a32397ea7",
+      "bytes": 4843
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/dimension_physics/BezierResourceFunction.java": {
+      "sha256": "9d48924e451a0b566fb2f09641395f3560616af2e5633a4eb056c5a534140239",
+      "bytes": 2921
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/dimension_physics/DimensionPhysics.java": {
+      "sha256": "6a6e54b6195213012db10320b0135311ce707bc30729023d8a71085b628df41c",
+      "bytes": 5410
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/config/dimension_physics/DimensionPhysicsData.java": {
+      "sha256": "849989fb392c7dbed90df3706b2e921bed6f0d1d975ff9eede7677da6b5b9015",
+      "bytes": 5460
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/floating_block/FloatingBlockCluster.java": {
+      "sha256": "6338f5f9e9dd009631d6113ff86e45365dbea4ec70e15b4df484acacc6addd01",
+      "bytes": 521
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/floating_block/FloatingBlockController.java": {
+      "sha256": "f50be7471d41b2135ee591ae4790a2cbb72489c8ebf4a1deebb752bfac6a1d64",
+      "bytes": 20065
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/floating_block/FloatingBlockData.java": {
+      "sha256": "def3c4054b9c402172b282a4ffb568d4e06152eddb183f8ed6db1ef65d8a5165",
+      "bytes": 2110
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/floating_block/FloatingBlockMaterial.java": {
+      "sha256": "702482efaf56a9113a680b21ce71a98d24ff7a9aa85df3a8b430d83ad6448d79",
+      "bytes": 2039
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/floating_block/FloatingClusterContainer.java": {
+      "sha256": "35b6bcb007601b739365668033a08b95738cffc5acf5f7249952d4810e24374e",
+      "bytes": 4350
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/SableCollisionContextImpl.java": {
+      "sha256": "69a58680fa87a1f557e03f627c70ec3a042eaec8730e364d03e268daff90d0f8",
+      "bytes": 1374
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/SubLevelEntityCollisionContext.java": {
+      "sha256": "c517f6ff2ea5edf70726f023c4bfbcbd398085711f860b9e2f9d473efcde8430",
+      "bytes": 842
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/none/StaticPhysicsPipeline.java": {
+      "sha256": "fa2f902613e4c077b9fce2e073a810d2ab079f1c8bd0721fe39eb67fba68f8be",
+      "bytes": 3694
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/none/StaticPhysicsPipelineProvider.java": {
+      "sha256": "7434e668908d7e1e5a77c76fed7159310641f1eb82fe690ebf444abe1664c3f4",
+      "bytes": 541
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/Rapier3D.java": {
+      "sha256": "d417e35dbca685b0fd4c661584e01b99f9a8b14b7fba8deafdb04c17fa04c6aa",
+      "bytes": 30943
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/RapierPhysicsPipeline.java": {
+      "sha256": "cf3bbd8054278167be5ad1d452c92493ebe97b7a28486f7c3a0285907201eab6",
+      "bytes": 33685
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/RapierPhysicsPipelineProvider.java": {
+      "sha256": "7ad5aa1ec86424768aecf25e55c321ec7c8731bcda63785ac9db40afc5577e8e",
+      "bytes": 505
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/RapierPhysicsScene.java": {
+      "sha256": "33805664baf11aaa770680bde1982a4ae9716eb692afb6ce6b1c9122d45bbc6f",
+      "bytes": 498
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/box/RapierBoxHandle.java": {
+      "sha256": "69633f5382eeed263c3c346b840309f0475024c85cbe36d07b0b9e7a67f4c45f",
+      "bytes": 1888
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/collider/PhysicsColliderBlockGetter.java": {
+      "sha256": "b415cc2fb5c808388b841f78a55af0e3dc8a03230114d6f0b9d646087dbc498c",
+      "bytes": 1921
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/collider/RapierVoxelColliderBakery.java": {
+      "sha256": "19bd69252629ae0785490b9e85f7486a9fa66cea0accf88ceffb33d2214f68ff",
+      "bytes": 4410
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/collider/RapierVoxelColliderData.java": {
+      "sha256": "8b8ca28aeb8dc03958be091686d692a86449c0d002d5cc7b6a250bba305d2367",
+      "bytes": 1163
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/constraint/RapierConstraintHandle.java": {
+      "sha256": "c152233979e08ab5c6a686ffd896e77e2fba17f3f70c8e096feb8607b91a9062",
+      "bytes": 1980
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/constraint/fixed/RapierFixedConstraintHandle.java": {
+      "sha256": "572b6203e77901de9d4b9dcc34017742f6ad364f7e01f2965a3dd10ddcece423",
+      "bytes": 1946
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/constraint/free/RapierFreeConstraintHandle.java": {
+      "sha256": "fecadc6ed30eb6bc60872b742196454e1c66de376b1eba5e9d85c7f988e17e7c",
+      "bytes": 1938
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/constraint/generic/RapierGenericConstraintHandle.java": {
+      "sha256": "313588d4c73016e957cf3b8ec797a98f0068696909711f82f32f90c3914014d0",
+      "bytes": 4736
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/constraint/rotary/RapierRotaryConstraintHandle.java": {
+      "sha256": "381416821678c17380459cd72eebba2e2867efdd427a62e6b0e959f345541b0e",
+      "bytes": 2017
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/physics/impl/rapier/rope/RapierRopeHandle.java": {
+      "sha256": "705b7bf4051a2b8017c41746b4c06a82bc64c819492c339e534ac4a41e2e7cd1",
+      "bytes": 2909
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SableAssemblyPlatform.java": {
+      "sha256": "fba5ce14a1c3b83209a22790495554118745759994417587e7e9f4903c14b7a0",
+      "bytes": 346
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SableChunkEventPlatform.java": {
+      "sha256": "821a56a7e335c9463e4555fc21e24798d247c9f5e80c1f464bc59de3161f4b32",
+      "bytes": 464
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SableEventPlatform.java": {
+      "sha256": "fe0df647d09844f30a133bc8b62c8b389d5f5b76f187c1b8069fff63b52c8f67",
+      "bytes": 1620
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SableEventPublishPlatform.java": {
+      "sha256": "14050a31012fcd6312f2c2dc83fa5971ab0448956af1db149efee0600cc25658",
+      "bytes": 602
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SableLoaderPlatform.java": {
+      "sha256": "903f0038a44c5552caced7f59bd51f2f17eee8c5f2959577ecc40e8cdb69e52b",
+      "bytes": 546
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SablePlatform.java": {
+      "sha256": "8f4cf4b7a1820e1c26a4dee74a7d1351543448edf0ab8d55f8504cc219b417b4",
+      "bytes": 764
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SablePlatformUtil.java": {
+      "sha256": "0cad778c011479cd96518302e21877086dba10ac9d7bddac2084f7c198dca3e8",
+      "bytes": 347
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SablePlotPlatform.java": {
+      "sha256": "b79902e63f9a7f902218859683586f0702a2ac758332066d05106b183b5c0ba7",
+      "bytes": 811
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/SableSubLevelRenderPlatform.java": {
+      "sha256": "63cb3ed65e329e344302d5c7639671a5c847e94626cc08dab8a1ef14ac6e3d3a",
+      "bytes": 603
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/registry/SableRegistrationProvider.java": {
+      "sha256": "8b6abece381eaf05dad5ae9a8fc1d5d32c7a58d327a0f7325a74a1502bba7ff5",
+      "bytes": 1621
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/platform/registry/SableRegistryObject.java": {
+      "sha256": "2173011819c8c06ff9f13e7f6e1f86bd17932e1d4b9720ec8ff83230ace25b8b",
+      "bytes": 722
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/plugin/SableMixinPlugin.java": {
+      "sha256": "a905195a7806ec88acd6f2ead8821997af6da95126a17cec7cf4574adf5209fb",
+      "bytes": 757
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/render/SubLevelDynamicLights.java": {
+      "sha256": "8626d4382498d1c916bef218041af76ee5c733a9186d9418d42bbca7b83aad32",
+      "bytes": 13845
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/render/dynamic_biome/DynamicBiomeTintRenderTypes.java": {
+      "sha256": "5115056be054896bde3deb852e978861b703a0d6ccd4de7b55ebe6be164164f2",
+      "bytes": 1080
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/render/region/SimpleCulledRenderRegion.java": {
+      "sha256": "ead958dba3747bb2800dde79441f182bdfd378e627305ab8e0d5f6682f166d47",
+      "bytes": 4524
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/render/region/SimpleCulledRenderRegionBuilder.java": {
+      "sha256": "45c277db4083f5ff01567d67a5f64d8cb7bcd4c26513339db1008d7cc9be2f99",
+      "bytes": 12933
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sound/MovingSoundInstanceDelegate.java": {
+      "sha256": "c2fabcc4991bb52176be3e9ee998fbc017492e9a4e61238fc9f6ae64580a50f2",
+      "bytes": 5640
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sound/SoundInstanceDelegated.java": {
+      "sha256": "ee1d07f48541091dcafe23fdcb63ec407ea6df4d636f2580344ae4d26ab842a9",
+      "bytes": 304
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/ClientSubLevel.java": {
+      "sha256": "87dfd9aea1d83ca156a2b1a2555d6abcaebed748a360cc4b7819b403011a4718",
+      "bytes": 13523
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/ServerSubLevel.java": {
+      "sha256": "b86f6961fcf0cd7beb72e6eb390d6b4ab9e0915c220c8bc0dff55c62ef7069ae",
+      "bytes": 21664
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/SubLevel.java": {
+      "sha256": "af2fdb5fecb1ab485d632a540babd513476199d55e946911da9737f39a0ef943",
+      "bytes": 6377
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/entity_collision/SubLevelEntityCollision.java": {
+      "sha256": "c79652b0fd54b6b4b71621ac1c22bc9e375509176623203fc1f2f5e096cbd4ff",
+      "bytes": 33356
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/ClientLevelPlot.java": {
+      "sha256": "2e42e45540663efccb4f9b587bccea29bbcf64bcfcd57180c18d7e249ff85262",
+      "bytes": 2759
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/EmbeddedPlotLevelAccessor.java": {
+      "sha256": "f2a41bed8ac24d9097b131afab15caaee09e4afdf51264f29ba1df152f1f425c",
+      "bytes": 9636
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/HeatDataChunkSection.java": {
+      "sha256": "95a640fcfe63acdd9a774d3c4bcbb912cc1599d5f9a2896a48754ca89c5abafc",
+      "bytes": 979
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/LevelPlot.java": {
+      "sha256": "3fe2024d20677e971e70ff0a359b8ffbed124e16883f910abb42656bce10bef0",
+      "bytes": 18736
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/PlotChunkHolder.java": {
+      "sha256": "e2e52f1cfd97601f1e7472add8f81b1bc956366f995b691775d2d3607db54952",
+      "bytes": 8219
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/ServerLevelPlot.java": {
+      "sha256": "18404d2ecac3974538766830a73f6d2b94ac0627bdbdaf8583e35766d27871cd",
+      "bytes": 31815
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/SubLevelPlayerChunkSender.java": {
+      "sha256": "bd60d8cdac261627e660bac981955cb9bbdbd54d2384143797ea2f85b542f43e",
+      "bytes": 1440
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/heat/HeatMapPropagationState.java": {
+      "sha256": "7688645d3eebb31079edf5b178c89db2e2406c486ac1aae116d4b09b98aab332",
+      "bytes": 125
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/plot/heat/SubLevelHeatMapManager.java": {
+      "sha256": "9d4bf7fcea0aa84e33d292aa1043f06e7e41acf309365238fde27f4e4bc5392b",
+      "bytes": 17825
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/SubLevelBatchedTerrainRenderer.java": {
+      "sha256": "bc62182da81b5fe141fad1eda61257efe12ecee4b8ac43b0825182232de3d88c",
+      "bytes": 31353
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/SubLevelLightVertexConsumerProvider.java": {
+      "sha256": "8ca8fb7eda4476452c4f4eb610bf2d195d9e4565eaf3fc007bf5598e51b59241",
+      "bytes": 9391
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/SubLevelMovingBlockRenderState.java": {
+      "sha256": "a76702bff29b6a81d6efde1e95d3a786b56c8024241f39ae0772a39096887f70",
+      "bytes": 1154
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/SubLevelRenderData.java": {
+      "sha256": "382e9ca9e120ea5b47850ae50a0b1f1aef62a6fb1ccae19021e3faddcd265b11",
+      "bytes": 2759
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/SubLevelRenderer.java": {
+      "sha256": "8b435a5ab09bc486b277f328a18ca83979206d837ee48ba83c8d0024a67d8de9",
+      "bytes": 2844
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/dispatcher/SubLevelRenderDispatcher.java": {
+      "sha256": "e6eb04699110064a50ae5eb9ef5344008305a3497640ed5407c7677bf70cf9fd",
+      "bytes": 4112
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/dispatcher/VanillaSubLevelRenderDispatcher.java": {
+      "sha256": "c28ef5b77db182f398eb18575bc8819521d775c2b336dc466af6a6c616c912f9",
+      "bytes": 4921
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/staging/DSAStagingBuffer.java": {
+      "sha256": "6140c322785007a2617faccd01b8d02655af4be4c6b86997451edda17031690b",
+      "bytes": 7429
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/vanilla/SingleBlockSubLevelWrapper.java": {
+      "sha256": "a3afb30d0e2c1d3e56f7562fb8ef4c31c8266b7f684463e127ac9d24ee07f85e",
+      "bytes": 3446
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/vanilla/VanillaChunkedSubLevelRenderData.java": {
+      "sha256": "82c1c2da1cbba562c59a4261d7f0b57c93ea0129686fff4704d4e2ee3321bfdb",
+      "bytes": 18338
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/render/vanilla/VanillaSingleSubLevelRenderData.java": {
+      "sha256": "4ee6beb69f3dbad0d810e3de4db47dd2081476c0de0fed95f1c493580fcba2a1",
+      "bytes": 3669
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/HoldingSubLevel.java": {
+      "sha256": "ede2c7c65247284e97013e515ec95d148b52bb487880df10b23df491dda91815",
+      "bytes": 1473
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/SubLevelOccupancySavedData.java": {
+      "sha256": "1bd72b899b135033c7518b052352cebeabcce162fae59708e61370dfa680cb62",
+      "bytes": 3067
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/SubLevelRemovalReason.java": {
+      "sha256": "e6fe94fe845de453af3c826e1d8259d4129bf9dfe56a20a37f22f1293e0592dd",
+      "bytes": 469
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/SubLevelTicketsSavedData.java": {
+      "sha256": "ff8d3a11279c04cf6969fc8890b80335781da2ebe0db272a9dbbb2a9c0c3ba89",
+      "bytes": 8115
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/holding/GlobalSavedSubLevelPointer.java": {
+      "sha256": "c01cf4a2c68c4144695913437265a57863452c7f3d9f25dc2b99fe27fa81481b",
+      "bytes": 1431
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/holding/SavedSubLevelPointer.java": {
+      "sha256": "03c257d81264de692da44d061d01625dd85181f824cfc8efee27863491363c65",
+      "bytes": 720
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/holding/SubLevelHoldingChunk.java": {
+      "sha256": "ef54005b18cb35bec5c1aa8138e24873955b97d75ef385f2a1d0944be49b41ec",
+      "bytes": 7420
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/holding/SubLevelHoldingChunkMap.java": {
+      "sha256": "6afa4cce0f8f7d61c66fc91f10067273159e30e057029898c5d5b0fe7ecc9563",
+      "bytes": 28639
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/region/SubLevelRegionFile.java": {
+      "sha256": "942ae17784eb21fba78247b474568b64fd6f4b55545afef9f7261638458a3c1a",
+      "bytes": 2368
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/region/SubLevelStorageFile.java": {
+      "sha256": "bfce212798fb2b50c96628856f5d69cc5f24a917d42c2aed7fe84dc9e2cae2cd",
+      "bytes": 16355
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/serialization/SubLevelData.java": {
+      "sha256": "f2e52d85973fe135b1e2a5c7b1b72056725b60b1267f95bf72a8fdc7b1b71c7d",
+      "bytes": 2636
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/serialization/SubLevelSerializer.java": {
+      "sha256": "15ba90c0ef715994536ab6a34c208919b03bae83dcd46d14f8a66f08751432b8",
+      "bytes": 8972
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/storage/serialization/SubLevelStorage.java": {
+      "sha256": "f72853b080bfc7e51f93d5e33c4effe5a3223aa706c397556fc822136140966c",
+      "bytes": 10827
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/system/SubLevelPhysicsSystem.java": {
+      "sha256": "2912bfab1622ad21ade3205efc3e2a8c5c2a2b27af8d7a2c472dd8d55482bae4",
+      "bytes": 34937
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/system/SubLevelTrackingSystem.java": {
+      "sha256": "4ea9ccf74c312faa2fa0abf6a9b6c389d91bb448e3125d23f6e900a7fe7bbc2e",
+      "bytes": 22986
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/system/ticket/InhabitedChunkTicket.java": {
+      "sha256": "17c76feba270c5ef0c2d4d8871fd62f5cd1bf91d3d9daf7d1ac8277846693022",
+      "bytes": 1486
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/system/ticket/PhysicsChunkTicket.java": {
+      "sha256": "24ae3a9c0eca767744f75e0c04ffdb847172f55b6ca5e219059123df66573837",
+      "bytes": 2029
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/system/ticket/PhysicsChunkTicketManager.java": {
+      "sha256": "9a3cbfda52427557afc4d7c65850d3a0464c0b95e91397ace2062b9330010f19",
+      "bytes": 19790
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/tracking_points/SubLevelTrackingPointObserver.java": {
+      "sha256": "4cfc55a7fa49a844b18eb6c027fd658a89d499bdc9d5f08d8e0371fb3692533d",
+      "bytes": 2675
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/tracking_points/SubLevelTrackingPointSavedData.java": {
+      "sha256": "69dedc5fe6fb46aac6d8e740e23877c3618f661b15a3da4c4b77799241fccf1c",
+      "bytes": 12398
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/tracking_points/TrackingPoint.java": {
+      "sha256": "086277f9aad0c31d98142852ab0c431025a2388acf5833aae1bb10313885f7d7",
+      "bytes": 662
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/water_occlusion/ClientWaterOcclusionContainer.java": {
+      "sha256": "8479e9133a9cf45a9f85e89abdedeb4090e289ff585eb683bfeac7c6bc66c530",
+      "bytes": 1816
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/water_occlusion/ServerWaterOcclusionContainer.java": {
+      "sha256": "6dc7e14ca350108c81bbe8ed9ca4c0fc91c7befb9317ae70a38162ab8e525f07",
+      "bytes": 837
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/water_occlusion/WaterOcclusionContainer.java": {
+      "sha256": "6d0231a37d7eec2b9435f9ade437a77e86aa2f4899e81755f15eaa4658252c38",
+      "bytes": 4001
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/sublevel/water_occlusion/WaterOcclusionRegion.java": {
+      "sha256": "d0cc28d1e5783cbb1d96bc01e997fcdfc844bd84a311428921f7701d15f3255d",
+      "bytes": 538
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/BoundedBitVolume3i.java": {
+      "sha256": "fd0542bf5aeb0df7100665ab9b30edf5bfab1d39628e257c73789736dbbe270c",
+      "bytes": 3852
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/LevelAccelerator.java": {
+      "sha256": "912e9f6594082747d26d71e63f151a5ce3747e8eb4c910737a374e3a25c349b4",
+      "bytes": 5351
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/SableBufferUtils.java": {
+      "sha256": "11dc1787239b15f191bad2715b02ed52d81db93ca7f5a2455bf9e3973091773e",
+      "bytes": 2774
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/SableCodecUtil.java": {
+      "sha256": "5d9004b9fdaeb76baff6e624d58b6dcc13bc659d0d6d5ead2c93b750ac46d747",
+      "bytes": 866
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/SableDistUtil.java": {
+      "sha256": "83232278b0328c83b0ea26a698f1f37fcd823866d4a76b778278ad62affaffab",
+      "bytes": 530
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/SableMathUtils.java": {
+      "sha256": "25f672020fdc362a12b94b47d46cfc175cda635897e9f8415a394f9467fadb9c",
+      "bytes": 9162
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/SableNBTUtils.java": {
+      "sha256": "6fe6fa3bca56762afe24d7057efb0515f069b89f4fad5d8ca6a06478bbfe2187",
+      "bytes": 2885
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/SchematicLoader.java": {
+      "sha256": "53ba790f66774a7427be9986c721980d4c0fe211f68a5a320cb6003d058bf755",
+      "bytes": 2028
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/SubLevelInclusiveLevelEntityGetter.java": {
+      "sha256": "b76b2118cd9578e828bef230983c6a513bd873040ba6a8e63c788e77dcd178e3",
+      "bytes": 4573
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/SublevelRenderOffsetHelper.java": {
+      "sha256": "41b85b7141432a86b6f96ef152484198a596a90cf5fc8f0205fe98df221380e2",
+      "bytes": 2015
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/iterator/IteratorBackedFilterIterator.java": {
+      "sha256": "8e1cb3fe633962333e6d78914b2e729e41a375d3393524160240e415fe67b140",
+      "bytes": 1350
+    },
+    "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/util/iterator/ListBackedFilterIterator.java": {
+      "sha256": "9b154109cf186aed57af2dff14fbb84fb5dca16f685b20b6179c5ecf3de597be",
+      "bytes": 1421
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.api.physics.PhysicsPipelineProvider": {
+      "sha256": "a0f18e4edac17c86b059ce85f06f97cf5b26397bcca5b5c993eb97ee42dad3ee",
+      "bytes": 138
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.companion.SableCompanion": {
+      "sha256": "a8212431dc4e6b87527123d8425e53a5451f67bc4f91cb71a36bc823203440b5",
+      "bytes": 40
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.platform.SableAssemblyPlatform": {
+      "sha256": "fa4f23cb15e72462110d19372d52d1c4550d5045ed80783cb3080b200ca4f697",
+      "bytes": 63
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.platform.SableChunkEventPlatform": {
+      "sha256": "48ed4b0297efd0eba8fc839a89df2bdcae2fe6207a1bc77597193cf17f5c6a53",
+      "bytes": 65
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.platform.SableEventPlatform": {
+      "sha256": "46515fec35b41f605ed1deb73621efffc1f86e8991fbcb12527f5f3f2fd393a0",
+      "bytes": 60
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.platform.SableEventPublishPlatform": {
+      "sha256": "2cd4f63b79ab35b01daaf5c09231732603964664b0a9b59b2bdce00d09c3478d",
+      "bytes": 67
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.platform.SableLoaderPlatform": {
+      "sha256": "daeef814f71edc01a8691583fa0c9fc72b975b501a9bf21fef3ee1e194e20954",
+      "bytes": 61
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.platform.SablePlatform": {
+      "sha256": "5b393bac22cab2942913d851a96acc6f04141f22ff5775c7bdf04cfe5d57d59f",
+      "bytes": 55
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.platform.SablePlotPlatform": {
+      "sha256": "317b15fcd897f9b0dab3604931fab6efb9316183f0b776d0c9ef266997322053",
+      "bytes": 59
+    },
+    "modules/sable-adapted-263/src/main/resources/META-INF/services/dev.ryanhcode.sable.platform.SableSubLevelRenderPlatform": {
+      "sha256": "3b0e3d119c83326ce3542b3f0d3bf6fbf019388c13d9ae096fc33d6dfb80ca4b",
+      "bytes": 70
+    },
+    "modules/sable-adapted-263/src/main/resources/assets/sable/lang/en_us.json": {
+      "sha256": "d8e9f15534616d9bd1cc6e386c5ea9f82803463d6da08477ed5349ea53fe7fab",
+      "bytes": 15566
+    },
+    "modules/sable-adapted-263/src/main/resources/assets/sable/lang/zh_cn.json": {
+      "sha256": "41d58da1ce6cd162caf2c8b3d01941b66e8e044daa83ccc924173265a0f1bee1",
+      "bytes": 5610
+    },
+    "modules/sable-adapted-263/src/main/resources/assets/sable/pinwheel/shaders/include/fancy_sublevel_vertex.glsl": {
+      "sha256": "3efa88fbe69d9e2e5c87b87241c328034bc40dd4b7e88a320de898df319b89be",
+      "bytes": 2006
+    },
+    "modules/sable-adapted-263/src/main/resources/data/c/tags/block/end_stones.json": {
+      "sha256": "c38f6bf2e1c3654c9fdfd3b7c93e2446c791d6cb444e6fe928f6211f35fcd81c",
+      "bytes": 67
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/floating_materials/end_stone.json": {
+      "sha256": "f4682bef00b43898128abda8883160f10bc2e2c23e598120d50e70faab78171b",
+      "bytes": 254
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/bedrock_absurdity.json": {
+      "sha256": "85e1c031fb25598f5fb944a198c49e471cecae2e47a32f27ffd18a9896bcb34f",
+      "bytes": 86
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/bouncy.json": {
+      "sha256": "ceee2c7d33c672e42f05fd3242d160451c26d6f398c140317cda0d29be3f1cb5",
+      "bytes": 86
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/end_stone_brick_slab.json": {
+      "sha256": "924a9e8a0b4baa6bbdff10f2a85b49db6cc0480ad374018ee829f467a4b59986",
+      "bytes": 239
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/end_stones.json": {
+      "sha256": "bcaad63e782b3f316e27ebbdeec916d54c5dca6a1a9cd3a20f66f2eb8b74aa12",
+      "bytes": 110
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/flywheel.json": {
+      "sha256": "8812aed4f680fd6c7b1b9179c0bd4907ec55a6328292d843bb035067a4686973",
+      "bytes": 269
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/fragile.json": {
+      "sha256": "349695357bc5f094101ac630d26ddfa991383d40487a8f756393dac70a16ea48",
+      "bytes": 84
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/grindstone.json": {
+      "sha256": "611019ab910dc1ff8532d24537966886f67b51ce1282bcf0378619d559eaa4b7",
+      "bytes": 91
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/half_volume.json": {
+      "sha256": "8ffc7278624bd6ecb231fcd8e91b5e0a53a3b0cb00a7c978002eb9e74e6ff6fb",
+      "bytes": 162
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/heavy.json": {
+      "sha256": "cd5327c4f36219d982734490379da5ff19dde84e31c99a24d9ee12fd12fcdde6",
+      "bytes": 152
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/light.json": {
+      "sha256": "29ad18c430b77d891c852164f80a4941d6fe36263fde26a349032bf8dfbca7a1",
+      "bytes": 152
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/mud.json": {
+      "sha256": "f7b853eca363b41c7c913143890a25ce8259c2bf01a2f581adc19b22b4adb3b9",
+      "bytes": 84
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/normal.json": {
+      "sha256": "684f398293e9d4860d8558246b75cda4c865c1458486da9456b5dd3e1c7d0d8e",
+      "bytes": 153
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/piston.json": {
+      "sha256": "2f67e87db2e2c7c3c7ded3888b35560fe4167698369d0130e0b9540899f5ba86",
+      "bytes": 156
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/quarter_volume.json": {
+      "sha256": "15098a193d477a5b74248716230bbb48f9ff3580444cea60acb2794274dc6f39",
+      "bytes": 166
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/slippery.json": {
+      "sha256": "aabe9f5caabec12b04b9904bd22ca5e3ba1787cbbd900327103fc9665d1a2c7f",
+      "bytes": 85
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/sticky.json": {
+      "sha256": "3cf4ae2e9e025afbc6e6c50fe5cab36c17fb1b5e337791356bc9480ce0a8cb34",
+      "bytes": 86
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/super_heavy.json": {
+      "sha256": "32bf9bb01f02bf035d06c1f56e24d19f92d2cda625ec917175fe12059de15d30",
+      "bytes": 158
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/super_light.json": {
+      "sha256": "fc9ec0ed505694c53d658d3336a4a9bb4abe3c18a284f7cb1b432236f06a804b",
+      "bytes": 179
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/physics_block_properties/weightless.json": {
+      "sha256": "d6d709c62df60245feb13e4aa456a0d4806787a9a6859e95482e8ba4bd93269d",
+      "bytes": 83
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/structure/assemblytest.allblocks.nbt": {
+      "sha256": "59fa68d81e414a9da47ad1d8fa85cd9eee55a96a3d0e5f82d3f75719257b9c2c",
+      "bytes": 445
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/structure/assemblytest.brittlebreak.nbt": {
+      "sha256": "3bd6844483ff4bcdbf098dea57029edfa38d73ed745d786e090afcaab7d7f255",
+      "bytes": 573
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/structure/physicstest.continuouscollision.nbt": {
+      "sha256": "269d6bbe42b2ad985a13839b42666fee17005fe328665535211774c4d85a625d",
+      "bytes": 1113
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/structure/physicstest.gravity.nbt": {
+      "sha256": "ab8ab3ba5927acff0b260bacb545564d60191b60a17bcff8a943af272ee8dbfb",
+      "bytes": 930
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/structure/physicstest.snag.nbt": {
+      "sha256": "32673f1637cc1f87571d5edc55e4cb5071e620ba39d36452f32c13151d223dbf",
+      "bytes": 1392
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/always_chunk_rendering.json": {
+      "sha256": "469d311982f5e663b44cf7f705f34289d361497e6282e25eac9b57b4b55d341c",
+      "bytes": 505
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/bouncy.json": {
+      "sha256": "4172220574193e94487e7620f6a171f71520f2e7d45a670ceedfa6b985fd92c1",
+      "bytes": 69
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/diode.json": {
+      "sha256": "6505ef389e3ca7a79d1e0e84b9c6590b9ca200e8892d648e800f0182995ef28a",
+      "bytes": 386
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/end_stones.json": {
+      "sha256": "2d28a5109ddaf0629c8f7887fe0bc2cda24aaecef911c586920dfff07c96e137",
+      "bytes": 655
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/fragile.json": {
+      "sha256": "8802345d4b04de1be0ad216adb90cf2f603645aebb43ce1cbe4dfdf8c97f1058",
+      "bytes": 237
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/frictive.json": {
+      "sha256": "125521b87f71c8dc2508d6c978b884d4a5ca38a4af05d46f453d3018047d9b91",
+      "bytes": 483
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/half_volume.json": {
+      "sha256": "d1a2cc900f39ca591b48a84e902653372005a3827ce6e0dcc52c6888386ae1f0",
+      "bytes": 655
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/heavy.json": {
+      "sha256": "3e17c13abfab196f7a3f68fdfb7d070d640c74fac620c5dbe86702604618e810",
+      "bytes": 255
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/light.json": {
+      "sha256": "018af2fcde8815852a7d91f8b2c56b9029ce64ba8810e4bf2aaaa6a5c7f32764",
+      "bytes": 2833
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/normal.json": {
+      "sha256": "b91fc3b75a7aec4d95e886e22c57a3f2e7d161b4c40a7293c58a76d822320a22",
+      "bytes": 67
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/normal_slabs.json": {
+      "sha256": "a11f5db54a88d772d745fee306b942ba043d5f97007fcfda0392058b09f90e1e",
+      "bytes": 334
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/pistons.json": {
+      "sha256": "479e98774294235c9fedeee7a110d7604e58bb575de340d666151e80ed09e258",
+      "bytes": 75
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/quarter_volume.json": {
+      "sha256": "9c6c2f8e7776f29c649f0325c4e23f317464c3fe3c4e052371c0284287d6cb4e",
+      "bytes": 4293
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/silent_assembly_removal.json": {
+      "sha256": "b8038ac2cc88a5bb838ff5824402ff5bf944651a5e5fa323673a8be7f43a8116",
+      "bytes": 1169
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/slippery.json": {
+      "sha256": "4869b1b1b3b869556b6f061ee8a906c6cd84c949249b289dded2a762a3104e2f",
+      "bytes": 533
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/super_heavy.json": {
+      "sha256": "b9e7c87deab520b39360ab9f931a03980ce52b9f2455befb128542829c2b8dda",
+      "bytes": 281
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/super_light.json": {
+      "sha256": "6a659158c68db8089ea35d8d667ef03b1f1d4558542a6e4d3eecda5bfd04e7d3",
+      "bytes": 5019
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/block/weightless.json": {
+      "sha256": "04952859137545a69325a362447ad42f8c4d81c04060807f317c0e40ceaa4fc4",
+      "bytes": 146
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/entity_type/create_contraption.json": {
+      "sha256": "ba5a66c00f01b8fd9badac99d67c2f3e1feb26f73ba3cf3dc348794c51f3eaa8",
+      "bytes": 351
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/entity_type/destroy_when_leaving_plot.json": {
+      "sha256": "61583be6ebc02fa605f812512c87c221ef426bd6067a8de4b2b440d8f6ca2fef",
+      "bytes": 282
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/entity_type/destroy_with_sub_level.json": {
+      "sha256": "dc23733cfca845180f0bc397943350281f8ac117a8f27100d5103451373afad7",
+      "bytes": 146
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/entity_type/retain_in_sub_level.json": {
+      "sha256": "2f7d90d2df984adcf684a1bba87e6f9fe8815c498ceb5a1ac473c0c4a347d8b5",
+      "bytes": 985
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/entity_type/super_glue.json": {
+      "sha256": "21ba07ffb228cca48ae8026f87826fd179b020e6146d55f63ed7e85db3ed2a70",
+      "bytes": 94
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/entity_type/wall_entities.json": {
+      "sha256": "8cb26da50b0990b64b2dfe92ea4c617d82a4de7e8046c5093135d43325e45688",
+      "bytes": 638
+    },
+    "modules/sable-adapted-263/src/main/resources/data/sable/tags/item/paddles.json": {
+      "sha256": "4132cb6ceeda5f044aa0f13e1fbf9fe6354d20c6cd104d60217c46d6c00edbf7",
+      "bytes": 66
+    },
+    "modules/sable-adapted-263/src/main/resources/fabric.mod.json": {
+      "sha256": "27b019996656ff5dabbd62f587329f197ae1242fdb05253a57aaeb91dcfd0005",
+      "bytes": 1410
+    },
+    "modules/sable-adapted-263/src/main/resources/icon.png": {
+      "sha256": "63c80250ee219ecc628bba0820c210c34990859a26284f42b3c622c2d21e1286",
+      "bytes": 3194
+    },
+    "modules/sable-adapted-263/src/main/resources/natives/sable_rapier/LICENSE-RAPIER": {
+      "sha256": "ceacfa4d7fa67df64ab09a56fe248c50a3bfc9bc00374d69bd74ad763b14b89c",
+      "bytes": 11347
+    },
+    "modules/sable-adapted-263/src/main/resources/natives/sable_rapier/README.md": {
+      "sha256": "c2eff0fe41422478564b5dfc77de0db8696bbf7f201dbbedc05f11279b813630",
+      "bytes": 188
+    },
+    "modules/sable-adapted-263/src/main/resources/sable-fabric.mixins.json": {
+      "sha256": "3f4d2a590c2fec714c7d2790a6272dd99a504bde087e68dda02a964283b7b843",
+      "bytes": 511
+    },
+    "modules/sable-adapted-263/src/main/resources/sable.classtweaker": {
+      "sha256": "ff10c3caba85afe622492788e1102c9f24a8689c1e0efc93207bf0c5a180e167",
+      "bytes": 6137
+    },
+    "modules/sable-adapted-263/src/main/resources/sable.mixins.json": {
+      "sha256": "6bbb1f9301ee9ed742024b40094cf62a6dc2c4f0cc4b3b4852d47471232e9e21",
+      "bytes": 10154
+    },
+    "modules/sable-adapted-263/src/main/rust/.cargo/config.toml": {
+      "sha256": "4901c99c6c8bbff3b0ebea4f4a3992cd24e7ad655c8af64acc8bfe0d466a45c7",
+      "bytes": 206
+    },
+    "modules/sable-adapted-263/src/main/rust/Cargo.lock": {
+      "sha256": "b0d511d6fc2d925fd139fdddf51e09086709ef8db00421836de93a46463c1740",
+      "bytes": 39411
+    },
+    "modules/sable-adapted-263/src/main/rust/Cargo.toml": {
+      "sha256": "a2bcde03186754b79ddfccd0b81f94d99bc15cd3ecfe677c5c77afe8f659df79",
+      "bytes": 372
+    },
+    "modules/sable-adapted-263/src/main/rust/container/xwin/Dockerfile": {
+      "sha256": "d9b2e54ba1a39223b05bde2a0296d35f2afddc58b6dfae34d207411a992affdc",
+      "bytes": 324
+    },
+    "modules/sable-adapted-263/src/main/rust/container/zigbuild/Dockerfile": {
+      "sha256": "976e03a1c8fdae6563db9a841d4524a565d141a8655d400ac7ad6ba1e81833dc",
+      "bytes": 497
+    },
+    "modules/sable-adapted-263/src/main/rust/marten/Cargo.toml": {
+      "sha256": "e23d8d1cdedf0cab64a6c96bacb288b4abbcebcb17b6f84c70e39c9e76c7d848",
+      "bytes": 207
+    },
+    "modules/sable-adapted-263/src/main/rust/marten/src/level.rs": {
+      "sha256": "ea30d305e45f44b7c4f8cc157346b7b7c5239a34b0f2b1687d721e12ab4dbbaf",
+      "bytes": 4259
+    },
+    "modules/sable-adapted-263/src/main/rust/marten/src/lib.rs": {
+      "sha256": "9d92b7b32b33e61dc787f7d658fc56ade4242645db4109a28a13e4722898f458",
+      "bytes": 53
+    },
+    "modules/sable-adapted-263/src/main/rust/marten/src/octree.rs": {
+      "sha256": "00ce4c27f76ccda62ceeae071605fe3e356eda2529018c339db2ff5f40eefc4b",
+      "bytes": 8273
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/Cargo.toml": {
+      "sha256": "5bafc736d703a3272e019ae25bc2ddc80411a4a74043d28a1cdf800caef28805",
+      "bytes": 682
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/benches/collision_benchmark.rs": {
+      "sha256": "c521d8fcf428f0d9d43d98c3cc81ec2d789f423f08bcca7517c60bfb3f69a1a4",
+      "bytes": 5796
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/algo.rs": {
+      "sha256": "610419b9f2f5a701d06af0c210f38ce02145284375af1c17b290865834b162ad",
+      "bytes": 9193
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/boxes.rs": {
+      "sha256": "2320cb1b8ca4c4a60a8c10c2163ea6701275ffeeb73f598ade2562660b72b3b3",
+      "bytes": 2847
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/buoyancy.rs": {
+      "sha256": "1a736d2538f03c67dbc3a05bef531706fd04e6e107df421a7b307244b764382a",
+      "bytes": 6338
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/collider.rs": {
+      "sha256": "a6046b1857742d0ba811399dbfc3527c9d197bf8f700a7b1a4ad8182d5e8fcfe",
+      "bytes": 3722
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/config.rs": {
+      "sha256": "79c06d4e3e44634d9d0f96cb5c44566e8800b8b1496f52aae1934289d1bd1bec",
+      "bytes": 1886
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/contraptions.rs": {
+      "sha256": "ff9b0e27c0b219c20e854f32b9cc51e8bcc40e7c01e8e55cfccf2b8bac5a2b70",
+      "bytes": 8361
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/dispatcher.rs": {
+      "sha256": "e04023073cff3cfee72b07a3079cbcc51366e1c23602b75f33d0b705014f39c2",
+      "bytes": 31633
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/event_handler.rs": {
+      "sha256": "c2c4625a2bbfc7c6bfa37c0cd7e5b930c0be4ae29d3374d2d9ff227a92c5a6b6",
+      "bytes": 2335
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/groups.rs": {
+      "sha256": "495bf637585f15394b4d216fa99f80e69ae1b547b8164960111fd70282ba02c0",
+      "bytes": 361
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/hooks.rs": {
+      "sha256": "eccac7e1c6980c1b18fa59a3bfd6b4c831ed388f2e5a33cf2f2f735ada5661a3",
+      "bytes": 9910
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/joints.rs": {
+      "sha256": "dbd1d2f7690de5258f8a050eff3a4f36b143adda26c4c0ff4f5e295286e4f910",
+      "bytes": 20419
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/lib.rs": {
+      "sha256": "820f58a1cc3e3403efe55e95094254f1e5c64c025fbd4cb5bde1e9bcf7001cc2",
+      "bytes": 45515
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/rope.rs": {
+      "sha256": "c1fb46fca1920f97f31c35a057c61779c8ada3a2c89826d53a06983f61af8355",
+      "bytes": 17435
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/scene.rs": {
+      "sha256": "fc58a4232682a04e5099ec009f0f06841e9bb64d9670e97f805c75c7bb7c0fd6",
+      "bytes": 4421
+    },
+    "modules/sable-adapted-263/src/main/rust/rapier/src/voxel_collider.rs": {
+      "sha256": "f578dd459377ee9c41a2f3231319d61fe3cb48fe8af24d8ee98c1958bcf22da7",
+      "bytes": 3740
+    },
+    "modules/sable-adapted-263/src/main/rust/rust-toolchain.toml": {
+      "sha256": "8e266573468be94ce0461ee919c9e3c344d9918e308b55102ebdef5a49b69313",
+      "bytes": 43
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/SableClientSmoke.java": {
+      "sha256": "01c379bdb253e7d37aabc737cb915277297be920c8ca30f9c4ef278f7b549865",
+      "bytes": 2338
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/SableNeoForge.java": {
+      "sha256": "1e6d6d5960cdead777476610a0876cf8dd022f0531785f1a443e28d39d7b320e",
+      "bytes": 4858
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/SableNeoForgeClient.java": {
+      "sha256": "f82130973bcb43434bfce1ae181b29a77b66f57a629c2f4c7ae517b98d4e9697",
+      "bytes": 3086
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/SableRuntimeProbe.java": {
+      "sha256": "db1d87dedf49b8b1708cd78492bc2ae97961d63a02c3296376ba61a0a16b0b7e",
+      "bytes": 6233
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/event/ForgeSablePostPhysicsTickEvent.java": {
+      "sha256": "69f9ff94097c5888ead12caf6da25be5b541504d279340cf89ea139075114da3",
+      "bytes": 1003
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/event/ForgeSablePrePhysicsTickEvent.java": {
+      "sha256": "89280d9f1c60e458b7eb3bc0257b05cc8238d5def48a506cd7bd4709a97d07e5",
+      "bytes": 1024
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/event/ForgeSableSubLevelContainerReadyEvent.java": {
+      "sha256": "705759bb7618c05d4896a1aece649dea725445037515a88a8f05e92654c28237",
+      "bytes": 765
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/platform/SableAssemblyPlatformImpl.java": {
+      "sha256": "11706493490e03d27e89a5b52b01acf853299c36445e37b8a8f06f44c857464d",
+      "bytes": 431
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/platform/SableChunkEventPlatformImpl.java": {
+      "sha256": "171e9f489717e450e741dddedcc3fed2230a3fb2d890673bec5f4557d9856115",
+      "bytes": 813
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/platform/SableEventPlatformImpl.java": {
+      "sha256": "dc794df810929be5cbf496440f2320bfbc875bb43a826511481eadd37c73c986",
+      "bytes": 1514
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/platform/SableEventPublishPlatformImpl.java": {
+      "sha256": "87fd97b5872b636cd767ef529b4c49f3a7323517eb9a1c6448b8d5eff717d422",
+      "bytes": 1997
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/platform/SableLoaderPlatformImpl.java": {
+      "sha256": "34b8e6381454a4e4e0efa496c2ffa1c62e9a00cbe4e659a41e00cb1a9e736c34",
+      "bytes": 761
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/platform/SablePlatformImpl.java": {
+      "sha256": "ea2b34517ee7ac724cfb61f642eb6a065624ec1f669ef86d17bd5fe788e6437b",
+      "bytes": 1223
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/platform/SablePlotPlatformImpl.java": {
+      "sha256": "9f6f044c077fd71cbf9c462e0983e73d4849a11e0e8747cda482a2d9256b293f",
+      "bytes": 2383
+    },
+    "modules/sable-adapted-263/src/neoforge/java/dev/ryanhcode/sable/neoforge/platform/SableSubLevelRenderPlatformImpl.java": {
+      "sha256": "dea31dd8db7a5a3e399733585e8342b00b1b0a53d2a3cde5f4c16b2f396e494e",
+      "bytes": 416
+    },
+    "modules/sable-adapted-263/src/neoforge/resources/META-INF/accesstransformer.cfg": {
+      "sha256": "9d2c9e96d2ab801599a15aa13cee82906f93d8be342eca9272c61e068ee7b5dd",
+      "bytes": 4303
+    },
+    "modules/sable-adapted-263/src/neoforge/resources/META-INF/neoforge.mods.toml": {
+      "sha256": "9cf62d19ada8f25f9d09165a720fecb37452cb4c301e8ba18afefe1d75f1dbcd",
+      "bytes": 604
+    }
+  }
+}

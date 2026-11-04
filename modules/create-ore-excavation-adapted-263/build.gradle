@@ -1,0 +1,17 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+apply from: '../../gradle/create263-addon.gradle'
+sourceSets.main {
+    java {
+        setSrcDirs(['NeoForge/src/main/java', 'NeoForge/src/platform-shared/java', 'NeoForge/src/compat-disabled/java'])
+        exclude 'com/tom/createores/data/**', 'com/tom/createores/jei/**', 'com/tom/createores/kubejs/**', 'com/tom/createores/cc/OreVeinFinderTurtle.java', 'com/tom/createores/jm/JMPlugin.java', 'com/tom/createores/jm/OreVeinInfo.java', 'com/tom/createores/jm/OreNearbyInfo.java', 'com/tom/createores/jm/OreDistanceInfo.java', 'com/tom/createores/compat/**'
+        exclude 'com/tom/createores/util/BiomeTooltip.java'
+        exclude { f -> f.file.path.replace('\\', '/').contains('src/main/java/com/tom/createores/jm/') || f.file.path.replace('\\', '/').contains('src/main/java/com/tom/createores/client/CCClientInit.java') || f.file.path.replace('\\', '/').contains('src/platform-shared/java/com/tom/createores/cc/CCRegistration.java') || f.file.path.replace('\\', '/').contains('src/platform-shared/java/com/tom/createores/jm/OreVeinsOverlay.java') }
+    }
+    resources {
+        setSrcDirs(['NeoForge/src/main/resources', 'NeoForge/src/platform-shared/resources', 'NeoForge/src/generated/resources'])
+        exclude 'kubejs.plugins.txt', '.cache/**'
+    }
+}

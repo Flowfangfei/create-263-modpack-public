@@ -1,0 +1,60 @@
+package com.george_vi.electroenergetics.events.datagen;
+
+import com.george_vi.electroenergetics.CreateElectroEnergetics;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.Holder;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
+
+public class SimpleCEETrigger extends CEECriterionTriggerBase<SimpleCEETrigger.Instance> {
+    public SimpleCEETrigger(String id) {
+        super(id);
+    }
+
+    public void trigger(ServerPlayer player) {
+        super.trigger(player, (List<Supplier<Object>>) null);
+    }
+
+    @Override
+    public Codec<Instance> codec() {
+        return Instance.CODEC;
+    }
+
+    public Instance instance() {
+        return new Instance();
+    }
+
+    public static class Instance extends CEECriterionTriggerBase.Instance {
+        private static final Codec<Instance> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                LootItemCondition.CODEC.optionalFieldOf("player").forGetter(Instance::player)
+        ).apply(instance, Instance::new));
+
+        private final Optional<Holder<LootItemCondition>> player;
+
+        public Instance() {
+            player = Optional.empty();
+        }
+
+        public Instance(Optional<Holder<LootItemCondition>> player) {
+            this.player = player;
+        }
+
+        @Override
+        protected boolean test(@Nullable List<Supplier<Object>> suppliers) {
+            return true;
+        }
+
+        @Override
+        public Optional<Holder<LootItemCondition>> player() {
+            return player;
+        }
+    }
+}

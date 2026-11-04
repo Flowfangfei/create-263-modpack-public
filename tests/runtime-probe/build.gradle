@@ -1,0 +1,8 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+apply from: '../../gradle/create263-addon.gradle'
+dependencies {
+    compileOnly files('../../modules/create-liquid-fuel-adapted-263/build/libs/createliquidfuel-3.0.0-26.3-adapted.1.jar')
+}

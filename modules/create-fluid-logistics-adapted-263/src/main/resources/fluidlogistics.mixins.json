@@ -1,0 +1,66 @@
+{
+  "required": true,
+  "package": "com.yision.fluidlogistics.mixin",
+  "plugin": "com.yision.fluidlogistics.mixin.FluidLogisticsMixinPlugin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "accessor.ArmBlockEntityAccessor",
+    "accessor.LogisticallyLinkedBehaviourAccessor",
+    "accessor.SchematicannonBlockEntityAccessor",
+    "schematics.SchematicTableInputSlotMixin",
+    "schematics.ServerSchematicLoaderMixin",
+    "fluids.FluidPropagatorMixin",
+    "kinetics.BeltInventoryMixin",
+    "kinetics.BeltProcessingBehaviourMixin",
+    "kinetics.ChainConveyorBlockEntityMixin",
+    "kinetics.ChainConveyorBlockMixin",
+    "kinetics.ChainConveyorConnectionPacketMixin",
+    "processing.BasinRecipeMixin",
+    "logistics.AttributeFilterItemStackMixin",
+    "logistics.FactoryPanelConfigurationPacketMixin",
+    "logistics.FactoryGaugeHostBlockMixin",
+    "logistics.FactoryGaugeHostBlockEntityMixin",
+    "logistics.FilterItemStackFluidMixin",
+    "logistics.InventorySummaryMixin",
+    "logistics.LogisticsManagerMixin",
+    "logistics.PackageEntityMixin",
+    "logistics.PackagerBlockEntityMixin",
+    "logistics.PackagerBlockMixin",
+    "logistics.RequestPromiseQueueMixin",
+    "logistics.StockTickerBlockEntityMixin",
+    "accessor.BasinResourceAccessor"
+  ],
+  "client": [
+    "accessor.FrogportChainConveyorOBBAccessor",
+    "client.ChainConveyorRendererMixin",
+    "client.ChainConveyorInteractionHandlerMixin",
+    "client.BlueprintOverlayRendererMixin",
+    "client.ClipboardScreenMixin",
+    "client.CreativeModeInventoryScreenAccessor",
+    "client.CreativeModeItemPickerMenuAccessor",
+    "client.CreativeModeTabBannerPaddingMixin",
+    "kinetics.ChainConveyorConnectionHandlerMixin",
+    "client.FactoryPanelScreenMixin",
+    "client.FactoryGaugeHostModelMixin",
+    "client.FactoryGaugeHostRendererMixin",
+    "client.FactoryGaugeFilteringRendererMixin",
+    "client.GoggleOverlayRendererMixin",
+    "client.RedstoneRequesterScreenMixin",
+    "client.PackagePortTargetSelectionHandlerMixin",
+    "client.SchematicHandlerMixin",
+    "client.StockKeeperRequestScreenMixin",
+    "client.TableClothBlockEntityMixin",
+    "client.GuiGraphicsExtractorAccessor",
+    "client.CopperBasinRendererMixin",
+    "client.FactoryPanelClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

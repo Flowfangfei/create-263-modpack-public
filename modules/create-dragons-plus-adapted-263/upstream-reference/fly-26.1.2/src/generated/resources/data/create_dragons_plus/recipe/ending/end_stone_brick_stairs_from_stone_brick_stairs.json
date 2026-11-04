@@ -1,0 +1,11 @@
+{
+  "type": "create_dragons_plus:ending",
+  "ingredients": [
+    "minecraft:stone_brick_stairs"
+  ],
+  "results": [
+    {
+      "id": "minecraft:end_stone_brick_stairs"
+    }
+  ]
+}

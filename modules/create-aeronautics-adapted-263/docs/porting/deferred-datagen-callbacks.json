@@ -1,0 +1,666 @@
+{
+  "upstream": "943753a38209dde0f24eaeacc89240772d9e5581",
+  "status": "deferred: runtime uses checked-in 26.3 generated resources",
+  "callbacks": [
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 104,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> p.horizontalFaceBlock(c.get(), AssetLookup.partialBaseModel(c, p)))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 107,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"   \")\n                            .pattern(\" N \")\n                            .pattern(\"ARA\")\n                            .define('A', AllItems.ANDESITE_ALLOY)\n                            .define('N', Items.LEVER)\n                            .define('R', AllBlocks.ANDESITE_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 125,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) -> prov.directionalBlock(ctx.getEntry(),\n                            blockState -> prov.models().getExistingFile(\n                                    prov.modLoc(\"block/swivel_bearing/block\" + (blockState.getValue(SwivelBearingBlock.ASSEMBLED) ? \"_assembled\" : \"\")))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 132,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\" A \")\n                            .pattern(\" B \")\n                            .pattern(\" C \")\n                            .define('A', ItemTags.WOODEN_SLABS)\n                            .define('B', AllBlocks.INDUSTRIAL_IRON_BLOCK)\n                            .define('C', AllBlocks.COGWHEEL)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 146,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) ->\n                            prov.directionalBlock(ctx.getEntry(), blockState -> prov.models().getExistingFile(prov.modLoc(\"block/swivel_bearing/bearing_plate\"))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 157,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) ->\n                            prov.directionalBlock(ctx.getEntry(), blockState -> prov.models().getExistingFile(prov.modLoc(\"block/merging_glue/block\"))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 168,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::directionalKineticAxisBlockstate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 173,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"I\")\n                            .pattern(\"H\")\n                            .pattern(\"S\")\n                            .define('I', AllItems.IRON_SHEET)\n                            .define('H', AllBlocks.SHAFT)\n                            .define('S', AllBlocks.INDUSTRIAL_IRON_BLOCK)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.IRON_SHEET))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 191,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::directionalAxisBlock)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 194,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"I\")\n                            .pattern(\"S\")\n                            .define('I', AllItems.IRON_SHEET)\n                            .define('S', AllBlocks.INDUSTRIAL_IRON_BLOCK)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.IRON_SHEET))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 206,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> {\n                p.shaped(RecipeCategory.MISC, c.get(), 1)\n                    .pattern(\"N\")\n                    .pattern(\"A\")\n                    .define('N', Items.IRON_NUGGET)\n                    .define('A', AllItems.ANDESITE_ALLOY)\n                    .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.ANDESITE_ALLOY))\n                    .save(p);\n                p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                    .requires(SimTags.Items.HANDLE_VARIANTS)\n                    .unlockedBy(\"has_ingredient\", p.has(SimTags.Items.HANDLE_VARIANTS))\n                    .save(p, Simulated.path(\"handle_undye\").toString());\n            })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 222,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                    .requires(IRON_HANDLE)\n                    .requires(Items.COPPER_INGOT)\n                    .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(IRON_HANDLE))\n                    .group(\"handle_variants\")\n                    .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 233,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                        .requires(IRON_HANDLE)\n                        .requires(Items.DYE.pick(color))\n                        .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(IRON_HANDLE))\n                        .group(\"handle_variants\")\n                        .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 251,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> {\n                p.shapeless(RecipeCategory.MISC, c.get())\n                        .requires(AllBlocks.ANDESITE_CASING)\n                        .requires(AllBlocks.COGWHEEL)\n                        .requires(Items.REDSTONE_TORCH)\n                        .requires(AllBlocks.SHAFT)\n                        .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                        .save(p);\n            })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 260,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(DirectionalGearshiftGenerator::generate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 269,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> p.directionalBlock(c.get(),\n                            blockState -> p.models().getExistingFile(p.modLoc(\"block/torsion_spring/block\"))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 275,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"A\")\n                            .pattern(\"S\")\n                            .pattern(\"C\")\n                            .define('A', AllBlocks.SHAFT)\n                            .define('S', SimItems.SPRING)\n                            .define('C', AllBlocks.ANDESITE_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 289,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateService.INSTANCE.augerShaftGenerate(\"auger_shaft\", false))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 292,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> {\n                        p.shapeless(RecipeCategory.MISC, c.get(), 2)\n                                .requires(AllBlocks.CHUTE)\n                                .requires(AllBlocks.SHAFT)\n                                .requires(AllItems.IRON_SHEET)\n                                .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.IRON_SHEET))\n                                .save(p);\n\n                        p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                                .requires(SimBlocks.AUGER_COG.get())\n                                .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.IRON_SHEET))\n                                .save(p, Simulated.path(c.getName() + \"_from_auger_cogwheel\").toString());\n                    })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 314,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateService.INSTANCE.augerShaftGenerate(\"auger_cog\", true))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 318,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                            .requires(SimBlocks.AUGER_SHAFT.get())\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.IRON_SHEET))\n                            .save(p, Simulated.path(c.getName() + \"_from_auger_shaft\").toString()))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 335,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"G\")\n                            .pattern(\"E\")\n                            .pattern(\"B\")\n                            .define('G', AllItems.IRON_SHEET)\n                            .define('E', SimItems.ENGINE_ASSEMBLY)\n                            .define('B', Blocks.BLAST_FURNACE)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.BRASS_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 345,
+      "kind": "model",
+      "upstream_source": ".model((c, p) -> p\n                            .withExistingParent(colorName + \"_portable_engine\", p.modLoc(\"block/portable_engine/item\"))\n                            .texture(\"0\", p.modLoc(\"block/portable_engine/\" + colorName))\n                            .texture(\"particle\", p.modLoc(\"block/portable_engine/\" + colorName))\n                    )"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 356,
+      "kind": "model",
+      "upstream_source": ".model((c, p) -> p\n                            .withExistingParent(colorName + \"_portable_engine\", p.modLoc(\"block/portable_engine/item\"))\n                            .texture(\"0\", p.modLoc(\"block/portable_engine/\" + colorName))\n                            .texture(\"particle\", p.modLoc(\"block/portable_engine/\" + colorName))\n                    )"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 376,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> p.horizontalBlock(c.get(), blockState -> p.models()\n                        .withExistingParent(colorName + \"_portable_engine\", p.modLoc(\"block/portable_engine/block\"))\n                                .texture(\"0\", p.modLoc(\"block/portable_engine/\" + colorName))\n                                .texture(\"particle\", p.modLoc(\"block/portable_engine/\" + colorName))\n                        ))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 392,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::facingPoweredAxisBlockstate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 393,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"A\")\n                            .pattern(\"T\")\n                            .pattern(\"C\")\n                            .define('A', SimTags.Items.LASER_POINTER_LENS)\n                            .define('T', Items.REDSTONE_TORCH)\n                            .define('C', AllBlocks.ANDESITE_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 412,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> SimBlockStateService.INSTANCE.genericModelBuilder(c, p, SimBlockStateGen::xyLaser, (state) -> AssetLookup.forPowered(c, p).apply(state)))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 415,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"G\")\n                            .pattern(\"A\")\n                            .pattern(\"C\")\n                            .define('G', Blocks.TINTED_GLASS)\n                            .define('A', SimTags.Items.LASER_POINTER_LENS)\n                            .define('C', AllBlocks.ANDESITE_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 433,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::directionalAxisBlock)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 436,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"P\")\n                            .pattern(\"B\")\n                            .pattern(\"A\")\n                            .define('P', AllItems.PROPELLER)\n                            .define('B', Blocks.BARREL)\n                            .define('A', AllBlocks.ANDESITE_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 456,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> SimBlockStateService.INSTANCE.genericModelBuilder(c, p,\n                            SimBlockStateGen::xyAltitudeSensor,\n                            (state) -> p.models().getExistingFile(p.modLoc(\"block/\" + c.getName() + \"/block\"))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 461,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"P\")\n                            .pattern(\"S\")\n                            .pattern(\"A\")\n                            .define('P', Items.PAPER)\n                            .define('S', AllItems.IRON_SHEET)\n                            .define('A', AllBlocks.ANDESITE_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 484,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"C\")\n                            .pattern(\"G\")\n                            .pattern(\"B\")\n                            .define('C', Items.COMPASS)\n                            .define('G', SimItems.GYRO_MECHANISM)\n                            .define('B', AllBlocks.BRASS_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(SimItems.GYRO_MECHANISM.get()))\n                            .save(p)\n                    )"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 494,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(BlockStateGen.horizontalAxisBlockProvider(true))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 506,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> p.directionalBlock(c.get(), blockState -> p.models()\n                            .getExistingFile(p.modLoc(\"block/navigation_table/block\"))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 509,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"S\")\n                            .pattern(\"P\")\n                            .pattern(\"B\")\n                            .define('S', AllItems.BRASS_SHEET)\n                            .define('P', AllItems.PRECISION_MECHANISM)\n                            .define('B', AllBlocks.BRASS_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.PRECISION_MECHANISM))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 526,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> SimBlockStateService.INSTANCE.genericModelBuilder(c, p, SimBlockStateGen::xyLaser, (state) -> AssetLookup.forPowered(c, p).apply(state)))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 531,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\" A \")\n                            .pattern(\" C \")\n                            .pattern(\" B \")\n                            .define('A', Items.AMETHYST_SHARD)\n                            .define('B', AllBlocks.BRASS_CASING)\n                            .define('C', AllItems.ELECTRON_TUBE)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.BRASS_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 556,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::facingPoweredAxisBlockstate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 565,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc(\"block/docking_connector/block\"))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 581,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> p.getVariantBuilder(c.get()).forAllStates(state -> {\n                        final String suffix = state.getValue(AnalogTransmissionBlock.POWERED) ? \"_on\" : \"\";\n                        final Identifier path = Simulated.path(\"block/\" + c.getName() + \"/block\" + suffix);\n                        final Direction.Axis axis = state.getValue(AnalogTransmissionBlock.AXIS);\n                        return new ConfiguredModel[]{\n                                ConfiguredModel.builder()\n                                        .modelFile(p.models().getExistingFile(path))\n                                        .rotationX(axis == Direction.Axis.Y ? 0 : 90)\n                                        .rotationY(axis == Direction.Axis.X ? 90 : 0)\n                                        .build()};\n                    }))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 596,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                            .requires(AllBlocks.BRASS_CASING)\n                            .requires(AllBlocks.SHAFT)\n                            .requires(AllBlocks.COGWHEEL)\n                            .requires(AllItems.ELECTRON_TUBE)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.BRASS_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 611,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(new SteeringWheelGenerator()::generate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 617,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"C\")\n                            .pattern(\"A\")\n                            .pattern(\"S\")\n                            .define('C', AllBlocks.LARGE_COGWHEEL)\n                            .define('A', AllBlocks.ANDESITE_CASING)\n                            .define('S', AllBlocks.SHAFT)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.SHAFT))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 635,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> p.horizontalFaceBlock(c.get(), AssetLookup.partialBaseModel(c, p)))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 637,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"S\")\n                            .pattern(\"B\")\n                            .define('S', Items.STICK)\n                            .define('B', AllBlocks.BRASS_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.BRASS_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 651,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) -> {\n                        prov.horizontalBlock(ctx.get(), blockState -> prov.models()\n                                .getExistingFile(prov.modLoc(\"block/\" + ctx.getName() + \"/block\" + (blockState.getValue(BlockStateProperties.POWERED) ? \"_powered\" : \"\"))));\n                    })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 667,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::facingPoweredAxisBlockstate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 672,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"A\")\n                            .pattern(\"B\")\n                            .pattern(\"C\")\n                            .define('A', AllItems.TRANSMITTER)\n                            .define('B', AllItems.IRON_SHEET)\n                            .define('C', AllBlocks.BRASS_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.BRASS_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 687,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::facingPoweredAxisBlockstate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 692,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"A\")\n                            .pattern(\"B\")\n                            .pattern(\"C\")\n                            .define('A', AllItems.TRANSMITTER)\n                            .define('B', AllItems.GOLDEN_SHEET)\n                            .define('C', AllBlocks.BRASS_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.BRASS_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 706,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(RedstoneAccumulatorBlockStateGen.generate())"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 708,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\" Q \")\n                            .pattern(\"RBT\")\n                            .pattern(\"SSS\")\n                            .define('T', Blocks.REDSTONE_TORCH)\n                            .define('B', AllItems.BRASS_SHEET)\n                            .define('R', SimTags.Items.REDSTONE_DUST)\n                            .define('Q', AllItems.POLISHED_ROSE_QUARTZ)\n                            .define('S', SimTags.Items.STONE)\n                            .unlockedBy(\"has_ingredient\", p.has(SimTags.Items.REDSTONE_DUST))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 727,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::redstoneInductorBlockstate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 729,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\" C \")\n                            .pattern(\"RBT\")\n                            .pattern(\"SSS\")\n                            .define('T', Blocks.REDSTONE_TORCH)\n                            .define('R', SimTags.Items.REDSTONE_DUST)\n                            .define('B', AllItems.BRASS_SHEET)\n                            .define('C', AllItems.COPPER_SHEET)\n                            .define('S', SimTags.Items.STONE)\n                            .unlockedBy(\"has_ingredient\", p.has(SimTags.Items.REDSTONE_DUST))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 773,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::facingPoweredAxisBlockstate)"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 777,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                            .requires(Items.REDSTONE)\n                            .requires(AllItems.COPPER_SHEET)\n                            .requires(AllBlocks.INDUSTRIAL_IRON_BLOCK)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(Items.COPPER_INGOT))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 792,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) ->\n                            SimBlockStateService.INSTANCE.genericModelBuilder(c, p, SimBlockStateGen::xySymmetricSail,\n                                    (state) -> p.models().getExistingFile(Simulated.path(\"block/symmetric_sail/block\"))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 795,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> {\n                        p.shapeless(RecipeCategory.MISC, c.get(), 2)\n                                .requires(AllBlocks.SAIL.white())\n                                .requires(AllBlocks.SAIL.white())\n                                .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.SAIL.white()))\n                                .save(p);\n\n                        p.shapeless(RecipeCategory.MISC, AllBlocks.SAIL.white(), 1)\n                                .requires(c.get().asItem())\n                                .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(c.get()))\n                                .save(p);\n                    })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 822,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> {\n                        final var model = p.models()\n                                .withExistingParent(colorName + \"_symmetric_sail\",\n                                        p.modLoc(\"block/symmetric_sail/block\"))\n                                .texture(\"0\", Identifier.fromNamespaceAndPath(Create.MOD_ID, \"block/sail/canvas_\" + colorName))\n                                .texture(\"1\", p.modLoc(\"block/symmetric_sail/side_\" + colorName))\n                                .texture(\"particle\", Identifier.fromNamespaceAndPath(Create.MOD_ID, \"block/sail/canvas_\" + colorName));\n                        SimBlockStateService.INSTANCE.genericModelBuilder(\n                                c,\n                                p,\n                                SimBlockStateGen::xySymmetricSail,\n                                blockState -> model\n                        );\n                    })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 850,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) -> prov.horizontalBlock(ctx.get(), state -> {\n                    NameplateBlock.Position position = state.getValue(NameplateBlock.POSITION);\n                    return prov.models()\n                            .withExistingParent(colorName + \"_nameplate_\" + position.getSerializedName(), prov.modLoc(\"block/nameplate/block_\" + position.getSerializedName()))\n                            .texture(\"0\", Simulated.path(\"block/nameplate/\" + colorName + \"_nameplate\"))\n                            .texture(\"particle\", Simulated.path(\"block/nameplate/\" + colorName + \"_nameplate\"));\n                }))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 860,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> {\n                        if (color == DyeColor.WHITE) {\n                            p.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 4)\n                                    .requires(Items.PAPER)\n                                    .requires(Items.STICK)\n                                    .requires(AllItems.ANDESITE_ALLOY)\n                                    .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.ANDESITE_ALLOY))\n                                    .save(p);\n                        }\n                        p.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get())\n                                .requires(SimTags.DYE_MAP.get(colorName))\n                                .requires(SimTags.Items.NAMEPLATE_ITEMS)\n                                .unlockedBy(\"has_nameplate\", p.has(SimTags.Items.NAMEPLATE_ITEMS))\n                                .save(p, Simulated.path(\"crafting/\" + c.getName() + \"_from_other_nameplate\").toString());\n                    })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 878,
+      "kind": "model",
+      "upstream_source": ".model(SimBlockStateGen.coloredBlockItemModel(\"nameplate/\" + colorName + \"_nameplate\", \"nameplate/item\"))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 888,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) -> prov.directionalBlock(ctx.getEntry(),\n                            blockState -> prov.models().getExistingFile(\n                                    prov.modLoc(\"block/spring/\" + (blockState.getValue(SpringBlock.SIZE) == SpringBlock.Size.MEDIUM ? \"\" : (blockState.getValue(SpringBlock.SIZE).getSerializedName() + \"_\")) + \"block\"))))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 913,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) -> {\n            SimBlockStateService.INSTANCE.directionalAxisBlock(ctx, prov, (blockState, vertical) -> {\n                final String suffix = vertical ? \"vertical\" : \"horizontal\";\n                if(variant == HandleBlock.Variant.IRON) {\n                    return prov.models()\n                            .getExistingFile(prov.modLoc(\"block/handle/block_\" + suffix));\n                } else {\n                    return prov.models()\n                            .withExistingParent(ctx.getName() + \"_\" + suffix, prov.modLoc(\"block/handle/block_\" + suffix))\n                            .texture(\"0\", prov.modLoc(\"block/handle/\" + name));\n                }\n            });\n        })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimBlocks.java",
+      "line": 928,
+      "kind": "model",
+      "upstream_source": ".model((ctx, prov) -> {\n                    prov.withExistingParent(ctx.getName(), prov.modLoc(\"block/handle/item\"))\n                            .texture(\"0\", prov.modLoc(\"block/handle/\" + name));\n                })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimItems.java",
+      "line": 34,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                            .requires(Items.PAPER)\n                            .requires(SimBlocks.PHYSICS_ASSEMBLER.get())\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(SimBlocks.PHYSICS_ASSEMBLER.get()))\n                            .save(p))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimItems.java",
+      "line": 43,
+      "kind": "recipe",
+      "upstream_source": ".recipe((ctx, prov) ->\n                            prov.shaped(RecipeCategory.MISC, ctx.get(), 2)\n                                    .pattern(\"S\")\n                                    .pattern(\"N\")\n                                    .pattern(\"S\")\n                                    .define('S', AllItems.IRON_SHEET)\n                                    .define('N', Items.IRON_NUGGET)\n                                    .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.IRON_SHEET))\n                                    .save(prov)\n                    )"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimItems.java",
+      "line": 57,
+      "kind": "recipe",
+      "upstream_source": ".recipe((ctx, prov) -> prov.shaped(RecipeCategory.MISC, ctx.get(), 1)\n                    .pattern(\" S \")\n                    .pattern(\"NSN\")\n                    .pattern(\" S \")\n                    .define('S', Items.STRING)\n                    .define('N', Items.IRON_NUGGET)\n                    .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(Items.STRING))\n                    .save(prov))"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimItems.java",
+      "line": 93,
+      "kind": "model",
+      "upstream_source": ".model((ctx, provider) -> {\n                        provider.withExistingParent(ctx.getName(), Simulated.path(\"item/creative_physics_staff/item\"));\n                        provider.customItemModel(ctx.getName(), Simulated.path(\"model/creative_physics_staff\"));\n                    })"
+    },
+    {
+      "file": "simulated/src/main/java/dev/simulated_team/simulated/index/SimItems.java",
+      "line": 102,
+      "kind": "model",
+      "upstream_source": ".model((ctx, provider) -> {\n                        provider.withExistingParent(ctx.getName(), Simulated.path(\"item/plunger_launcher/item\"));\n                        provider.customItemModel(ctx.getName(), Simulated.path(\"model/plunger_launcher\"));\n                    })"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadBlocks.java",
+      "line": 53,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(BlockStateGen.directionalAxisBlockProvider())"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadBlocks.java",
+      "line": 54,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"S\")\n                            .pattern(\"G\")\n                            .pattern(\"I\")\n                            .define('S', ItemTags.WOODEN_SLABS)\n                            .define('G', AllBlocks.GEARBOX)\n                            .define('I', AllBlocks.INDUSTRIAL_IRON_BLOCK)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.INDUSTRIAL_IRON_BLOCK))\n                            .save(p))"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadBlocks.java",
+      "line": 78,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(SimBlockStateGen::directionalAxisBlock)"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadBlocks.java",
+      "line": 79,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"C\")\n                            .pattern(\"G\")\n                            .pattern(\"S\")\n                            .define('C', AllBlocks.CRUSHING_WHEEL)\n                            .define('G', AllBlocks.INDUSTRIAL_IRON_BLOCK)\n                            .define('S', AllItems.IRON_SHEET)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.INDUSTRIAL_IRON_BLOCK))\n                            .save(p))"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadBlocks.java",
+      "line": 103,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(BlockStateGen.horizontalBlockProvider(true))"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadBlocks.java",
+      "line": 107,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"C\")\n                            .pattern(\"S\")\n                            .pattern(\"P\")\n                            .define('C', AllBlocks.ANDESITE_CASING)\n                            .define('S', SimItems.SPRING.asItem())\n                            .define('P', AllItems.IRON_SHEET.asItem())\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.ANDESITE_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadItems.java",
+      "line": 24,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                        .requires(AllBlocks.SHAFT)\n                        .requires(Items.DRIED_KELP)\n                        .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.SHAFT))\n                        .save(p))"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadItems.java",
+      "line": 29,
+      "kind": "model",
+      "upstream_source": ".model(AssetLookup.itemModelWithPartials())"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadItems.java",
+      "line": 34,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                        .pattern(\" K \")\n                        .pattern(\"KSK\")\n                        .pattern(\" K \")\n                        .define('K', Items.DRIED_KELP.asItem())\n                        .define('S', AllBlocks.SHAFT.asItem())\n                        .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.SHAFT))\n                        .save(p))"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadItems.java",
+      "line": 42,
+      "kind": "model",
+      "upstream_source": ".model(AssetLookup.itemModelWithPartials())"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadItems.java",
+      "line": 47,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                        .pattern(\" B \")\n                        .pattern(\"BSB\")\n                        .pattern(\" B \")\n                        .define('B', AllBlocks.BELT.asItem())\n                        .define('S', AllBlocks.SHAFT.asItem())\n                        .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.SHAFT))\n                        .save(p))"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadItems.java",
+      "line": 55,
+      "kind": "model",
+      "upstream_source": ".model(AssetLookup.itemModelWithPartials())"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadItems.java",
+      "line": 60,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                        .pattern(\" K \")\n                        .pattern(\"KSK\")\n                        .pattern(\" K \")\n                        .define('K', Blocks.DRIED_KELP_BLOCK.asItem())\n                        .define('S', AllBlocks.SHAFT.asItem())\n                        .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.SHAFT))\n                        .save(p))"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadItems.java",
+      "line": 68,
+      "kind": "model",
+      "upstream_source": ".model(AssetLookup.itemModelWithPartials())"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadPartialModels.java",
+      "line": 50,
+      "kind": "model",
+      "upstream_source": ".model()"
+    },
+    {
+      "file": "offroad/src/main/java/dev/ryanhcode/offroad/index/OffroadPartialModels.java",
+      "line": 60,
+      "kind": "model",
+      "upstream_source": ".model()"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 89,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> {\n                final ModelBuilder model = p.models()\n                        .withExistingParent(c.getName(), \"block/cube_all\")\n                        .texture(\"all\", p.modLoc(\"block/envelope_block/envelope_\" + DyeColor.WHITE.getName()));\n                p.simpleBlock(c.get(), model);\n            })"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 95,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 4)\n                    .pattern(\"WS\")\n                    .pattern(\"SW\")\n                    .define('W', DyeHelper.getWoolOfDye(DyeColor.WHITE))\n                    .define('S', Items.STICK)\n                    .unlockedBy(\"has_ingredient\", p.has(net.minecraft.tags.ItemTags.WOOL))\n                    .save(p))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 128,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> {\n                        final ModelBuilder model = p.models()\n                                .withExistingParent(c.getName(), \"block/cube_all\")\n                                .texture(\"all\", p.modLoc(\"block/envelope_block/envelope_\" + colorName));\n                        p.simpleBlock(c.get(), model);\n                    })"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 134,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 4)\n                            .pattern(\"WS\")\n                            .pattern(\"SW\")\n                            .define('W', DyeHelper.getWoolOfDye(color))\n                            .define('S', Items.STICK)\n                            .unlockedBy(\"has_ingredient\", p.has(net.minecraft.tags.ItemTags.WOOL))\n                            .save(p))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 168,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((c, p) -> BlockStateGen.axisBlock(c, p, blockState -> p.models()\n                        .withExistingParent(colorName + \"_envelope_encased_shaft\",\n                                p.modLoc(\"block/envelope_encased_shaft/block\"))\n                        .texture(\"0\", p.modLoc(\"block/envelope_block/envelope_\" + colorName))))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 182,
+      "kind": "model",
+      "upstream_source": ".model(SimBlockStateGen.coloredBlockItemModel(\"envelope_block/envelope_\" + colorName, \"envelope_encased_shaft/item\"))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 193,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) ->\n                            BlockStateGen.simpleBlock(ctx, prov,\n                                    blockState -> prov.models().getExistingFile(\n                                            prov.modLoc(\"block/\" + ctx.getName() + \"/block_\" + blockState.getValue(HotAirBurnerBlock.VARIANT).getSerializedName()))\n                            )\n                    )"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 203,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"S S\")\n                            .pattern(\"SCS\")\n                            .pattern(\"ARA\")\n                            .define('S', AllItems.IRON_SHEET)\n                            .define('A', AllItems.ANDESITE_ALLOY)\n                            .define('C', AeroTags.ItemTags.BURNER_FIRE)\n                            .define('R', Items.REDSTONE)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(Items.REDSTONE))\n                            .save(p))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 220,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) ->\n                            prov.horizontalBlock(ctx.get(), blockState -> prov.models()\n                                    .getExistingFile(prov.modLoc(\"block/\" + ctx.getName() + \"/block_\" + (blockState.getValue(SteamVentBlock.VARIANT).getSerializedName())))))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 227,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\"G\")\n                            .pattern(\"C\")\n                            .define('G', AeroTags.ItemTags.GOLD_SHEET)\n                            .define('C', Blocks.COPPER_BLOCK.weathering().unaffected())\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(Items.COPPER_INGOT))\n                            .save(p))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 242,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) -> SimBlockStateGen.facingBlockstate(ctx, prov, \"block/propeller_bearing/block\"))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 246,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\" A \")\n                            .pattern(\" S \")\n                            .pattern(\" B \")\n                            .define('A', net.minecraft.tags.ItemTags.WOODEN_SLABS)\n                            .define('B', AllBlocks.BRASS_CASING)\n                            .define('S', AllItems.IRON_SHEET)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.BRASS_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 262,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(\n                            (ctx, prov) -> SimBlockStateGen.facingBlockstate(ctx, prov, \"block/gyroscopic_propeller_bearing/block\"))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 267,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 1)\n                            .pattern(\" A \")\n                            .pattern(\" G \")\n                            .pattern(\" B \")\n                            .define('A', net.minecraft.tags.ItemTags.WOODEN_SLABS)\n                            .define('B', AllBlocks.BRASS_CASING)\n                            .define('G', SimItems.GYRO_MECHANISM.get())\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllBlocks.BRASS_CASING))\n                            .save(p))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 283,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate((ctx, prov) -> {\n                        prov.getVariantBuilder(ctx.getEntry()).forAllStates((state) -> new ConfiguredModel[]{\n                                ConfiguredModel.builder().modelFile(AssetLookup.partialBaseModel(ctx, prov).apply(state))\n                                        .rotationY(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? 90 : 0)\n                                        .rotationX(state.getValue(SmartPropellerBlock.CEILING) ? 180 : 0)\n                                        .build()});\n                    })"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 292,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shaped(RecipeCategory.MISC, c.get(), 2)\n                            .pattern(\"P\")\n                            .pattern(\"G\")\n                            .pattern(\"B\")\n                            .define('P', AllItems.PROPELLER)\n                            .define('G', SimItems.GYRO_MECHANISM)\n                            .define('B', AllBlocks.BRASS_CASING)\n                            .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(SimItems.GYRO_MECHANISM.get()))\n                            .save(p)\n                    )"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 310,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(BlockStateGen.directionalBlockProvider(true))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 313,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> {\n                        p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                                .requires(AeroBlocks.WOODEN_PROPELLER.get())\n                                .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.PROPELLER))\n                                .save(p, Aeronautics.path(c.getName() + \"_from_andesite\").toString());\n\n                        p.shaped(RecipeCategory.MISC, c.get(), 1)\n                                .pattern(\"P\")\n                                .pattern(\"C\")\n                                .pattern(\"S\")\n                                .define('P', AllItems.PROPELLER)\n                                .define('C', ItemTags.WOODEN_SLABS)\n                                .define('S', AllBlocks.SHAFT)\n                                .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.PROPELLER))\n                                .save(p);\n                    })"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 337,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(BlockStateGen.directionalBlockProvider(true))"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 338,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> {\n                        p.shapeless(RecipeCategory.MISC, c.get(), 1)\n                                .requires(AeroBlocks.ANDESITE_PROPELLER.get())\n                                .unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.PROPELLER))\n                                .save(p, Aeronautics.path(c.getName() + \"_from_andesite\").toString());\n                    })"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroBlocks.java",
+      "line": 351,
+      "kind": "blockstate",
+      "upstream_source": ".blockstate(AeroBlockStateGen::directionalPoweredAxisBlockstate)"
+    },
+    {
+      "file": "aeronautics/src/main/java/dev/eriksonn/aeronautics/index/AeroItems.java",
+      "line": 26,
+      "kind": "recipe",
+      "upstream_source": ".recipe((c, p) -> p.shapeless(RecipeCategory.MISC, c.get(), 1)\n\t\t\t\t\t\t\t.requires(AeroTags.ItemTags.LEATHERS)\n\t\t\t\t\t\t\t.requires(AllItems.GOGGLES)\n\t\t\t\t\t\t\t.unlockedBy(\"has_ingredient\", RegistrateRecipeProvider.has(AllItems.GOGGLES))\n\t\t\t\t\t\t\t.save(p))"
+    }
+  ]
+}

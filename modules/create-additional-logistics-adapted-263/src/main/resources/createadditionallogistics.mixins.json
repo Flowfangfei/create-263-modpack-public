@@ -1,0 +1,37 @@
+{
+  "required": true,
+  "package": "dev.khloeleclair.create.additionallogistics.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "MixinFactoryPanelBehaviour",
+    "MixinGlob",
+    "MixinPackageItem",
+    "MixinSeatBlock",
+    "MixinStockTickerInteractionHandler",
+    "MixinSmartBlockEntity",
+    "MixinTrain",
+    "RotationPropagatorInvoker",
+    "MixinAbstractContraptionEntity",
+    "MixinBlazeBurnerBlockEntity",
+    "MixinTableClothBlockEntity",
+    "IStockTickerBlockEntityAccessor"
+  ],
+  "client": [
+    "client.MixinPackagerRenderer",
+    "client.MixinPackagePortScreen",
+    "client.MixinFactoryPanelScreen",
+    "client.MixinStockKeeperRequestScreen",
+    "client.MixinVisualizationManager",
+    "client.MixinAddressEditBox",
+    "client.MixinTableClothOverlayRenderer",
+    "client.MixinShoppingListItem",
+    "client.IBlueprintOverlayRendererAccessor",
+    "client.MixinTrackTargetingClient"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

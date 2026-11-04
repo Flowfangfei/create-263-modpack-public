@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#electroenergetics:electric_motors",
+    "minecraft:white_dye"
+  ],
+  "result": {
+    "count": 1,
+    "id": "electroenergetics:white_electric_motor"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": "#minecraft:terracotta",
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "results": [
+        {
+          "id": "electroenergetics:incomplete_miniature_circuit_breaker"
+        }
+      ],
+      "ingredients": [
+        "electroenergetics:incomplete_miniature_circuit_breaker",
+        "create:precision_mechanism"
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "results": [
+        {
+          "id": "electroenergetics:incomplete_miniature_circuit_breaker"
+        }
+      ],
+      "ingredients": [
+        "electroenergetics:incomplete_miniature_circuit_breaker",
+        "#c:nuggets/copper"
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "results": [
+        {
+          "id": "electroenergetics:incomplete_miniature_circuit_breaker"
+        }
+      ],
+      "ingredients": [
+        "electroenergetics:incomplete_miniature_circuit_breaker",
+        "#c:wires/copper"
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "results": [
+        {
+          "id": "electroenergetics:incomplete_miniature_circuit_breaker"
+        }
+      ],
+      "ingredients": [
+        "electroenergetics:incomplete_miniature_circuit_breaker",
+        "electroenergetics:copper_wire_spool"
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "results": [
+        {
+          "id": "electroenergetics:incomplete_miniature_circuit_breaker"
+        }
+      ],
+      "ingredients": [
+        "electroenergetics:incomplete_miniature_circuit_breaker"
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "electroenergetics:incomplete_miniature_circuit_breaker"
+  },
+  "results": [
+    {
+      "id": "electroenergetics:miniature_circuit_breaker"
+    }
+  ]
+}

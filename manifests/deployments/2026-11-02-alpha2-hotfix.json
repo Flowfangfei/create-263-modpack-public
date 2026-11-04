@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "installed_at": "2026-11-02T18:09:40+08:00",
+  "instance_name": "Create263 Pack",
+  "base_package": "v0.3.0-alpha.2",
+  "hotfix": "2026-11-02-vent-storage",
+  "archive_sha256": "baf874aaf54184c0ef041da174db542802363fb51eacf240ffa983b9d7ac517d",
+  "replaced_jars": {
+    "railways-adapted.jar": {
+      "before_sha256": "8a38a6898447ad7349137bce8ff7c4391881f11a02c65873f31876c2a7b367df",
+      "installed_sha256": "fe096f6e4eb05f4287c890f229dde00635fdc838039dea52f120ef27bb54f1aa"
+    },
+    "storage-adapted.jar": {
+      "before_sha256": "86bee204ede0a8fe960306c4a633eaabd6e10ca2f591d0765ceaff1ce0ec4f3b",
+      "installed_sha256": "ad68e51ff9eec458d1c27e3eb562f8bc8a6a3285fb9bd3fed3fc58494d874efc"
+    }
+  },
+  "unchanged_jars_verified": 16,
+  "direct_mod_jars": 18,
+  "test_probe_installed": false,
+  "original_worlds_read_or_launched": false,
+  "backup_complete": true,
+  "verification": "Installed bytes match the create/reload-tested candidate hashes."
+}

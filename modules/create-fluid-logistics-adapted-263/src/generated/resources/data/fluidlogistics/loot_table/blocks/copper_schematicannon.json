@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:copy_components",
+            "include": [
+              "create:schematicannon_options"
+            ],
+            "source": "block_entity"
+          },
+          "name": "fluidlogistics:copper_schematicannon"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "fluidlogistics:blocks/copper_schematicannon"
+}

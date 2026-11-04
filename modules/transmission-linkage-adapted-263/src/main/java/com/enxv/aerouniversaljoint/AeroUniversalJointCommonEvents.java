@@ -1,0 +1,61 @@
+package com.enxv.aerouniversaljoint;
+
+import com.enxv.aerouniversaljoint.content.PendingRodSelections;
+import com.enxv.aerouniversaljoint.content.PendingHydraulicSelections;
+import com.enxv.aerouniversaljoint.content.RecentMoveRemapper;
+import com.enxv.aerouniversaljoint.content.HingeAssemblyOrphanCleaner;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+
+public final class AeroUniversalJointCommonEvents {
+    private AeroUniversalJointCommonEvents() {
+    }
+
+    public static void register() {
+        NeoForge.EVENT_BUS.addListener(AeroUniversalJointCommonEvents::onPlayerClone);
+        NeoForge.EVENT_BUS.addListener(AeroUniversalJointCommonEvents::onPlayerRespawn);
+        NeoForge.EVENT_BUS.addListener(AeroUniversalJointCommonEvents::onPlayerChangedDimension);
+        NeoForge.EVENT_BUS.addListener(AeroUniversalJointCommonEvents::onPlayerLoggedOut);
+        NeoForge.EVENT_BUS.addListener(AeroUniversalJointCommonEvents::onServerTick);
+        NeoForge.EVENT_BUS.addListener(AeroUniversalJointCommonEvents::onServerStopped);
+    }
+
+    private static void onPlayerClone(PlayerEvent.Clone event) {
+        clearSelections(event.getOriginal());
+        clearSelections(event.getEntity());
+    }
+
+    private static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        clearSelections(event.getEntity());
+    }
+
+    private static void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        clearSelections(event.getEntity());
+    }
+
+    private static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        clearSelections(event.getEntity());
+    }
+
+    private static void onServerTick(ServerTickEvent.Post event) {
+        com.enxv.aerouniversaljoint.content.TransmissionLinkageRuntimeProbe.tick(event.getServer().overworld());
+        RecentMoveRemapper.pruneExpired(event.getServer().overworld().getGameTime());
+        if (event.getServer().overworld().getGameTime() % 100 == 0) {
+            HingeAssemblyOrphanCleaner.cleanup(event.getServer());
+        }
+    }
+
+    private static void onServerStopped(ServerStoppedEvent event) {
+        RecentMoveRemapper.clear();
+        HingeAssemblyOrphanCleaner.clear();
+    }
+
+    private static void clearSelections(net.minecraft.world.entity.player.Player player) {
+        PendingRodSelections.clear(player);
+        PendingRodSelections.clearClient(player);
+        PendingHydraulicSelections.clear(player);
+        PendingHydraulicSelections.clearClient(player);
+    }
+}

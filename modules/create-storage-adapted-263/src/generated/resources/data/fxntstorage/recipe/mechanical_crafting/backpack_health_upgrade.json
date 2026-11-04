@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fxntstorage:backpack_upgrade_enabled",
+      "upgrade": "fxntstorage:backpack_health_upgrade"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": true,
+  "category": "misc",
+  "key": {
+    "B": "fxntstorage:backpack_blank_upgrade",
+    "C": "create:cogwheel",
+    "E": "create:electron_tube",
+    "H": "minecraft:heart_of_the_sea",
+    "I": "create:iron_sheet",
+    "L": "minecraft:enchanted_golden_apple",
+    "P": "create:precision_mechanism",
+    "R": "minecraft:redstone",
+    "S": "create:brass_sheet"
+  },
+  "pattern": [
+    " E E ",
+    "SRPRS",
+    "SIBIS",
+    " CHC ",
+    "  L  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:backpack_health_upgrade"
+  }
+}

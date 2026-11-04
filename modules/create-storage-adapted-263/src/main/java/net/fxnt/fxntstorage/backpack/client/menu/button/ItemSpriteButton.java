@@ -1,0 +1,102 @@
+package net.fxnt.fxntstorage.backpack.client.menu.button;
+
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+import java.util.function.Function;
+
+@OnlyIn(Dist.CLIENT)
+public class ItemSpriteButton<T> extends Button {
+
+    private static final GuiIconSprites BACKGROUND = new GuiIconSprites(GuiIcon.BACKGROUND);
+
+    private final Function<T, GuiIcon> overlayResolver;
+    private final Function<T, Component> tooltipResolver;
+    private final Function<T, ItemStack> itemResolver;
+
+    private T lastState;
+    private GuiIcon currentOverlay;
+    private ItemStack currentItem;
+
+    private final int itemRenderSize;
+
+    public ItemSpriteButton(int x, int y, int width, int height,
+                            T initialState,
+                            Function<T, GuiIcon> overlayResolver,
+                            Function<T, Component> tooltipResolver,
+                            Function<T, ItemStack> itemResolver,
+                            int itemRenderSize,
+                            OnPress onPress) {
+        super(x, y, width, height, Component.empty(), onPress, DEFAULT_NARRATION);
+
+        this.overlayResolver = overlayResolver;
+        this.tooltipResolver = tooltipResolver;
+        this.itemResolver = itemResolver;
+        this.itemRenderSize = itemRenderSize;
+
+        this.lastState = initialState;
+        this.currentOverlay = overlayResolver.apply(initialState);
+        this.currentItem = itemResolver.apply(initialState);
+
+        this.setTooltip(Tooltip.create(tooltipResolver.apply(initialState)));
+    }
+
+    public void updateState(T newState) {
+        if (!Objects.equals(this.lastState, newState)) {
+            this.lastState = newState;
+            this.currentOverlay = overlayResolver.apply(newState);
+            this.currentItem = itemResolver.apply(newState);
+            this.setTooltip(Tooltip.create(tooltipResolver.apply(newState)));
+        }
+    }
+
+    @Override
+    protected void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
+        int x = getX();
+        int y = getY();
+
+        // Background
+
+        GuiIconSprites.renderButton(guiGraphics, BACKGROUND, this.active, this.isHovered(), x, y, this.width, this.height);
+
+
+        // ItemStack
+        if (!currentItem.isEmpty()) {
+            renderScaledItem(guiGraphics, currentItem, x, y, this.width, this.height, itemRenderSize);
+        }
+
+        // Overlay icon rendered above the item
+        if (currentOverlay != null) {
+
+
+
+            guiGraphics.pose().pushMatrix();
+            guiGraphics.nextStratum();
+
+            currentOverlay.render(guiGraphics, x, y, this.width, this.height);
+            guiGraphics.pose().popMatrix();
+
+        }
+    }
+
+    private void renderScaledItem(GuiGraphicsExtractor guiGraphics, ItemStack stack,
+                                  int buttonX, int buttonY, int buttonWidth, int buttonHeight, int targetSize) {
+        float scale = targetSize / 16f;
+        int x = buttonX + (buttonWidth - targetSize) / 2;
+        int y = buttonY + (buttonHeight - targetSize) / 2;
+
+        guiGraphics.pose().pushMatrix();
+        guiGraphics.pose().translate(x, y);
+        guiGraphics.pose().scale(scale, scale);
+        guiGraphics.item(stack, 0, 0);
+        guiGraphics.pose().popMatrix();
+    }
+}

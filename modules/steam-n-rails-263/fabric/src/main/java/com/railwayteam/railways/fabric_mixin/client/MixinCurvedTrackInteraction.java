@@ -1,0 +1,90 @@
+package com.railwayteam.railways.fabric_mixin.client;
+
+import net.minecraft.world.item.component.SwingAnimation;
+import com.railwayteam.railways.content.buffer.TrackBufferBlockItem;
+import com.railwayteam.railways.content.conductor.whistle.ConductorWhistleItem;
+import com.railwayteam.railways.content.coupling.coupler.TrackCouplerBlockItem;
+import com.railwayteam.railways.content.custom_tracks.casing.CasingChecker;
+import com.railwayteam.railways.content.custom_tracks.casing.SlabUseOnCurvePacket;
+import com.railwayteam.railways.content.handcar.HandcarItem;
+import com.railwayteam.railways.content.switches.TrackSwitchBlockItem;
+import com.railwayteam.railways.registry.CRPackets;
+import com.railwayteam.railways.registry.CRTrackMaterials;
+import com.railwayteam.railways.util.AdventureUtils;
+import com.simibubi.create.AllSoundEvents;
+import com.simibubi.create.content.trains.track.TrackBlockOutline;
+import com.simibubi.create.content.trains.track.TrackBlockOutline.BezierPointSelection;
+import com.simibubi.create.content.trains.track.CurvedTrackInteraction;
+import com.simibubi.create.foundation.utility.CreateLang;
+import com.simibubi.create.content.trains.track.BezierConnection;
+import com.simibubi.create.content.trains.track.TrackBlockEntity;
+import com.simibubi.create.content.trains.track.BezierTrackPointLocation;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Map;
+
+@Mixin(value = CurvedTrackInteraction.class, remap = false)
+public abstract class MixinCurvedTrackInteraction {
+    @Inject(
+        method = "onClickInput",
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/client/player/LocalPlayer;getMainHandItem()Lnet/minecraft/world/item/ItemStack;",
+            remap = true
+        ),
+        cancellable = true
+    )
+    private static void railways$encaseCurve(net.neoforged.neoforge.client.event.InputEvent.InteractionKeyMappingTriggered event, CallbackInfoReturnable<Boolean> cir) {
+        Minecraft minecraft = Minecraft.getInstance();
+        LocalPlayer player = minecraft.player;
+        if (AdventureUtils.isAdventure(player))
+            return;
+
+        BezierPointSelection result = TrackBlockOutline.result;
+        TrackBlockEntity track = result.blockEntity();
+        BezierTrackPointLocation location = result.loc();
+        BlockPos curveTarget = location.curveTarget();
+        Map<BlockPos, BezierConnection> connections = track.getConnections();
+        BezierConnection connection = connections == null ? null : connections.get(curveTarget);
+        if (connection != null && CRTrackMaterials.getType(connection.getMaterial()) == CRTrackMaterials.CRTrackType.MONORAIL)
+            return;
+
+        ItemStack held = player.getMainHandItem();
+        Item heldItem = held.getItem();
+        if (heldItem instanceof HandcarItem handcar && handcar.useOnCurve(result, held)) {
+            player.swing(InteractionHand.MAIN_HAND, SwingAnimation.DEFAULT, false);
+            cir.setReturnValue(true);
+            return;
+        }
+
+        if (heldItem instanceof TrackCouplerBlockItem || heldItem instanceof TrackSwitchBlockItem
+            || heldItem instanceof TrackBufferBlockItem || heldItem instanceof ConductorWhistleItem) {
+            player.sendOverlayMessage(CreateLang.translateDirect("track_target.invalid").withStyle(ChatFormatting.RED));
+            AllSoundEvents.DENY.play(minecraft.level, player, player.position(), .5f, 1);
+            cir.setReturnValue(true);
+            return;
+        }
+
+        if (!held.isEmpty()) {
+            if (!(heldItem instanceof BlockItem block))
+                return;
+            if (!CasingChecker.isValid(block.getBlock()))
+                return;
+        }
+
+        CRPackets.PACKETS.send(new SlabUseOnCurvePacket(track.getBlockPos(), curveTarget, BlockPos.containing(result.vec())));
+        player.swing(InteractionHand.MAIN_HAND, SwingAnimation.DEFAULT, false);
+        cir.setReturnValue(true);
+    }
+}

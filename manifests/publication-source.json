@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "audited current-tree snapshot; independent public history",
+  "imported_at": "2026-11-04T21:58:59+08:00",
+  "snapshot_source_repository": "Flowfangfei/create-263-modpack (private maintenance archive)",
+  "snapshot_source_commit": "cef7df2a663127d3311ab36e67f653cba00ddfbe",
+  "snapshot_source_tree": "fe6da0bac2b9bc2b72a4679f77f3c4febc4ea299",
+  "source_archive_sha256": "5507c4e0aae053908caf6bd7e8d9946422dedebcc98ee5cfe6651caefca903f4",
+  "source_module_files": 53363,
+  "source_modules": 15,
+  "private_history_imported": false,
+  "previous_release_attachments_imported": false,
+  "restricted_local_resources_imported": false,
+  "upstream_source_records": "manifests/sources.json"
+}

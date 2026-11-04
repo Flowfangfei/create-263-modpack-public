@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+		"particle": "#layer0",
+    "layer0": "electroenergetics:item/electrum_wire_spool"
+  }
+}

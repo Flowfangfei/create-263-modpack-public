@@ -1,0 +1,1140 @@
+{
+  "schema": 1,
+  "scope": "26.3 item definitions supplied from existing pinned model paths; existing custom and generated definitions take precedence. Runtime model verification remains separate.",
+  "modules": [
+    {
+      "module": "create-electro-energetics-adapted-263",
+      "mod_id": "electroenergetics",
+      "created_native_item_definitions": [],
+      "existing_native_definitions_reused": [
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/clamp_meter.json",
+          "removed_duplicate_sha256": "bd6289b3b968d89c9ded13b0360e06ea8318a3a9a904385492a1596c66e0a76f"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/linemans_stick.json",
+          "removed_duplicate_sha256": "469b05513cb9c321f1606af0a2356b3efaef2fcf04ff691755f0abb766799490"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/linemans_stick_head.json",
+          "removed_duplicate_sha256": "45d2a32c467412f6473eb50a8e85dcf88fec830fe9e18e02471e6985e30af151"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/linemans_stick_telescope.json",
+          "removed_duplicate_sha256": "955a527fa889083bf971412821d7255f0258d51d35852316a063ddd898a62bd6"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/accumulator.json",
+          "removed_duplicate_sha256": "fb894d7de744253322f2ebb9cc965d4e7b774b2863ef4feee1674313f9e6edf4"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/alternator_brushes.json",
+          "removed_duplicate_sha256": "f6b97f252c31529e93986adaf8d66bd79d43f49bcb406a6f0147deb1181dad3a"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/alternator_rotor.json",
+          "removed_duplicate_sha256": "e553f0fe7eb1b9cf278bc134729c9e3eb077681b623ae3095b38972bfb80bc21"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/ammeter.json",
+          "removed_duplicate_sha256": "f1759443dacea9fff85c82c81b5d4f7994ef9b7fe17a72ebd4d79e9f4474cff9"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/black_electrical_panel.json",
+          "removed_duplicate_sha256": "1cbad7d43b36076ad8d3cc00de816c2037ba5d3dab46cfbe7dd33781d83be895"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/black_electric_motor.json",
+          "removed_duplicate_sha256": "7b6dd8c08266501c14aec91f39ec233d3483d611cfaabbba7e21e371206f6e35"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/blue_electrical_panel.json",
+          "removed_duplicate_sha256": "fa0ac3b56e851c2d365887a3ea9ac76b24da6f5ed298229d638f5615db065891"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/blue_electric_motor.json",
+          "removed_duplicate_sha256": "b4e0cba5ada1a8e6f6a87fdd0090da36a93b125f8b80588e963791bff71d5f86"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/broken_bulb.json",
+          "removed_duplicate_sha256": "b2a853e102a2a7407d6eb1d285c389af765207d50243d90216c2bf11fe47df30"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/broken_fuse.json",
+          "removed_duplicate_sha256": "517f9bea7377fb1b84d18c080f21fc0193b4fc41c319f4a91d97390ae4672efa"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/brown_electrical_panel.json",
+          "removed_duplicate_sha256": "4b73869a0e2bf1ec84022c0001ea3848ca8ca801e5e71f6d8030053658b12a22"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/brown_electric_motor.json",
+          "removed_duplicate_sha256": "ed9fe5438feaac98d02ffd2fc3b1d5717b2baca86a5451fe20d4e8d860af52a0"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/bulb.json",
+          "removed_duplicate_sha256": "a92128573f60ede88464f083804aa9cc5c0c6829c41c286da48ba85e5d91ab2e"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/buzzer.json",
+          "removed_duplicate_sha256": "e9d68a90d747129a2df66dea20110da6d0308cc5cfce3c3f025278f1d36a55f0"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/capacitor.json",
+          "removed_duplicate_sha256": "fc3acd07effa3b0741f3b55505764be4f59333001a89b6f83b8d47126aae6f4b"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/catenary_holder.json",
+          "removed_duplicate_sha256": "7e9c25fab66b63f9ebe87085f783332f5b2c43e1edb93648594b2e6f283634f2"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/commutator.json",
+          "removed_duplicate_sha256": "52206ac8f6578c3ab04cff6ec086d925d0fa0c260ea087b9fe6996c0113847bc"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/concrete_pole.json",
+          "removed_duplicate_sha256": "a44d972d3519ce062e3d7143f64121e7ee33cc60b192010581ae00e2857f7e48"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/connector.json",
+          "removed_duplicate_sha256": "735a971be4d4826fb433589698edb52a4605427e6e393d2733f0f7c28ba0bc28"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/converter.json",
+          "removed_duplicate_sha256": "a978df150c5632839adfc56ae519c8935d74afed740134674d63d244d0ebf020"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/copper_wire.json",
+          "removed_duplicate_sha256": "601c240541544f8b58a910dec350ef9c149f7bb106bbd9b7459bcfd34619d2dd"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/copper_wire_spool.json",
+          "removed_duplicate_sha256": "8222cded064bef3d2f7c2dc219d3d6cb4069b3e68e11abb9634a8ee7d48cc4e4"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/creative_battery.json",
+          "removed_duplicate_sha256": "18ece271efe2e684580b0b68760cf8e5dc9ee107510cfd50bfb4d90d5d66f47b"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/creative_resistor.json",
+          "removed_duplicate_sha256": "f715f71625df18c2a394a9110a5bfb18480d21ca6a232c91a4d6ff6a3f24d0f1"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/creative_wire_spool.json",
+          "removed_duplicate_sha256": "b7ff0fe43244986248dc3189fe5d05ffe05105e6dd5bf65c056fb4ac63bedfd7"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/current_transformer.json",
+          "removed_duplicate_sha256": "b24e579c36cd7a782fe04608d817e11ce694ac56d729eb0f9072a914e242e242"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/cut_off_switch.json",
+          "removed_duplicate_sha256": "049108f9dbfb70e8020c508940d5bb2f16987e522c1a18032e362b3898959ca9"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/cyan_electrical_panel.json",
+          "removed_duplicate_sha256": "5fb1bcfc78289a61749568739485416d6fc51e1c2efcbf40c521ce439851c3cd"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/cyan_electric_motor.json",
+          "removed_duplicate_sha256": "103a3b1d6bac4cc5ae17ecb4bc13d092fb931adaa54dad60ddeb6c7270b92d47"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/diode.json",
+          "removed_duplicate_sha256": "db11b0195702e01f2ecf395141214dc687263627de3b19f535da131dadf499f7"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/double_connector.json",
+          "removed_duplicate_sha256": "ba4537ffb4c759ddbec5aa2f4f7b90794cf2c947eb45e1aca9b623e9f0a6c8b1"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/double_switch.json",
+          "removed_duplicate_sha256": "19ad0b35a5d0bfac9cd5a120935390af5f02cfede0f4a5e48a0652c77a194c0a"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/duplex_wire_spool.json",
+          "removed_duplicate_sha256": "34ebd3350186a15f83cb3336be8071973ffcb74acb3d9a1042fdae1765b89215"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/duplex_wire_termination.json",
+          "removed_duplicate_sha256": "eb9b161ea9c0f8bc2b4445e385926915ccc6496f4617118a5738db6cfef5e0d8"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/electrical_panel.json",
+          "removed_duplicate_sha256": "7c470035a7e571b05d5e389d9e1c0ba2115be549e197464fe9b8da84205342ff"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/electric_fan.json",
+          "removed_duplicate_sha256": "4f07292d8e2983303955fece0f0be63cb26ce7862e5b3ced5b1c85bb5fc52d79"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/electric_pump.json",
+          "removed_duplicate_sha256": "a5266f734741d210a623a3b05d78759713c69de8a633016a00e110ea757822d8"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/electric_shock_sign.json",
+          "removed_duplicate_sha256": "cbf9b5ecc78136fd2f4794cd999a2fc17b981f26d8f5a147015321a1bc463b16"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/electrum_wire.json",
+          "removed_duplicate_sha256": "16f74847486dbfcd93261c1c5031ba7ebdf51e4d95c44d311a7b781f2895b95d"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/electrum_wire_spool.json",
+          "removed_duplicate_sha256": "64fd54f2ae58fa13d1a039428812a746fa93254a3aac025ee1e6bc686213fc44"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/emergency_stop_button.json",
+          "removed_duplicate_sha256": "b1037fa342d0247d5d3cd5eecf101a56f7d4e1ef8c5e3984c165b0a5cd61b87b"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/empty_spool.json",
+          "removed_duplicate_sha256": "b43b79bca529ae9437df89b31a2e4f51abad137af62eca1db1a4f3d19d4990d0"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/energy_meter.json",
+          "removed_duplicate_sha256": "62733ae6d8481ddd42ea3ce150fa0e823e3f269bb33dfa4f0cfbb3e696d005f1"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/frequency_meter.json",
+          "removed_duplicate_sha256": "458ff7d110e7e7f724c190b8bd2f55dde71df3e471f6147f7e5b8a615ab9a976"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/fuse.json",
+          "removed_duplicate_sha256": "e016eba5a17e7dbe3e4ee8b4f71a2afcd57a90cd2fde2e899851d372e583a6e7"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/fuse_holder.json",
+          "removed_duplicate_sha256": "d2ca952f8540daf15cbf3e398ea2d6be4409b82535dffd08974f5ae57d9c533b"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/glass_insulator_segment.json",
+          "removed_duplicate_sha256": "2603271ae340d210177055f00f9a4eae504c7d7264255cab6c1538019695acc2"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/glass_insulator_spool.json",
+          "removed_duplicate_sha256": "4465c7a1dc1b5d3751a40eb344df50196371b8289df1d95604ad115be1a0e3b0"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/gray_electrical_panel.json",
+          "removed_duplicate_sha256": "b21a661028dbaf46b9c596782f67601158589fb4b737c46f1208cf684ab59115"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/gray_electric_motor.json",
+          "removed_duplicate_sha256": "56a228148236e81a792ca8371c096d5dbde14db2854b863cda0971e97cac5204"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/green_electrical_panel.json",
+          "removed_duplicate_sha256": "e73d86968f387042424db23dbf6e2fe1da4ececb37a8c40da4b2f4129483db2f"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/green_electric_motor.json",
+          "removed_duplicate_sha256": "ce25aceb99145db9bfe905498a6fe535c0eeb83fadcdbb859bf2f17df0bea0e2"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/grounding_sign.json",
+          "removed_duplicate_sha256": "f7a0a4400cc66d98ebe82ffffae68f78f87437561eb8318b6e25c52ac10b49de"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/ground_rod.json",
+          "removed_duplicate_sha256": "6d70c9ea36016aa593ca4058acbb23ab919420db6ba403a2e7d3a8d1601eb35c"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/hanging_glass_insulator.json",
+          "removed_duplicate_sha256": "72ff20947ef8cd4b4c0013a2472629a5b786e6dc5098580100f9f7a5923ee5e9"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/heavily_insulated_wire.json",
+          "removed_duplicate_sha256": "161f057cf9a4e280926ee17f2c9eb5f417f8959e8200ddacf1ecd59ea0b7612b"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/heavily_insulated_wire_spool.json",
+          "removed_duplicate_sha256": "720690f01c56650e04027bead92b05b94b35affc872e468423562effb16476b0"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/high_voltage_capacitor.json",
+          "removed_duplicate_sha256": "71eefaf4b35f43a43a3701eaeac4f07ee9922c09838b69ff7ec532b0cdb59461"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/high_voltage_sign.json",
+          "removed_duplicate_sha256": "a3f9fabaa04643aa6a1d7b11c565f66e323c5f552aa820c1754613a27153277f"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/high_voltage_switch.json",
+          "removed_duplicate_sha256": "82ebaa82e82c68552dbed8b3e971e50c1e6897968384433693abfe93c1d28122"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/incomplete_miniature_circuit_breaker.json",
+          "removed_duplicate_sha256": "8876c1cee7dd0b9b54eddbabf35251fe63e5817be7235b4869489735b820bd9d"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/incomplete_transformer_core.json",
+          "removed_duplicate_sha256": "f4a404965f0166dc1bb0529ef4539fa1d16add2e7ea7d569e6dbfda39b5ab777"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/indicator_bulb.json",
+          "removed_duplicate_sha256": "0eb0dab21b749f3217aa0a73ad14096c24d9ac249ed009184e491bce7e614add"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/inductor.json",
+          "removed_duplicate_sha256": "735dee5a581c93b986647ea89ea6d3803e22c5b9b8ebd067856f0813f2864867"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/insulated_wire.json",
+          "removed_duplicate_sha256": "2b8683ba8d7e9440eb879d0fc10a25883f9c378ff841b057017ff56fb8978259"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/insulator.json",
+          "removed_duplicate_sha256": "fa7ea683f6aba0d396e6eb2911d14627351fe6e5967f3045dadfbd73f701b097"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/iron_bus_spool.json",
+          "removed_duplicate_sha256": "55074b955116a1f36ead109971301c902d23650197052b6b38f286f4dad26bb8"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/iron_rail_spool.json",
+          "removed_duplicate_sha256": "93d162e3222af7e9fd38e2fdd1ea510aeb69b167318daa401b2dd0391f36fdf5"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/iron_wire.json",
+          "removed_duplicate_sha256": "1f4ecd905023d7d506c504cfcfa8d1999f4499be73ffd7f951debf59070e8caf"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/iron_wire_spool.json",
+          "removed_duplicate_sha256": "8bc8bfcb38479c59da8c6dd2a57e8c1fe690653b8386c188947eb0e3b4d75e48"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/iron_wire_strand.json",
+          "removed_duplicate_sha256": "5ea9f375e6ead71614f6c8792f326c0fb06a3340b82ed098c3f4362b273a9bea"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/light_blue_electrical_panel.json",
+          "removed_duplicate_sha256": "1b801ec3a2dab7faa14590ce75003c59a61f3680421ac6c705f32255f1dbde81"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/light_blue_electric_motor.json",
+          "removed_duplicate_sha256": "f2442894c367439af1552a5ac2e7a72ddbb6853cee33f8faa94dd10d9f6a58c6"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/light_gray_electrical_panel.json",
+          "removed_duplicate_sha256": "da8a49974e351f1d54f47c0accee294d009eaabd47a40623f3e5fbba860bfdfe"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/light_gray_electric_motor.json",
+          "removed_duplicate_sha256": "c27eaaa864cd226d485bffb844df052762d63521f91b80b081afd3dd014760b0"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/lime_electrical_panel.json",
+          "removed_duplicate_sha256": "5c7bd663464906120481ae733ab988589981d48018759486f45ba0f3485026cd"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/lime_electric_motor.json",
+          "removed_duplicate_sha256": "b56f12fd25e2179eac229aa47d0a7e1e0dcbb75d867a0533e75fccd83a47c2e7"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/magenta_electrical_panel.json",
+          "removed_duplicate_sha256": "b9026dc0ccf1bcaaac18544adba7d019f82665ee77c84508819a5b82d22ef951"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/magenta_electric_motor.json",
+          "removed_duplicate_sha256": "91282dd53e8e10ee656696a1741fb94046ef60bd239fcb4a2b507fc9540e6d24"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/magnet.json",
+          "removed_duplicate_sha256": "97c559370ddfd45a0042a1ef1c35b6bbc6c9dcf643126826f616e2579b143ff4"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/miniature_circuit_breaker.json",
+          "removed_duplicate_sha256": "b4bb8e141ece154ddacc678aafaf60b0179992e258872ee37936267563e7ff2b"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/momentary_switch.json",
+          "removed_duplicate_sha256": "a4c1b566a5f19b42b696efc6a8adcb43f2136b37b70ee36496789ba0d6ea79de"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/orange_electrical_panel.json",
+          "removed_duplicate_sha256": "5f1084077f7f1839b2dc9a1ba93653b8ee7c0c3c11ad35fba7370a65b084665d"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/orange_electric_motor.json",
+          "removed_duplicate_sha256": "49748fdfa292432f2f49ebc79bbc21f8ebd0a0dd27178dcc75183303f77a6d20"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/pantograph.json",
+          "removed_duplicate_sha256": "b3c1dae6c0615cd7f72c4d9175ba8ab5a3ecbeca7f78233cba15892403bdb424"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/pink_electrical_panel.json",
+          "removed_duplicate_sha256": "572624d8b466f3330c325fd91983e70ea76ef6fe54f5e3d30358543460693b85"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/pink_electric_motor.json",
+          "removed_duplicate_sha256": "bbd066edb7d309e23dd58e346099ef47823a0ebf332c588b0f6127ccba06b919"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/plant_oil_bucket.json",
+          "removed_duplicate_sha256": "ea873fe22963af77fdb2e5a7be6b9dd198c0cd4bda3a0f56359535ce10eed32e"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/pole_mount.json",
+          "removed_duplicate_sha256": "8a38b4aa018665337deae43d6e2aeffaea1888eb643562bb439f9dd20356de1c"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/potentiometer.json",
+          "removed_duplicate_sha256": "c78a3b60463ed837f66be73177314a889e4be6f8c02cd182502c80c417197a37"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/purple_electrical_panel.json",
+          "removed_duplicate_sha256": "bd2dbe8db80bfa11b1c8b2c2932f66ed23593ce520578c81de6a408016c28dd6"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/purple_electric_motor.json",
+          "removed_duplicate_sha256": "3156b3263be935d248a36363d8c776232ca44902f8da25d0f4a3d0bf0fdd794d"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/quad_connector.json",
+          "removed_duplicate_sha256": "4de7360c67642cb9b9f659d65710f62d6e715c8c9d1f1b2ae083fab8a1e9f53e"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/radiator_panel.json",
+          "removed_duplicate_sha256": "edd86788516272a78d81972bfa43ae213dc5936dc1524c708af9a924e8f9a578"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/rail_contact_shoe.json",
+          "removed_duplicate_sha256": "22320e6b7ff8dd260747cc0f0d76387453a904e195fd63ac67b5b26bae2a3a1a"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/redstone_potentiometer.json",
+          "removed_duplicate_sha256": "15484bcbfbbad014b28132e0a9864c4f610f1fe2c904e599cac689f900797d67"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/redstone_relay.json",
+          "removed_duplicate_sha256": "cd58e24f7663c4a9c6d3c893847b480a249b866781acc1429db276cbfe0f9214"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/redstone_variac.json",
+          "removed_duplicate_sha256": "007bcccfb463532ab4e7563d103a930c8ac4f594a4942cd9cf954de20fb562a1"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/red_electrical_panel.json",
+          "removed_duplicate_sha256": "018da532ca7d00b8533a8112af05a9ed9dc3d31acf1fcfd1b547c2fe7916516a"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/red_electric_motor.json",
+          "removed_duplicate_sha256": "44bc68749a268c9a43a98ca2bbf8b0fd7feb2b1b398edcd98843231369cee982"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/relay.json",
+          "removed_duplicate_sha256": "3eec6c6c4b4ed0ca9491044bea9cdab5bcf658b3fea2dc377f3f561175daf246"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/resistive_heater.json",
+          "removed_duplicate_sha256": "19f88a8d4b1e2291e0f0ebc10294741fc607d93fe534d5fcc2b67ce94b487ca2"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/resistor.json",
+          "removed_duplicate_sha256": "3d90040bafbd0166c8fb8636016c6d1b85bae3774bfbfa37a071a257bb457309"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/stator.json",
+          "removed_duplicate_sha256": "1c32dca2e5d02a58239a439dd8bcf0b7feba223f89216dbf90acb11f228f05d7"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/sulfur_hexafluoride_breaker.json",
+          "removed_duplicate_sha256": "08efe125d4f21a651ea28cd3eee4748c6e4d20cfc233542af7074d8c34340951"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/synchroscope.json",
+          "removed_duplicate_sha256": "61c4217e0e24c99d23cbd2a1b16e8fa44df1b2628a3e4b4409ed558aaabbfaf4"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/three_phase_alternator_brushes.json",
+          "removed_duplicate_sha256": "ab14088cfe49d8a5711aa86f2ba51e5489296e21db55ed5c7ed6e0b7ab6b12de"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/transformer.json",
+          "removed_duplicate_sha256": "700ed1e2926447f7e64f1d73157da602750f24fa382c4fb7cde906b6ad1e30e1"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/transformer_core.json",
+          "removed_duplicate_sha256": "6e7c0d78de6f81a08f568b86d0a5092a7ca9f29664504d771334ae7875f0bc9c"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/transformer_core_lamination.json",
+          "removed_duplicate_sha256": "49d96ffe2adf430c66a39ebb466e9f1f3239ff2e219283c943a6f12509bdba3b"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/transformer_oil_bucket.json",
+          "removed_duplicate_sha256": "e5a2ac74dc14dc5f7387010cdef9d7fc46a98478f11225d0277adaee74cbd6f9"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/triple_connector.json",
+          "removed_duplicate_sha256": "084050761d73d92a72d095935ee94ee21163dcb2249f2cb5b7d08f3bc4f54253"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/tri_polar_energy_meter.json",
+          "removed_duplicate_sha256": "d9dfdde5b01afdec9b8a8c3e5f53b158b6b56913c366a8aa913192e1d391565a"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/variac.json",
+          "removed_duplicate_sha256": "a6ee1eaf32b940ee50178317431fcda805d4427c9ca00e0ae6fdf9e2802fce52"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/voltage_regulator.json",
+          "removed_duplicate_sha256": "62771e9233b66644f3bee1f59f355f8569df5e032fea868e60f3e71a5eaca4ee"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/voltmeter.json",
+          "removed_duplicate_sha256": "f2f940a331b72e22b4da79196e2b35aa16ce57626ee973e7c7ca46a3a76307e2"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/white_electrical_panel.json",
+          "removed_duplicate_sha256": "a392a79fee3bf01fc4a4ce78ab73d70b7ff1c48b9bb762513f72d06f4c811b34"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/white_electric_motor.json",
+          "removed_duplicate_sha256": "31bef97a5489028ab29868ff11b61936c5e2179cc1d363cb09abdf25680f9074"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/wire_damper.json",
+          "removed_duplicate_sha256": "5552a03ae805eb821c0bcfd5610482665b4bbc27093abcecfc19956b8f7231aa"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/wire_spool.json",
+          "removed_duplicate_sha256": "93beaaa81f72b0403df199dc65db3db68dab6f94d18c0b6b455aa9587843851d"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/yellow_electrical_panel.json",
+          "removed_duplicate_sha256": "6d52a27c3cff7adf1521dd5b3e5ef9f3b50da736769ea8267a62dda92c461a49"
+        },
+        {
+          "resource": "src/generated/resources/assets/electroenergetics/items/yellow_electric_motor.json",
+          "removed_duplicate_sha256": "fee0d1ea29553f5893f9e6dbd0eabd045a2f5bba8ea21d6b7981a84abeacb261"
+        }
+      ]
+    },
+    {
+      "module": "create-dragons-plus-adapted-263",
+      "mod_id": "create_dragons_plus",
+      "created_native_item_definitions": [
+        "src/main/resources/assets/create_dragons_plus/items/dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/arts_and_crafts_bleached_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_amber_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_aquamarine_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_bubblegum_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_cherenkov_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_conifer_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_fluorescent_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_honey_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_icy_blue_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_lavender_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_maroon_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_mint_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_navy_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_peach_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_persimmon_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_rose_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_spring_green_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_ultramarine_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dyenamics_wine_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_amber_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_aqua_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_beige_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_coral_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_forest_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_ginger_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_indigo_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_maroon_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_mint_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_navy_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_olive_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_rose_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_slate_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_tan_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_teal_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/dye_depot_verdant_dye_bucket.json",
+        "src/main/resources/assets/create_dragons_plus/items/fragile_fluid_tank.json",
+        "src/main/resources/assets/create_dragons_plus/items/levitite_fragile_fluid_tank.json"
+      ],
+      "existing_native_definitions_reused": [
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/black_dye_bucket.json",
+          "removed_duplicate_sha256": "0d6f428623adc8ce4b10911baa9684926388f34a3e5d8469272bab4359754d4b"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/blaze_upgrade_smithing_template.json",
+          "removed_duplicate_sha256": "61b0e9be6465ddd720e3781240cf3f52d8fae127de258a8811d072e0e2e5c91c"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/blue_dye_bucket.json",
+          "removed_duplicate_sha256": "713afc53b449dc459ef0c409ab876416c0ed692b93d7baf2205068a742d6379a"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/brown_dye_bucket.json",
+          "removed_duplicate_sha256": "a400523298e2ab749a99f0e854b6cdd7981d0ab75bd3d948e47bcc9450a93928"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/cyan_dye_bucket.json",
+          "removed_duplicate_sha256": "c3cf95dadad80378313d09519fb88944648086b88f36c78fe6f291c337e1e9f1"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/dragon_breath_bucket.json",
+          "removed_duplicate_sha256": "f8cd09a941ca1b867f8a780008b273edd627b11b30d674c8278c760d0a8657d1"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/fluid_hatch.json",
+          "removed_duplicate_sha256": "1b5863b8b0c44a29f5d6d23c7edafcfd9db548a52d8101ca580170c5c374a61f"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/gray_dye_bucket.json",
+          "removed_duplicate_sha256": "64591445c2c204d82fedb42b00b6e04999c1ca0545b65dfe75ffc8ffcd3e29b1"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/green_dye_bucket.json",
+          "removed_duplicate_sha256": "25836c061d1f6b94718f7391e580b188a7839c770c489bbbc9c961fd4587aa7c"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/light_blue_dye_bucket.json",
+          "removed_duplicate_sha256": "f597fac83dd3c193efd76db7a56b53608fd7b4ff5d18ac6a48c88eece3632985"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/light_gray_dye_bucket.json",
+          "removed_duplicate_sha256": "6cd2820a6dce1137f37cdc1dc2a810dc309fdd87608b3fef3ca260bfe259ec19"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/lime_dye_bucket.json",
+          "removed_duplicate_sha256": "588cbafb9087f4e4268088f59c70071e8ac87be671a04443aa7514ea2238fd55"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/magenta_dye_bucket.json",
+          "removed_duplicate_sha256": "cf7bdca7adafc9c48c211cab102de98127268cc7620a9d5ef244e12c03382dd6"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/orange_dye_bucket.json",
+          "removed_duplicate_sha256": "ed07446040aecfd1908ce01dd5fa6fe1419ef8d6174cf7729ab72775b94e8bf4"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/pink_dye_bucket.json",
+          "removed_duplicate_sha256": "dbd1f73f3773356008a2f74bfa23e253526a0ef25aa5bb6ccabab509c4b628ec"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/purple_dye_bucket.json",
+          "removed_duplicate_sha256": "9c0349ffe5346a2174ce87c073cb6d2ef5ea15bbe93c2ae20c3f5bfb040d52b9"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/rare_blaze_package.json",
+          "removed_duplicate_sha256": "87500de21c46716b1252b37d4aa6cef59c7438c9be20d2ba67f2572dbb9e368d"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/rare_marble_gate_package.json",
+          "removed_duplicate_sha256": "ce3f3e88f88bcc69e14dedd8a9ccce66480721afe0b2639786eb4f056e2abcc1"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/red_dye_bucket.json",
+          "removed_duplicate_sha256": "22ad17155d1670433de70231864f853779d830c697781bfbcee2ff2049a6c7b7"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/white_dye_bucket.json",
+          "removed_duplicate_sha256": "8ccfcfb1e9400704af948728fd14d527d41fbbf0aa18e7047b9383b1c4abe445"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_dragons_plus/items/yellow_dye_bucket.json",
+          "removed_duplicate_sha256": "d1f14039731947f9f500b6cfe01f97d5f7d68b031e7858d6e7d821040618582c"
+        }
+      ]
+    },
+    {
+      "module": "create-enchantment-industry-adapted-263",
+      "mod_id": "create_enchantment_industry",
+      "created_native_item_definitions": [
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/affix_augmentor.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/apotheotic_affix_template.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/apotheotic_essence_bucket.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/blaze_composer.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/brass_affix_template.json",
+        "src/integration/apothic_enchanting/resources/assets/create_enchantment_industry/items/brass_bookshelf.json",
+        "src/integration/apothic_enchanting/resources/assets/create_enchantment_industry/items/creative_bookshelf.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/crystal_affix_template.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/crystal_essence_bucket.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/gem_cutter.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/incomplete_apotheotic_affix_template.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/incomplete_brass_affix_template.json",
+        "src/integration/apothic_enchanting/resources/assets/create_enchantment_industry/items/incomplete_brass_bookshelf.json",
+        "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/incomplete_crystal_affix_template.json",
+        "src/main/resources/assets/create_enchantment_industry/items/infused_dragon_breath_bucket.json",
+        "src/integration/apothic_enchanting/resources/assets/create_enchantment_industry/items/infuser.json"
+      ],
+      "existing_native_definitions_reused": [
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/blazes_enchanting_handbook.json",
+          "removed_duplicate_sha256": "e4a867925d8a6c1e50335daff80d451926abb9d85a9c712f09f7bf2837593996"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/blaze_enchanter.json",
+          "removed_duplicate_sha256": "419261225a2b9c943ead9311cb3f41c92518c85e6e71e05d7c0f6636cc72fd4a"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/blaze_forger.json",
+          "removed_duplicate_sha256": "2ef6b73957d37992855ad0313479179ee47402b0f8ab77bad579703c9f4a4c55"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/classic_blaze_enchanter.json",
+          "removed_duplicate_sha256": "2da035bcf3e3c96cc43bb890c3169d29a2af3458fa1ad26578e98bc7492a1705"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/enchanting_template.json",
+          "removed_duplicate_sha256": "700415a1dc8fb274c6b930078dbc9f7dbeb005783346df5ff46ec966f4b59cc4"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/experience_bucket.json",
+          "removed_duplicate_sha256": "c99158d3c83fc45eef75fea289fdd95130f84be6049b6fe244ee4eb47e261807"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/experience_cake.json",
+          "removed_duplicate_sha256": "63d2f11ea56378ebcc2d450399989811caf7a137cecb229c36671c9c4f3f11b6"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/experience_cake_base.json",
+          "removed_duplicate_sha256": "bc21d018ad28837c2101d21e55cfa48427bc9db6634655c33f30d6be2bda7879"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/experience_cake_slice.json",
+          "removed_duplicate_sha256": "1dc1c733c811b6957491fc730d17d2b65ebdae6775887b60ca51d41a3e3994e8"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/experience_hatch.json",
+          "removed_duplicate_sha256": "76745410a761229353be2c6d6370c4b3cd14f463edb886980e8886b256363f54"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/experience_lantern.json",
+          "removed_duplicate_sha256": "393be5e49d836c85d08075169e55423a308bfebcdcec2ae1da8317842d7961ce"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/grindstone_drain.json",
+          "removed_duplicate_sha256": "260b85ef153eb415b903e2e0bdeb65a73e7d26465016f8c59c642864481f7093"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/mechanical_grindstone.json",
+          "removed_duplicate_sha256": "57effff972ac9c9d833046d66d0ec4ab3f24c8d752e849dac18a3ada6fcd214f"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/printer.json",
+          "removed_duplicate_sha256": "db558ea2c37a9d0cdcc9d93a7884295155de98475ed5da36f642e92d67467225"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/super_enchanting_template.json",
+          "removed_duplicate_sha256": "09396f7e0a41668d2eea5cb2bd5fa8d6071e99cd1375aafdc07a98af4fc90ce6"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/super_experience_block.json",
+          "removed_duplicate_sha256": "72be6a13348d615942f574207d966f5756117e2038060ac2d631b3532e686a60"
+        },
+        {
+          "resource": "src/generated/resources/assets/create_enchantment_industry/items/super_experience_nugget.json",
+          "removed_duplicate_sha256": "6e6e9d2298ec034050ad9a45c35bce35775ab8442e4ce6c7c603469c8b7bb692"
+        }
+      ],
+      "optional_definition_relocations": [
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/brass_bookshelf.json",
+          "to": "src/integration/apothic_enchanting/resources/assets/create_enchantment_industry/items/brass_bookshelf.json",
+          "sha256": "e718f4b8af298ffa4c62c69689629b789b42337c5563251ba8e09b64679f5f2d",
+          "integration": "apothic_enchanting",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/creative_bookshelf.json",
+          "to": "src/integration/apothic_enchanting/resources/assets/create_enchantment_industry/items/creative_bookshelf.json",
+          "sha256": "ae2ccb2735e9087994f904d9cd25333bce0a77426002d82a169f05b4da361273",
+          "integration": "apothic_enchanting",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/infuser.json",
+          "to": "src/integration/apothic_enchanting/resources/assets/create_enchantment_industry/items/infuser.json",
+          "sha256": "2f58d06965ba51cc114c81535d5878095f6d6acf7edac1c04a466e6cf75d5254",
+          "integration": "apothic_enchanting",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/incomplete_brass_bookshelf.json",
+          "to": "src/integration/apothic_enchanting/resources/assets/create_enchantment_industry/items/incomplete_brass_bookshelf.json",
+          "sha256": "bce78b2c5587c2cdc88ad1e009c5cd21a7a348f61a825a05de97eed6bf905027",
+          "integration": "apothic_enchanting",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/affix_augmentor.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/affix_augmentor.json",
+          "sha256": "bcd0d6e002c533ff4a2340fd137de027afc2c2f024c65ec4d5e645fcc59ec2ac",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/apotheotic_affix_template.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/apotheotic_affix_template.json",
+          "sha256": "a1bf1ccf9d99206fc4caed92245b5e57f2254c051074ab533d0d44f145e7557c",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/apotheotic_essence_bucket.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/apotheotic_essence_bucket.json",
+          "sha256": "6ba1b30f4464960d525e4b5ccb4ff87c450343374c015f098c7d7cb2a554743b",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/blaze_composer.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/blaze_composer.json",
+          "sha256": "a1a850de07af3f5e6612916d9ca43a5bbe03c5f19104b70503303d653c45aba4",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/brass_affix_template.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/brass_affix_template.json",
+          "sha256": "0fc8c3abccb3c5b106388312eba937c49d09f7d3a4361834db6569a12fb38637",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/crystal_affix_template.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/crystal_affix_template.json",
+          "sha256": "8c2d498a8da4399c727e1ab14833d1d7831e9f331bfe31f0ca1a8d1007178009",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/crystal_essence_bucket.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/crystal_essence_bucket.json",
+          "sha256": "ee0589660ba178e954a4d9796fb5d80f9fee87fb07f00e3774be332d9a86bd87",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/gem_cutter.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/gem_cutter.json",
+          "sha256": "fc1a4443a9bdca797f2d8634c118d040db8d7977574ec93dec4abb9e78844490",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/incomplete_apotheotic_affix_template.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/incomplete_apotheotic_affix_template.json",
+          "sha256": "9cc5f60da723cf63b2c180012aaf22a91a30286caf33f993c047aae4e696ee4e",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/incomplete_brass_affix_template.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/incomplete_brass_affix_template.json",
+          "sha256": "1a7055d82c67fcd0b47c06e15de3371a00189c193d0da86db061ec80060ffcd6",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        },
+        {
+          "from": "src/main/resources/assets/create_enchantment_industry/items/incomplete_crystal_affix_template.json",
+          "to": "src/integration/apotheosis/resources/assets/create_enchantment_industry/items/incomplete_crystal_affix_template.json",
+          "sha256": "e51c7f61de7c451aea42d690c943ff5bd49716f8b579fe9b1fe7c8e92ceb7463",
+          "integration": "apotheosis",
+          "bytes_unchanged": true
+        }
+      ],
+      "optional_definition_scope": "These 15 definitions are retained with their integration source resources; they are not part of the default eighteen-module runtime. The shared infused dragon breath definition remains in main."
+    },
+    {
+      "module": "create-additional-logistics-adapted-263",
+      "mod_id": "createadditionallogistics",
+      "created_native_item_definitions": [
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_black_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_brown_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_cyan_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_green_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_lazy_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_lazy_large_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_lazy_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_light_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_light_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_lime_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_magenta_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_orange_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_pink_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_purple_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_red_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_white_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/andesite_encased_yellow_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/black_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/black_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/black_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/blue_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/blue_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_black_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_brown_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_cyan_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_green_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_lazy_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_lazy_large_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_lazy_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_light_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_light_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_lime_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_magenta_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_orange_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_pink_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_purple_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_red_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_white_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brass_encased_yellow_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brown_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/brown_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/brown_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/cash_register.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_black_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_brown_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_cyan_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_green_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_lazy_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_lazy_large_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_lazy_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_light_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_light_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_lime_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_magenta_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_orange_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_pink_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_purple_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_red_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_white_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/copper_encased_yellow_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/cyan_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/cyan_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/cyan_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/gray_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/gray_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/green_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/green_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/green_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_black_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_brown_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_cyan_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_green_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_lazy_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_lazy_large_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_lazy_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_light_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_light_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_lime_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_magenta_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_orange_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_pink_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_purple_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_red_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_white_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/industrial_iron_encased_yellow_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/lazy_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/lazy_large_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/lazy_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/light_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/light_blue_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/light_blue_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/light_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/light_gray_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/light_gray_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/lime_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/lime_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/lime_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/magenta_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/magenta_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/magenta_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/network_monitor.json",
+        "src/main/resources/assets/createadditionallogistics/items/orange_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/orange_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/orange_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/package_accelerator.json",
+        "src/main/resources/assets/createadditionallogistics/items/package_editor.json",
+        "src/main/resources/assets/createadditionallogistics/items/pink_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/pink_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/pink_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/purple_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/purple_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/purple_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/red_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/red_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/red_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/sales_ledger.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_black_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_brown_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_cyan_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_green_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_lazy_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_lazy_large_cogwheel.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_lazy_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_light_blue_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_light_gray_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_lime_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_magenta_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_orange_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_pink_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_purple_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_red_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_white_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/weathered_iron_encased_yellow_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/white_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/white_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/white_tall_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/yellow_flexible_shaft.json",
+        "src/main/resources/assets/createadditionallogistics/items/yellow_short_seat.json",
+        "src/main/resources/assets/createadditionallogistics/items/yellow_tall_seat.json"
+      ]
+    },
+    {
+      "module": "create-storage-adapted-263",
+      "mod_id": "fxntstorage",
+      "created_native_item_definitions": [
+        "src/main/resources/assets/fxntstorage/items/acacia_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/acacia_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/andesite_backpack.json",
+        "src/main/resources/assets/fxntstorage/items/andesite_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/backpack.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_blank_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_crafting_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_crafting_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_falldamage_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_falldamage_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_feeder_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_feeder_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_flight_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_flight_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_health_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_health_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_itempickup_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_itempickup_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_jukebox_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_jukebox_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_magnet_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_magnet_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_oremining_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_oremining_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_pickblock_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_pickblock_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_refill_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_refill_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_thirst_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_thirst_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_toolswap_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_toolswap_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_torchdeployer_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_torchdeployer_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_void_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_void_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_workshop_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/backpack_workshop_upgrade_deactivated.json",
+        "src/main/resources/assets/fxntstorage/items/bamboo_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/bamboo_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/birch_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/birch_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/brass_backpack.json",
+        "src/main/resources/assets/fxntstorage/items/brass_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/cardboard_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/cherry_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/cherry_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/copper_backpack.json",
+        "src/main/resources/assets/fxntstorage/items/copper_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/crimson_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/crimson_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/dark_oak_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/dark_oak_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/hardened_backpack.json",
+        "src/main/resources/assets/fxntstorage/items/hardened_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/jungle_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/jungle_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/mangrove_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/mangrove_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/oak_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/oak_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/pale_oak_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/pale_oak_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/passer_block.json",
+        "src/main/resources/assets/fxntstorage/items/poplar_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/poplar_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/reserve_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/smart_passer_block.json",
+        "src/main/resources/assets/fxntstorage/items/spruce_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/spruce_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/storage_box_capacity_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/storage_box_compacting_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/storage_box_void_upgrade.json",
+        "src/main/resources/assets/fxntstorage/items/storage_controller.json",
+        "src/main/resources/assets/fxntstorage/items/storage_interface.json",
+        "src/main/resources/assets/fxntstorage/items/storage_interface_filtered.json",
+        "src/main/resources/assets/fxntstorage/items/warped_simple_storage_box.json",
+        "src/main/resources/assets/fxntstorage/items/warped_storage_trim.json",
+        "src/main/resources/assets/fxntstorage/items/weathered_storage_box.json"
+      ]
+    },
+    {
+      "module": "create-fluid-logistics-adapted-263",
+      "mod_id": "fluidlogistics",
+      "created_native_item_definitions": [
+        "src/main/resources/assets/fluidlogistics/items/compressed_storage_tank.json",
+        "src/main/resources/assets/fluidlogistics/items/empty_fluid_schematic.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_factory_gauge.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_package.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_package_exposed.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_package_oxidized.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_package_weathered.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_proxy.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_schematic.json",
+        "src/main/resources/assets/fluidlogistics/items/hand_pointer.json",
+        "src/main/resources/assets/fluidlogistics/items/package_list_filter.json",
+        "src/main/resources/assets/fluidlogistics/items/phantom_chain.json",
+        "src/main/resources/assets/fluidlogistics/items/rare_fox_package.json",
+        "src/main/resources/assets/fluidlogistics/items/rare_pig_package.json",
+        "src/main/resources/assets/fluidlogistics/items/redstone_fluid_valve.json",
+        "src/main/resources/assets/fluidlogistics/items/copper_basin.json",
+        "src/main/resources/assets/fluidlogistics/items/copper_frogport.json",
+        "src/main/resources/assets/fluidlogistics/items/copper_schematicannon.json",
+        "src/main/resources/assets/fluidlogistics/items/empty_snow_golem_freezer.json",
+        "src/main/resources/assets/fluidlogistics/items/faucet.json",
+        "src/main/resources/assets/fluidlogistics/items/flow_meter.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_hatch.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_inventory_access_port.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_packager.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_pump.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_repackager.json",
+        "src/main/resources/assets/fluidlogistics/items/fluid_transporter.json",
+        "src/main/resources/assets/fluidlogistics/items/horizontal_multi_fluid_tank.json",
+        "src/main/resources/assets/fluidlogistics/items/infinite_fluid_tank.json",
+        "src/main/resources/assets/fluidlogistics/items/mechanical_fluid_gun.json",
+        "src/main/resources/assets/fluidlogistics/items/multi_fluid_access_port.json",
+        "src/main/resources/assets/fluidlogistics/items/multi_fluid_tank.json",
+        "src/main/resources/assets/fluidlogistics/items/potato_server.json",
+        "src/main/resources/assets/fluidlogistics/items/smart_faucet.json",
+        "src/main/resources/assets/fluidlogistics/items/smart_hopper.json",
+        "src/main/resources/assets/fluidlogistics/items/snow_golem_freezer.json",
+        "src/main/resources/assets/fluidlogistics/items/water_containing_copper_casing.json"
+      ]
+    }
+  ],
+  "total_created_native_item_definitions": 328
+}

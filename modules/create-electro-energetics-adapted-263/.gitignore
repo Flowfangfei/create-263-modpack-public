@@ -1,0 +1,33 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+runs
+run-data
+/logs/
+/src/generated/resources/.cache/
+
+repo
+
+.profileconfig.json
+profile.jfr
+err_profile.jfr
+err_profile.jfr.txt

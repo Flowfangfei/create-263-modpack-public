@@ -1,0 +1,62 @@
+package com.hlysine.create_connected.registries;
+
+import com.hlysine.create_connected.CreateConnected;
+import net.createmod.catnip.api.client.gui.element.ScreenElement;
+import net.createmod.catnip.api.theme.Color;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.resources.Identifier;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+
+public enum CCGuiTextures implements ScreenElement {
+
+    SEQUENCER("sequencer", 256, 205),
+    SEQUENCER_INSTRUCTION("sequencer", 0, 16, 237, 22),
+    SEQUENCER_DELAY("sequencer", 0, 104, 237, 22),
+    SEQUENCER_END("sequencer", 0, 126, 237, 22),
+    SEQUENCER_EMPTY("sequencer", 0, 148, 237, 22),
+    SEQUENCER_AWAIT("sequencer", 0, 206, 237, 22),
+    ;
+
+    public static final int FONT_COLOR = 0x575F7A;
+
+    public final Identifier location;
+    public final int width;
+    public final int height;
+    public final int startX;
+    public final int startY;
+
+    CCGuiTextures(String location, int width, int height) {
+        this(location, 0, 0, width, height);
+    }
+
+    CCGuiTextures(int startX, int startY) {
+        this("icons", startX * 16, startY * 16, 16, 16);
+    }
+
+    CCGuiTextures(String location, int startX, int startY, int width, int height) {
+        this(CreateConnected.MODID, location, startX, startY, width, height);
+    }
+
+    CCGuiTextures(String namespace, String location, int startX, int startY, int width, int height) {
+        this.location = Identifier.fromNamespaceAndPath(namespace, "textures/gui/" + location + ".png");
+        this.width = width;
+        this.height = height;
+        this.startX = startX;
+        this.startY = startY;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void render(GuiGraphicsExtractor graphics, int x, int y) {
+        graphics.blit(RenderPipelines.GUI_TEXTURED, location, x, y, startX, startY, width, height, 256, 256);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void render(GuiGraphicsExtractor graphics, int x, int y, Color c) {
+        int argb = (c.getAlpha() << 24) | (c.getRGB() & 0xFFFFFF);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, location, x, y, startX, startY, width, height, 256, 256, argb);
+    }
+
+}
+

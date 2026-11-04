@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "create_connected:feature_enabled",
+      "tag": "create_connected:cross_connector"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "g": "create:gearbox",
+    "s": "create:shaft"
+  },
+  "pattern": [
+    " s ",
+    "sgs",
+    " s "
+  ],
+  "result": {
+    "count": 1,
+    "id": "create_connected:cross_connector"
+  }
+}

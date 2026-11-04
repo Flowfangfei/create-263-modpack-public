@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "#c:dyes/cyan",
+    "#simulated:nameplate_items"
+  ],
+  "result": {
+    "id": "simulated:cyan_nameplate"
+  }
+}

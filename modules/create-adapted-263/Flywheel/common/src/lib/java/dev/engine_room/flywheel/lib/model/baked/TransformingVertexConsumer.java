@@ -1,0 +1,74 @@
+package dev.engine_room.flywheel.lib.model.baked;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import dev.engine_room.flywheel.lib.math.MatrixMath;
+import net.minecraft.util.ARGB;
+import org.jetbrains.annotations.UnknownNullability;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+
+class TransformingVertexConsumer implements VertexConsumer {
+   private @UnknownNullability VertexConsumer delegate;
+   private @UnknownNullability PoseStack poseStack;
+
+   public VertexConsumer setUv3(float u, float v) {
+      this.delegate.setUv3(u, v);
+      return this;
+   }
+
+   public void prepare(VertexConsumer delegate, PoseStack poseStack) {
+      this.delegate = delegate;
+      this.poseStack = poseStack;
+   }
+
+   public void clear() {
+      this.delegate = null;
+      this.poseStack = null;
+   }
+
+   public VertexConsumer addVertex(float x, float y, float z) {
+      Matrix4f matrix = this.poseStack.last().pose();
+      this.delegate
+         .addVertex(
+            MatrixMath.transformPositionX(matrix, x, y, z), MatrixMath.transformPositionY(matrix, x, y, z), MatrixMath.transformPositionZ(matrix, x, y, z)
+         );
+      return this;
+   }
+
+   public VertexConsumer setColor(int red, int green, int blue, int alpha) {
+      this.delegate.setColor(red, green, blue, alpha);
+      return this;
+   }
+
+   public VertexConsumer setUv(float u, float v) {
+      this.delegate.setUv(u, v);
+      return this;
+   }
+
+   public VertexConsumer setUv1(int u, int v) {
+      this.delegate.setUv1(u, v);
+      return this;
+   }
+
+   public VertexConsumer setUv2(int u, int v) {
+      this.delegate.setUv2(u, v);
+      return this;
+   }
+
+   public VertexConsumer setNormal(float x, float y, float z) {
+      Matrix3f matrix = this.poseStack.last().normal();
+      this.delegate
+         .setNormal(MatrixMath.transformNormalX(matrix, x, y, z), MatrixMath.transformNormalY(matrix, x, y, z), MatrixMath.transformNormalZ(matrix, x, y, z));
+      return this;
+   }
+
+   public VertexConsumer setColor(int color) {
+      return this.setColor(ARGB.red(color), ARGB.green(color), ARGB.blue(color), ARGB.alpha(color));
+   }
+
+   public VertexConsumer setLineWidth(float width) {
+      this.delegate.setLineWidth(width);
+      return this;
+   }
+}

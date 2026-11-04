@@ -1,0 +1,31 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "priority": 1177,
+  "package": "com.jesz.createdieselgenerators.mixins",
+  "refmap": "createdieselgenerators.refmap.json",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "BasinRecipeMixin",
+    "ContraptionMixin",
+    "CopycatBlockMixin",
+    "CreeperMixin",
+    "EntityMixin",
+    "LootItemAccessor",
+    "LootPoolAccessor",
+    "LootTableAccessor",
+    "MechanicalPressBlockEntityMixin",
+    "ShaftBlockMixin",
+    "UseOnContextInvoker",
+    "SableAssemblyMixin"
+  ],
+  "client": [
+    "BasinRendererMixin",
+    "ContraptionEntityRendererMixin",
+    "ModelPartAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "plugin": "com.jesz.createdieselgenerators.CDGMixinPlugin"
+}

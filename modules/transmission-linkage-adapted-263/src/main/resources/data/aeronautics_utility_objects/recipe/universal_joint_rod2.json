@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "a": "create:andesite_alloy",
+    "p": "simulated:spring",
+    "s": "create:shaft"
+  },
+  "pattern": [
+    " s ",
+    "apa",
+    " s "
+  ],
+  "result": {
+    "count": 1,
+    "id": "aeronautics_utility_objects:universal_joint_rod2"
+  }
+}

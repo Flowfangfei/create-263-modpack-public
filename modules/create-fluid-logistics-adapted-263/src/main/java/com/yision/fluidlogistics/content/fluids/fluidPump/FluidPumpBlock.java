@@ -1,0 +1,418 @@
+package com.yision.fluidlogistics.content.fluids.fluidPump;
+
+import com.simibubi.create.api.contraption.transformable.TransformableBlock;
+import com.simibubi.create.content.contraptions.StructureTransform;
+import com.simibubi.create.content.fluids.FluidPropagator;
+import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
+import com.simibubi.create.content.fluids.pump.PumpBlock;
+import com.simibubi.create.content.kinetics.base.DirectionalAxisKineticBlock;
+import com.simibubi.create.content.kinetics.base.IRotate;
+import com.simibubi.create.foundation.block.ProperWaterloggedBlock;
+import com.yision.fluidlogistics.registry.AllBlockEntities;
+
+import net.createmod.catnip.api.data.Iterate;
+import net.createmod.catnip.api.math.AngleHelper;
+import net.createmod.catnip.api.math.VecHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.Direction.AxisDirection;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+public class FluidPumpBlock extends PumpBlock implements TransformableBlock {
+
+	public static final BooleanProperty TOP_NEGATIVE = BooleanProperty.create("top_negative");
+
+	private static final double[][] HORIZONTAL_MODEL_BOXES = {
+		{ 2, 2, 2, 14, 14, 14 },
+		{ 2, 2, 13, 14, 14, 14 },
+		{ 3, 0, 3, 13, 2, 13 },
+		{ 3, 14, 3, 13, 16, 13 },
+		{ 3, 1, 0, 6, 15, 2 },
+		{ 10, 1, 0, 13, 15, 2 },
+		{ 4, 4, 14, 12, 12, 15 },
+	};
+	private static final double[][] VERTICAL_MODEL_BOXES = {
+		{ 2, 2, 2, 14, 14, 14 },
+		{ 2, 2, 13, 14, 14, 14 },
+		{ 14, 3, 3, 16, 13, 13 },
+		{ 0, 3, 3, 2, 13, 13 },
+		{ 1, 3, 0, 15, 6, 2 },
+		{ 1, 10, 0, 15, 13, 2 },
+		{ 4, 4, 14, 12, 12, 15 },
+	};
+	private static final double[] SHAFT_BOX = { 6, 6, 0, 10, 10, 16 };
+	private static final VoxelShape[][] SHAPES = makeShapes();
+
+	public FluidPumpBlock(Properties properties) {
+		super(properties);
+		registerDefaultState(defaultBlockState()
+			.setValue(DirectionalAxisKineticBlock.AXIS_ALONG_FIRST_COORDINATE, false)
+			.setValue(TOP_NEGATIVE, false));
+	}
+
+	@Override
+	protected void createBlockStateDefinition(
+		StateDefinition.Builder<net.minecraft.world.level.block.Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(DirectionalAxisKineticBlock.AXIS_ALONG_FIRST_COORDINATE);
+		builder.add(TOP_NEGATIVE);
+	}
+
+	public static Axis getFluidAxis(BlockState state) {
+		return state.getValue(FACING).getAxis();
+	}
+
+	public static Axis getShaftAxis(BlockState state) {
+		return getShaftAxis(state.getValue(FACING)
+			.getAxis(), state.getValue(DirectionalAxisKineticBlock.AXIS_ALONG_FIRST_COORDINATE));
+	}
+
+	private static Axis getShaftAxis(Axis facingAxis, boolean alongFirst) {
+		if (facingAxis == Axis.X)
+			return alongFirst ? Axis.Y : Axis.Z;
+		if (facingAxis == Axis.Y)
+			return alongFirst ? Axis.X : Axis.Z;
+		if (facingAxis == Axis.Z)
+			return alongFirst ? Axis.X : Axis.Y;
+
+		throw new IllegalStateException("Unknown axis.");
+	}
+
+	@Override
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		Direction output = rotation.rotate(state.getValue(FACING));
+		Axis shaft = rotation.rotate(Direction.fromAxisAndDirection(getShaftAxis(state), AxisDirection.POSITIVE))
+			.getAxis();
+		return withOutputAndShaft(state, output, shaft)
+			.setValue(TOP_NEGATIVE, rotation.rotate(getModelTop(state)).getAxisDirection() == AxisDirection.NEGATIVE);
+	}
+
+	@Override
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.setValue(FACING, mirror.mirror(state.getValue(FACING)))
+			.setValue(TOP_NEGATIVE, mirror.mirror(getModelTop(state)).getAxisDirection() == AxisDirection.NEGATIVE);
+	}
+
+	@Override
+	public BlockState transform(BlockState state, StructureTransform transform) {
+		if (transform.mirror != null)
+			state = mirror(state, transform.mirror);
+		Direction output = transform.rotateFacing(state.getValue(FACING));
+		Axis shaft = transform.rotateFacing(Direction.fromAxisAndDirection(getShaftAxis(state), AxisDirection.POSITIVE))
+			.getAxis();
+		return withOutputAndShaft(state, output, shaft)
+			.setValue(TOP_NEGATIVE,
+				transform.rotateFacing(getModelTop(state)).getAxisDirection() == AxisDirection.NEGATIVE);
+	}
+
+	@Override
+	public BlockState getRotatedBlockState(BlockState state, Direction targetedFace) {
+		if (targetedFace.getAxis() == getFluidAxis(state)) {
+			BlockState rotated = state.cycle(DirectionalAxisKineticBlock.AXIS_ALONG_FIRST_COORDINATE);
+			return getModelTop(rotated).getAxis() == Axis.Y ? rotated.setValue(TOP_NEGATIVE, false) : rotated;
+		}
+		return super.getRotatedBlockState(state, targetedFace);
+	}
+
+	public static float getValueBoxZRotation(BlockState state, Direction outputDir) {
+		Direction top = getModelTop(state);
+		float yRot = AngleHelper.horizontalAngle(top) + 180;
+		float xRot = top == Direction.UP ? 90 : top == Direction.DOWN ? 270 : 0;
+		Vec3 currentRight = rotateValueBoxAxis(new Vec3(1, 0, 0), xRot, yRot).normalize();
+		Vec3 currentBottom = rotateValueBoxAxis(new Vec3(0, -1, 0), xRot, yRot).normalize();
+		Vec3 desiredRight = Vec3.atLowerCornerOf(outputDir.getOpposite()
+			.getUnitVec3i());
+
+		double sin = -desiredRight.dot(currentBottom);
+		double cos = desiredRight.dot(currentRight);
+		if (Math.abs(sin) < 1e-6 && Math.abs(cos) < 1e-6)
+			return 0;
+		return (float) Math.toDegrees(Math.atan2(sin, cos));
+	}
+
+	private static Vec3 rotateValueBoxAxis(Vec3 vec, float xRot, float yRot) {
+		return VecHelper.rotate(VecHelper.rotate(vec, xRot, Direction.Axis.X), yRot, Direction.Axis.Y);
+	}
+
+	private static boolean isVerticalModel(Direction direction, boolean alongFirst) {
+		return direction.getAxis()
+			.isHorizontal() && (direction.getAxis() == Axis.X) == alongFirst;
+	}
+
+	private static int getXRotation(Direction direction) {
+		return direction == Direction.DOWN ? 270 : direction == Direction.UP ? 90 : 0;
+	}
+
+	private static int getYRotation(Direction direction, boolean alongFirst) {
+		return direction.getAxis()
+			.isVertical() ? alongFirst ? 180 : 90 : (int) direction.toYRot();
+	}
+
+	public static Direction getModelTop(BlockState state) {
+		return Direction.fromAxisAndDirection(getRemainingAxis(getFluidAxis(state), getShaftAxis(state)),
+			state.getValue(TOP_NEGATIVE) ? AxisDirection.NEGATIVE : AxisDirection.POSITIVE);
+	}
+
+	public static boolean isVerticalModel(BlockState state) {
+		return isVerticalModel(getModelTop(state), modelAlongFirst(state));
+	}
+
+	public static int getModelXRotation(BlockState state) {
+		return getXRotation(getModelTop(state));
+	}
+
+	public static int getModelYRotation(BlockState state) {
+		return getYRotation(getModelTop(state), modelAlongFirst(state));
+	}
+
+	private static boolean modelAlongFirst(BlockState state) {
+		return computeAlongFirst(getModelTop(state).getAxis(), getShaftAxis(state));
+	}
+
+	@Override
+	public Axis getRotationAxis(BlockState state) {
+		return getShaftAxis(state);
+	}
+
+	@Override
+	public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
+		return face.getAxis() == getShaftAxis(state);
+	}
+
+	@Override
+	public boolean isSmallCog() {
+		return false;
+	}
+
+	@Override
+	public boolean isLargeCog() {
+		return false;
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return getModelShape(state);
+	}
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return getModelShape(state);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		Direction output = getOutputForPlacement(context);
+		Axis fluidAxis = output.getAxis();
+		Axis shaftAxis = fluidAxis == Axis.Y ? context.getHorizontalDirection().getClockWise().getAxis()
+			: fluidAxis == Axis.X ? Axis.Z : Axis.X;
+		Axis preferred = null;
+		for (Direction side : Iterate.directions) {
+			if (side.getAxis() == fluidAxis)
+				continue;
+			BlockPos neighbourPos = context.getClickedPos().relative(side);
+			BlockState neighbour = context.getLevel().getBlockState(neighbourPos);
+			if (!(neighbour.getBlock() instanceof IRotate kinetic)
+				|| !kinetic.hasShaftTowards(context.getLevel(), neighbourPos, neighbour, side.getOpposite()))
+				continue;
+			if (preferred != null && preferred != side.getAxis()) {
+				preferred = null;
+				break;
+			}
+			preferred = side.getAxis();
+		}
+		BlockState state = withOutputAndShaft(ProperWaterloggedBlock.withWater(context.getLevel(), defaultBlockState(),
+			context.getClickedPos()), output, preferred == null ? shaftAxis : preferred);
+		Axis topAxis = getModelTop(state).getAxis();
+		if (topAxis == Axis.Y)
+			return state;
+		for (Direction looking : context.getNearestLookingDirections())
+			if (looking.getAxis() == topAxis)
+				return state.setValue(TOP_NEGATIVE, looking.getAxisDirection() == AxisDirection.POSITIVE);
+		return state;
+	}
+
+	private Direction getOutputForPlacement(BlockPlaceContext context) {
+		Direction clickedSide = context.getClickedFace().getOpposite();
+		if (!context.replacingClickedOnBlock() && canConnectFluidPortTo(context, clickedSide))
+			return clickedSide.getOpposite();
+		Direction connected = null;
+		for (Direction side : Iterate.directions) {
+			if (!canConnectFluidPortTo(context, side))
+				continue;
+			if (connected != null) {
+				connected = null;
+				break;
+			}
+			connected = side;
+		}
+		if (connected != null)
+			return connected.getOpposite();
+		Direction looking = context.getNearestLookingDirection();
+		return context.getPlayer() != null && context.getPlayer().isShiftKeyDown() ? looking : looking.getOpposite();
+	}
+
+	private boolean canConnectFluidPortTo(BlockPlaceContext context, Direction side) {
+		Level level = context.getLevel();
+		BlockPos pos = context.getClickedPos().relative(side);
+		return FluidPipeBlock.canConnectTo(level, pos, level.getBlockState(pos), side);
+	}
+
+	private static BlockState withOutputAndShaft(BlockState state, Direction output, Axis shaft) {
+		return state.setValue(FACING, output).setValue(DirectionalAxisKineticBlock.AXIS_ALONG_FIRST_COORDINATE,
+			computeAlongFirst(output.getAxis(), shaft));
+	}
+
+	private static Axis getRemainingAxis(Axis first, Axis second) {
+		for (Axis axis : Iterate.axes)
+			if (axis != first && axis != second)
+				return axis;
+		throw new IllegalStateException("Impossible axis.");
+	}
+
+	private static boolean computeAlongFirst(Axis facingAxis, Axis shaftAxis) {
+		if (facingAxis == Axis.X)
+			return shaftAxis == Axis.Y;
+		if (facingAxis == Axis.Y)
+			return shaftAxis == Axis.X;
+		if (facingAxis == Axis.Z)
+			return shaftAxis == Axis.X;
+		throw new IllegalStateException("Unknown axis.");
+	}
+
+	private static VoxelShape getModelShape(BlockState state) {
+		Direction direction = getModelTop(state);
+		boolean alongFirst = modelAlongFirst(state);
+		return SHAPES[alongFirst ? 1 : 0][direction.ordinal()];
+	}
+
+	private static VoxelShape[][] makeShapes() {
+		VoxelShape[][] shapes = new VoxelShape[2][Direction.values().length];
+		for (boolean alongFirst : Iterate.trueAndFalse) {
+			for (Direction direction : Iterate.directions) {
+				boolean vertical = isVerticalModel(direction, alongFirst);
+				int xRot = getXRotation(direction);
+				int yRot = getYRotation(direction, alongFirst);
+				shapes[alongFirst ? 1 : 0][direction.ordinal()] = Shapes
+					.or(makeShape(vertical ? VERTICAL_MODEL_BOXES : HORIZONTAL_MODEL_BOXES, xRot, yRot),
+						makeShaftShape(getShaftAxis(direction.getAxis(), alongFirst)))
+					.optimize();
+			}
+		}
+		return shapes;
+	}
+
+	private static VoxelShape makeShape(double[][] boxes, int xRot, int yRot) {
+		VoxelShape shape = Shapes.empty();
+		for (double[] box : boxes)
+			shape = Shapes.or(shape, rotateBox(box, xRot, yRot));
+		return shape.optimize();
+	}
+
+	private static VoxelShape makeShaftShape(Axis axis) {
+		return switch (axis) {
+		case X -> rotateBox(SHAFT_BOX, 0, 90);
+		case Y -> rotateBox(SHAFT_BOX, 90, 0);
+		case Z -> Block.box(SHAFT_BOX[0], SHAFT_BOX[1], SHAFT_BOX[2], SHAFT_BOX[3], SHAFT_BOX[4], SHAFT_BOX[5]);
+		};
+	}
+
+	private static VoxelShape rotateBox(double[] box, int xRot, int yRot) {
+		double minX = Double.MAX_VALUE;
+		double minY = Double.MAX_VALUE;
+		double minZ = Double.MAX_VALUE;
+		double maxX = -Double.MAX_VALUE;
+		double maxY = -Double.MAX_VALUE;
+		double maxZ = -Double.MAX_VALUE;
+
+		for (int x = 0; x < 2; x++) {
+			for (int y = 0; y < 2; y++) {
+				for (int z = 0; z < 2; z++) {
+					Vec3 rotated = rotatePoint(new Vec3(box[x == 0 ? 0 : 3], box[y == 0 ? 1 : 4], box[z == 0 ? 2 : 5]),
+						xRot, yRot);
+					minX = Math.min(minX, rotated.x);
+					minY = Math.min(minY, rotated.y);
+					minZ = Math.min(minZ, rotated.z);
+					maxX = Math.max(maxX, rotated.x);
+					maxY = Math.max(maxY, rotated.y);
+					maxZ = Math.max(maxZ, rotated.z);
+				}
+			}
+		}
+
+		return Block.box(minX, minY, minZ, maxX, maxY, maxZ);
+	}
+
+	private static Vec3 rotatePoint(Vec3 point, int xRot, int yRot) {
+		Vec3 rotated = point;
+		rotated = rotateX(rotated, xRot);
+		rotated = rotateY(rotated, yRot);
+		return rotated;
+	}
+
+	private static Vec3 rotateX(Vec3 point, int degrees) {
+		int normalized = Math.floorMod(degrees, 360);
+		double x = point.x - 8;
+		double y = point.y - 8;
+		double z = point.z - 8;
+		return switch (normalized) {
+		case 90 -> new Vec3(x + 8, z + 8, -y + 8);
+		case 180 -> new Vec3(x + 8, -y + 8, -z + 8);
+		case 270 -> new Vec3(x + 8, -z + 8, y + 8);
+		default -> point;
+		};
+	}
+
+	private static Vec3 rotateY(Vec3 point, int degrees) {
+		int normalized = Math.floorMod(degrees, 360);
+		double x = point.x - 8;
+		double y = point.y - 8;
+		double z = point.z - 8;
+		return switch (normalized) {
+		case 90 -> new Vec3(-z + 8, y + 8, x + 8);
+		case 180 -> new Vec3(-x + 8, y + 8, -z + 8);
+		case 270 -> new Vec3(z + 8, y + 8, -x + 8);
+		default -> point;
+		};
+	}
+
+	@Override
+	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
+		super.onPlace(state, world, pos, oldState, isMoving);
+		if (world.isClientSide() || !oldState.is(this) || state.getValue(FACING) == oldState.getValue(FACING))
+			return;
+		if (getFluidAxis(state) != getFluidAxis(oldState)) {
+			for (Direction side : Iterate.directions) {
+				if (side.getAxis() != getFluidAxis(oldState))
+					continue;
+				BlockPos neighbour = pos.relative(side);
+				FluidPropagator.propagateChangedPipe(world, neighbour, world.getBlockState(neighbour));
+			}
+		}
+		if (world.getBlockEntity(pos) instanceof FluidPumpBlockEntity pump)
+			pump.setPressureUpdate(true);
+	}
+
+	@Override
+	public Class getBlockEntityClass() {
+		return FluidPumpBlockEntity.class;
+	}
+
+	@Override
+	public net.minecraft.world.level.block.entity.BlockEntityType getBlockEntityType() {
+		return AllBlockEntities.FLUID_PUMP.get();
+	}
+}

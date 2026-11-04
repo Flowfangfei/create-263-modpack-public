@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "railways:dripstone_locometal_end_ladder",
+      "required": false
+    },
+    {
+      "id": "railways:dripstone_locometal_rung_ladder",
+      "required": false
+    }
+  ]
+}

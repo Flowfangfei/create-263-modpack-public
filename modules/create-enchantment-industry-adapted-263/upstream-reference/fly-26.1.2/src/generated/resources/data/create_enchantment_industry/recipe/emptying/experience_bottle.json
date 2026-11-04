@@ -1,0 +1,11 @@
+{
+  "type": "create:emptying",
+  "fluid_result": {
+    "amount": 810,
+    "id": "create_enchantment_industry:experience"
+  },
+  "ingredient": "minecraft:experience_bottle",
+  "result": {
+    "id": "minecraft:glass_bottle"
+  }
+}

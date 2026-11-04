@@ -1,0 +1,12 @@
+{
+    "type":  "create:compacting",
+    "ingredients":  [
+                        "#c:seeds"
+                    ],
+    "results":  [
+                    {
+                        "id":  "createdieselgenerators:plant_oil",
+                        "amount":  100
+                    }
+                ]
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "conductor_visible=false": {
+      "model": "railways:block/copycat_vent"
+    },
+    "conductor_visible=true": {
+      "model": "railways:block/copycat_vent_visible"
+    }
+  }
+}

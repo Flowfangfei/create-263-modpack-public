@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "fxntstorage:backpack_upgrade_enabled",
+      "upgrade": "fxntstorage:backpack_toolswap_upgrade"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "backpack",
+  "key": {
+    "B": "fxntstorage:backpack_blank_upgrade",
+    "I": "create:iron_sheet",
+    "R": "create:redstone_link",
+    "X": "minecraft:iron_sword",
+    "Y": "minecraft:iron_pickaxe",
+    "Z": "minecraft:iron_hoe"
+  },
+  "pattern": [
+    " R ",
+    "IBI",
+    "XYZ"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fxntstorage:backpack_toolswap_upgrade"
+  }
+}

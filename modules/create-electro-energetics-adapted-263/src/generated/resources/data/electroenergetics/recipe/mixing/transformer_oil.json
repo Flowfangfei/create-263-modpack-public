@@ -1,0 +1,20 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "ingredient": "#c:plantoil",
+      "amount": 250
+    },
+    {
+      "ingredient": "minecraft:water",
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "amount": 125,
+      "id": "electroenergetics:transformer_oil"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+- Add Flow Meter
+- Add Redstone Fluid Valve
+- Add Potato Server(thanks 吴聊只会淼淼叫)
+- Allow fluid packagers to extract honey from beehives
+- Fix stock link redstone signals not lowering fluid packager priority

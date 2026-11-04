@@ -1,0 +1,202 @@
+{
+  "schema": 1,
+  "id": "2026-11-04-all-ponder-audit",
+  "status": "validated-and-installed",
+  "completed_at": "2026-11-04T18:50:17+08:00",
+  "base_release": "v0.3.0-alpha.2",
+  "base_source_commit": "0d2251c95d3a30aeee6471dd4d1df95fffb416d3",
+  "source_branch": "codex/railways-storage-hotfix-263",
+  "source_changes_committed": false,
+  "remote_push_performed": false,
+  "release_created": false,
+  "changed_jars": {
+    "create-adapted-recovered.jar": {
+      "before_sha256": "163e9555cb8ba133362cd55590976401a1004a3be2cc7a600d10f273c18ac721",
+      "sha256": "30fb95a1b595a7e7905413954cdd9602f7d2f3831f85c2e908161deee7117857",
+      "entries": {
+        "added": [
+          "com/simibubi/create/infrastructure/assets/ExternalCreatePonderTemplates.class"
+        ],
+        "removed": [],
+        "changed": [
+          "META-INF/MANIFEST.MF",
+          "META-INF/jarjar/catnip-neoforge-1.0.100046-adapted-fork-early+mc26.3.jar",
+          "META-INF/jarjar/create_flywheel-neoforge-26.3-1.0.6.jar",
+          "META-INF/jarjar/net.createmod.ponder.ponder-neoforge-1.0.100046-adapted-fork-early+mc26.3.jar",
+          "com/simibubi/create/CreateBuildInfo.class",
+          "com/simibubi/create/content/kinetics/gearbox/GearboxRenderer$1.class",
+          "com/simibubi/create/content/kinetics/gearbox/GearboxRenderer$GearboxRenderState.class",
+          "com/simibubi/create/content/kinetics/gearbox/GearboxRenderer.class",
+          "com/simibubi/create/content/kinetics/mechanicalArm/ArmBlockEntity$Client.class",
+          "com/simibubi/create/content/kinetics/mechanicalArm/ArmBlockEntity$SelectionMode.class",
+          "com/simibubi/create/content/kinetics/mechanicalArm/ArmBlockEntity$SelectionModeValueBox.class",
+          "com/simibubi/create/content/kinetics/mechanicalArm/ArmBlockEntity.class",
+          "com/simibubi/create/infrastructure/assets/ExternalCreateAssets$AdaptedResources.class"
+        ]
+      }
+    },
+    "railways-adapted.jar": {
+      "before_sha256": "fe096f6e4eb05f4287c890f229dde00635fdc838039dea52f120ef27bb54f1aa",
+      "sha256": "b989d5c8569a617cae9cc22ab92d773c93043c95b705a347c2b3dc03b863dc99",
+      "entries": {
+        "added": [],
+        "removed": [],
+        "changed": [
+          "assets/railways/ponder/semaphore.nbt",
+          "assets/railways/ponder/switch.nbt"
+        ]
+      }
+    },
+    "enchantment-industry-adapted.jar": {
+      "before_sha256": "4b56b252452f484c40f190dca1063d13f9d0115984d7b15ed7902c5b501121db",
+      "sha256": "dd655c9ba807d61ec6814833f969974e0eade973ef8b87972fa3467fcf0078c4",
+      "entries": {
+        "added": [],
+        "removed": [],
+        "changed": [
+          "plus/dragons/createenchantmentindustry/common/fluids/lantern/ExperienceLanternBlockEntity.class"
+        ]
+      }
+    },
+    "storage-adapted.jar": {
+      "before_sha256": "ad68e51ff9eec458d1c27e3eb562f8bc8a6a3285fb9bd3fed3fc58494d874efc",
+      "sha256": "e78c3b68dab4463623b58b6c65c81f0795738d57b07bf43a9f6ef27c3d5af2a9",
+      "entries": {
+        "added": [],
+        "removed": [],
+        "changed": [
+          "assets/fxntstorage/ponder/passerblock/intro.nbt",
+          "assets/fxntstorage/ponder/reservestoragebox/contraption.nbt",
+          "assets/fxntstorage/ponder/reservestoragebox/intro.nbt",
+          "assets/fxntstorage/ponder/simplestoragebox/interact.nbt",
+          "assets/fxntstorage/ponder/simplestoragebox/intro.nbt",
+          "assets/fxntstorage/ponder/simplestoragebox/intro_alt.nbt",
+          "assets/fxntstorage/ponder/simplestoragebox/intro_alt2.nbt",
+          "assets/fxntstorage/ponder/simplestoragebox/upgrades.nbt",
+          "assets/fxntstorage/ponder/smartpasserblock/intro.nbt",
+          "assets/fxntstorage/ponder/storagebox/filter.nbt",
+          "assets/fxntstorage/ponder/storagebox/interact.nbt",
+          "assets/fxntstorage/ponder/storagebox/intro.nbt",
+          "assets/fxntstorage/ponder/storagecontroller/highlight.nbt",
+          "assets/fxntstorage/ponder/storagecontroller/interact.nbt",
+          "assets/fxntstorage/ponder/storagecontroller/intro.nbt",
+          "assets/fxntstorage/ponder/storageinterface/intro.nbt",
+          "assets/fxntstorage/ponder/storageinterfacefiltered/filter.nbt",
+          "assets/fxntstorage/ponder/storageinterfacefiltered/intro.nbt"
+        ]
+      }
+    },
+    "fluid-logistics-adapted.jar": {
+      "before_sha256": "99f2988b1275b7e9af2a745fe6c0e4603e5d17a15f42a1c64bf68d164349ee36",
+      "sha256": "7e9e44e016f3a9408469584202c957bef2a435cc0575597b8ec38c94de5c26b0",
+      "entries": {
+        "added": [],
+        "removed": [],
+        "changed": [
+          "com/yision/fluidlogistics/ponder/FluidTransporterScenes.class",
+          "com/yision/fluidlogistics/ponder/SmartHopperScenes.class"
+        ]
+      }
+    },
+    "simulated-adapted.jar": {
+      "before_sha256": "cffb316352d10388a574f60f8caed2281c59f8f0b2cd58e3d4e50d28b5b07bd0",
+      "sha256": "fc6fa1ebc9b51de18052dcd311547139ac70da0f125d176f5ffa3769c786eab6",
+      "entries": {
+        "added": [
+          "dev/simulated_team/simulated/mixin/new_ponder/PonderLevelBackupMixin.class",
+          "dev/simulated_team/simulated/ponder/LegacyPonderTemplateClientDefaults.class",
+          "dev/simulated_team/simulated/ponder/LegacyPonderTemplateData.class",
+          "dev/simulated_team/simulated/ponder/LegacyPonderTemplateItems.class",
+          "dev/simulated_team/simulated/ponder/LegacyPonderTemplatePositions.class"
+        ],
+        "removed": [],
+        "changed": [
+          "dev/simulated_team/simulated/mixin/new_ponder/PonderSceneRegistryMixin.class",
+          "dev/simulated_team/simulated/neoforge/SimulatedNeoForgeClient.class",
+          "simulated.mixins.json"
+        ]
+      }
+    },
+    "electroenergetics-adapted.jar": {
+      "before_sha256": "d6e37bd470d359344e3bae1fb198d214f3841f1623cf2f7b69f1e35f093ffe12",
+      "sha256": "5aad245e80ede384faa40fcc6c30df3e47e0f40d29633a90e4761d0660bd230a",
+      "entries": {
+        "added": [],
+        "removed": [],
+        "changed": [
+          "com/george_vi/electroenergetics/foundation/ClientExecution.class"
+        ]
+      }
+    },
+    "offroad-adapted.jar": {
+      "before_sha256": "613c5391a8e007ce9027ac991ce784a3e168ddbf9fe6dc480936e0dd4e8be185",
+      "sha256": "0a981e05253364db5f84abdc47208bdf0a21e9016b6fee02d9747889d1ff7be3",
+      "entries": {
+        "added": [],
+        "removed": [],
+        "changed": [
+          "dev/ryanhcode/offroad/content/ponder/instructions/ChangeBoreheadAndContraptionSpeedInstruction$RotationAxis.class",
+          "dev/ryanhcode/offroad/content/ponder/instructions/ChangeBoreheadAndContraptionSpeedInstruction.class"
+        ]
+      }
+    }
+  },
+  "retained_jars": {
+    "additional-logistics-adapted.jar": "a3497e6e4ca72587b4a0d5f6f49c560fcc23cda1df5b79113e53f3a8b62b0cec",
+    "aeronautics-adapted.jar": "6152cafb153c212a7640317beb7fbe0f1bc8f07140302131fdc45ccc8db9fce8",
+    "connected-adapted.jar": "2a0f8e24e2cff6721f26177cebd8f191b8eaccecc2ade992ab004d27205c952c",
+    "connected-simulated-bridge.jar": "cf9e1f0a3aef9a9f8aad9939613fce0ac52500b5e8d5eee8e43c9ced5f74baf9",
+    "diesel-adapted.jar": "fc3f531a10119d8ec9d0a53615332944a49c1659f76a70e56d029d0e17c1a277",
+    "dragons-plus-adapted.jar": "ad01a72dc6a796facdf1a7a00cccf60a97c3e52f6cea614e63f5f4a0f8eb1f86",
+    "liquid-fuel-adapted.jar": "541eab4d1c023931a9813db9908109da23bbf1ba7e0be26c4156bda39f564a1b",
+    "ore-excavation-adapted.jar": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+    "sable-adapted.jar": "7424089a8bbb79b51f8f5de2f7cf3835d253446ec5eaddece145ce72d195c215",
+    "transmission-linkage-adapted.jar": "69b2dba16719af0dd33eb8762689ec403ff95813e57a268e07bfec1962e36cff"
+  },
+  "validation": {
+    "registered_components": 750,
+    "registered_storyboards": 1718,
+    "distinct_programs": 389,
+    "render_batches": 4,
+    "timeline_samples": 3458,
+    "rendered_gui_frames": 38592,
+    "non_environment_errors": 0,
+    "all_batches_saved_and_exit_zero": true,
+    "all19_test_jar_hashes_identical": true,
+    "independent_fluid_fixtures_active": 11,
+    "independent_fluid_fixtures_inactive_classic": 1,
+    "resource_reload_scenes": 12,
+    "resource_reload_rope_sprites_present": true,
+    "FML_environment_field_audit": {
+      "classes": 10630,
+      "archives": 24,
+      "direct_mods": 18,
+      "field_references": [],
+      "passed": true
+    }
+  },
+  "deployment": {
+    "instance_name": "Create263 Pack",
+    "production_jars": 18,
+    "replaced_jars": 8,
+    "retained_jars": 10,
+    "backup_under_HMCL": "instance-backups/Create263-Pack/ponder-audit-20261104-184912",
+    "probe_installed": false,
+    "original_saves_accessed": false
+  },
+  "evidence": {
+    "scan": "runtime/all-ponder-scan-20261104-182423-565249/result.json",
+    "batches": "runtime/ponder-batches-20261104-182845-200104/batches.json",
+    "reload": "runtime/all-ponder-render-20261104-182631-953292/result.json",
+    "deployment": "runtime/ponder-deployment-20261104-184912/result.json"
+  },
+  "limits": [
+    "Timeline seeking and sampled GUI rendering, not every natural frame",
+    "Default-disabled classic enchanter not dynamically tested",
+    "Not full multiplayer, long-load, optional-mod or old-mod-save-migration validation"
+  ],
+  "sampling_policy": {
+    "completed_run_basis": "scene identifier, template identifier, callback object identity",
+    "future": "one representative per module and equivalent actual logic; rerun affected groups plus small cross-module samples"
+  }
+}
