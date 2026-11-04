@@ -1,6 +1,7 @@
 # Fluid Logistics 26.3 移植记录
 
-当前18模组整体运行与交付范围见[最终验证记录](../VALIDATION.md)。下文保留各次独立编译和静态审计的具体边界。
+> 本页保留源码融合、接口迁移和端侧排障阶段的技术记录。“当前”“等待”“待测”按相应段落当时的输入理解；后续运行结果见[联合验证](../VALIDATION.md)和[深入玩法](../GAMEPLAY-VALIDATION-26.3.md)，各项未覆盖范围仍分别保留。
+
 ## Native helpers review（2026-10-26）
 
 对 `foundation/capability/**`、`SmartMultiFluidTank` 和 `FluidLogisticsNbt` 进行了只读事务审查。核对实际 NeoForge 26.3.0.22-beta 源码中 `ItemAccess.exchange` 与 `SnapshotJournal` 的嵌套事务规则：exchange 在子事务内抽出原物品并插入结果，插入不足时回滚，调用方未提交时也恢复；Fluid item helper 只修改私有物品副本，成功 exchange 后才提交其嵌套事务。

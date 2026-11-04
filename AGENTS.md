@@ -20,3 +20,10 @@
 
 - The approved public repository is Flowfangfei/create-263-modpack-public. Preserve Flowfangfei/create-263-modpack as a private maintenance archive, including its existing refs and releases.
 - Import only an audited current-tree snapshot into independent public Git history. Never push the private repository history to the public remote. Record the real snapshot source commit and tree; do not invent upstream or public historical commits.
+
+## Documentation evidence coverage
+
+- Review documentation against the full development path: source provenance and differential recovery; loader, dependency ABI and namespaces; foundation physics/railways; addon integration; transactions, persistence and networking; data/resources; functional and client validation; reproducible distribution.
+- Choose emphasis by engineering responsibility and impact, using original records and current code. Recent log volume or larger scene/frame counts do not establish greater technical importance or broader coverage.
+- Keep the README focused on players and port developers. Put general methods in MOD-UPGRADE-AND-TESTING, project implementations in DEVELOPMENT-OVERVIEW, and detailed subsystem regressions in their topic pages.
+- Label historical compile/pending states by their phase and link later evidence; preserve remaining limitations. Keep localized claims, commands and links aligned.

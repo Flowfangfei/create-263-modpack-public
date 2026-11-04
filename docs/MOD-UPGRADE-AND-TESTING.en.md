@@ -1,284 +1,254 @@
 # Upgrading and testing Minecraft Java mods
 
-[中文](MOD-UPGRADE-AND-TESTING.md)
+[中文](MOD-UPGRADE-AND-TESTING.md) · [This project's development and implementation](DEVELOPMENT-OVERVIEW.en.md)
 
-This guide covers migrations across Minecraft, loader, and dependency versions for maintainers of Java mods, libraries, and mod combinations. Examples come from a Minecraft 26.3 / NeoForge migration; verify API names and lifecycle rules against the target version. The documentation baseline is 2026-11-04, and the project examples correspond to `0.3.0-alpha.3`. See the [release notes](RELEASE.md) and [third-party notices](../THIRD_PARTY_NOTICES.md) for actual distribution, repository visibility, and source licensing.
+This guide covers building a target-version mod from available source, migrating loaders and dependencies, retaining gameplay and data semantics, and validating a mod combination. It applies to Fabric, Forge and NeoForge projects; check concrete APIs against the target version. Reviewed: 2026-11-04.
 
-## 1. Establish the migration boundary and functional baseline
+The sequence is provenance and feature baseline → source recovery → build and dependencies → lifecycle and conflicts → resources, storage, networking and physics → client behavior → layered validation and distribution. Sections follow engineering responsibilities; log length and test counts describe their respective evidence scopes.
 
-Record a working old combination, then pin the target combination. Compilation usually establishes Java type compatibility and whatever checks the executed build tasks perform. Registration, class loading, persistence, networking, and rendering require runtime evidence.
+## 1. Fix the target environment and a feature baseline
 
-| Area | What to record |
-| --- | --- |
-| Game and loader | Exact Minecraft and Fabric / Forge / NeoForge versions; physical client and dedicated server |
-| Java and build | JDK, Gradle wrapper, plugins, mappings, compilation target, and tasks actually executed |
-| Dependencies | Upstream or fork, commit or version, origin, SHA-256, required or optional, compile time or runtime |
-| Packaging | Source sets, exclusions, Mixin configuration, metadata, nested JARs, duplicate classes and resources |
-| Configuration and data | Defaults, server configuration, resource/data pack priority, and previous storage formats |
-| Functional baseline | Working recipes, machines, storage, moving structures, client behavior, world generation, and compatibility combinations |
-| Test worlds | New world or authorized copy, origin, configuration, seed, and hash manifest for the copy |
+The migration boundary includes Minecraft, loader, Java, build plugins, mappings, dependency forks, physical client/dedicated server and optional integrations. Two Create forks for the same game version can expose different packages, base classes, registries, transactions and render APIs.
 
-Start with an observable feature and trace its callers, execution side, and conditions:
+| Baseline | Record | Purpose |
+| --- | --- | --- |
+| Provenance | Repository, commit or identified working-tree snapshot, hashes, license and copyright | Distinguish upstream behavior, local changes and binary recovery |
+| Platform | MC, loader, JDK, Gradle/plugins, mappings, required and embedded libraries | Reproduce compilation and actual class loading |
+| Features | Registration, machine inputs/outputs, saves, menus, moving structures and integrations | Detect features that load but never become connected |
+| Data | IDs, components, units, recipes, world data and supported legacy formats | Define migration and regression boundaries |
+| Evidence | Old behavior, target artifact hashes, executed tests and remaining checks | Identify migration regressions |
+
+Find the first missing result along an observable feature chain:
 
 ```mermaid
 flowchart LR
-    A[Entry points and registration] --> B[Interaction or automation]
-    B --> C[Server logic and conditions]
-    C --> D[Inventory and world saves]
+    A[Entrypoints and registration] --> B[Data and operating conditions]
+    B --> C[Server processing or physics]
+    C --> D[Transactions and persistence]
     C --> E[Network synchronization]
-    E --> F[Client menus and rendering]
-    F --> G[Player actions]
+    E --> F[Menus and client presentation]
+    F --> G[Player request]
     G --> C
 ```
 
-For a machine that produces nothing, distinguish a missing recipe, unavailable inventory access, insufficient power, an unregistered processor, a missing tick, and blocked output. A registered block establishes only part of this chain. Confirm that the old version supported a feature before recording the difference as a migration regression.
+An available item establishes registration. Input consumption without output requires checking recipes and processing. Correct server state with an unchanged display requires checking synchronization and rendering. Establish that the old implementation supported the feature before calling a difference a regression.
 
-## 2. Identify the code actually compiled, packaged, and loaded
+## 2. Recover necessary changes from old source and newer binaries
 
-Check build scripts, source sets, generated sources, exclusions, mod metadata, and the final JAR in that order. Directory names provide clues: a multi-loader project may compile `src/neoforge/java` into the target package while retaining a similarly named `src/main/java` file for another platform or reference. Editing an excluded copy leaves runtime behavior unchanged.
+Establish how source and releases relate. When public source predates a release, keep it as the maintainable base and use nearby and target binaries to narrow changes. Recovered code retains provenance and licenses and is identified as a rebuilt implementation.
 
-Verify that loader entry points, registration buses, Mixin configuration, and optional integration entry points reach the package. Required dependencies need appropriate version ranges. Record `compileOnly` dependencies, compatibility stubs, and local replacements separately from actual runtime dependencies. Nested JARs also participate in class resolution; inspect duplicate classes, service descriptors, Mixins, and resource overrides.
+1. Pin public source, comparison JAR and target JAR with versions and SHA-256; inputs also include embedded dependencies and mappings.
+2. Compare class sets, fields and complete method descriptors. Separate real instruction/control-flow changes from symbols, compiler output, debug information and generated methods.
+3. Decompile genuinely changed methods, read callers, exception handling, transactions and target APIs, then merge necessary changes into maintained source.
+4. Check semantics behind familiar names: accepted versus remaining amounts, rollback on failure, and modifying copies versus original objects affect gameplay.
+5. Map source class/method → local file → reason → compile/runtime evidence. Store decompiler output and analysis caches separately.
 
-Runtime `NoSuchFieldError`, `NoSuchMethodError`, and `AbstractMethodError` failures point to binary interface differences. Compare caller bytecode with the fields, method descriptors, staticness, and visibility in the loaded dependency. A matching source method name can still hide different parameters, return types, or a field replaced by a method.
+This project's Create recovery used public 26.2 / 0.996 source with 26.2 / 1.31 and 26.3 / 1.31 comparison inputs. Historical analysis classified 310 of 1,122 changed classes as involving real instruction, control-flow or method-set changes. Those counts belong to the fixed historical inputs, not subsequent builds. The public source archive does not include the complete original analysis cache. [Inputs and licenses](SOURCE-AND-LICENSES.en.md)
 
-One observed migration failure involved `FMLEnvironment.dist`, replaced in the target loader by `FMLEnvironment.getDist()`. A compatibility stub exposing the old field allowed compilation, followed by a crash when client audio executed. This example illustrates the target-version call; a client execution wrapper must still preserve lazy evaluation and physical-side isolation:
+[ResourceHandlerItemAdapter](../modules/create-adapted-263/src/main/java/com/simibubi/create/api/contraption/storage/item/simple/ResourceHandlerItemAdapter.java) illustrates behavioral recovery: extraction respects the single-stack limit, and replacement commits only after complete extraction of the old item and insertion of the new one. A file-level compile and method-instruction comparison establish that local result. Whole-source builds and actual game behavior require separate later acceptance.
 
-```java
-// Example: confirm that the target loader actually provides getDist().
-if (FMLEnvironment.getDist() == Dist.CLIENT) {
-    factory.get().run();
-}
+## 3. Align loaders, source sets, dependencies and production namespaces
+
+A loader migration covers entrypoints, event buses, registration, resource capabilities, networking and services. Versions and TOML change declarations; runtime factories still need target implementations. A higher-MC Fabric reference and a more complete NeoForge feature tree can contribute changes by file and responsibility, with a retained feature checklist and provenance for each part.
+
+| Layer | Inspect or change | Intended effect |
+| --- | --- | --- |
+| Build | Wrapper, plugins, toolchain, source sets, generated resources and exclusions | Compile target source and retain required resources |
+| Dependencies | Forks, precise versions, signatures, compileOnly/implementation/Jar-in-Jar | Resolve the same compile/runtime contracts |
+| Platform bridge | Entrypoints, events, ServiceLoader, capabilities and networking | Execute the former platform's behavior |
+| Production archive | Foreign classes, duplicate packages, embedded libraries, reflection and resources | Prevent development-only success followed by production failure |
+
+Directory names are clues; effective source sets decide. Old datagen and optional integrations can be retained separately, while enabled-feature claims follow the default runtime. Document runtime providers for compile-time stubs and exclude those stubs from releases. Production compatibility implementations retain semantics and licenses.
+
+Dependencies sharing a name and version can still differ in ABI. Confirm Registrate parameter types from the actual JAR before preparing a dedicated compile bridge or aligning sources; leave shared global-cache artifacts intact. [Build entrypoint](../scripts/build.py), [shared platform](../gradle/create263-addon.gradle)
+
+Embedded render-library migration covers classes, metadata and necessary resource references. Global replacement can damage shader subdirectories, regular expressions or identically named block IDs. This project uses structured [IsolateFlywheel](../modules/create-adapted-263/scripts/IsolateFlywheel.java), followed by [package checks](../scripts/package.py) rejecting foreign classes, unrelocated references and cross-mod split packages.
+
+Build in dependency order, sharing real Create/Sable/Simulated outputs. Allow one writer to shared Gradle caches. Validate the foundation first, then add feature groups with identifiable changes.
+
+## 4. Registration, sides, lifecycle and Mixin conflicts
+
+Common registration, physical-client setup, server start/stop and world ticks have separate lifecycles. Resolve deferred suppliers at valid phases; register models, sounds and keys from client entrypoints. Common signatures, static fields and initialization can load client classes, so a runtime branch alone may not isolate them.
+
+A visible machine and stored network data can still lack a server processor. Simulation needs real start, update and stop hooks; a missing executor can make downstream code return early. Let the normal game entrypoint start it, then verify output and shutdown cleanup. [Electrical lifecycle case](GAMEPLAY-VALIDATION-26.3.md)
+
+For Mixin, check full descriptors, invocation sites, declared field types, ordinal, slice, locals and mappings. Another mod's overwrite may remove old injection points. Compatibility between Sable broadcast behavior and Railways camera positioning needed both subspace distance and camera position, rather than merely a successful injection. [Initial integration checks](VALIDATION-v0.1.0-alpha.1.md)
+
+When disabling an injection, relaxing `require` or returning constant success, identify the behavior lost. Conditional compatibility also needs the base path without that dependency.
+
+## 5. Items, fluids and energy: migrate operation semantics
+
+Before replacing a handler, establish resource identity, units, capacity, direction, return semantics, simulation, commit and notification. Different components on the same ID can represent different resources. Capacity metadata and current contents also have separate meanings.
+
+Every participant in one operation should agree through one transaction. The following is conceptual; implement it against the target API:
+
+```text
+Open a rollback-capable transaction
+  Extract through the real container access
+  Insert the corresponding resource into the destination
+  If both accept fully: write back the container and commit
+  If rejected, under-extracted or over capacity: abandon
+Notify business logic after root commit
 ```
 
-A fix to this call should retain existing server start, stop, and simulation lifecycle behavior. Replacing similarly named helpers throughout other modules or changing tick registration expands the verification scope. [Actual client execution wrapper](../modules/create-electro-energetics-adapted-263/src/neoforge/java/com/george_vi/electroenergetics/foundation/ClientExecution.java)
+When backpacks or reusable containers store contents in components, exchange the result through the caller's real `ItemAccess`. Sided, controller and interface views of one physical backend share a snapshot; compression chains, filters, capacity and other derived state also roll back. [Container fueling](../modules/create-liquid-fuel-adapted-263/src/main/java/com/forsteri/createliquidfuel/core/BurnerStomachHandler.java), [backpack exchange](../modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/inventory/StorageBackpackTransfer.java)
 
-Mixin migrations also require the complete target descriptor, `@At`, ordinal, slice, local variables, and declared field types. An accessor should match the declared type. Relaxing `require` or disabling remapping can silently lose an injection. Changes to inheritance or timing require a new check that the injection still implements the intended behavior.
+Read callers of older simulation protocols. Create mechanical arms observe a working copy's count change to infer simulated acceptance. Altering that temporary copy and committing the real world are separate actions. Forbidding every object mutation during simulation breaks that protocol.
 
-## 3. Registration, execution sides, and dependency lifecycle
-
-Separate common registration, server logic, physical client registration, and world-instance lifecycle. An integrated server still has a logical server thread. Code that starts in a single-player client may fail when a dedicated server loads a client class. Enter client-only code through the loader's client entry point, and inspect indirect client references in common static initialization.
-
-Registration commonly uses deferred suppliers. Resolve them only after the relevant registration phase permits it. Early caching, manually unfreezing registries, or duplicate registration can obscure an ordering defect. Verify model, renderer, menu, receiver, capability or resource handler, and machine tick registration individually; one successful registration does not establish the others.
-
-A block entity can restore data before its `level` is bound. Restore the data first, then perform world queries, light recalculation, and neighbor notifications after world binding. Confirm that this also runs on reload. For network handling, check direction, thread, server permission, and the identity of the current menu or entity.
-
-Test optional dependencies both absent and present. Run A with its minimum dependencies, B with its minimum dependencies, then A+B to narrow dependency and Mixin conflicts. Adapters must retain the original contract, including accepted quantity versus remainder, simulation, commit, rollback, and directional restrictions.
-
-## 4. Inventory migration: bound mod-owned quantities
-
-Large inventories should distinguish item identity from logical quantity. Identity includes the registry ID and components. A mod-owned field stores quantities above ordinary stack limits, while vanilla item stack codecs, player inventories, chests, menu slots, and container components retain their respective constraints. Changing a global vanilla codec, stack limit, or all menu synchronization to accommodate one mod affects unrelated storage and networking paths.
-
-This simplified private format keeps an ordinary item prototype at count one and stores logical quantity in `amount`. It applies only to the mod that declares the format:
-
-```json
-{
-  "StorageFormat": 1,
-  "Size": 1,
-  "Entries": [
-    { "item": { "id": "minecraft:diamond", "count": 1 }, "amount": 4096 }
-  ]
-}
-```
-
-On read, validate the format version, slot range, entry count, quantity bounds, and agreement between an empty prototype and zero quantity. Preserve components and slot order on write. Legacy migration needs explicit source detection and idempotence. Report and retain unknown versions or conflicting data rather than treating them as an empty inventory. Verify registry context and size limits separately for persistence and network codecs. [Private format implementation](../modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/inventory/StorageContents.java)
-
-Menu synchronization must handle mod-owned quantities alongside vanilla player slots, the carried stack, and remote state hashes. Keeping quantity transfer within its designated path while preserving ordinary slot synchronization reduces item rebound during dragging, Shift-clicking, or reopening. [Menu synchronization implementation](../modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/inventory/StorageMenuSynchronizer.java)
-
-Inventory changes should cover at least these states:
-
-- Empty inventory, ordinary quantities, capacity boundaries, and quantities above a normal stack; filters, component-bearing items, and distinct items with similar IDs.
-- No state change during simulation; correct quantities after commit; clear item ownership after rejection, partial acceptance, blocked output, and rollback.
-- Automation from each direction, direct interaction, Shift-clicking, dragging, the carried stack, and vanilla player inventories and chests.
-- Save and exit, complete process termination, and reopen in an independent JVM. Compare identities, components, quantities, slots, and filters. Verify client menus and server persistence separately.
-
-For pure transfers, check conservation grouped by item ID and components:
+For pure transfers, group by resource ID and components:
 
 $$
 Q_{\mathrm{initial}}+Q_{\mathrm{external\ input}}
-=Q_{\mathrm{final\ inventory}}+Q_{\mathrm{output\ or\ drops}}.
+=Q_{\mathrm{final\ contents}}+Q_{\mathrm{output\ or\ drops}}.
 $$
 
-For processing, list consumption and each output according to the recipe. Quantity tests should include overflow boundaries. Convert fluid units only after establishing both sides' unit contracts; capacity metadata and actual contents are separate values.
+Use the resource's fixed unit for $Q$; check fluid, energy, speed and torque against their APIs. Cover success, partial acceptance, rejection, root/nested rollback and sided automation. Failure controls for gameplay operations should begin with valid item states, rather than exceeding stack limits to satisfy an incorrect expectation. Deliberately malformed encodings belong to separate input-validation tests. [Actual failed-exchange case](porting-notes/FLUID-26.3.md)
 
-## 5. NBT, data components, and Ponder virtual worlds
+## 6. Persistence and mod-owned inventories
 
-World saves, network packets, resource templates, and Ponder's in-memory backups can use different formats. Identify the data origin and read/write chain before choosing an adaptation boundary. Legacy NBT in a resource template can be converted at template loading. This usually needs no change to real block entity saves or general item and fluid codecs.
+Distinguish world saves, item components, networking, resource templates and temporary backups first. Modern ValueIO, Codec and template APIs require registry context. An old save method compiling does not establish that the engine still calls it.
 
-A reviewable adapter constrains registry IDs, fields, legacy signatures, and allowed keys, and produces the same result when run again. Preserve valid modern data, unrelated additional data, and conflicting representations for reporting and further handling. These are confirmed examples; their field rules should not become global NBT replacements:
+Large storage separates item identity from logical amount: a count-one prototype retains components, and another field stores the mod quantity. Vanilla player inventories, chests, cursors and container components retain their own rules. This project uses `fxntstorage:storage_contents`; the proposed global count expansion was not adopted. [Private format](../modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/inventory/StorageContents.java)
 
-| Origin and symptom | Scoped conversion | What must be preserved |
+This only illustrates format design; implementation defines fields and limits:
+
+```json
+{"StorageFormat":1,"Size":1,"Entries":[{"item":{"id":"minecraft:diamond","count":1},"amount":4096}]}
+```
+
+Validate the complete version, slots, amounts and components before replacing live inventory. Migration identifies old sources, is idempotent and preserves unknown input instead of silently producing empty storage. Backpack tiers, tools, filters and exposed item slots have separate constraints.
+
+Test blocks, item backpacks, drops/replacement, mounting/dismounting and disk reopen, comparing identity, components, amounts, filters and capacity. Memory round trips and independent JVMs are different evidence. New-format persistence does not establish automatic legacy-format migration.
+
+## 7. Networking, menus and permissions
+
+Check payload registration, both codecs, field order, registries, direction, thread, object identity and permissions. The server owns authoritative state; changing a client display alone does not implement machine behavior or recipe queries.
+
+Storage sends private slots and initial state through mod messages, delegating player slots, cursor and dataSlots to the native synchronizer and retaining containerId, stateId, slot bounds and native click-hash checks. [Synchronizer](../modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/inventory/StorageMenuSynchronizer.java)
+
+Test opening, clicks, Shift clicks, dragging, backpack changes, reconnects and stale requests, comparing both sides and cursor state. Compression-recipe queries need actual request/reply through the current manager. Integrated-server protocol tests do not automatically cover remote dedicated-server transport.
+
+For unavailable administrative commands, inspect environment, permissions, cheats and registration logs before attributing changes to the loader or a mod.
+
+## 8. Recipes, tags, configuration and world generation
+
+Follow generated/static JSON → conditions → Codec → manager → actual machine. Paths, Ingredient schemas, output components, loot, advancements and serializers can change. Compilation does not replace actual data loading.
+
+| Problem | Change location | Behavior to verify |
 | --- | --- | --- |
-| A legacy large-inventory template fails decoding | Generate the private format only for confirmed inventory IDs and legacy fields | Slots, actual quantities, item components, filters |
-| Mechanical arm or brass tunnel fails to deserialize AIR | Only in `create:mechanical_arm/HeldItem` and `create:brass_tunnel/StackToDistribute`, replace an old stack with `{}` when its only keys are `id` and `Count`, its ID is `minecraft:air`, and its integral count is 0 or 1 | Non-AIR items, modern formats, extra keys, other counts, conflicting data |
-| Legacy fluid fields differ from the target format | Convert IDs, quantities, and components for confirmed containers and fields | Potion effects, bottle type, original quantity; treat capacity separately |
-| Controller position or material structure changes | Adapt only confirmed block entity IDs and fields | Position semantics, direction, material identity, unrelated metadata |
+| Default components unbound | Deferred templates, construction and cache publication | Complete Stacks after registration |
+| Missing recipes/loot | Datagen, static resources, conditions and serializers | Retain amounts, probabilities, tags and condition order |
+| Old rules survive reload | Listeners, configuration reading and cache replacement | New rules appear; deleted rules disappear |
+| Changed enums/defaults | Compatible reading and persistence | Explicit old-value handling, current defaults retained |
+| Only an ore item exists | Features or virtual-vein data and conditions | Actual content in eligible new chunks |
 
-The [legacy item placeholder adapter](../modules/create-aeronautics-adapted-263/simulated/src/main/java/dev/simulated_team/simulated/ponder/LegacyPonderTemplateItems.java) implements the AIR rule above. If Ponder backup creation emits an old structure again, apply the same constrained handling at its own in-memory backup boundary. The [backup adaptation entry point](../modules/create-aeronautics-adapted-263/simulated/src/main/java/dev/simulated_team/simulated/mixin/new_ponder/PonderLevelBackupMixin.java) leaves real-world save behavior intact.
+A registered holder does not establish bound default components, and `CommonSetup.enqueueWork` does not substitute for checking the real sequence. Recipes can retain `ItemStackTemplate`/`FluidStackTemplate` and create Stacks at use time. Resource registries can freeze identity first, then validate and publish caches when components are available.
 
-Static tests can enumerate templates, compare fields before and after conversion, verify unknown-format preservation, and check repeated conversion. Dynamic tests must also exercise virtual-world restoration, script mutations, camera rendering, and backup restoration. Ponder can manually set kinetic speed without a real source. A neutral rendering factor for a confirmed source-less state, while retaining the sourced calculation, can address that display case without changing the global kinetic network.
+Liquid-fuel regression uses a temporary datapack, actual reload and old-rule removal. Water fuel is a fixture, not default gameplay. [Three-addon validation](VALIDATION-v0.2.0-alpha.1.md)
 
-## 6. Rendering migrations: pipelines, PiP, and texture lifecycle
+Ore blocks and virtual veins differ. The former uses configured/placed features and terrain hooks; the latter may use attachments, seeds and machine recipes. Ordinary generation applies to new chunks. Retrogen needs its own versions, idempotence, budget and interruption recovery. Pregeneration does not automatically migrate old data.
 
-Trace extraction, submission, vertex writing, materials, atlases, and output targets. Deferred rendering should use a snapshot for that frame; mutable objects may change between submission and drawing. Vertex format, shader inputs, samplers, uniform bindings, blending, depth, culling, and output attachments form a shared contract.
+## 9. Physics systems and moving structures
 
-The main world, item previews, Ponder, and other picture-in-picture (PiP) targets can provide different attachment counts. Testing only the main world can miss pipeline validation failures in preview windows. One 26.3 flame pipeline required color outputs that matched the targets actually supplied by both the main world and PiP; copying another pipeline's multiple-target layout caused a mismatch. [Target-version pipeline example](../modules/create-aeronautics-adapted-263/aeronautics/src/main/java/dev/eriksonn/aeronautics/index/client/AeroRenderTypes.java)
+Physics extensions involve server simulation, native libraries, local/world coordinates, identities, collision, attachment saves and client presentation. Check backend ABI, platform loading, services and threads. Empty implementations do not establish mechanical behavior.
 
-A texture file also needs sprite shift registration and atlas loading. If a shift is lazily initialized during its first render after atlas stitching, `SpriteShiftEntry.getOriginal()` can remain null. The observed rope failure was fixed by calling `SimSpriteShifts.init()` early in the physical client constructor. Existing Catnip atlas events continue updating sprites on resource reload. A dedicated server does not load that client entry point. [Client initialization](../modules/create-aeronautics-adapted-263/simulated/src/neoforge/java/dev/simulated_team/simulated/neoforge/SimulatedNeoForgeClient.java)
+Linkages need both physical bodies, local anchors and lifecycle. Splits, movement or merges may invalidate handles, requiring identity-based remapping and constraint rebuilding; disk reload also requires rebinding. [Linkage implementation and validation](../modules/transmission-linkage-adapted-263/docs/PORTING-26.3.md)
 
-Verify both first load and F3+T resource reload. Wait for reload completion, assert that original and target sprites exist, then display the object. A test calling `Minecraft.reloadResourcePacks()` must also wait for asynchronous completion. Inspect the real GUI, relevant error logs, and screenshots afterward. Skipping a draw when a sprite is null leaves the object missing. Check every sprite shift sharing that registration path, resource paths, case, atlas directory coverage, and material cache rebuilding.
+Subspace rendering and broadcast distance use their respective coordinate semantics. Compilation, visible models and working native constraints are separate claims. Start with finite states, gravity/collision, identities and constraints, then controlled propulsion or motion, and finally independent reload. [Foundation physics checks](VALIDATION-v0.1.0-alpha.1.md)
 
-## 7. Animation completion and script tails
+One propeller or hydraulic fixture covers that condition; complex loops, cross-dimension behavior and sustained multiplayer load remain separate tests.
 
-Distinguish intentionally persistent background instructions from operations expected to finish. A rotating background can run until a scene closes. Once it receives a slowdown or stop request, the test should wait for the actual stop. Identify persistence by the specific class, fields, and parameters; treating all timeouts or all instructions from a mod as normal hides failures.
+## 10. Clients, rendering and demonstration environments
 
-Completion should measure the controlled quantity. A stopped drill can retain any final angle. Testing whether the absolute rotation vector has near-zero length leaves a stopped animation in the queue indefinitely. In the observed implementation, the block entity explicitly snaps angular speed to zero below its low-speed threshold. The instruction therefore completes at `startSlowing && currentRotationRate == 0`, retaining its final pose. An implementation that only approaches zero needs a condition based on its units, tolerance, and stability rules. [Stop instruction implementation](../modules/create-aeronautics-adapted-263/offroad/src/main/java/dev/ryanhcode/offroad/content/ponder/instructions/ChangeBoreheadAndContraptionSpeedInstruction.java)
+Check registration, state extraction, deferred submission, vertex formats, shaders, atlases and output targets. Capture data needed across phases and restore shared context after drawing. Worlds, items, moving structures and picture-in-picture can use different paths. This is migration guidance, not a claim that every old renderer has received the same refactor.
 
-After the counted timeline ends, continue executing finite instructions in the actual active schedule. Seeking to an end, observing `markAsFinished`, or reaching an estimated duration can miss inventory clearing, deceleration, fades, and cleanup scripts. Bound finite tails with useful diagnostics, reporting instruction classes, relevant state, and whether stop was requested. Exclude confirmed persistent backgrounds only under their precise conditions. Instances with a slowdown controller or a stop request must still finish.
+Files still need atlas entries and initialization timing. RGB-only colors can become transparent under ARGB; optional resources can load unconditionally without their mod. Test initial display and F3+T reload, waiting for asynchronous `Minecraft.reloadResourcePacks()` completion.
 
-Restoration should also cover no target, a previous index of `-1`, an empty list, and a disappearing target. Bounds checks needed only for client animation belong in that branch, preserving server behavior and save formats.
+Ponder is one virtual environment: convert old templates at identified ID/field load boundaries, retaining new formats, unknown keys and conflicts. Keep backup compatibility at the backup boundary rather than altering world storage. Missing rotation sources and empty previous indexes need valid defaults.
 
-## 8. World generation, pregeneration, and retrogen
+Finite animation completion follows the actual controlled state, such as angular velocity rather than final angle; intentional backgrounds follow their design. Representative checks cover data, drawing, finite tails, logs and reload. Specific AIR, fluid/controller fields and render fixes are in the [Ponder porting details](PONDER-PORTING-NOTES.en.md), [Ponder topic](PONDER-AUDIT-20261104.md) and [flame pipeline](PONDER-FLAME-HOTFIX-20261103.md).
 
-Verify registry objects, configured features, placed features, biome or dimension attachment, loading conditions, and data pack overrides. Item registration, recipe availability, and completed chunk pregeneration each verify a different stage. Use newly generated chunks satisfying the height, biome, and dimension conditions to check actual generation. Record the seed, region, configuration, and counting method.
+## 11. Validate in layers and select samples by risk
 
-Ordinary generation rules apply to newly generated chunks. Existing chunks require an explicitly designed retrogen process: record a version or completion state per chunk, make operations idempotent, bound regions and work per tick, and handle chunk reloads and interrupted execution. Migrating block entity storage and adding ores to old chunks are separate changes with separate designs and tests.
-
-Use only new worlds or explicitly authorized independent copies, leaving original saves unopened and unchanged. Record a copy's origin and hashes and retain a pre-migration checkpoint. Pregeneration tests should also verify pause, resume, disk headroom, target boundaries, and completion markers backed by actual chunk state. Deleting original region files for regeneration loses builds and data and is unsuitable as a default upgrade step.
-
-## 9. Select tests by change and record coverage boundaries
-
-Progress from inexpensive checks to affected runtime paths. Record what each layer actually executed, listing skipped checks, unmet conditions, and missing environments separately.
-
-| Layer | Main question | Useful evidence |
+| Layer | Question | Evidence and boundary |
 | --- | --- | --- |
-| Static checks and build | Do sources, dependencies, metadata, resources, Mixins, compilation, and packaging agree? | Build results, JAR contents, ABI inspection, hashes |
-| Client and dedicated server startup | Can execution sides, registration, and actual dependencies load? | Logs from both sides, registration assertions, exit status |
-| Features and combinations | Do input, conditions, processing, output, and integration branches work? | Deterministic fixtures, state or quantity assertions, selected combination samples |
-| Persistence and synchronization | Can data be restored, and do client and server agree? | Independent JVM reopen, quantity/component comparison, menu interaction |
-| Rendering and resource reload | Are targets, materials, animation, and atlas lifecycle correct? | Real GUI, screenshots, logs, assertions before and after reload |
-| World generation | Are eligible new chunks and authorized retrogen correct? | Chunk/block counts, version markers, interruption recovery |
+| Provenance/diff | Where changes came from and what was recovered | Pinned inputs, method differences and sources |
+| Compile/package | Source sets, ABI, metadata and namespace agreement | Builds and JAR/embedded-library checks |
+| Combined launch | Physical sides and module conflicts | Registration, services and normal save/exit |
+| Actual function | Correct inputs, conditions, processing, outputs and units | Natural ticks, conservation, transactions and native constraints |
+| Network/persistence | Agreement across interaction, synchronization and reload | Menus, payloads, components and slots |
+| Client | Models, GUI, animation and resource reload | Affected views, assertions and logs |
+| Distribution | Restoring tested artifacts and corresponding source | Source hashes, installation and JAR entries |
 
-The default Ponder sampling unit is **a group with the same actual logic within one mod**. Group by storyboard implementation and meaningful captured parameters. Select one representative when entries differ only by item or material aliases. Callback object identity, duplicate scene names, and list indices across JVMs cannot independently establish semantic groups. Keep separate samples for materially different rendering, data formats, configuration branches, or behavior affected by the change.
+This project expanded from nine foundation JARs to twelve and eighteen. Assembly/propulsion, pumping/drilling, constraint rebuilding, inventory/processing and real electrical loads answer different questions. The [development overview](DEVELOPMENT-OVERVIEW.en.md) maps stages to code and evidence.
 
-For each change, verify the affected representative groups and add a small cross-mod smoke sample. Full registration indexes and template scans are inexpensive enough to retain as static checks. An unrelated JAR hash change records a new input; by itself it should not trigger full-pack playback. A changed test framework, shared rendering or serialization infrastructure, or invalid grouping assumptions may justify broader coverage. Record the reason for expanding it.
+Negative controls include no output without power, no consumption with blocked output, restored state after abandonment and resumed work after power returns. Electrical load tests exposed a missing simulator lifecycle that node/wire existence did not reveal. [Deeper gameplay](GAMEPLAY-VALIDATION-26.3.md)
 
-A representative manifest should identify the mod, implementation, meaningful parameters, equivalent aliases, selected scene, selection reason, input hashes, execution status, and uncovered branches. Check selected programs against each fresh scan instead of assuming an old index refers to the same scene. The current script selects by index and count; reviewers still record semantic grouping.
+For Ponder, select one representative per module/script/meaningful-parameter group; item/material aliases need no repetition. Different data, rendering, configuration or failure branches need appropriate samples. Transaction rejection versus commit, client versus server, and memory round trips versus independent JVMs remain separate conclusions within one mod.
 
-One historical Ponder regression recorded **389 programs, 3,458 timeline sample points, and 38,592 GUI frames**, with zero relevant errors. It covered specified contents, finite script cleanup, resource reload, and normal save and exit. These counts describe that set of inputs and samples; frame counts do not establish pixel-by-pixel review or coverage of every natural time step. Multiplayer, sustained load, all configurations, optional mod combinations, and the full set of gameplay features require their own validation. [Historical audit and limitations](PONDER-AUDIT-20261104.md)
+Rerun affected groups plus a small cross-module set. Unrelated hashes update input records; broaden for material changes to shared interfaces, the framework or semantic groups. Record representatives, hashes, assertions, skips and uncovered branches.
 
-Ponder may catch an exception, log ERROR, and continue. Passing criteria should include process exit, timeout, probe assertions, expected versus actual tasks, relevant ERROR events, and input hashes. A log parser should tolerate attribute order changes and fail explicitly if the expected format is missing. Exclude necessary environment messages by exact logger and message, with a recorded reason.
+Passing includes expected tasks, assertions, timeout checks, relevant logs and normal save/exit. Systems may catch exceptions and continue, so exit zero needs ERROR and content checks. Scope environment exclusions precisely. Programs, frames and checks do not add up to a percentage of functionality.
 
-## 10. From symptom to verification
+## 12. Locate code and missing behavior from symptoms
 
-| Symptom | Locate | Change | Verify |
-| --- | --- | --- | --- |
-| `UnsupportedClassVersionError` | Actual launch JDK, class version, toolchain | Align target JDK and runtime | Build and real startup on both sides |
-| `NoSuchFieldError` / `NoSuchMethodError` | Caller bytecode, runtime dependencies, nested JARs | Match the actual ABI or align dependencies | Trigger the original crash path; check duplicate classes |
-| Missing or failed Mixin injection | Full descriptor, injection point, declared field type | Update the exact target and injection | Startup and affected behavior assertions |
-| Frozen registry, duplicate ID, or null supplier | Registration bus, access timing, duplicate entry points | Restore the target lifecycle | First startup, reopen, dedicated server |
-| Server loads a client class | Common entry points and static initialization | Use a physical client entry point | Dedicated server startup without graphics |
-| Inventory decoding failure or quantity loss | Private/vanilla codec boundary, versions, components | Scope the private format and migration | Conservation, vanilla slots, independent JVM reopen |
-| Menu items rebound | Server state, quantity packets, vanilla slots, hashes | Repair synchronization or scope the menu path | Clicking, dragging, Shift-clicking, reconnecting |
-| Ponder restoration or script failure | BE ID, exact field, old format, backup origin | Local, idempotent template adaptation | Static preservation assertions and affected scenes |
-| Virtual render fails with speed but no source | Ponder's manual state and renderer contract | Neutral rendering branch for no source | Both source-less and ordinary sourced scenes |
-| Vertex or attachment validation failure | Shader, layout, material, actual target | Align the pipeline contract | Affected world, item, or PiP paths |
-| Null sprite or textures lost after reload | Resource path, registration, atlas event order | Register before first stitch; update on reload | First display, F3+T, display again |
-| Tail times out after rotation stops | Stop request, angular speed, absolute pose | Use the real physical completion condition | Nonzero final angle, stopping, reset |
-| Placed machine remains inactive | Recipes, configuration, capabilities, ticks, conditions | Restore the missing call-chain link | Input through output and blocked states |
-| New ore appears only in the item menu | Generation attachment, conditions, existing chunks | Fix data and attachment; design retrogen separately | Suitable new chunks and authorized copies |
+| Symptom | Inspect first | Change and validation |
+| --- | --- | --- |
+| Unsupported bytecode | Startup JDK and toolchain | Align build/run targets; start both sides |
+| Missing field/method | Caller bytecode, real dependency and embedded libraries | Correct the full ABI and trigger the failed path |
+| Split package | Production packages, bridge and assembly tasks | Separate packages; update reflection/registration |
+| Frozen registry/empty supplier | Entrypoint, event bus and resolution order | Defer to a valid phase; first load/reopen |
+| Server loads client classes | Common signatures, statics and constructors | Extract client implementation; dedicated-server launch |
+| Missing Mixin target | Descriptors and other mods' overwrites | Retain both semantics; base/combined checks |
+| A block does no work | Processors, ticks, recipes, configuration and outputs | Repair the first break; real inputs/outputs |
+| Wires exist without power | Simulator lifecycle, threads and load | Natural ticks, power removal/restoration and shutdown |
+| Resources lost/duplicated | Physical owners, snapshots, transactions and remainders | Shared transaction, conservation and rollback |
+| Contents lost/menu rollback | Codecs, vanilla boundaries, payloads and state hashes | Whole-input validation, clicks/reconnect/restart |
+| Reload ineffective | Schemas, conditions, dynamic registration and caches | Actual old/new rule replacement |
+| Moving bodies lose links | Coordinates, identity, handles and attachments | Remapping, native motion and disk reload |
+| Ore only in inventory | Features or virtual veins and conditions | Eligible new chunks; retrogen tested separately |
+| Transparent/missing GUI/models | Registration, ARGB, atlases and conditional resources | Initial display, integration conditions and reload |
+| Preview fails/animation never stops | Templates, extracted state, pipelines and stopping variables | Corresponding data/render representatives and tails |
 
-## 11. Available inspection commands and repository test entry points
+## 13. Build and test entrypoints
 
-These PowerShell commands cover general inspection and tools present in this repository. Confirm the current directory and tool versions first, and serialize builds and tests as the project requires.
-
-### General inspection
-
-Run these in a single-mod root containing a Gradle wrapper:
+Run generic diagnostics in the selected module or dependency context; the class is a target NeoForge example:
 
 ```powershell
 java -version
 .\gradlew.bat --version
-.\gradlew.bat build
-```
-
-Inspect a selected JAR and dependency. Interactive input can use your own relative paths:
-
-```powershell
 $modJar = Read-Host 'Mod JAR path'
-$dependencyJar = Read-Host 'Loader dependency JAR path'
+$dependencyJar = Read-Host 'Dependency JAR path'
 Get-FileHash -LiteralPath $modJar -Algorithm SHA256
 jar tf $modJar
 javap -p -s -classpath $dependencyJar net.neoforged.fml.loading.FMLEnvironment
 ```
 
-The final line is a NeoForge example; substitute the relevant class for another loader or version. Use `javap -c` on a caller when necessary to establish whether it reads a field or invokes a method.
+Use `javap -c` when invocation instructions matter. The target uses `FMLEnvironment.getDist()`; an old-field stub does not establish that field at runtime.
 
-### Repository entry points
-
-From this repository's root, inspect the real arguments and build the affected module:
+Full preparation is in the [README](../README.en.md#build-from-source). First build all modules and dependencies, then rebuild the affected module and probe and reassemble. Tests consume the assembled artifacts. These entrypoints also require Java 25, independent launch templates and fixtures:
 
 ```powershell
 python -X utf8 -B scripts/build.py --help
 python -X utf8 -B scripts/build.py --only storage
+python -X utf8 -B scripts/gradle_serial.py runtime-probe jar
+python -X utf8 -B scripts/package.py
 python -X utf8 -B scripts/test_gameplay.py --help
-python -X utf8 -B scripts/test_all_ponder_client.py --help
-```
-
-Running probes requires compiled test mods, a matching runtime package, and locally configured launch templates. The Ponder script also requires an established project test seed world and client fixtures. These machine-local inputs are not distributed with public source. A fresh checkout must prepare the environment using the project runtime instructions before the commands below are applicable. [Build entry point](../scripts/build.py), [gameplay entry point](../scripts/test_gameplay.py), [Ponder entry point](../scripts/test_all_ponder_client.py), [isolated fixtures](../scripts/test_three_addons.py)
-
-For storage changes, use the existing storage gameplay group. Its entry point runs a creation phase and a separate JVM reload phase; inspect the actual assertions and coverage in the results:
-
-```powershell
 python -X utf8 -B scripts/test_gameplay.py --group storage
+python -X utf8 -B scripts/test_gameplay.py --group processing
+python -X utf8 -B scripts/test_gameplay.py --group power-logistics
 ```
 
-For Ponder, create a fresh scan and select a representative index from its `render_jobs`. The `--storage` argument identifies the candidate Storage JAR in a runtime package under project `runtime/`, accompanied by a matching `package-manifest.json`. Pass other candidates through the existing `--candidate-mod` option on both the scan and render commands.
+Configure `server_launch_template` / `client_template_directory` in `.local/config.json`; the source archive does not include worlds or client fixtures. Gameplay creates a world, saves/exits and reopens it in an independent JVM. Combined client checks also use [test_three_addons.py](../scripts/test_three_addons.py).
 
-```powershell
-$storageJar = Read-Host 'Candidate Storage JAR under runtime/'
-python -X utf8 -B scripts/test_all_ponder_client.py scan --storage $storageJar
-$scan = (Get-Content -LiteralPath .local/last-all-ponder-scan.json -Raw | ConvertFrom-Json).result
-$jobIndex = [int](Read-Host 'Representative index in this scan render_jobs')
-python -X utf8 -B scripts/test_all_ponder_client.py render --storage $storageJar --scan $scan --start $jobIndex --limit 1 --reload-resources
-```
+Ponder scans, representative indexes, reload commands and fixture prerequisites are in [Ponder porting details](PONDER-PORTING-NOTES.en.md).
 
-On failure, inspect prerequisites and reports before proceeding with an old scan or result. This reload probe also checks the original and target of specific rope sprites; other mods need their own atlas and material assertions. Historical full-batch tooling remains useful for explicitly justified broad regression. Routine changes use the representative manifest.
+## 14. Source, assets and reproducible distribution
 
-## 12. Inspect source, assets, and reachable history before publication
+Export corresponding source from a fixed commit, retaining upstream identities, copyright, component licenses and recovery inputs. Check code, references, natives and assets separately; reverse engineering or renaming packages grants no new permission. [Sources and licenses](SOURCE-AND-LICENSES.en.md)
 
-Code and assets may have different licenses. Preserve each upstream identity, source commit or snapshot hash, license, copyright, and modification notice, then inspect the actual distribution. MIT-licensed code does not by itself authorize redistribution of ARR artwork. Dependencies with noncommercial or other restrictions require separate review. Start this repository's license review with [third-party notices](../THIRD_PARTY_NOTICES.md) and the [license directory](../LICENSES/).
+Inspect all `assets/<namespace>/`, generated resources, embedded JARs, old dependencies and actual attachments, filtering by complete provenance boundaries and the resource lock. Submodule exceptions can override root `.gitignore`. Audit worktrees, tracked files, exported ZIPs and reachable history separately.
 
-Inspect every `assets/<namespace>/`, including compatibility textures, models, sounds, fonts, and icons placed under another mod's namespace. Also inspect root resources, generated outputs, and download caches. Dependencies may enter the final artifact as nested JARs, so inspect their resources and licenses recursively. This read-only example lists asset namespaces and nested JARs at each level. It creates an inventory; each license still needs review.
+Connect build-input, runtime-JAR, installer-payload and restored-output hashes. Verify canonical Git source bytes file by file and execute the installer before comparing all effective JAR entries. Compression/timestamps can change archive hashes; equivalence reports still identify actual differences.
 
-```powershell
-@'
-import io, sys, zipfile
-from pathlib import Path
-
-def inspect(source, label, depth=0):
-    if depth > 8:
-        raise RuntimeError("Nested JAR depth exceeds audit limit")
-    with zipfile.ZipFile(source) as archive:
-        names = archive.namelist()
-        namespaces = sorted({n.split('/')[1] for n in names
-                             if n.startswith('assets/') and len(n.split('/')) > 2})
-        print(label, "assets namespaces:", ", ".join(namespaces) or "(none)")
-        for name in names:
-            if name.lower().endswith('.jar'):
-                inspect(io.BytesIO(archive.read(name)), label + "!" + name, depth + 1)
-
-inspect(sys.argv[1], Path(sys.argv[1]).name)
-'@ | python -X utf8 - $modJar
-```
-
-Working-tree cleanup and history review are separate tasks. Reachable branches and tags, old commits, old Release attachments, and download packages may still contain ARR assets, secrets, or personal paths. Removing a file from the latest tree leaves those copies intact. If existing history and Releases retain restricted assets, directly changing the private repository to public is inappropriate. History rewriting or a separate public snapshot requires a separately approved plan, retaining provenance and local source workspaces.
-
-These Git commands list working-tree status, existing refs, and reachable objects. Extend the review to attachments stored separately by the hosting service:
-
-```powershell
-git status --short
-git for-each-ref --format='%(refname)'
-git rev-list --objects --all
-```
-
-A release candidate record should contain its version and commit, runtime JAR hashes, test groups and uncovered scope, data format changes, migration and rollback procedures, known issues, and license/asset review results. Remove machine-specific absolute paths, usernames, credentials, and private records from public documents and attachments. Where users may obtain restricted assets from upstream, use a local bootstrap process with pinned origins and hashes, subject to upstream terms. Omit unauthorized copies from distribution packages.
+Record version/commit, tested combinations, format/migration scope, established behavior and remaining tests. Use new worlds or authorized copies with hashes and pre-migration checkpoints. Worlds, machine configuration, caches and collaboration records stay outside normal distribution. Roll back from pre-upgrade backups rather than handing newly written world formats directly to an older version.

@@ -8,7 +8,7 @@ An experimental Create modpack and source workspace for **Minecraft Java 26.3**,
 
 The current version is **0.3.0-alpha.3**, targeting **NeoForge 26.3.0.22-beta / Java 25**, with **15 source module directories and 18 direct runtime JARs**. This is a community port and integration project; component identities, authors and licenses are retained separately.
 
-[Install](#install-with-hmcl) · [Features and architecture](#features-and-architecture) · [Build from source](#build-from-source) · [Validation scope](#validation-scope) · [Sources and licenses](#sources-and-licenses)
+[Install](#install-with-hmcl) · [Features and architecture](#features-and-architecture) · [Development](#development-path-and-technical-documents) · [Build from source](#build-from-source) · [Validation scope](#validation-scope) · [Sources and licenses](#sources-and-licenses)
 
 Download: [v0.3.0-alpha.3](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3) · [Release record](docs/RELEASE.md) · Last reviewed: **2026-11-04**.
 
@@ -92,6 +92,18 @@ Paths below are relative to `modules/`. The [runtime manifest](manifests/runtime
 | [`create-storage-adapted-263/`](modules/create-storage-adapted-263/) | `storage-adapted.jar` | ausmez/create-storage-neo-forge; pinned official source and private inventory adaptation |
 | [`create-fluid-logistics-adapted-263/`](modules/create-fluid-logistics-adapted-263/) | `fluid-logistics-adapted.jar` | yision1/CreateFluidLogistics; pinned official source and native fluid transaction adaptation |
 
+## Development path and technical documents
+
+Development starts with the Create source foundation and runtime interfaces, adds railways, physics and addons, then validates storage, processing, circuits and client behavior. The [development overview](docs/DEVELOPMENT-OVERVIEW.en.md) maps implementations to code. The [general upgrade/testing guide](docs/MOD-UPGRADE-AND-TESTING.en.md) covers migration methods, conflict diagnosis and acceptance.
+
+| Technical stage | Main work and effect | Reading |
+| --- | --- | --- |
+| Create source recovery | Compare release methods/APIs against public 26.2 source, restore required behavior, then validate full builds and runtime | [Recovery and implementation](docs/DEVELOPMENT-OVERVIEW.en.md), [sources and licenses](docs/SOURCE-AND-LICENSES.en.md) |
+| Loader and foundation | Align NeoForge, real Create APIs, Registrate ABI and Flywheel isolation; port Railways and the Sable → Simulated → Offroad / Aeronautics physics chain | [Foundation and conflicts](docs/DEVELOPMENT-OVERVIEW.en.md), [runtime/datagen](modules/create-aeronautics-adapted-263/docs/porting/RUNTIME-AND-DATAGEN.md) |
+| Feature groups | Nine foundation JARs to twelve with three addons, then eighteen with six modules; shared dependencies and serial builds, with higher-MC references integrated into complete NeoForge feature trees | [Three addons](docs/THREE-ADDONS-26.3.md), [six modules](docs/FIVE-ADDONS-26.3.md) |
+| Data, transactions and synchronization | Preserve components/amounts, share physical-backend transactions, defer recipes, isolate mod storage from vanilla slots, and test menus/reopen | [Storage/logistics](docs/porting-notes/STORAGE-LOGISTICS-26.3.md), [fluid transactions](docs/porting-notes/FLUID-26.3.md), [logistics side checks](docs/porting-notes/ADDITIONAL-LOGISTICS-26.3.md) |
+| Function and distribution | Real pumping, drilling, native constraints, electrical load and negative controls; scoped render/Ponder checks and hash-linked source/installer artifacts | [Validation](docs/VALIDATION.md), [deeper gameplay](docs/GAMEPLAY-VALIDATION-26.3.md), [knowledge index](knowledge/INDEX.md) |
+
 ## Build from source
 
 You need **Python 3.11+, a Java 25 JDK** and an internet connection. The Gradle Wrapper baseline is **9.5.0**. Extract the matching `-sources.zip` completely, then run from the repository root:
@@ -152,11 +164,12 @@ On Windows, enable long paths when cloning: `git clone -c core.longpaths=true ht
 
 | Record | Observed results and limits |
 | --- | --- |
-| [2026-11-04 Ponder fixes](docs/PONDER-AUDIT-20261104.md) | 750 components and 1718 registrations scanned; 389 tasks deduplicated by scene, template and callback all rendered in the real GUI, with 3458 timeline samples and 38592 frames; all four batches saved, returned to the title screen and exited normally |
-| Resource reload in the same audit | After an actual resource reload, pulley sprite assertions and rendering of the final 12 scenes passed; the tested combination contains 18 production JARs, and the test probe is excluded from the play package |
-| [Earlier eighteen-JAR regression](docs/VALIDATION.md) | Four server probe groups on a new world and an independent JVM restart; 37 checks per phase for the six addon modules; recorded passes for model checks on 489 registered client items, ten GUI pages, real Storage clicks and compression-recipe network round trips |
-| [Detailed gameplay tests](docs/GAMEPLAY-VALIDATION-26.3.md) | 29 new-world checks, 14 independent-restart checks and two normal shutdown checks; storage transactions/persistence, processing outputs/resource conservation, electrical loads and package acceleration timing |
-| Installer validation for this version | Native Windows PowerShell 5.1 generated the HMCL package; every non-directory entry in all 18 JARs matched the tested set. All 1593 locked Aero resource targets were excluded from the attachment and restored correctly. See the [release record](docs/RELEASE.md) for digests. |
+| [Nine foundation JARs](docs/VALIDATION-v0.1.0-alpha.1.md) | Full builds, namespace and combined-load checks; actual aviation assembly, propulsion, buoyancy output, resource transactions and identity recovery. Complete train/vehicle gameplay was not covered |
+| [Three addons, twelve JARs](docs/VALIDATION-v0.2.0-alpha.1.md) | Native transactions/remainders, actual motor/pump fueling, drilling outputs, moving Sable constraint rebuilding and independent reload; temporary fuel rules checked through datapack reload |
+| [Six modules, eighteen JARs](docs/VALIDATION.md) | 37 added checks per create/independent-JVM phase, 489 client item models, real menus and recipe round trips; 81 vanilla chest slots read from disk and private-inventory click conservation |
+| [Actual processing and power](docs/GAMEPLAY-VALIDATION-26.3.md) | 29 creation checks, 14 reopen checks and two normal shutdown checks covering recipe consumption/output, electrical load/disconnection/restoration, logistics timing and negative controls |
+| [Client/Ponder topic](docs/PONDER-AUDIT-20261104.md) | 389 render jobs completed data checks, real GUI, finite tails and save/exit; 12 further checks after reload. Detailed fast-forward sample counts and limits remain in the topic |
+| [Installer and corresponding source](docs/RELEASE.md) | Native Windows PowerShell 5.1 restored all entries of 18 JARs to the tested combination; 1593 locked asset targets excluded/restored, and 53,363 source files in 15 modules hash-verified |
 
 Each record applies to its stated version and inputs. The latest Ponder audit fast-forwards and samples selected timeline positions; it does not manually observe every naturally played frame. Complex production lines, moving sublevels, multiplayer, sustained load and uninstalled optional integrations still have untested areas. Sources or references for JEI, REI, EMI, KubeJS, ComputerCraft and JourneyMap do not establish that these integrations are installed or validated in this pack.
 
@@ -185,6 +198,7 @@ The server creates an owned world under the project's `runtime/` directory and r
 | `docs/`, `knowledge/` | Porting, fix and validation records, plus reusable technical notes |
 | `artifacts/`, `runtime/`, `.local/`, `tooling/` | Local builds, test data, configuration and caches, ignored by Git |
 
+- Development: [implementation overview](docs/DEVELOPMENT-OVERVIEW.en.md), [general upgrade/testing](docs/MOD-UPGRADE-AND-TESTING.en.md), [technical knowledge index](knowledge/INDEX.md).
 - Start here: [sources and licenses](docs/SOURCE-AND-LICENSES.en.md), [mod upgrades and testing](docs/MOD-UPGRADE-AND-TESTING.en.md), [third-party notices](THIRD_PARTY_NOTICES.md).
 - Module records: [Liquid Fuel](modules/create-liquid-fuel-adapted-263/docs/PORTING-26.3.md), [Ore Excavation](modules/create-ore-excavation-adapted-263/docs/PORTING-26.3.md), [Transmission & Linkage](modules/transmission-linkage-adapted-263/docs/PORTING-26.3.md), [Electro](docs/porting-notes/ELECTRO-26.3.md), [Storage and Additional Logistics](docs/porting-notes/STORAGE-LOGISTICS-26.3.md), [FluidLogistics](docs/porting-notes/FLUID-26.3.md), [Enchantment Industry and Dragons Plus](docs/porting-notes/ENCHANTMENT-DRAGONS-26.3.md).
 - Fixes and validation: [main validation](docs/VALIDATION.md), [detailed gameplay](docs/GAMEPLAY-VALIDATION-26.3.md), [Ponder audit](docs/PONDER-AUDIT-20261104.md), [vent rendering](docs/VENT-RENDER-HOTFIX-20261029.md), [hot-air balloon flames](docs/PONDER-FLAME-HOTFIX-20261103.md).

@@ -59,7 +59,7 @@ Registrate 的精确源码版本为 `MC1.21-1.3.0+67`，适用 MPL-2.0；原源�
 - Enchantment Industry：[Fly 参照 `2dcc94608cf7`](https://github.com/DragonsPlusMinecraft/CreateEnchantmentIndustry-Fly/tree/2dcc94608cf7787ce6bc045fb191eba3f82ef676)。
 - FluidLogistics 引用的 CreateFluidStuffs：[固定许可 `63f7f35689b5`](https://github.com/MoePus/create-fluidstuffs/blob/63f7f35689b5d73e0828a978db1b8ab2da25abe6/LICENSE)。保留原文未填写的版权人字段，不补造权利人。
 
-Diesel 的固定公开源码属性为 0.607，用户指定发行文件为 0.608；[来源清单](../manifests/sources.json)保留这一区别，相关配置枚举兼容由本工程实现，不将两者宣称为完全对应的源码和二进制。Transmission & Linkage 的两份许可，以及 Storage 的 GPL 版本声明差异，也继续按原记录保留；本说明不提供统一商业授权。
+Diesel 的固定公开源码属性为 0.607，对照发行文件为 0.608；[来源清单](../manifests/sources.json)保留这一区别，相关配置枚举兼容由本工程实现，不将两者宣称为完全对应的源码和二进制。Transmission & Linkage 的两份许可，以及 Storage 的 GPL 版本声明差异，也继续按原记录保留；本说明不提供统一商业授权。
 
 ## 代码与素材分发边界
 
@@ -75,12 +75,14 @@ offroad/src/main/resources/assets/
 
 Create 官方美术独立于代码许可管理；本工程使用[外置素材模式](../modules/create-adapted-263/EXTERNAL_ASSETS.md)，通过资源锁获取固定官方 JAR，不把官方素材 JAR 作为源码依赖镜像。Diesel 的 `engine_normal.ogg` 单独适用 [Pixabay 素材声明](../LICENSES/DIESEL-THIRD-PARTY-NOTICES.md)，也不按 MIT 音效再授权。安装过程的来源和 hash 校验不改变原许可。
 
-## 历史分发问题与当前公开计划
+## 对应源码与素材校验
 
-2026-11-04 的只读审计发现，原过滤规则只按三个主要 namespace 剥离素材，遗漏了上述保护目录中的 8 个跨 namespace 文件，其中 3 个 PNG。旧 Git 分支、标签、PR 合并引用及历史源码 ZIP 中仍有这些文件；旧安装器的 Aeronautics payload 也含这 3 个 PNG。历史源码和依赖目录另含一个旧 Create JAR，内部专用 Create 许可证将美术列为保留权利。仅在新提交删除文件不能清除历史对象。
+源码恢复、加载器适配和依赖桥接的实现过程见[开发技术总览](DEVELOPMENT-OVERVIEW.md)；本页集中记录来源、署名与许可范围。
 
-本次公开采用独立仓库 `Flowfangfei/create-263-modpack-public`，仅导入清洁的最新源码快照并发布 `v0.3.0-alpha.3` 附件。公共副本使用独立初始提交，标注真实快照来源和整理方式，不导入原 Git 历史、旧素材或旧发布附件。原仓库 `Flowfangfei/create-263-modpack` 保持私有，完整历史和旧附件保留，不重写历史。
+素材过滤按完整来源目录和[资源锁](../manifests/resources-lock.json)执行。早期仅按主要 namespace 过滤，曾遗漏 8 个跨 namespace 文件，其中 3 个 PNG；旧参考依赖 JAR 内的美术声明也需单独检查。现有[发布策略](../scripts/publication_policy.py)、[载荷组装](../scripts/package.py)和[源码导出](../scripts/source_archive.py)分别检查这些边界。
 
-8 个跨 namespace 素材文件和两个旧依赖 JAR 已取消 Git 跟踪，忽略规则同步修正，本地文件字节保留。具体仓库创建、提交、附件上传和校验状态见[发布记录](RELEASE.md)；本节记录已确认的公开方案，不代替实际交付结果。
+安装器排除航空学锁定素材、官方 Create 美术和单独授权音效，按固定来源在本地恢复；1593 个航空学资源目标和还原后的 18 JAR 条目已经核验。源码清单、恢复输入与产物摘要提供追溯关系，具体版本和验证范围见[发布记录](RELEASE.md)。校验通过不会改变原始许可。
+
+对外分发还需检查源码档案、嵌套 JAR、可达历史和旧附件；删除最新树中的文件不会删除历史对象。来源快照的身份见[源码导入清单](../manifests/publication-source.json)。
 
 GNU GPL/LGPL/AGPL、MPL、MIT、BSD、PolyForm 与 CC-BY-NC 的条款分别适用。对外发布应保留原声明、修改版的来源与对应源码，并核对具体组件要求；不得把本工程的整合或恢复工作作为统一重新授权的依据。
