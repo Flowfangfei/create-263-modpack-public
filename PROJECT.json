@@ -11,24 +11,21 @@
   },
   "source_manifest": "manifests/sources.json",
   "license_manifest": "manifests/third-party-licenses.json",
-  "updated_at": "2026-11-04T21:48:01+08:00",
+  "updated_at": "2026-11-04T22:19:35+08:00",
   "repository": "https://github.com/Flowfangfei/create-263-modpack-public",
-  "release": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.2",
-  "release_tag": "v0.3.0-alpha.2",
-  "release_source_commit": "35cb63c63412f2bef62f6fd37afe77977235fbc6",
-  "candidate_version": "0.3.0-alpha.3",
-  "candidate_source_branch": "codex/railways-storage-hotfix-263",
-  "candidate_validation": "Ponder regression completed; Windows PowerShell 5.1 installer passed; all 18 runtime JAR entry bytes match tested combination; source export pending",
-  "candidate_release_tag": "v0.3.0-alpha.3",
+  "release": "https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3",
+  "release_tag": "v0.3.0-alpha.3",
+  "release_source_commit": "49a7bb8e6d909a2aaa3bb01acade4c8c0cb4fe34",
   "previous_release": {
-    "release": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.1",
-    "release_tag": "v0.3.0-alpha.1",
-    "release_source_commit": "203897ef96ebe398787376ba1372fcd915286748"
+    "release": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.2",
+    "release_tag": "v0.3.0-alpha.2",
+    "release_source_commit": "35cb63c63412f2bef62f6fd37afe77977235fbc6",
+    "visibility": "private archive"
   },
-  "release_status": "alpha3-preparing-clean-public-snapshot",
-  "release_verified_at": "2026-10-28T14:04:40+08:00",
-  "candidate_release_url": "https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3",
-  "candidate_pull_request": "https://github.com/Flowfangfei/create-263-modpack/pull/4",
+  "release_status": "public-prerelease",
+  "release_verified_at": "2026-11-04T22:19:35+08:00",
   "public_repository": "https://github.com/Flowfangfei/create-263-modpack-public",
-  "maintenance_archive_repository": "https://github.com/Flowfangfei/create-263-modpack"
+  "maintenance_archive_repository": "https://github.com/Flowfangfei/create-263-modpack",
+  "current_source_branch": "main",
+  "source_snapshot_manifest": "manifests/publication-source.json"
 }

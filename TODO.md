@@ -18,3 +18,5 @@
 - [x] 将已验证的两个热修复JAR配置到当前HMCL实例并完成旧文件备份与安装后18JAR核验，见[部署记录](docs/DEPLOYMENT-HOTFIX-20261102.md)。
 
 - [x] [TASK-005](tasks/TASK-005-ponder-audit.md)：修复Storage思索崩溃，完成全包注册、内容与客户端绘制回归并安装热修复。
+
+- [x] [TASK-006](tasks/TASK-006-publication.md)：保留私有历史，以独立清洁快照公开alpha.3和双语文档；完整CDN回下载及网页预览的网络限制已记录。
