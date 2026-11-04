@@ -6,11 +6,11 @@
 
 An experimental Create modpack and source workspace for **Minecraft Java 26.3**, bringing together machinery, railways, physics assemblies, aviation, electricity, storage, fluid logistics and enchantment processing. Players can generate an HMCL import package with the installer. Mod port developers can inspect pinned upstream sources, reproduce builds and continue work on individual modules.
 
-The current source version is **0.3.0-alpha.3**, targeting **NeoForge 26.3.0.22-beta / Java 25**, with **15 source module directories and 18 direct runtime JARs**. This is a community port and integration project; component identities, authors and licenses are retained separately.
+The current version is **0.3.0-alpha.3**, targeting **NeoForge 26.3.0.22-beta / Java 25**, with **15 source module directories and 18 direct runtime JARs**. This is a community port and integration project; component identities, authors and licenses are retained separately.
 
 [Install](#install-with-hmcl) · [Features and architecture](#features-and-architecture) · [Build from source](#build-from-source) · [Validation scope](#validation-scope) · [Sources and licenses](#sources-and-licenses)
 
-Last reviewed: **2026-11-04** (source, manifests, build and installer scripts, and completed validation records). This repository provides a cleaned, independent source snapshot for public distribution. The [original repository](https://github.com/Flowfangfei/create-263-modpack) remains private; its old history was not imported. See the [release record](docs/RELEASE.md) and the new repository's [Releases](https://github.com/Flowfangfei/create-263-modpack-public/releases) for actual releases and attachments.
+Download: [v0.3.0-alpha.3](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3) · [Release record](docs/RELEASE.md) · Last reviewed: **2026-11-04**.
 
 ## Install with HMCL
 
@@ -46,7 +46,7 @@ The installer attachment excludes reserved-rights Aeronautics assets, the offici
 
 Back up the entire original instance and world first, retaining a recoverable copy. To try an existing world, **copy it into a new test instance**, check its mods, datapacks and configuration, then open the copy. Keep the original instance and world separately.
 
-Project validation used new worlds and verified copies, without accessing the user's original worlds. Automatic migration of inventories from older Create Storage versions remains unverified. Check large inventories, old components and assemblies from other versions individually in a copy. The installer does not search for, copy or migrate existing worlds.
+Tests use new worlds and hash-verified copies. Automatic migration of inventories from older Create Storage versions remains unverified. Check large inventories, old components and assemblies from other versions individually in a copy. The installer does not search for, copy or migrate existing worlds.
 
 ## Features and architecture
 
@@ -130,7 +130,7 @@ The output is `Create263-Pack-v0.3.0-alpha.3-sources.zip` in the same directory;
 
 ### Individual modules and local configuration
 
-To rebuild the six newer modules, use `python -X utf8 -B scripts/build.py --only five-addons` after building their Create/Sable/Simulated dependencies. `five-addons` is the existing script group name and includes the Dragons Plus prerequisite. Run individual module tasks through the shared lock in `scripts/gradle_serial.py`, for example:
+To rebuild the six addon modules, use `python -X utf8 -B scripts/build.py --only five-addons` after building their Create/Sable/Simulated dependencies. `five-addons` is the existing script group name and includes the Dragons Plus prerequisite. Run individual module tasks through the shared lock in `scripts/gradle_serial.py`, for example:
 
 ```powershell
 python -X utf8 -B scripts/gradle_serial.py create-storage-adapted-263 build
@@ -153,14 +153,14 @@ On Windows, enable long paths when cloning: `git clone -c core.longpaths=true ht
 | Record | Observed results and limits |
 | --- | --- |
 | [2026-11-04 Ponder fixes](docs/PONDER-AUDIT-20261104.md) | 750 components and 1718 registrations scanned; 389 tasks deduplicated by scene, template and callback all rendered in the real GUI, with 3458 timeline samples and 38592 frames; all four batches saved, returned to the title screen and exited normally |
-| Resource reload in the same audit | After an actual resource reload, pulley sprite assertions and rendering of the final 12 scenes passed; the 18 deployed production JARs matched the tested combination, with no test probe in the play package |
-| [Earlier eighteen-JAR regression](docs/VALIDATION.md) | Four server probe groups on a new world and an independent JVM restart; 37 checks per phase for the six newer modules; recorded passes for model checks on 489 registered client items, ten GUI pages, real Storage clicks and compression-recipe network round trips |
+| Resource reload in the same audit | After an actual resource reload, pulley sprite assertions and rendering of the final 12 scenes passed; the tested combination contains 18 production JARs, and the test probe is excluded from the play package |
+| [Earlier eighteen-JAR regression](docs/VALIDATION.md) | Four server probe groups on a new world and an independent JVM restart; 37 checks per phase for the six addon modules; recorded passes for model checks on 489 registered client items, ten GUI pages, real Storage clicks and compression-recipe network round trips |
 | [Detailed gameplay tests](docs/GAMEPLAY-VALIDATION-26.3.md) | 29 new-world checks, 14 independent-restart checks and two normal shutdown checks; storage transactions/persistence, processing outputs/resource conservation, electrical loads and package acceleration timing |
 | Installer validation for this version | Native Windows PowerShell 5.1 generated the HMCL package; every non-directory entry in all 18 JARs matched the tested set. All 1593 locked Aero resource targets were excluded from the attachment and restored correctly. See the [release record](docs/RELEASE.md) for digests. |
 
 Each record applies to its stated version and inputs. The latest Ponder audit fast-forwards and samples selected timeline positions; it does not manually observe every naturally played frame. Complex production lines, moving sublevels, multiplayer, sustained load and uninstalled optional integrations still have untested areas. Sources or references for JEI, REI, EMI, KubeJS, ComputerCraft and JourneyMap do not establish that these integrations are installed or validated in this pack.
 
-Future dynamic regression selects one representative per module and actual demonstration logic. Additional samples are retained where data formats, rendering paths, configuration branches or changed behavior materially differ. The complete registration index supports inexpensive static checks; affected groups and a small cross-module sample support regression after changes.
+Ponder dynamic regression selects one representative per module and actual demonstration logic. Additional samples are retained where data formats, rendering paths, configuration branches or changed behavior materially differ. The complete registration index supports inexpensive static checks; affected groups and a small cross-module sample support regression after changes.
 
 Before reproducing combined tests, configure independent `server_launch_template` and `client_template_directory` entries in `.local/config.json` for the fixed platform. The client template needs `launch-client.args`, dependencies and configuration. These templates require additional local preparation; game dependencies and test worlds are not supplied in the source archive. Then run:
 
@@ -183,14 +183,12 @@ The server creates an owned world under the project's `runtime/` directory and r
 | `manifests/`, `modpack/` | Provenance, hashes, resource locks, runtime module list and HMCL platform manifest |
 | `tests/runtime-probe/` | Separate runtime probe source, excluded from the play package |
 | `docs/`, `knowledge/` | Porting, fix and validation records, plus reusable technical notes |
-| `artifacts/`, `runtime/`, `.local/`, `tooling/` | Local builds, test data, configuration and caches, excluded from ordinary Git delivery |
+| `artifacts/`, `runtime/`, `.local/`, `tooling/` | Local builds, test data, configuration and caches, ignored by Git |
 
 - Start here: [sources and licenses](docs/SOURCE-AND-LICENSES.en.md), [mod upgrades and testing](docs/MOD-UPGRADE-AND-TESTING.en.md), [third-party notices](THIRD_PARTY_NOTICES.md).
 - Module records: [Liquid Fuel](modules/create-liquid-fuel-adapted-263/docs/PORTING-26.3.md), [Ore Excavation](modules/create-ore-excavation-adapted-263/docs/PORTING-26.3.md), [Transmission & Linkage](modules/transmission-linkage-adapted-263/docs/PORTING-26.3.md), [Electro](docs/porting-notes/ELECTRO-26.3.md), [Storage and Additional Logistics](docs/porting-notes/STORAGE-LOGISTICS-26.3.md), [FluidLogistics](docs/porting-notes/FLUID-26.3.md), [Enchantment Industry and Dragons Plus](docs/porting-notes/ENCHANTMENT-DRAGONS-26.3.md).
 - Fixes and validation: [main validation](docs/VALIDATION.md), [detailed gameplay](docs/GAMEPLAY-VALIDATION-26.3.md), [Ponder audit](docs/PONDER-AUDIT-20261104.md), [vent rendering](docs/VENT-RENDER-HOTFIX-20261029.md), [hot-air balloon flames](docs/PONDER-FLAME-HOTFIX-20261103.md).
 - History and progress: [0.1 validation](docs/VALIDATION-v0.1.0-alpha.1.md), [0.2 validation](docs/VALIDATION-v0.2.0-alpha.1.md), [0.3 alpha.1 validation](docs/VALIDATION-v0.3.0-alpha.1.md), [release record](docs/RELEASE.md), [PROGRESS](PROGRESS.md), [TODO](TODO.md), [CHANGELOG](CHANGELOG.md).
-
-Historical documents retain release and commit links to the original private repository; those links require access to that repository.
 
 When reporting a problem, include the pack version, Java/NeoForge versions, affected module, minimal reproduction steps and relevant logs. Remove account details, tokens and personal paths from shared logs. Reproduce world-related issues in a copy.
 
