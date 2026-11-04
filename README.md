@@ -6,11 +6,11 @@
 
 面向 Minecraft Java **26.3** 的实验性 Create 整合包与源码工作区，整合机械动力、铁路、物理装配、航空、电力、仓储、流体物流和附魔加工。玩家可通过安装器生成 HMCL 导入包；模组移植开发者可查看固定上游来源、复现构建，并按独立模块继续适配。
 
-当前源码版本为 **0.3.0-alpha.3**，平台固定为 **NeoForge 26.3.0.22-beta / Java 25**，包含 **15 个源码模块目录、18 个直接运行 JAR**。本工程是社区移植与整合，组件名称、作者和许可分别保留。
+当前版本为 **0.3.0-alpha.3**，平台固定为 **NeoForge 26.3.0.22-beta / Java 25**，包含 **15 个源码模块目录、18 个直接运行 JAR**。本工程是社区移植与整合，组件名称、作者和许可分别保留。
 
 [安装](#安装到-hmcl) · [功能与架构](#功能与架构) · [源码构建](#从源码构建) · [验证范围](#已验证的范围) · [来源与许可](#来源与许可)
 
-最后审核：**2026-11-04**（源码、清单、构建与安装脚本、已完成的验证记录）。本仓库用于发布清理后的独立公开源码快照；[原仓库](https://github.com/Flowfangfei/create-263-modpack)保留私有，其旧历史未导入。实际发布与附件见[发布记录](docs/RELEASE.md)及新仓库的 [Releases](https://github.com/Flowfangfei/create-263-modpack-public/releases)。
+下载：[v0.3.0-alpha.3](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3) · [发布记录](docs/RELEASE.md) · 最后审核：**2026-11-04**。
 
 ## 安装到 HMCL
 
@@ -46,7 +46,7 @@
 
 先完整备份原实例和存档，保留可恢复的副本。若要尝试旧世界，只将存档**复制到新的测试实例**，核对模组、数据包与配置后打开副本。原实例和原存档继续独立保存。
 
-项目验证使用新建世界及其校验副本，未访问用户原存档。旧版 Create Storage 库存的自动迁移尚未验证；高数量库存、旧组件或其他版本的机械装配需要在副本上逐项检查。安装脚本不会查找、复制或迁移现有世界。
+测试使用新建世界及其经过哈希校验的副本。旧版 Create Storage 库存的自动迁移尚未验证；高数量库存、旧组件或其他版本的机械装配需要在副本上逐项检查。安装脚本不会查找、复制或迁移现有世界。
 
 ## 功能与架构
 
@@ -130,7 +130,7 @@ python -X utf8 -B scripts/source_archive.py --ref $sourceRef
 
 ### 单模块与本机配置
 
-仅重建新增六模块可用 `python -X utf8 -B scripts/build.py --only five-addons`，需要先构建其 Create/Sable/Simulated 依赖；`five-addons` 是沿用的脚本分组名，包含 Dragons Plus 前置。单模块任务通过 `scripts/gradle_serial.py` 进入共享锁，例如：
+仅重建六个附属模块可用 `python -X utf8 -B scripts/build.py --only five-addons`，需要先构建其 Create/Sable/Simulated 依赖；`five-addons` 是沿用的脚本分组名，包含 Dragons Plus 前置。单模块任务通过 `scripts/gradle_serial.py` 进入共享锁，例如：
 
 ```powershell
 python -X utf8 -B scripts/gradle_serial.py create-storage-adapted-263 build
@@ -153,14 +153,14 @@ Windows 使用 Git 获取源码时启用长路径：`git clone -c core.longpaths
 | 验证记录 | 实际结果与边界 |
 | --- | --- |
 | [2026-11-04 思索修复](docs/PONDER-AUDIT-20261104.md) | 750 个组件、1718 条注册完成扫描；按场景、模板与回调去重后的 389 场景全部完成真实 GUI 绘制，3458 次时间轴采样、38592 帧；四批正常保存、回标题并退出 |
-| 同轮资源重载专项 | 实际调用资源重载入口后，绳轮 sprite 断言与末尾 12 场景绘制通过；最终部署的 18 个生产 JAR 与受测组合相符，测试探针未进入游玩包 |
-| [已有十八模组回归](docs/VALIDATION.md) | 新世界与独立 JVM 重启的四组服务端探针；新增六模块每阶段 37 项；客户端 489 个注册物品的模型检查、十页 GUI 绘制、Storage 真实点击及压缩配方网络往返等已有通过记录 |
+| 同轮资源重载专项 | 实际调用资源重载入口后，绳轮 sprite 断言与末尾 12 场景绘制通过；受测组合包含 18 个生产 JAR，测试探针不随游玩包分发 |
+| [已有十八模组回归](docs/VALIDATION.md) | 新世界与独立 JVM 重启的四组服务端探针；六个附属模块每阶段 37 项；客户端 489 个注册物品的模型检查、十页 GUI 绘制、Storage 真实点击及压缩配方网络往返等已有通过记录 |
 | [深入玩法](docs/GAMEPLAY-VALIDATION-26.3.md) | 29 项新世界检查、14 项独立重启检查及两次正常停服检查；涵盖仓储事务与保存、加工产物与资源守恒、电路负载和包裹加速时序 |
 | 本版安装器验证 | 原生 Windows PowerShell 5.1 实际生成 HMCL 包；18 JAR 全部非目录条目与受测组合一致，1593 个航空学锁定素材目标在附件中排除并正确恢复；摘要见[发布记录](docs/RELEASE.md) |
 
 这些记录对应各自标注的版本和输入。最新思索回归采用快进和时间点采样，未逐帧自然播放人工观察。复杂生产线、移动子空间、多人、长期负载和未安装的可选联动仍有待测范围。JEI、REI、EMI、KubeJS、ComputerCraft、JourneyMap 等联动的源码或参考存在，不代表它们已随本包安装或完成验收。
 
-后续动态回归按模组和实际演示逻辑选一个代表；只有数据格式、渲染路径、配置分支或修复行为存在实质差异时增加样本。完整注册清单继续用于低成本静态检查，受影响组与少量跨模组场景用于修改后的回归。
+思索动态回归按模组和实际演示逻辑选一个代表；只有数据格式、渲染路径、配置分支或修复行为存在实质差异时增加样本。完整注册清单继续用于低成本静态检查，受影响组与少量跨模组场景用于修改后的回归。
 
 开发者复现联合测试前，应在 `.local/config.json` 配置固定平台的独立 `server_launch_template` 和 `client_template_directory`。客户端模板须包含 `launch-client.args`、依赖及配置；模板属于额外本机准备，源码档案不附游戏依赖和测试世界。准备完成后执行：
 
@@ -183,14 +183,12 @@ python -X utf8 -B scripts/test_three_addons.py client
 | `manifests/`、`modpack/` | 来源、哈希、资源锁、运行清单和 HMCL 平台清单 |
 | `tests/runtime-probe/` | 独立运行时探针源码，不随游玩包提供 |
 | `docs/`、`knowledge/` | 移植、修复与验证记录、可复用技术说明 |
-| `artifacts/`、`runtime/`、`.local/`、`tooling/` | 本地构建、测试数据、配置与缓存，排除在普通 Git 交付之外 |
+| `artifacts/`、`runtime/`、`.local/`、`tooling/` | 本地构建、测试数据、配置与缓存，由 Git 忽略 |
 
 - 起点：[来源与许可详解](docs/SOURCE-AND-LICENSES.md)、[模组升级与测试方法](docs/MOD-UPGRADE-AND-TESTING.md)、[第三方声明](THIRD_PARTY_NOTICES.md)。
 - 模块技术记录：[Liquid Fuel](modules/create-liquid-fuel-adapted-263/docs/PORTING-26.3.md)、[Ore Excavation](modules/create-ore-excavation-adapted-263/docs/PORTING-26.3.md)、[Transmission & Linkage](modules/transmission-linkage-adapted-263/docs/PORTING-26.3.md)、[Electro](docs/porting-notes/ELECTRO-26.3.md)、[Storage 与 Additional Logistics](docs/porting-notes/STORAGE-LOGISTICS-26.3.md)、[FluidLogistics](docs/porting-notes/FLUID-26.3.md)、[Enchantment Industry 与 Dragons Plus](docs/porting-notes/ENCHANTMENT-DRAGONS-26.3.md)。
 - 修复与验证：[主验证](docs/VALIDATION.md)、[深入玩法](docs/GAMEPLAY-VALIDATION-26.3.md)、[思索专项](docs/PONDER-AUDIT-20261104.md)、[通风口渲染](docs/VENT-RENDER-HOTFIX-20261029.md)、[热气球火焰](docs/PONDER-FLAME-HOTFIX-20261103.md)。
 - 历史与进展：[0.1 验证](docs/VALIDATION-v0.1.0-alpha.1.md)、[0.2 验证](docs/VALIDATION-v0.2.0-alpha.1.md)、[0.3 alpha.1 验证](docs/VALIDATION-v0.3.0-alpha.1.md)、[发布记录](docs/RELEASE.md)、[PROGRESS](PROGRESS.md)、[TODO](TODO.md)、[CHANGELOG](CHANGELOG.md)。
-
-旧版本文档保留原私有仓库的发布与提交链接；访问这些历史链接需要原仓库权限。
 
 反馈时请注明整合包版本、Java/NeoForge 版本、受影响模块、最小复现步骤和必要日志；分享日志前移除账户、令牌和个人路径。涉及存档的问题请在副本中复现。
 

@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "repository": "https://github.com/Flowfangfei/create-263-modpack-public",
+  "tag": "v0.3.0-alpha.3",
+  "release_url": "https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3",
+  "release_id": 434013834,
+  "published_at": "2026-11-04T14:15:51Z",
+  "verified_at": "2026-11-04T22:25:07+08:00",
+  "prerelease": true,
+  "draft": false,
+  "source_commit": "49a7bb8e6d909a2aaa3bb01acade4c8c0cb4fe34",
+  "source_tree": "f7f34e67e60036435536e85709a592db2d8f2ed9",
+  "source_archive": "canonical Git export; 53363 module files across 15 modules verified by SHA-256",
+  "private_archive": {
+    "repository": "https://github.com/Flowfangfei/create-263-modpack",
+    "visibility": "PRIVATE",
+    "main_merge_commit": "cef7df2a663127d3311ab36e67f653cba00ddfbe",
+    "pull_request": 4,
+    "history_and_old_releases_preserved": true
+  },
+  "public_snapshot": {
+    "independent_root_commit": true,
+    "private_history_imported": false,
+    "provenance": "manifests/publication-source.json"
+  },
+  "assets": {
+    "Create263-Pack-v0.3.0-alpha.3-installer.zip": {
+      "asset_id": 709752287,
+      "bytes": 57813731,
+      "sha256": "7bc3ed9c60e52b9fc7d56b61e494604519e7c3287e06f35266409b4cc73ac77f",
+      "url": "https://github.com/Flowfangfei/create-263-modpack-public/releases/download/v0.3.0-alpha.3/Create263-Pack-v0.3.0-alpha.3-installer.zip",
+      "state": "uploaded"
+    },
+    "Create263-Pack-v0.3.0-alpha.3-sources.zip": {
+      "asset_id": 709752290,
+      "bytes": 73910426,
+      "sha256": "8a16f89462a299cb195950310b7f936f66f634882914cdd0e80ca573394a4011",
+      "url": "https://github.com/Flowfangfei/create-263-modpack-public/releases/download/v0.3.0-alpha.3/Create263-Pack-v0.3.0-alpha.3-sources.zip",
+      "state": "uploaded"
+    },
+    "SHA256SUMS.txt": {
+      "asset_id": 709752297,
+      "bytes": 218,
+      "sha256": "82ec436db87a71c5c16093c651f337dacbe63c29e8bdb324ffa5d88d21114b77",
+      "url": "https://github.com/Flowfangfei/create-263-modpack-public/releases/download/v0.3.0-alpha.3/SHA256SUMS.txt",
+      "state": "uploaded"
+    }
+  },
+  "validation": {
+    "installer": "final published installer freshly extracted and executed in Windows PowerShell 5.1",
+    "runtime_jars_with_all_entries_equal_to_tested_set": 18,
+    "locked_aeronautics_targets_excluded_and_restored": 1593,
+    "ponder_report": "docs/PONDER-AUDIT-20261104.md",
+    "public_tree_privacy_audit": {
+      "paths": 53593,
+      "block": 0,
+      "review": 0
+    },
+    "original_saves_accessed": false,
+    "hosted_CI_claimed": false
+  },
+  "readme_review": {
+    "local_links_and_versions": "passed",
+    "chinese_english_remote_blobs_match": "passed",
+    "svg_offline_render_and_visual_review": "passed",
+    "github_browser_preview": "blocked: in-app browser timed out twice; GitHub content API verified instead"
+  },
+  "download_verification": {
+    "SHA256SUMS.txt": "downloaded and SHA-256 matched",
+    "installer": "not completed: gh download received zero bytes; bounded public curl request failed to connect (exit 28)",
+    "source_zip": "server SHA-256 and size matched; full download not repeated",
+    "proxy_configuration": "not read: automatic approval rejected configuration access because it could expose proxy credentials",
+    "network_settings_changed": false
+  }
+}

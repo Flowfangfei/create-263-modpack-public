@@ -1,3 +1,29 @@
+# 0.3.0-alpha.3 — 公开实验性发布 / Public experimental release
+
+发布页：[v0.3.0-alpha.3](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3)。发布时间：`2026-11-04T14:15:51Z`。状态为 public prerelease，非 draft。
+
+新公开仓库使用独立初始提交 `49a7bb8e6d909a2aaa3bb01acade4c8c0cb4fe34`，树为 `f7f34e67e60036435536e85709a592db2d8f2ed9`。真实导入来源见[快照记录](../manifests/publication-source.json)。原私有仓库的 [PR #4](https://github.com/Flowfangfei/create-263-modpack/pull/4) 已合并到 main（`cef7df2a663127d3311ab36e67f653cba00ddfbe`）；该仓库、旧分支、标签及旧附件继续保持私有，未导入本公开 Git 历史。
+
+| 附件 / Asset | 字节 / Bytes | SHA-256 |
+| --- | ---: | --- |
+| [Create263-Pack-v0.3.0-alpha.3-installer.zip](https://github.com/Flowfangfei/create-263-modpack-public/releases/download/v0.3.0-alpha.3/Create263-Pack-v0.3.0-alpha.3-installer.zip) | 57813731 | `7bc3ed9c60e52b9fc7d56b61e494604519e7c3287e06f35266409b4cc73ac77f` |
+| [Create263-Pack-v0.3.0-alpha.3-sources.zip](https://github.com/Flowfangfei/create-263-modpack-public/releases/download/v0.3.0-alpha.3/Create263-Pack-v0.3.0-alpha.3-sources.zip) | 73910426 | `8a16f89462a299cb195950310b7f936f66f634882914cdd0e80ca573394a4011` |
+| [SHA256SUMS.txt](https://github.com/Flowfangfei/create-263-modpack-public/releases/download/v0.3.0-alpha.3/SHA256SUMS.txt) | 218 | `82ec436db87a71c5c16093c651f337dacbe63c29e8bdb324ffa5d88d21114b77` |
+
+三个附件的 GitHub 服务端摘要、大小及 uploaded 状态与本地最终文件一致。SHA256SUMS.txt 已重新下载且 hash 一致；完整安装器在当前网络未收到数据，限时公开请求以连接超时结束（exit 28），因此不声称已完成完整附件回下载核验。读取代理配置的尝试被自动审批拒绝，未读取配置或更改网络设置。具体范围见[机器发布清单](../manifests/releases/v0.3.0-alpha.3.json)。
+
+最终安装器 ZIP 在全新目录解压后，经原生 Windows PowerShell 5.1 实际执行通过。还原的 18 个 JAR 全部非目录条目与已完成客户端验证的组合一致；1593 个航空学锁定素材目标在负载中排除、还原后 hash 正确。官方 Create 素材和 Diesel 单独授权音效校验通过；固定上游输入来自已核验 SHA-256 的缓存。完整 HMCL 包仅在本地生成，不作为 GitHub 附件镜像。
+
+源码 ZIP 从固定提交按 Git 规范字节导出，15 模块 53,363 文件逐项核对通过。公开树隐私审计覆盖 53,593 个跟踪路径，阻断和待审项均为 0；另确认全部 53,592 个导入 Git blob 与文件模式等同已审计来源树，仅新增真实快照记录。上游原有空白格式和署名保持，当前任务修改在私有合并前通过差异检查。
+
+思索验证完成 389 场景、3458 采样点、38592 帧，资源重载后另验 12 场景；这仍是部分测试，快进采样不等于全程自然播放或完整玩法验收。后续采用同模组同实际逻辑的代表样本，并保留受影响组与少量跨模组检查。多人、长期负载、移动子空间和旧 Storage 自动迁移等仍有待测项。原存档未访问，本轮发布未重复游戏回归。
+
+中英 README、原创 SVG、链接和版本已检查，GitHub 内容 API 返回的 README/英文版/架构图 Git blob 与本地一致。内置浏览器两次超时，GitHub 网页排版未完成预览；SVG 已离线渲染并目视核验。
+
+The public release contains an independent audited source snapshot, a license-aware installer, and SHA-256 sums. Native Windows installation restored all 18 runtime JARs byte-for-byte at entry level. Component licenses and original credits remain applicable; see [English source and license notes](SOURCE-AND-LICENSES.en.md) and the [upgrade/testing guide](MOD-UPGRADE-AND-TESTING.en.md). Testing is partial. The original private repository, historical refs and old release files are preserved separately.
+
+---
+
 > 2026-11-04 校正：下列旧版本记录中“附件不含受限素材”的结论不完整。新审计发现旧源码 ZIP、Git 历史及安装器中有遗漏的跨命名空间航空学素材，旧依赖 JAR 也含受限美术。旧记录作为历史证据保留，相关旧仓库和附件继续保持私有；详见[来源与许可](SOURCE-AND-LICENSES.md)。新版本的分发核验单独记录。
 
 # 0.3.0-alpha.2 发布记录
