@@ -30,6 +30,8 @@ import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -38,6 +40,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.DataComponentFluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -59,12 +62,14 @@ public class PotionMixingRecipesMixin {
     }
 
     @WrapOperation(method = "createRecipesImpl", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/fluids/potion/PotionMixingRecipes;createRecipe(Ljava/lang/String;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/neoforged/neoforge/fluids/FluidStack;Lnet/neoforged/neoforge/fluids/FluidStack;)Lnet/minecraft/world/item/crafting/RecipeHolder;"))
-    private static RecipeHolder<MixingRecipe> createRecipesImpl$createDragonBreathFluidRecipe(String id, Ingredient ingredient, FluidStack fromFluid, FluidStack toFluid, Operation<RecipeHolder<MixingRecipe>> original, @Local(name = "mixingRecipes") List<RecipeHolder<MixingRecipe>> mixingRecipes) {
+    private static RecipeHolder<MixingRecipe> createRecipesImpl$createDragonBreathFluidRecipe(String id, Ingredient ingredient, FluidStack fromFluid, FluidStack toFluid, Operation<RecipeHolder<MixingRecipe>> original, @Local(argsOnly = true) Level level, @Local(name = "mixingRecipes") List<RecipeHolder<MixingRecipe>> mixingRecipes) {
         if (CDPConfig.features().generateAutomaticBrewingRecipeForDragonBreathFluid.get()) {
             if (shouldCreateDragonBreathFluidRecipe(ingredient, fromFluid, toFluid)) {
                 var recipeId = CDPCommon.asResource(id + "_using_dragon_breath_fluid");
+                var dragonBreath = level.registryAccess().lookupOrThrow(Registries.FLUID)
+                        .getOrThrow(CDPFluids.COMMON_TAGS.dragonBreath);
                 var recipe = new StandardProcessingRecipe.Builder<>(MixingRecipe::new, recipeId)
-                        .require(CDPFluids.COMMON_TAGS.dragonBreath, 250)
+                        .require(new SizedFluidIngredient(FluidIngredient.of(dragonBreath), 250))
                         .require(new SizedFluidIngredient(
                                 DataComponentFluidIngredient.of(false, fromFluid),
                                 fromFluid.getAmount()
@@ -73,7 +78,7 @@ public class PotionMixingRecipesMixin {
                         .requiresHeat(HeatCondition.HEATED)
                         .build();
                 FLUID_DRAGON_BREATH_RECIPES.add(recipe);
-                mixingRecipes.add(new RecipeHolder<>(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.RECIPE, recipeId), recipe));
+                mixingRecipes.add(new RecipeHolder<>(ResourceKey.create(Registries.RECIPE, recipeId), recipe));
             }
         }
         return original.call(id, ingredient, fromFluid, toFluid);
