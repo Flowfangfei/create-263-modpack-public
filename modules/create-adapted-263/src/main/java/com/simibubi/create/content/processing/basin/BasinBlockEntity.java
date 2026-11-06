@@ -27,7 +27,6 @@ import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
 import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour.TankSegment;
-import com.simibubi.create.foundation.blockEntity.behaviour.inventory.InvManipulationBehaviour;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import com.simibubi.create.foundation.item.ItemHelper;
@@ -82,6 +81,7 @@ import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.item.ItemUtil;
 import net.neoforged.neoforge.transfer.transaction.SnapshotJournal;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
@@ -455,16 +455,15 @@ public class BasinBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 			.relative(direction));
 
 		FilteringBehaviour filter = null;
-		InvManipulationBehaviour inserter = null;
 		if (be != null) {
 			filter = BlockEntityBehaviour.get(level, be.getBlockPos(), FilteringBehaviour.TYPE);
-			inserter = BlockEntityBehaviour.get(level, be.getBlockPos(), InvManipulationBehaviour.TYPE);
 		}
 
 		if (filter != null && filter.isRecipeFilter())
 			filter = null; // Do not test spout outputs against the recipe filter
 
-		IItemHandler targetInv = be == null ? null : inserter == null ? null : inserter.getInventory();
+		ResourceHandler<ItemResource> targetInv = be == null ? null
+			: level.getCapability(Capabilities.Item.BLOCK, be.getBlockPos(), direction.getOpposite());
 
 		ResourceHandler<FluidResource> targetTank = be == null ? null
 			: level.getCapability(Capabilities.Fluid.BLOCK, be.getBlockPos(), direction.getOpposite());
@@ -484,7 +483,7 @@ public class BasinBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 			if (targetInv == null)
 				break;
 
-			ItemStack remainder = ItemHandlerHelper.insertItemStacked(targetInv, itemStack, true);
+			ItemStack remainder = ItemUtil.insertItemReturnRemaining(targetInv, itemStack, true, null);
 			if (remainder.getCount() == itemStack.getCount())
 				continue;
 			if (filter != null && !filter.test(itemStack))
@@ -494,7 +493,7 @@ public class BasinBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 				visualizedOutputItems.add(IntAttached.withZero(itemStack));
 			update = true;
 
-			remainder = ItemHandlerHelper.insertItemStacked(targetInv, itemStack.copy(), false);
+			remainder = ItemUtil.insertItemReturnRemaining(targetInv, itemStack.copy(), false, null);
 			if (remainder.isEmpty())
 				iterator.remove();
 			else
@@ -605,9 +604,8 @@ public class BasinBlockEntity extends SmartBlockEntity implements IHaveGoggleInf
 			BlockEntity be = level.getBlockEntity(worldPosition.below()
 				.relative(direction));
 
-			InvManipulationBehaviour inserter =
-				be == null ? null : BlockEntityBehaviour.get(level, be.getBlockPos(), InvManipulationBehaviour.TYPE);
-			IItemHandler targetInv = be == null ? null : inserter == null ? null : inserter.getInventory();
+			ResourceHandler<ItemResource> targetInv = be == null ? null
+				: level.getCapability(Capabilities.Item.BLOCK, be.getBlockPos(), direction.getOpposite());
 			ResourceHandler<FluidResource> targetTank = be == null ? null
 				: level.getCapability(Capabilities.Fluid.BLOCK, be.getBlockPos(), direction.getOpposite());
 			boolean externalTankNotPresent = targetTank == null;
