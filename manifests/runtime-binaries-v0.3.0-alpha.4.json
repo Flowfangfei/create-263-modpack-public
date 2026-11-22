@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "version": "v0.3.0-alpha.4",
+  "base_release": "v0.3.0-alpha.3",
+  "assembly": "Previously tested runtime with targeted Java 25 class replacements in four JARs",
+  "modules": {
+    "create-adapted-recovered.jar": {
+      "runtime_sha256": "97c1e32176a4900da52723baf24ca77439d1fb4eec4da03f1b697349154f0549",
+      "payload_sha256": "97c1e32176a4900da52723baf24ca77439d1fb4eec4da03f1b697349154f0549",
+      "excluded_resource_entries": 0,
+      "classes": 3031
+    },
+    "sable-adapted.jar": {
+      "runtime_sha256": "cb5436cbd1b1ef41f843f66227c4c9b74f4eedd43fe6082ad0d237edfd14b230",
+      "payload_sha256": "cb5436cbd1b1ef41f843f66227c4c9b74f4eedd43fe6082ad0d237edfd14b230",
+      "excluded_resource_entries": 0,
+      "classes": 628
+    },
+    "railways-adapted.jar": {
+      "runtime_sha256": "b989d5c8569a617cae9cc22ab92d773c93043c95b705a347c2b3dc03b863dc99",
+      "payload_sha256": "ec20f77ed13cb29803aefff7d3e244cb139fce7a5b353dbbecdff463ae8c8591",
+      "excluded_resource_entries": 0,
+      "classes": 998
+    },
+    "connected-adapted.jar": {
+      "runtime_sha256": "2a0f8e24e2cff6721f26177cebd8f191b8eaccecc2ade992ab004d27205c952c",
+      "payload_sha256": "2a0f8e24e2cff6721f26177cebd8f191b8eaccecc2ade992ab004d27205c952c",
+      "excluded_resource_entries": 0,
+      "classes": 447
+    },
+    "connected-simulated-bridge.jar": {
+      "runtime_sha256": "cf9e1f0a3aef9a9f8aad9939613fce0ac52500b5e8d5eee8e43c9ced5f74baf9",
+      "payload_sha256": "cf9e1f0a3aef9a9f8aad9939613fce0ac52500b5e8d5eee8e43c9ced5f74baf9",
+      "excluded_resource_entries": 0,
+      "classes": 10
+    },
+    "diesel-adapted.jar": {
+      "runtime_sha256": "fc3f531a10119d8ec9d0a53615332944a49c1659f76a70e56d029d0e17c1a277",
+      "payload_sha256": "c9dbad5a9b2e69d6ab368355c74f7bc716b1fe35680938caa4f983454b4b0f15",
+      "excluded_resource_entries": 1,
+      "classes": 290
+    },
+    "simulated-adapted.jar": {
+      "runtime_sha256": "fc6fa1ebc9b51de18052dcd311547139ac70da0f125d176f5ffa3769c786eab6",
+      "payload_sha256": "6c86b9cd4872fe9b743c9fa6e0c8e6fc237522ea6aeb9532db36821c96a36097",
+      "excluded_resource_entries": 1198,
+      "classes": 926
+    },
+    "offroad-adapted.jar": {
+      "runtime_sha256": "0a981e05253364db5f84abdc47208bdf0a21e9016b6fee02d9747889d1ff7be3",
+      "payload_sha256": "b0ec901d110f1ac8639df4738aedcc00362c8ce32b95b690c440655d6a02cc90",
+      "excluded_resource_entries": 139,
+      "classes": 87
+    },
+    "aeronautics-adapted.jar": {
+      "runtime_sha256": "6152cafb153c212a7640317beb7fbe0f1bc8f07140302131fdc45ccc8db9fce8",
+      "payload_sha256": "5957789204db6057d816dcdde9357b07e029b7e21baaeddff3c23e1d6760faa5",
+      "excluded_resource_entries": 490,
+      "classes": 270
+    },
+    "liquid-fuel-adapted.jar": {
+      "runtime_sha256": "541eab4d1c023931a9813db9908109da23bbf1ba7e0be26c4156bda39f564a1b",
+      "payload_sha256": "541eab4d1c023931a9813db9908109da23bbf1ba7e0be26c4156bda39f564a1b",
+      "excluded_resource_entries": 0,
+      "classes": 14
+    },
+    "ore-excavation-adapted.jar": {
+      "runtime_sha256": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+      "payload_sha256": "dac255eb02a26dcea26545d1ad4ddc656799d5dcbdc166dccff4dab1c4a0e7aa",
+      "excluded_resource_entries": 0,
+      "classes": 111
+    },
+    "transmission-linkage-adapted.jar": {
+      "runtime_sha256": "69b2dba16719af0dd33eb8762689ec403ff95813e57a268e07bfec1962e36cff",
+      "payload_sha256": "69b2dba16719af0dd33eb8762689ec403ff95813e57a268e07bfec1962e36cff",
+      "excluded_resource_entries": 0,
+      "classes": 142
+    },
+    "dragons-plus-adapted.jar": {
+      "runtime_sha256": "5900d63508d1eacdaf33b2c33eb268a8b17bb6b12da55840887cfa7f522a2421",
+      "payload_sha256": "5900d63508d1eacdaf33b2c33eb268a8b17bb6b12da55840887cfa7f522a2421",
+      "excluded_resource_entries": 0,
+      "classes": 300
+    },
+    "enchantment-industry-adapted.jar": {
+      "runtime_sha256": "dd655c9ba807d61ec6814833f969974e0eade973ef8b87972fa3467fcf0078c4",
+      "payload_sha256": "36546ed9e916d4a86010831a4d77eb9b129548bd735bbfd246186281d90731a7",
+      "excluded_resource_entries": 0,
+      "classes": 216
+    },
+    "electroenergetics-adapted.jar": {
+      "runtime_sha256": "5aad245e80ede384faa40fcc6c30df3e47e0f40d29633a90e4761d0660bd230a",
+      "payload_sha256": "afaa6c899128378d2375442000f432b9b6e179c242ce63cc0d3c0721f5ae9945",
+      "excluded_resource_entries": 0,
+      "classes": 644
+    },
+    "additional-logistics-adapted.jar": {
+      "runtime_sha256": "a3497e6e4ca72587b4a0d5f6f49c560fcc23cda1df5b79113e53f3a8b62b0cec",
+      "payload_sha256": "a3497e6e4ca72587b4a0d5f6f49c560fcc23cda1df5b79113e53f3a8b62b0cec",
+      "excluded_resource_entries": 0,
+      "classes": 215
+    },
+    "storage-adapted.jar": {
+      "runtime_sha256": "7d90906a9039cc3efa6ee1e7fc0e0b84bdcde57999f109d0b46a7ced28183c4a",
+      "payload_sha256": "7d90906a9039cc3efa6ee1e7fc0e0b84bdcde57999f109d0b46a7ced28183c4a",
+      "excluded_resource_entries": 0,
+      "classes": 441
+    },
+    "fluid-logistics-adapted.jar": {
+      "runtime_sha256": "7e9e44e016f3a9408469584202c957bef2a435cc0575597b8ec38c94de5c26b0",
+      "payload_sha256": "0a83cfe71e97492e1ce7e466a35c85cc35523417a000560711a47dd0d5ff2f44",
+      "excluded_resource_entries": 0,
+      "classes": 673
+    }
+  }
+}

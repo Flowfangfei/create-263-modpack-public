@@ -6,27 +6,29 @@
 
 An experimental Create modpack and source workspace for **Minecraft Java 26.3**, bringing together machinery, railways, physics assemblies, aviation, electricity, storage, fluid logistics and enchantment processing. Players can generate an HMCL import package with the installer. Mod port developers can inspect pinned upstream sources, reproduce builds and continue work on individual modules.
 
-The current version is **0.3.0-alpha.3**, targeting **NeoForge 26.3.0.22-beta / Java 25**, with **15 source module directories and 18 direct runtime JARs**. This is a community port and integration project; component identities, authors and licenses are retained separately.
+The current version is **0.3.0-alpha.4**, targeting **NeoForge 26.3.0.22-beta / Java 25**, with **15 source module directories and 18 direct runtime JARs**. This is a community port and integration project; component identities, authors and licenses are retained separately.
 
 [Install](#install-with-hmcl) · [Features and architecture](#features-and-architecture) · [Development](#development-path-and-technical-documents) · [Build from source](#build-from-source) · [Validation scope](#validation-scope) · [Sources and licenses](#sources-and-licenses)
 
-Download: [v0.3.0-alpha.3](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3) · [Release record](docs/RELEASE.md) · Last reviewed: **2026-11-04**.
+Download: [v0.3.0-alpha.4](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.4) · [Release record](docs/RELEASE.md) · Last reviewed: **2026-11-22**.
+
+This release fixes coupled minecarts stalling or reversing on tight turns into slopes. It also includes mixer recipe and basin output fixes, Storage tooltip fixes, and a Sable item collision fix.
 
 ## Install with HMCL
 
 You need **Windows, Windows PowerShell, HMCL, Java 25** and an internet connection. The installer downloads pinned upstream resources; HMCL installs the matching Minecraft and NeoForge versions.
 
-1. Choose the matching version under [Releases](https://github.com/Flowfangfei/create-263-modpack-public/releases) and download `Create263-Pack-v0.3.0-alpha.3-installer.zip` and `SHA256SUMS.txt`. Developers can also download `Create263-Pack-v0.3.0-alpha.3-sources.zip`. Check that the downloaded version matches this document.
+1. Choose the matching version under [Releases](https://github.com/Flowfangfei/create-263-modpack-public/releases) and download `Create263-Pack-v0.3.0-alpha.4-installer.zip` and `SHA256SUMS.txt`. Developers can also download `Create263-Pack-v0.3.0-alpha.4-sources.zip`. Check that the downloaded version matches this document.
 2. Calculate the installer hash in PowerShell, compare it with the matching entry in `SHA256SUMS.txt`, then extract the entire installer.
 
    ```powershell
-   Get-FileHash .\Create263-Pack-v0.3.0-alpha.3-installer.zip -Algorithm SHA256
+   Get-FileHash .\Create263-Pack-v0.3.0-alpha.4-installer.zip -Algorithm SHA256
    ```
 
 3. Run `Install-Pack.cmd` from the extracted directory. The script verifies SHA-256 hashes for downloads and resource entries. On success it prints `HMCL import package created:` and creates:
 
    ```text
-   output/Create263-Pack-v0.3.0-alpha.3-HMCL.zip
+   output/Create263-Pack-v0.3.0-alpha.4-HMCL.zip
    ```
 
 4. Import this **`-HMCL.zip`** into HMCL as a new instance and select **Java 25** for that instance. The `-installer.zip` contains the resource restoration tool and cannot be imported directly as an HMCL modpack.
@@ -131,14 +133,14 @@ After completing the relevant validation, generate the installer:
 python -X utf8 -B scripts/release.py
 ```
 
-This creates `artifacts/releases/Create263-Pack-v0.3.0-alpha.3-installer.zip` and does not publish it to GitHub. Export the source archive from a fixed commit containing the latest source hash manifests:
+This creates `artifacts/releases/Create263-Pack-v0.3.0-alpha.4-installer.zip` and does not publish it to GitHub. Export the source archive from a fixed commit containing the latest source hash manifests:
 
 ```powershell
 $sourceRef = '<Git commit containing complete source hash manifests>'
 python -X utf8 -B scripts/source_archive.py --ref $sourceRef
 ```
 
-The output is `Create263-Pack-v0.3.0-alpha.3-sources.zip` in the same directory; its version comes from the selected commit's modpack manifest. Export verifies individual source files using Git-normalized bytes and LF endings. Final release attachment hashes are recorded in `SHA256SUMS.txt` and the [release record](docs/RELEASE.md).
+The output is `Create263-Pack-v0.3.0-alpha.4-sources.zip` in the same directory; its version comes from the selected commit's modpack manifest. Export verifies individual source files using Git-normalized bytes and LF endings. Final release attachment hashes are recorded in `SHA256SUMS.txt` and the [release record](docs/RELEASE.md).
 
 ### Individual modules and local configuration
 

@@ -66,6 +66,8 @@ public final class IntegrationProbe {
         if (net.neoforged.fml.loading.FMLEnvironment.getDist() == net.neoforged.api.distmarker.Dist.CLIENT
                 && Boolean.getBoolean("create263.clientStoragePonderRegression")) StoragePonderClientProbe.install();
         if (net.neoforged.fml.loading.FMLEnvironment.getDist() == net.neoforged.api.distmarker.Dist.CLIENT
+                && Boolean.getBoolean("create263.clientStorageTooltipRegression")) StorageTooltipClientProbe.install();
+        if (net.neoforged.fml.loading.FMLEnvironment.getDist() == net.neoforged.api.distmarker.Dist.CLIENT
                 && Boolean.getBoolean("create263.clientAllPonderAudit")) AllPonderClientProbe.install();
         if (!Boolean.getBoolean("create263.runtimeProbe")) return;
         root = Path.of(System.getProperty("create263.probeRoot")).toAbsolutePath().normalize();

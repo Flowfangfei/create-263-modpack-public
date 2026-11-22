@@ -1,6 +1,5 @@
 package net.fxnt.fxntstorage.item.upgrades;
 
-import com.simibubi.create.foundation.item.TooltipHelper;
 import net.createmod.catnip.api.client.lang.FontHelper;
 import net.fxnt.fxntstorage.FXNTStorage;
 import net.fxnt.fxntstorage.backpack.client.menu.BackpackScreen;
@@ -9,6 +8,7 @@ import net.fxnt.fxntstorage.backpack.upgrade.jetpack.JetpackModifier;
 import net.fxnt.fxntstorage.config.ConfigManager;
 import net.fxnt.fxntstorage.util.KeybindHandler;
 import net.fxnt.fxntstorage.util.Util;
+import net.fxnt.fxntstorage.client.StorageTooltipText;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.gui.screens.Screen;
@@ -121,18 +121,18 @@ public class UpgradeItem extends Item {
             // Add summary component
             text.add(Component.empty());
             if (name.equals(Util.CRAFTING_UPGRADE) || name.equals(Util.WORKSHOP_UPGRADE)) {
-                text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".summary1"), FontHelper.Palette.STANDARD_CREATE));
+                text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".summary1"), FontHelper.Palette.STANDARD_CREATE));
                 text.add(Component.empty());
-                text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".summary2"), FontHelper.Palette.STANDARD_CREATE));
+                text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".summary2"), FontHelper.Palette.STANDARD_CREATE));
             } else {
-                text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".summary"), FontHelper.Palette.STANDARD_CREATE));
+                text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".summary"), FontHelper.Palette.STANDARD_CREATE));
             }
             text.add(Component.empty());
 
             if (Objects.equals(name.replaceAll("_deactivated$", ""), Util.MAGNET_UPGRADE) ||
                     Objects.equals(name.replaceAll("_deactivated$", ""), Util.ITEMPICKUP_UPGRADE)) {
                 placeholder = ConfigManager.ServerConfig.MAGNET_PULL_RANGE.get().toString();
-                text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".exclusion"), FontHelper.Palette.STANDARD_CREATE));
+                text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".exclusion"), FontHelper.Palette.STANDARD_CREATE));
                 text.add(Component.empty());
             }
 
@@ -147,8 +147,8 @@ public class UpgradeItem extends Item {
             // Add up to 9 conditions/behaviors
             for (int i = 1; i < 10; i++) {
                 if (!net.minecraft.locale.Language.getInstance().has(translateKey + ".condition" + i)) break;
-                text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".condition" + i), FontHelper.Palette.ALL_GRAY));
-                text.addAll(TooltipHelper.cutTextComponent(
+                text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".condition" + i), FontHelper.Palette.ALL_GRAY));
+                text.addAll(StorageTooltipText.format(
                         Component.translatable(translateKey + ".behaviour" + i, placeholder),
                         FontHelper.Palette.STANDARD_CREATE.primary(), FontHelper.Palette.STANDARD_CREATE.highlight(), 1));
             }
@@ -157,8 +157,8 @@ public class UpgradeItem extends Item {
             if (!name.equals(Util.STORAGE_BOX_CAPACITY_UPGRADE) && !name.equals(Util.STORAGE_BOX_COMPACTING_UPGRADE)
                     && !name.equals(Util.STORAGE_BOX_VOID_UPGRADE) && !name.equals(Util.CRAFTING_UPGRADE)
                     && !name.equals(Util.WORKSHOP_UPGRADE)) {
-                text.addAll(TooltipHelper.cutTextComponent(Component.translatable("tooltip." + FXNTStorage.MOD_ID + ".upgrade_item_toggle.condition"), FontHelper.Palette.ALL_GRAY));
-                text.addAll(TooltipHelper.cutTextComponent(
+                text.addAll(StorageTooltipText.format(Component.translatable("tooltip." + FXNTStorage.MOD_ID + ".upgrade_item_toggle.condition"), FontHelper.Palette.ALL_GRAY));
+                text.addAll(StorageTooltipText.format(
                         Component.translatable("tooltip." + FXNTStorage.MOD_ID + ".upgrade_item_toggle.behaviour"),
                         FontHelper.Palette.STANDARD_CREATE.primary(), FontHelper.Palette.STANDARD_CREATE.highlight(), 1));
                 text.add(Component.empty());
@@ -167,7 +167,7 @@ public class UpgradeItem extends Item {
             if (name.equals(Util.STORAGE_BOX_COMPACTING_UPGRADE)) text.add(Component.empty());
 
             // Finally add any subtext components
-            text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".subtext"), FontHelper.Palette.GRAY_AND_GOLD.highlight(), FontHelper.Palette.GRAY_AND_GOLD.highlight()));
+            text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".subtext"), FontHelper.Palette.GRAY_AND_GOLD.highlight(), FontHelper.Palette.GRAY_AND_GOLD.highlight()));
         }
 
         tooltipComponents.addAll(text);
@@ -188,17 +188,17 @@ public class UpgradeItem extends Item {
         if (net.minecraft.client.Minecraft.getInstance().hasShiftDown()) {
             // Add summary component
             text.add(Component.empty());
-            text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".summary"), FontHelper.Palette.STANDARD_CREATE));
+            text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".summary"), FontHelper.Palette.STANDARD_CREATE));
             text.add(Component.empty());
 
             // Add a condition/behavior for toggling the upgrade
-            text.addAll(TooltipHelper.cutTextComponent(Component.translatable("tooltip." + FXNTStorage.MOD_ID + ".upgrade_item_toggle.condition"), FontHelper.Palette.ALL_GRAY));
-            text.addAll(TooltipHelper.cutTextComponent(
+            text.addAll(StorageTooltipText.format(Component.translatable("tooltip." + FXNTStorage.MOD_ID + ".upgrade_item_toggle.condition"), FontHelper.Palette.ALL_GRAY));
+            text.addAll(StorageTooltipText.format(
                     Component.translatable("tooltip." + FXNTStorage.MOD_ID + ".upgrade_item_toggle.behaviour"),
                     FontHelper.Palette.STANDARD_CREATE.primary(), FontHelper.Palette.STANDARD_CREATE.highlight(), 1));
 
             text.add(Component.empty());
-            text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".subtext"), FontHelper.Palette.GRAY_AND_GOLD.highlight(), FontHelper.Palette.GRAY_AND_GOLD.highlight()));
+            text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".subtext"), FontHelper.Palette.GRAY_AND_GOLD.highlight(), FontHelper.Palette.GRAY_AND_GOLD.highlight()));
         }
 
         if (net.minecraft.client.Minecraft.getInstance().hasControlDown()) {
@@ -208,14 +208,14 @@ public class UpgradeItem extends Item {
             for (int i = 1; i < 10; i++) {
                 if (!net.minecraft.locale.Language.getInstance().has(translateKey + ".condition" + i)) break;
                 if (!JetpackModifier.isEnabled() && i == FLIGHT_MODIFIERS_CONDITION) continue;
-                text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".condition" + i), FontHelper.Palette.ALL_GRAY));
+                text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".condition" + i), FontHelper.Palette.ALL_GRAY));
 
                 Component behaviour = i != 2
                         ? Component.translatable(translateKey + ".behaviour" + i, placeholder, placeholder)
                         : modifier.hasHeightLimit()
                         ? Component.translatable(translateKey + ".behaviour2", String.valueOf((int) modifier.getMaxHeight()))
                         : Component.translatable(translateKey + ".behaviour2.unlimited");
-                text.addAll(TooltipHelper.cutTextComponent(behaviour,
+                text.addAll(StorageTooltipText.format(behaviour,
                         FontHelper.Palette.PURPLE.primary(), FontHelper.Palette.PURPLE.highlight(), 1));
             }
         }

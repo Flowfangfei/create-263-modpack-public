@@ -6,27 +6,29 @@
 
 面向 Minecraft Java **26.3** 的实验性 Create 整合包与源码工作区，整合机械动力、铁路、物理装配、航空、电力、仓储、流体物流和附魔加工。玩家可通过安装器生成 HMCL 导入包；模组移植开发者可查看固定上游来源、复现构建，并按独立模块继续适配。
 
-当前版本为 **0.3.0-alpha.3**，平台固定为 **NeoForge 26.3.0.22-beta / Java 25**，包含 **15 个源码模块目录、18 个直接运行 JAR**。本工程是社区移植与整合，组件名称、作者和许可分别保留。
+当前版本为 **0.3.0-alpha.4**，平台固定为 **NeoForge 26.3.0.22-beta / Java 25**，包含 **15 个源码模块目录、18 个直接运行 JAR**。本工程是社区移植与整合，组件名称、作者和许可分别保留。
 
 [安装](#安装到-hmcl) · [功能与架构](#功能与架构) · [开发路线](#开发路线与技术文档) · [源码构建](#从源码构建) · [验证范围](#已验证的范围) · [来源与许可](#来源与许可)
 
-下载：[v0.3.0-alpha.3](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3) · [发布记录](docs/RELEASE.md) · 最后审核：**2026-11-04**。
+下载：[v0.3.0-alpha.4](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.4) · [发布记录](docs/RELEASE.md) · 最后审核：**2026-11-22**。
+
+本版修复五辆连轴矿车在连续急弯、掉头和上坡时卡住的问题，也包含搅拌器龙息配方、工作盆向置物台出料、仓储物品说明及 Sable 掉落物碰撞修复。
 
 ## 安装到 HMCL
 
 准备 **Windows、Windows PowerShell、HMCL、Java 25** 和网络连接。安装器会下载固定上游资源；HMCL 负责安装对应的 Minecraft 与 NeoForge。
 
-1. 在 [Releases](https://github.com/Flowfangfei/create-263-modpack-public/releases) 中选择对应版本，下载 `Create263-Pack-v0.3.0-alpha.3-installer.zip` 和 `SHA256SUMS.txt`。开发者另取同版 `Create263-Pack-v0.3.0-alpha.3-sources.zip`。确认下载版本与本文一致。
+1. 在 [Releases](https://github.com/Flowfangfei/create-263-modpack-public/releases) 中选择对应版本，下载 `Create263-Pack-v0.3.0-alpha.4-installer.zip` 和 `SHA256SUMS.txt`。开发者另取同版 `Create263-Pack-v0.3.0-alpha.4-sources.zip`。确认下载版本与本文一致。
 2. 用 PowerShell 计算安装器的哈希，与同版 `SHA256SUMS.txt` 中的条目比较，再完整解压安装器。
 
    ```powershell
-   Get-FileHash .\Create263-Pack-v0.3.0-alpha.3-installer.zip -Algorithm SHA256
+   Get-FileHash .\Create263-Pack-v0.3.0-alpha.4-installer.zip -Algorithm SHA256
    ```
 
 3. 在解压目录运行 `Install-Pack.cmd`。脚本验证下载文件和资源条目的 SHA-256，成功时显示 `HMCL import package created:` 并生成：
 
    ```text
-   output/Create263-Pack-v0.3.0-alpha.3-HMCL.zip
+   output/Create263-Pack-v0.3.0-alpha.4-HMCL.zip
    ```
 
 4. 在 HMCL 中导入这个 **`-HMCL.zip`**，安装为新实例，并将该实例的 Java 设置为 **Java 25**。`-installer.zip` 是资源恢复工具，不能直接作为 HMCL 整合包导入。
@@ -131,14 +133,14 @@ python -X utf8 -B scripts/package.py
 python -X utf8 -B scripts/release.py
 ```
 
-输出为 `artifacts/releases/Create263-Pack-v0.3.0-alpha.3-installer.zip`。该命令只打包，不发布到 GitHub。源码档案从包含最新源码哈希清单的固定提交导出：
+输出为 `artifacts/releases/Create263-Pack-v0.3.0-alpha.4-installer.zip`。该命令只打包，不发布到 GitHub。源码档案从包含最新源码哈希清单的固定提交导出：
 
 ```powershell
 $sourceRef = '<包含完整源码哈希清单的 Git 提交>'
 python -X utf8 -B scripts/source_archive.py --ref $sourceRef
 ```
 
-输出同目录下的 `Create263-Pack-v0.3.0-alpha.3-sources.zip`；版本取自指定提交的整合包清单。导出会逐文件核对源码清单，使用 Git 规范化字节与 LF 换行。发布附件的最终摘要记录于 `SHA256SUMS.txt` 和[发布记录](docs/RELEASE.md)。
+输出同目录下的 `Create263-Pack-v0.3.0-alpha.4-sources.zip`；版本取自指定提交的整合包清单。导出会逐文件核对源码清单，使用 Git 规范化字节与 LF 换行。发布附件的最终摘要记录于 `SHA256SUMS.txt` 和[发布记录](docs/RELEASE.md)。
 
 ### 单模块与本机配置
 

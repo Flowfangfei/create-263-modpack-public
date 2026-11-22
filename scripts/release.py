@@ -22,11 +22,13 @@ Code generated through wish-driven programming with GPT 6.1sol. Use with caution
 
 ## 内容与验证 / Contents and validation
 
-包含 {RUNTIME_MODULE_COUNT} 个直接运行 JAR。最新修复涵盖铁道机器人通风口、热气球、仓储思索模板，以及多模组思索的数据、渲染、动画和资源重载。Includes {RUNTIME_MODULE_COUNT} direct runtime JARs with fixes for Vent rendering, balloons, Storage Ponder templates, and cross-module Ponder data, rendering, animation and resource reload.
+包含 {RUNTIME_MODULE_COUNT} 个直接运行 JAR。本版修复矿车急弯上坡、搅拌配方与工作盆出料、仓储提示和掉落物碰撞。Includes {RUNTIME_MODULE_COUNT} runtime JARs, with fixes for minecart hairpins and slopes, mixer recipes, basin output, Storage tooltips, and dropped-item collision handling.
 
-389 项场景回放、3458 个采样时点、38592 帧界面渲染通过，资源重载后另验 12 个场景。这是部分功能验证，不能代表所有玩法或长期存档安全。389 scene playbacks, 3458 sampled times and 38592 GUI frames passed, plus 12 scenes after resource reload. This is partial coverage and does not establish complete gameplay or long-term save safety.
+运行包沿用已测试的 alpha.3 基线，并对四个 JAR 进行 Java 25 类文件替换。Runtime files retain the tested alpha.3 baseline with targeted Java 25 class replacements in four JARs. See [runtime manifest](manifests/runtime-binaries-v0.3.0-alpha.4.json).
 
-完整说明：[中文](docs/PROJECT-README.md) / [English](docs/PROJECT-README.en.md)。测试证据：[Ponder audit](docs/PONDER-AUDIT-20261104.md)。
+本版对受影响功能进行专项回归。各项验证的范围见发行说明，不等同于长时间或多人游玩验收。Testing was focused on the affected features. See the release notes for the exact coverage.
+
+完整说明：[中文](docs/PROJECT-README.md) / [English](docs/PROJECT-README.en.md)。
 
 ## 来源与许可 / Sources and licenses
 

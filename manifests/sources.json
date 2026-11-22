@@ -7,8 +7,8 @@
       "upstream_head": "30ec1245a5af80228699453c8e59f3285a6be074",
       "import_kind": "current working-tree snapshot, including uncommitted port changes",
       "source_sha256_manifest": "manifests/source-sha256/create-adapted-263.json",
-      "source_manifest_sha256": "b313fa44742cd631b2686c6bba031ac6ae79afd54862b3cd57747b31908b6655",
-      "file_count": 8207
+      "source_manifest_sha256": "e9de58d7c87879fb0efd74e440c058869aa88fb75f99bbc97bc46b411895dcca",
+      "file_count": 8208
     },
     {
       "module": "steam-n-rails-263",
@@ -25,7 +25,7 @@
       "upstream_head": "113035f369cf737b4c8a8c2262c609939d5dab22",
       "import_kind": "current working-tree snapshot, including uncommitted port changes",
       "source_sha256_manifest": "manifests/source-sha256/sable-adapted-263.json",
-      "source_manifest_sha256": "ddf76d2c885f0330eb0cfe33484aee1d21aa4b2b3137c73f787d14235df15d76",
+      "source_manifest_sha256": "50d081f85f365cfa5c16830ef0116698952b033f7538e7d9feda81985c7ed445",
       "file_count": 703
     },
     {
@@ -119,7 +119,7 @@
       },
       "port_documentation": "docs/porting-notes/ENCHANTMENT-DRAGONS-26.3.md",
       "source_sha256_manifest": "manifests/source-sha256/create-dragons-plus-adapted-263.json",
-      "source_manifest_sha256": "9d3a58fe07ece1bbd14a4ee21ebc9c7a1ad21250426537fb26113ca209b42956",
+      "source_manifest_sha256": "79ca588828cc95b86e64c24386c8446604bfa0498b181f2d2e6ada60f3715679",
       "file_count": 2166
     },
     {
@@ -219,8 +219,8 @@
       },
       "port_documentation": "docs/porting-notes/STORAGE-LOGISTICS-26.3.md",
       "source_sha256_manifest": "manifests/source-sha256/create-storage-adapted-263.json",
-      "source_manifest_sha256": "308a9f310374f44f0b3b726848a7f6ba56961859cd0a7aabbf6187bd85139412",
-      "file_count": 1038
+      "source_manifest_sha256": "50d7983b58ad929ae15008c47d1fc0bbcd9d0d96d7c2eb762eee80e5ef3a120c",
+      "file_count": 1039
     },
     {
       "module": "create-fluid-logistics-adapted-263",

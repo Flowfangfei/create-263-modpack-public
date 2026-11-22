@@ -1,3 +1,17 @@
+# 0.3.0-alpha.4 — 公开实验性发布 / Public experimental release
+
+[GitHub 发布页 / Release page](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.4) · [本版二进制清单 / Runtime JAR manifest](../manifests/runtime-binaries-v0.3.0-alpha.4.json)
+
+本版保持 Minecraft 26.3、NeoForge 26.3.0.22-beta、Java 25 与 18 个运行 JAR。主要改动是让连轴矿车沿相连轨道保持车距与行驶方向，避免在连续急弯、掉头和上坡时卡住。另修复工作盆向置物台出料、液态龙息搅拌配方、Storage 后台生成物品说明引发的崩溃，以及 Sable 掉落物的水平速度平方判断。
+
+与 alpha.3 的安装器载荷逐条比较，14 个 JAR 内容相同，4 个 JAR 仅改变对应编译类。此包在已有受测运行包上应用定向 Java 25 编译替换，源码档案对应本版补丁。安装器继续从锁定来源恢复许可受限素材，下载后请用本版 `SHA256SUMS.txt` 校验。
+
+最终 18 模组组合通过全部 32 项默认矿车模式服务端轨道检查。此前针对同一补丁的 10 项急转掉头线路也通过 20 刻/秒复验。详见[验证清单](../manifests/validation-summary-v0.3.0-alpha.4.json)。另有搅拌自动生产对照、中文版 Storage 客户端异步配方搜索和提示渲染、Sable 边界掉落物与碰撞验证。各修复测试涵盖的组合不同，不能视为本版已重复整个客户端或多人回归。
+
+The release retains 18 runtime JARs on Minecraft 26.3, NeoForge 26.3.0.22-beta and Java 25. Relative to alpha.3, the only payload entry changes are compiled classes in Create, Dragons Plus, Storage and Sable. The principal fix covers coupled minecarts on tight turns, hairpins and slopes. Targeted regression also covers mixer outputs, Storage tooltips and Sable dropped items. The installer fetches restricted assets from pinned sources. Check the downloads against `SHA256SUMS.txt`.
+
+---
+
 # 0.3.0-alpha.3 — 公开实验性发布 / Public experimental release
 
 发布页：[v0.3.0-alpha.3](https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3)。发布时间：`2026-11-04T14:15:51Z`。状态为 public prerelease，非 draft。
