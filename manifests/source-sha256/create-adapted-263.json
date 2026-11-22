@@ -25052,8 +25052,8 @@
       "bytes": 2687
     },
     "modules/create-adapted-263/src/main/java/com/simibubi/create/content/contraptions/minecart/CouplingPhysics.java": {
-      "sha256": "ee6b17ed52f773abb852d8e765bccba97dccf051587b188b861415e0505ae91f",
-      "bytes": 5787
+      "sha256": "052f35aba92a875e33fb62d2c8053f388617cb69100b1884ed515ae95904b513",
+      "bytes": 8059
     },
     "modules/create-adapted-263/src/main/java/com/simibubi/create/content/contraptions/minecart/CouplingRenderer.java": {
       "sha256": "fcc5e397840985ebbdab2050e43946b97405cf37a3380a96f78a1e74493e9883",
@@ -25062,6 +25062,10 @@
     "modules/create-adapted-263/src/main/java/com/simibubi/create/content/contraptions/minecart/MinecartCouplingItem.java": {
       "sha256": "3198939b46b492cfea8f6b92ef4a41327776e148a554adca194c8d97884518a3",
       "bytes": 3500
+    },
+    "modules/create-adapted-263/src/main/java/com/simibubi/create/content/contraptions/minecart/MinecartRailPath.java": {
+      "sha256": "7cca7f641b88a5238a6bab6bb5640fb5bfc1c85f776186cd0794907e049e02c3",
+      "bytes": 8658
     },
     "modules/create-adapted-263/src/main/java/com/simibubi/create/content/contraptions/minecart/MinecartSim2020.java": {
       "sha256": "449aaffe912ef889bba34dadc0511abd0a938b574aaa287aaf429e6f2ec13020",
@@ -28408,8 +28412,8 @@
       "bytes": 9775
     },
     "modules/create-adapted-263/src/main/java/com/simibubi/create/content/processing/basin/BasinBlockEntity.java": {
-      "sha256": "edf8ae0bd101155695d2420d4c6fb4ef94a2988ec23ef83729472811a2504cfc",
-      "bytes": 38448
+      "sha256": "b5df072b3bca77a13ddc7139441cea5c14091ea52cce4b06526c26028b537626",
+      "bytes": 38248
     },
     "modules/create-adapted-263/src/main/java/com/simibubi/create/content/processing/basin/BasinGenerator.java": {
       "sha256": "4c5a4693e3f93c9c35107d5d3fa37f7712d5f2c2a04ee61a7aeded5ac17ffa34",

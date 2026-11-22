@@ -1880,8 +1880,8 @@
       "bytes": 27213
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/backpack/BackpackItem.java": {
-      "sha256": "44111d2687ff07577b5bd03296572c907515fc16d699660e6582b248a420daaf",
-      "bytes": 6086
+      "sha256": "4a8a55188fa589a5ca9b0f792150cf5766e42c71098d7fdc0ef3869a7772d8eb",
+      "bytes": 5107
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/backpack/client/menu/BackpackMenu.java": {
       "sha256": "275174c2ed4081697c197ffde4af9c12f9e5738dc992500dd2eba28a59c4477b",
@@ -2240,12 +2240,16 @@
       "bytes": 11604
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/client/StorageClientEvents.java": {
-      "sha256": "912a548a215b52710154ccda52d4127e5b6e7657ffe7954ddf40b14d89c63bee",
-      "bytes": 10594
+      "sha256": "27e649b05150da4130345c803d000e7ba07b83c3abbaed218576278d964582e2",
+      "bytes": 11347
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/client/StorageRenderBuffers.java": {
       "sha256": "15edfe72b3303fbd299e88419511cece39253254640e1f1f317ef7992b8f873e",
       "bytes": 10905
+    },
+    "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/client/StorageTooltipText.java": {
+      "sha256": "da74b0ff6998f3e1f986d07c93264fd9f0f60e52d3e22c8c80411e2aa694086f",
+      "bytes": 1674
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/compat/CuriosCompat.java": {
       "sha256": "2d511aa5c68d22b83b63b1f4185392f79a8d6405f9ef2863e37f5385b0b426ba",
@@ -2664,8 +2668,8 @@
       "bytes": 3112
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/item/upgrades/UpgradeItem.java": {
-      "sha256": "d23ec284c57818cf8a5a37079f480759b94f16759ac4603d403bb9e69f5c48f9",
-      "bytes": 12510
+      "sha256": "99961333f8522cdc90f7f56f4f2c6ecd6cb69bf4fe49ec19c7bfe52082e77fbb",
+      "bytes": 12432
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/mixin/AbstractContraptionEntityMixin.java": {
       "sha256": "8b010d2022a1275e4bea2dd081acde48d5f03ad0e3f204199e1b4d7985c0d4c6",
@@ -2968,8 +2972,8 @@
       "bytes": 1460
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/reserve_storage/ReserveStorageBoxItem.java": {
-      "sha256": "3fb6b3e44d08cb2cde75f0d0eff432b0964a12cead347dbc4b3fa9ef3c982ad7",
-      "bytes": 4222
+      "sha256": "0bf048df5d24e7c119c12ebc950f67a036191ea04966f131d3ab6a260d9176bb",
+      "bytes": 4204
     },
     "modules/create-storage-adapted-263/src/main/java/net/fxnt/fxntstorage/reserve_storage/ReserveStorageBoxMenu.java": {
       "sha256": "9c656ff80ecafc10143b2435169032a6d54ea80feb6196c9d14d71c3e5dce332",

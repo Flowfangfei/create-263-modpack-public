@@ -1,15 +1,13 @@
 package net.fxnt.fxntstorage.backpack;
 
-import com.simibubi.create.foundation.item.TooltipHelper;
 import net.createmod.catnip.api.client.lang.FontHelper;
 import net.fxnt.fxntstorage.FXNTStorage;
 import net.fxnt.fxntstorage.backpack.client.menu.BackpackMenu;
 import net.fxnt.fxntstorage.backpack.client.tooltip.BackpackTooltip;
 import net.fxnt.fxntstorage.backpack.util.BackpackHelper;
+import net.fxnt.fxntstorage.client.StorageTooltipText;
 import net.fxnt.fxntstorage.init.ModDataComponents;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -28,8 +26,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @ParametersAreNonnullByDefault
@@ -74,41 +70,29 @@ public class BackpackItem extends BlockItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack pStack, TooltipContext pContext, net.minecraft.world.item.component.TooltipDisplay display, java.util.function.Consumer<Component> output, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pContext, display, output, pIsAdvanced);
-        List<Component> pTooltipComponents = new java.util.ArrayList<>();
+        var client = net.minecraft.client.Minecraft.getInstance();
+        boolean shift = client.hasShiftDown();
+        boolean ctrl = client.hasControlDown();
 
-        final Component ctrlToViewContents = Component.translatable("tooltip.fxntstorage.holdForContents", (net.minecraft.client.Minecraft.getInstance().hasControlDown()) ? "§fCtrl" : "§7Ctrl").withStyle(ChatFormatting.DARK_GRAY);
-        final Component shiftToViewSummary = Component.translatable("tooltip.fxntstorage.holdForDescription", (net.minecraft.client.Minecraft.getInstance().hasShiftDown()) ? "§fShift" : "§7Shift").withStyle(ChatFormatting.DARK_GRAY);
+        if (shift || !ctrl) {
+            output.accept(Component.translatable("tooltip.fxntstorage.holdForDescription", shift ? "§fShift" : "§7Shift").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        if (!shift || ctrl) {
+            output.accept(Component.translatable("tooltip.fxntstorage.holdForContents", ctrl ? "§fCtrl" : "§7Ctrl").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        if (!shift || ctrl) return;
 
         String translationKey = "tooltip.fxntstorage.backpack";
         int placeholder = ((BackpackBlock) block).stackMultiplier;
-        List<Component> summaryLines = new ArrayList<>();
-
-        summaryLines.add(Component.empty());
-        summaryLines.addAll(TooltipHelper.cutTextComponent(Component.translatable(translationKey + ".summary"), FontHelper.Palette.STANDARD_CREATE));
-        summaryLines.add(Component.empty());
+        output.accept(Component.empty());
+        StorageTooltipText.format(Component.translatable(translationKey + ".summary"), FontHelper.Palette.STANDARD_CREATE).forEach(output);
+        output.accept(Component.empty());
         for (int i = 1; i < 10; i++) {
             if (!net.minecraft.locale.Language.getInstance().has(translationKey + ".condition" + i)) break;
-            summaryLines.addAll(TooltipHelper.cutTextComponent(Component.translatable(translationKey + ".condition" + i), FontHelper.Palette.ALL_GRAY));
-            summaryLines.addAll(TooltipHelper.cutTextComponent(Component.translatable(translationKey + ".behaviour" + i, placeholder),
-                    FontHelper.Palette.STANDARD_CREATE.primary(), FontHelper.Palette.STANDARD_CREATE.highlight(), 1));
+            StorageTooltipText.format(Component.translatable(translationKey + ".condition" + i), FontHelper.Palette.ALL_GRAY).forEach(output);
+            StorageTooltipText.format(Component.translatable(translationKey + ".behaviour" + i, placeholder),
+                    FontHelper.Palette.STANDARD_CREATE.primary(), FontHelper.Palette.STANDARD_CREATE.highlight(), 1).forEach(output);
         }
-
-        if (net.minecraft.client.Minecraft.getInstance().hasShiftDown() == net.minecraft.client.Minecraft.getInstance().hasControlDown()) {
-            pTooltipComponents.add(shiftToViewSummary);
-            pTooltipComponents.add(ctrlToViewContents);
-        }
-
-        if (net.minecraft.client.Minecraft.getInstance().hasShiftDown() && !net.minecraft.client.Minecraft.getInstance().hasControlDown()) {
-            pTooltipComponents.add(shiftToViewSummary);
-            pTooltipComponents.addAll(summaryLines);
-        }
-
-        if (!net.minecraft.client.Minecraft.getInstance().hasShiftDown() && net.minecraft.client.Minecraft.getInstance().hasControlDown()) {
-            pTooltipComponents.add(ctrlToViewContents);
-        }
-
-    
-        pTooltipComponents.forEach(output);
     }
 
     @Override

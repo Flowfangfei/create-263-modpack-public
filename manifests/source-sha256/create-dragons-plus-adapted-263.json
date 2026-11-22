@@ -3232,8 +3232,8 @@
       "bytes": 3642
     },
     "modules/create-dragons-plus-adapted-263/src/main/java/plus/dragons/createdragonsplus/mixin/create/PotionMixingRecipesMixin.java": {
-      "sha256": "c018f213d296ea1c1307ed43c0e01fa5700e803e8471f435608621364d723b0e",
-      "bytes": 5479
+      "sha256": "fbe27e681a0bd9479886343caa7e1c6a566924e1cd914675d890d4f31f7b0010",
+      "bytes": 5805
     },
     "modules/create-dragons-plus-adapted-263/src/main/java/plus/dragons/createdragonsplus/mixin/create/VanillaFluidTargetsMixin.java": {
       "sha256": "5da6ddc4c5fe708778c2efdabc694a8bb1c96159e098cecc55c8ee0519a7d57d",

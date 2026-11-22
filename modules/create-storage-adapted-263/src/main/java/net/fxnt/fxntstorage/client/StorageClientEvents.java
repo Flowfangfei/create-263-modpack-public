@@ -19,9 +19,11 @@ import net.fxnt.fxntstorage.container.StorageBoxEntityRenderer;
 import net.fxnt.fxntstorage.container.StorageBoxScreen;
 import net.fxnt.fxntstorage.container.mounted.StorageBoxMountedScreen;
 import net.fxnt.fxntstorage.init.*;
+import net.fxnt.fxntstorage.item.upgrades.UpgradeItem;
 import net.fxnt.fxntstorage.network.PacketHandler;
 import net.fxnt.fxntstorage.ponder.CsPonderPlugin;
 import net.fxnt.fxntstorage.reserve_storage.ReserveStorageBoxEntityRenderer;
+import net.fxnt.fxntstorage.reserve_storage.ReserveStorageBoxItem;
 import net.fxnt.fxntstorage.reserve_storage.ReserveStorageBoxScreen;
 import net.fxnt.fxntstorage.simple_storage.CompactingRecipeHelper;
 import net.fxnt.fxntstorage.simple_storage.SimpleStorageBoxEntityRenderer;
@@ -84,6 +86,19 @@ public class StorageClientEvents {
 
     private static void registerTooltipComponent(RegisterClientTooltipComponentFactoriesEvent event) {
         event.register(BackpackTooltip.class, BackpackClientTooltip::new);
+    }
+
+    @SubscribeEvent
+    public static void wrapItemDescription(RenderTooltipEvent.GatherComponents event) {
+        Item item = event.getItemStack().getItem();
+        Minecraft client = Minecraft.getInstance();
+        boolean wrap = item instanceof UpgradeItem && (client.hasShiftDown() || client.hasControlDown())
+                || (item instanceof BackpackItem || item instanceof ReserveStorageBoxItem)
+                && client.hasShiftDown() && !client.hasControlDown();
+        if (wrap) {
+            int limit = event.getMaxWidth();
+            event.setMaxWidth(limit < 0 ? 200 : Math.min(limit, 200));
+        }
     }
 
 

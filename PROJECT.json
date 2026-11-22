@@ -13,17 +13,15 @@
   "license_manifest": "manifests/third-party-licenses.json",
   "updated_at": "2026-11-04T22:19:35+08:00",
   "repository": "https://github.com/Flowfangfei/create-263-modpack-public",
-  "release": "https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3",
-  "release_tag": "v0.3.0-alpha.3",
-  "release_source_commit": "49a7bb8e6d909a2aaa3bb01acade4c8c0cb4fe34",
+  "release": "https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.4",
+  "release_tag": "v0.3.0-alpha.4",
   "previous_release": {
-    "release": "https://github.com/Flowfangfei/create-263-modpack/releases/tag/v0.3.0-alpha.2",
-    "release_tag": "v0.3.0-alpha.2",
-    "release_source_commit": "35cb63c63412f2bef62f6fd37afe77977235fbc6",
-    "visibility": "private archive"
+    "release": "https://github.com/Flowfangfei/create-263-modpack-public/releases/tag/v0.3.0-alpha.3",
+    "release_tag": "v0.3.0-alpha.3",
+    "release_source_commit": "49a7bb8e6d909a2aaa3bb01acade4c8c0cb4fe34",
+    "visibility": "public prerelease"
   },
   "release_status": "public-prerelease",
-  "release_verified_at": "2026-11-04T22:19:35+08:00",
   "public_repository": "https://github.com/Flowfangfei/create-263-modpack-public",
   "maintenance_archive_repository": "https://github.com/Flowfangfei/create-263-modpack",
   "current_source_branch": "main",

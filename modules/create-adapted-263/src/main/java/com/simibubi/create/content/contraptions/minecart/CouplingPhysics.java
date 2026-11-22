@@ -35,9 +35,53 @@ public class CouplingPhysics {
 
 		float couplingLength = coupling.getFirst()
 			.getCouplingLength(true);
+		if (correctCurvedTrack(world, carts, couplingLength))
+			return;
 		softCollisionStep(world, carts, couplingLength);
 		if (!world.isClientSide())
 			hardCollisionStep(world, carts, couplingLength);
+	}
+
+	private static boolean correctCurvedTrack(Level world, Couple<AbstractMinecart> carts, float couplingLength) {
+		AbstractMinecart first = carts.getFirst();
+		AbstractMinecart second = carts.getSecond();
+		if (!first.isOnRails() || !second.isOnRails())
+			return false;
+		var rails = carts.map(cart -> MinecartRailPath.at(world, cart, cart.getCurrentBlockPosOrRailBelow()));
+		if (rails.getFirst() == null || rails.getSecond() == null)
+			return false;
+		var link = rails.getFirst().curvedLink(world, first, second, rails.getSecond(),
+			Math.min(16, Math.max(6, couplingLength + 3)));
+		if (link == null)
+			return false;
+
+		// The chord across a hairpin can point outside the travelled rail or back down its incoming leg.
+		var directions = Couple.create(link.firstToward(), link.secondToward());
+		var horizontal = directions.map(direction -> direction.horizontal().normalize());
+		var maxSpeed = carts.map(cart -> getMaxSpeed(world, cart));
+		var canMove = carts.map(cart -> MinecartSim2020.canAddMotion(cart) && !world.tickRateManager().isEntityFrozen(cart));
+		int movingCarts = (canMove.getFirst() ? 1 : 0) + (canMove.getSecond() ? 1 : 0);
+		if (movingCarts == 0)
+			return true;
+		var motions = carts.mapWithContext((cart, end) -> VecHelper.clamp(cart.getDeltaMovement(), maxSpeed.get(end)));
+		double error = link.distance() - couplingLength;
+		double predictedError = error;
+		for (boolean end : Iterate.trueAndFalse) {
+			if (canMove.get(end))
+				predictedError -= horizontal.get(end).dot(motions.get(end)) / directions.get(end).horizontalDistance();
+		}
+		for (boolean end : Iterate.trueAndFalse) {
+			if (!canMove.get(end))
+				continue;
+			var cart = carts.get(end);
+			var correction = directions.get(end).horizontal().scale(predictedError / movingCarts);
+			cart.setDeltaMovement(VecHelper.clamp(motions.get(end).add(correction), maxSpeed.get(end)));
+			if (!world.isClientSide() && Math.abs(error) >= 1 / 8f) {
+				var displacement = directions.get(end).scale(error / movingCarts);
+				rails.get(end).move(world, cart, VecHelper.clamp(displacement, Math.min(1.75f, maxSpeed.get(end))));
+			}
+		}
+		return true;
 	}
 
 	private static void hardCollisionStep(Level world, Couple<AbstractMinecart> carts, double couplingLength) {
@@ -60,13 +104,18 @@ public class CouplingPhysics {
 			if (!MinecartSim2020.canAddMotion(cart))
 				correctionMagnitude /= 2;
 
-			RailShape shape = getRailShape(world, cart, cart.getCurrentBlockPosOrRailBelow());
-			Vec3 correction = shape == null
+			MinecartRailPath rail = MinecartRailPath.at(world, cart, cart.getCurrentBlockPosOrRailBelow());
+			Vec3 correction = rail == null
 				? link.normalize().scale(correctionMagnitude)
-				: followLinkOnRail(link, pos, correctionMagnitude, MinecartSim2020.getRailVec(shape)).subtract(pos);
+				: followLinkOnRail(link, pos, correctionMagnitude, rail.axis()).subtract(pos);
 			correction = VecHelper.clamp(correction, Math.min(1.75f, getMaxSpeed(world, cart)));
 
-			cart.move(MoverType.SELF, correction);
+			if (rail != null) {
+				if (!rail.move(world, cart, correction))
+					continue;
+			} else {
+				cart.move(MoverType.SELF, correction);
+			}
 			cart.setDeltaMovement(cart.getDeltaMovement()
 				.scale(.95f));
 			firstLoop = false;
@@ -98,9 +147,9 @@ public class CouplingPhysics {
 				correctionMagnitude = !canAddMotion.get(current) ? 0 : correctionMagnitude * 2;
 
 			RailShape shape = shapes.get(current);
-			Vec3 correction = shape == null
-				? link.normalize().scale(correctionMagnitude)
-				: followLinkOnRail(link, pos, correctionMagnitude, MinecartSim2020.getRailVec(shape)).subtract(pos);
+			Vec3 correction = link.normalize().scale(correctionMagnitude);
+			if (shape != null)
+				correction = VecHelper.project(correction, MinecartSim2020.getRailVec(shape));
 			correction = VecHelper.clamp(correction, maxSpeed.get(current));
 			motions.set(current, motions.get(current)
 				.add(correction));

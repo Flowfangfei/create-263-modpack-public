@@ -26,7 +26,7 @@ public abstract class ItemEntityMixin extends Entity {
         if (Sable.HELPER.getTrackingSubLevel(this) != null)
             return 1.0;
 
-        return instance.horizontalDistance();
+        return instance.horizontalDistanceSqr();
     }
 
 }

@@ -972,8 +972,8 @@
       "bytes": 18242
     },
     "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/ItemEntityMixin.java": {
-      "sha256": "23473ae30d934da8bd1d7c765a0de960b4d484dd1fbb823c9a4a00aa3847d0a4",
-      "bytes": 1142
+      "sha256": "40fb62e02cd9bfafac8ffdb318cf7d7df1187e026c743ed6b3d451852ea285ac",
+      "bytes": 1145
     },
     "modules/sable-adapted-263/src/main/java/dev/ryanhcode/sable/mixin/entity/entity_sublevel_collision/LevelMixin.java": {
       "sha256": "dd557e2d71915d950465c1bec339ccbe8c457ecf8acff6a79a201b1f681fbf1a",

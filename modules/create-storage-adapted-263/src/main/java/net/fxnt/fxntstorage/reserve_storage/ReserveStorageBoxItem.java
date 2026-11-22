@@ -1,8 +1,8 @@
 package net.fxnt.fxntstorage.reserve_storage;
 
-import com.simibubi.create.foundation.item.TooltipHelper;
 import net.createmod.catnip.api.client.lang.FontHelper;
 import net.fxnt.fxntstorage.backpack.client.tooltip.BackpackTooltip;
+import net.fxnt.fxntstorage.client.StorageTooltipText;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
@@ -57,14 +57,14 @@ public class ReserveStorageBoxItem extends BlockItem {
         if (net.minecraft.client.Minecraft.getInstance().hasShiftDown()) {
             // Add summary component
             text.add(Component.empty());
-            text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".summary"), FontHelper.Palette.STANDARD_CREATE));
+            text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".summary"), FontHelper.Palette.STANDARD_CREATE));
             text.add(Component.empty());
 
             // Add up to 9 conditions/behaviors
             for (int i = 1; i < 10; i++) {
                 if (!net.minecraft.locale.Language.getInstance().has(translateKey + ".condition" + i)) break;
-                text.addAll(TooltipHelper.cutTextComponent(Component.translatable(translateKey + ".condition" + i), FontHelper.Palette.ALL_GRAY));
-                text.addAll(TooltipHelper.cutTextComponent(
+                text.addAll(StorageTooltipText.format(Component.translatable(translateKey + ".condition" + i), FontHelper.Palette.ALL_GRAY));
+                text.addAll(StorageTooltipText.format(
                         Component.translatable(translateKey + ".behaviour" + i),
                         FontHelper.Palette.STANDARD_CREATE.primary(), FontHelper.Palette.STANDARD_CREATE.highlight(), 1));
             }
